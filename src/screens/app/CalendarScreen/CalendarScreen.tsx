@@ -1,12 +1,13 @@
 import { isToday } from "date-fns";
 
-import { Calendar, Divider, Screen } from "@components";
+import { AddSmokingHourModal, Calendar, Divider, Screen } from "@components";
 
 import { CalendarHeader, SmokingActivities } from "./components";
 import { useCalendarScreen } from "./useCalendarScreen";
 
 export const CalendarScreen = () => {
-  const { date, setDate } = useCalendarScreen();
+  const { date, showAddSmokingHourModal, setDate, setShowAddSmokingHourModal } =
+    useCalendarScreen();
 
   return (
     <Screen
@@ -17,7 +18,7 @@ export const CalendarScreen = () => {
         isToday(date)
           ? {
               text: "Adicionar fumo",
-              action: () => {},
+              action: () => setShowAddSmokingHourModal(true),
               insets: {
                 left: "s24",
                 right: "s24",
@@ -30,6 +31,12 @@ export const CalendarScreen = () => {
       <Calendar date={date} setDate={setDate} />
       <Divider mt={"s30"} mb={"s30"} />
       <SmokingActivities date={date} />
+      {showAddSmokingHourModal && (
+        <AddSmokingHourModal
+          visible={showAddSmokingHourModal}
+          setVisible={setShowAddSmokingHourModal}
+        />
+      )}
     </Screen>
   );
 };

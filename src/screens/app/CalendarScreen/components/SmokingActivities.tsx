@@ -1,4 +1,11 @@
-import { Box, HeadingWithDescription, InformationItem } from "@components";
+import { useState } from "react";
+
+import {
+  Box,
+  Button,
+  HeadingWithDescription,
+  SmokingDetailsModal,
+} from "@components";
 
 import { formatDate } from "../utils";
 
@@ -8,9 +15,11 @@ interface SmokingActivitiesProps {
   date: Date;
 }
 
-const mock: string[] = [];
+const mock: string[] = ["ola"];
 
 export const SmokingActivities = ({ date }: SmokingActivitiesProps) => {
+  const [showSmokingDetailsModal, setShowSmokingDetailsModal] = useState(false);
+
   return (
     <Box paddingHorizontal={"s24"}>
       <HeadingWithDescription
@@ -19,11 +28,25 @@ export const SmokingActivities = ({ date }: SmokingActivitiesProps) => {
       />
       <Box rowGap={"s10"} mt={"s20"}>
         {mock.length ? (
-          mock.map((ac, i) => <InformationItem key={i} icon="wind" text={ac} />)
+          mock.map((ac, i) => (
+            <Button
+              text={ac}
+              key={i}
+              iconName="wind"
+              justifyContent={"flex-start"}
+              onPress={() => setShowSmokingDetailsModal(true)}
+            />
+          ))
         ) : (
           <SmokingActivitiesEmpty />
         )}
       </Box>
+      {showSmokingDetailsModal && (
+        <SmokingDetailsModal
+          visible={showSmokingDetailsModal}
+          setVisible={setShowSmokingDetailsModal}
+        />
+      )}
     </Box>
   );
 };

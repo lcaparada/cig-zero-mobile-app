@@ -17,6 +17,7 @@ import {
   Home,
   ChevronRight,
   ChevronLeft,
+  ChevronDown,
 } from "@assets";
 
 import { TouchableOpacityBox } from "../Box/Box";
@@ -87,5 +88,6 @@ const iconRegistry = {
   arrowRight: ArrowRight,
   dollarSign: DollarSign,
   chevronLeft: ChevronLeft,
+  chevronDown: ChevronDown,
   chevronRight: ChevronRight,
 };

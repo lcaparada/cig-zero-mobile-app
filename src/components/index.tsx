@@ -1,6 +1,7 @@
 export * from "./Box/Box";
 export * from "./Text/Text";
 export * from "./Icon/Icon";
+export * from "./Modal/Modal";
 export * from "./TabBar/TabBar";
 export * from "./Button/Button";
 export * from "./Screen/Screen";
@@ -18,4 +19,6 @@ export * from "./InformationCard/InformationCard";
 export * from "./OnboardingInput/onboardingTypes";
 export * from "./OnboardingInput/OnboardingInput";
 export * from "./ActivityIndicator/ActivityIndicator";
+export * from "./SmokingDetailsModal/SmokingDetailsModal";
+export * from "./AddSmokingHourModal/AddSmokingHourModal";
 export * from "./HeadingWithDescription/HeadingWithDescription";

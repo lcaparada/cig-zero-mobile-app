@@ -1,7 +1,7 @@
 import { ThemeColors } from "../../theme/theme";
 import { TouchableOpacityBoxProps } from "../Box/Box";
 
-export type ButtonPresetType = "primary" | "outline";
+export type ButtonPresetType = "primary" | "outline" | "delete";
 
 interface ButtonUI {
   container: TouchableOpacityBoxProps;
@@ -18,6 +18,15 @@ export const buttonPresets: Record<
     default: {
       container: {
         backgroundColor: "primary",
+        shadowColor: "buttonShadow",
+        shadowOffset: {
+          width: 0,
+          height: 5,
+        },
+        shadowOpacity: 1,
+        shadowRadius: 0,
+
+        elevation: 14,
       },
       content: "buttonConstrast",
       icon: "buttonConstrast",
@@ -26,6 +35,34 @@ export const buttonPresets: Record<
     disabled: {
       container: {
         backgroundColor: "primary",
+        opacity: 0.5,
+      },
+      content: "backgroundConstrast",
+      icon: "backgroundConstrast",
+      loading: "backgroundConstrast",
+    },
+  },
+  delete: {
+    default: {
+      container: {
+        backgroundColor: "errorDark",
+        shadowColor: "errorMedium",
+        shadowOffset: {
+          width: 0,
+          height: 5,
+        },
+        shadowOpacity: 1,
+        shadowRadius: 0,
+
+        elevation: 14,
+      },
+      content: "buttonConstrast",
+      icon: "buttonConstrast",
+      loading: "buttonConstrast",
+    },
+    disabled: {
+      container: {
+        backgroundColor: "errorDark",
         opacity: 0.5,
       },
       content: "backgroundConstrast",
