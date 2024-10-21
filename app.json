@@ -22,6 +22,19 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/SF-Pro-Rounded-Regular.otf",
+            "./assets/fonts/SF-Pro-Rounded-Medium.otf",
+            "./assets/fonts/SF-Pro-Rounded-Semibold.otf",
+            "./assets/fonts/SF-Pro-Rounded-Bold.otf"
+          ]
+        }
+      ]
+    ]
   }
 }
