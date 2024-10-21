@@ -1,12 +1,13 @@
 import { ThemeColors } from "@theme";
 
-import { Box } from "../Box/Box";
+import { Box, BoxProps } from "../Box/Box";
 import { Text } from "../Text/Text";
 
-interface ScreenHeaderProps {
+interface ScreenHeaderProps extends BoxProps {
   title: string;
   description: string;
   titleAndDescriptionColor?: ThemeColors;
+
   rightComponent?: JSX.Element;
 }
 

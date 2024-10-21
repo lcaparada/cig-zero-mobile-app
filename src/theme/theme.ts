@@ -7,7 +7,7 @@ const pallete = {
 
   bluePrimaryWith25PercentOpacity: "#7ea2aa40",
 
-  errorDark: "#9D4242",
+  errorDark: "#6B0F1A",
   errorLight: "#EB9494",
 
   lightGray: "#E5E5E5",

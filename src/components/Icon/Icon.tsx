@@ -14,6 +14,9 @@ import {
   Star,
   Activity,
   ArrowRight,
+  Home,
+  ChevronRight,
+  ChevronLeft,
 } from "@assets";
 
 import { TouchableOpacityBox } from "../Box/Box";
@@ -75,6 +78,7 @@ const iconRegistry = {
   user: User,
   star: Star,
   wind: Wind,
+  home: Home,
   rings: Rings,
   clock: Clock,
   activity: Activity,
@@ -82,4 +86,6 @@ const iconRegistry = {
   calendar: Calendar,
   arrowRight: ArrowRight,
   dollarSign: DollarSign,
+  chevronLeft: ChevronLeft,
+  chevronRight: ChevronRight,
 };

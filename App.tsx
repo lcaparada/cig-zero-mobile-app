@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 
 import { ThemeProvider } from "@shopify/restyle";
+import { setDefaultOptions } from "date-fns";
+import { ptBR } from "date-fns/locale";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -15,6 +17,10 @@ export default function App() {
     "SFProRounded-Semibold": require("./src/assets/fonts/SF-Pro-Rounded-Semibold.otf"),
     "SFProRounded-Bold": require("./src/assets/fonts/SF-Pro-Rounded-Bold.otf"),
   });
+
+  useEffect(() => {
+    setDefaultOptions({ locale: ptBR });
+  }, []);
 
   useEffect(() => {
     if (loaded || error) {

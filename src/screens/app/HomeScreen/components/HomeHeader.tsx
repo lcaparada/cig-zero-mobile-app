@@ -7,9 +7,9 @@ export const HomeHeader = () => {
   return (
     <Box
       backgroundColor={"primary"}
-      paddingTop={"s28"}
+      paddingTop={"s48"}
       paddingHorizontal={"s24"}
-      height={255}
+      paddingBottom={"s30"}
       {...shadow}
     >
       <ScreenHeader
@@ -25,7 +25,6 @@ export const HomeHeader = () => {
           />
         }
       />
-
       <Box
         flexDirection={"row"}
         columnGap={"s10"}

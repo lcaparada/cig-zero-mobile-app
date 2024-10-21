@@ -1,4 +1,4 @@
-import { Box, Divider, Screen } from "@components";
+import { Divider, Screen } from "@components";
 
 import {
   ActionsButtons,
@@ -14,14 +14,12 @@ export const HomeScreen = () => {
       insets={{ left: "s0", right: "s0", top: "s24" }}
       scrollable
     >
-      <Box>
-        <HomeHeader />
-        <GeneralProgress />
-        <Divider />
-        <Historic />
-        <Divider />
-        <ActionsButtons />
-      </Box>
+      <HomeHeader />
+      <GeneralProgress />
+      <Divider />
+      <Historic />
+      <Divider />
+      <ActionsButtons />
     </Screen>
   );
 };

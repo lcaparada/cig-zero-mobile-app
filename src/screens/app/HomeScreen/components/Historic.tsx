@@ -1,4 +1,9 @@
-import { Box, Button, HeadingWithDescription, IconName } from "@components";
+import {
+  Box,
+  IconName,
+  InformationItem,
+  HeadingWithDescription,
+} from "@components";
 
 interface HistoricItemData {
   icon: IconName;
@@ -29,13 +34,7 @@ export const Historic = () => {
       />
       <Box mt={"s20"} rowGap={"s10"}>
         {historicItems.map((item, index) => (
-          <Button
-            key={index}
-            text={item.label}
-            disabledWithPrimaryPreset
-            justifyContent={"flex-start"}
-            iconName={item.icon}
-          />
+          <InformationItem key={index} text={item.label} icon={item.icon} />
         ))}
       </Box>
     </Box>
