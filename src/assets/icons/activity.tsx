@@ -4,11 +4,11 @@ import Svg, { Path } from "react-native-svg";
 
 import { IconBase } from "@components";
 
-export const Calendar = ({ color, size, strokeWidth }: IconBase) => {
+export const Activity = ({ color, size, strokeWidth }: IconBase) => {
   return (
-    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+    <Svg width={size} height={size} viewBox="0 0 20 20" fill="none">
       <Path
-        d="M19 4H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2zM16 2v4M8 2v4M3 10h18"
+        d="M18.334 10H15l-2.5 7.5-5-15L5 10H1.667"
         stroke={color}
         strokeWidth={strokeWidth}
         strokeLinecap="round"

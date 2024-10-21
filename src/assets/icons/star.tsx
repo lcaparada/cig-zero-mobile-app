@@ -4,19 +4,16 @@ import Svg, { Path } from "react-native-svg";
 
 import { IconBase } from "@components";
 
-export const StarIcon = ({ color, size, strokeWidth }: IconBase) => {
+export const Star = ({ color, size, strokeWidth }: IconBase) => {
   return (
-    <Svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke={color}
-      strokeWidth={strokeWidth}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <Path d="M12 2L15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2z" />
+    <Svg width={size} height={size} viewBox="0 0 20 20" fill="none">
+      <Path
+        d="M10 1.667l2.575 5.216 5.759.842-4.167 4.058.983 5.734L10 14.808l-5.15 2.709.984-5.734-4.167-4.058 5.758-.842L10 1.667z"
+        stroke={color}
+        strokeWidth={strokeWidth}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </Svg>
   );
 };

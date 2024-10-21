@@ -1,5 +1,11 @@
-import { Box, Icon, Screen, ScreenHeader, Text } from "@components";
-import { shadow } from "@theme";
+import { Box, Divider, Screen } from "@components";
+
+import {
+  ActionsButtons,
+  GeneralProgress,
+  Historic,
+  HomeHeader,
+} from "./components";
 
 export const HomeScreen = () => {
   return (
@@ -8,27 +14,13 @@ export const HomeScreen = () => {
       insets={{ left: "s0", right: "s0", top: "s24" }}
       scrollable
     >
-      <Box
-        backgroundColor={"primary"}
-        paddingTop={"s28"}
-        paddingHorizontal={"s24"}
-        height={244}
-        {...shadow}
-      >
-        <ScreenHeader
-          title="Resumo"
-          description="Acompanhe o progresso"
-          titleAndDescriptionColor="neutralLighest"
-          rightComponent={
-            <Icon
-              name="settings"
-              color="neutralLighest"
-              strokeWidth={2}
-              size="s24"
-            />
-          }
-        />
-        <Icon name="calendar"></Icon>
+      <Box>
+        <HomeHeader />
+        <GeneralProgress />
+        <Divider />
+        <Historic />
+        <Divider />
+        <ActionsButtons />
       </Box>
     </Screen>
   );

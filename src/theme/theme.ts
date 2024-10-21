@@ -11,6 +11,9 @@ const pallete = {
   errorLight: "#EB9494",
 
   lightGray: "#E5E5E5",
+  lightNeutralGray: "#D2D2D2",
+
+  softWhiteGray: "#F4F4F4",
 
   mutedAqua: "#9BBDC4",
   mutedSlate: "#6B8A90",
@@ -48,6 +51,8 @@ export const theme = createTheme({
 
     radioButtonBorder: pallete.grayishSilver,
     radioButtonBackground: pallete.mutedCyan,
+
+    dividerColor: pallete.softWhiteGray,
 
     onboardingInputSelected: pallete.bluePrimaryWith25PercentOpacity,
 

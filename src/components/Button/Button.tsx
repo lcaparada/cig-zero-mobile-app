@@ -16,6 +16,8 @@ export interface ButtonProps extends TouchableOpacityBoxProps {
   preset?: ButtonPresetType;
   disabled?: boolean;
   isLoading?: boolean;
+  hasArrowRight?: boolean;
+  disabledWithPrimaryPreset?: boolean;
 }
 
 export const Button = ({
@@ -24,6 +26,8 @@ export const Button = ({
   disabled = false,
   isLoading = false,
   iconName = undefined,
+  hasArrowRight = false,
+  disabledWithPrimaryPreset = false,
   onPress,
   ...touchableOpacityBoxProps
 }: ButtonProps) => {
@@ -33,10 +37,11 @@ export const Button = ({
     <TouchableOpacityBox
       height={55}
       borderRadius={"s16"}
+      paddingHorizontal={"s20"}
       justifyContent={"center"}
       alignItems={"center"}
       flexDirection={"row"}
-      disabled={disabled}
+      disabled={disabled || disabledWithPrimaryPreset}
       columnGap={"s8"}
       onPress={onPress}
       {...$buttonShadow}
@@ -47,10 +52,10 @@ export const Button = ({
         <ActivityIndicator color={buttonPreset.loading} />
       ) : (
         <Box
-          columnGap={"s10"}
+          columnGap={"s8"}
           flexDirection={"row"}
-          alignItems={"center"}
           justifyContent={"center"}
+          alignItems={"center"}
         >
           {iconName && (
             <Icon
@@ -65,6 +70,16 @@ export const Button = ({
               {text}
             </Text>
           )}
+        </Box>
+      )}
+      {hasArrowRight && (
+        <Box position={"absolute"} right={20}>
+          <Icon
+            name="arrowRight"
+            size="s20"
+            color="neutralLighest"
+            strokeWidth={2}
+          />
         </Box>
       )}
     </TouchableOpacityBox>

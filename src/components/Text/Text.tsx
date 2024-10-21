@@ -19,7 +19,9 @@ export type TextVariants =
   | "titleBig"
   | "display"
   | "paragraphsLarge"
-  | "notesSmall";
+  | "notesSmall"
+  | "timer"
+  | "paragraphsXL";
 
 export interface TextProps extends SRTextProps {
   weight?: TextWeightVariants;
@@ -61,7 +63,9 @@ export const $fontSize: Record<TextVariants, TextStyle> = {
   paragraphsBig: { fontSize: 16, lineHeight: 16 * MULTIPLIER_LINE_HEIGHT },
   default: { fontSize: 18, lineHeight: 18 * MULTIPLIER_LINE_HEIGHT },
   paragraphsLarge: { fontSize: 20, lineHeight: 20 * MULTIPLIER_LINE_HEIGHT },
+  paragraphsXL: { fontSize: 22, lineHeight: 22 * MULTIPLIER_LINE_HEIGHT },
   titleSmall: { fontSize: 24, lineHeight: 24 * MULTIPLIER_LINE_HEIGHT },
   titleBig: { fontSize: 28, lineHeight: 28 * MULTIPLIER_LINE_HEIGHT },
   display: { fontSize: 30, lineHeight: 30 * MULTIPLIER_LINE_HEIGHT },
+  timer: { fontSize: 40, lineHeight: 40 * MULTIPLIER_LINE_HEIGHT },
 };
