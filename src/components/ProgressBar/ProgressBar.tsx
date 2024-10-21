@@ -8,11 +8,11 @@ import {
 
 import { AnimatedBoxRNR, Box, BoxProps } from "../Box/Box";
 
-interface ProgressBarProps {
+interface ProgressBarProps extends BoxProps {
   percentage: number;
 }
 
-export const ProgressBar = ({ percentage }: ProgressBarProps) => {
+export const ProgressBar = ({ percentage, ...boxProps }: ProgressBarProps) => {
   const animatedPercentage = useSharedValue(0);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ export const ProgressBar = ({ percentage }: ProgressBarProps) => {
   });
 
   return (
-    <Box {...$progressBarBackground}>
+    <Box {...$progressBarBackground} {...boxProps}>
       <AnimatedBoxRNR style={animatedStyle} {...$progressBarInner}>
         <AnimatedBoxRNR
           height={3}

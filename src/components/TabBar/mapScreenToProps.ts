@@ -12,4 +12,7 @@ export const mapScreenToProps: Record<
   CalendarScreen: {
     icon: "calendar",
   },
+  OMSTipsScreen: {
+    icon: "activity",
+  },
 };

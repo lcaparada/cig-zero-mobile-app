@@ -5,4 +5,5 @@ export * from "./auth/OnboardingScreen/OnboardingScreen";
 
 // APP
 export * from "./app/HomeScreen/HomeScreen";
+export * from "./app/OMSTipsScreen/OMSTipsScreen";
 export * from "./app/CalendarScreen/CalendarScreen";

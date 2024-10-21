@@ -4,10 +4,11 @@ import {
 } from "@react-navigation/bottom-tabs";
 
 import { TabBar } from "@components";
-import { CalendarScreen, HomeScreen } from "@screens";
+import { CalendarScreen, HomeScreen, OMSTipsScreen } from "@screens";
 
 export type AppTabBottomTabParamList = {
   HomeScreen: undefined;
+  OMSTipsScreen: undefined;
   CalendarScreen: undefined;
 };
 
@@ -20,6 +21,7 @@ export const AppTabNavigator = () => {
     <Tab.Navigator screenOptions={{ headerShown: false }} tabBar={renderTabBar}>
       <Tab.Screen name="HomeScreen" component={HomeScreen} />
       <Tab.Screen name="CalendarScreen" component={CalendarScreen} />
+      <Tab.Screen name="OMSTipsScreen" component={OMSTipsScreen} />
     </Tab.Navigator>
   );
 };
