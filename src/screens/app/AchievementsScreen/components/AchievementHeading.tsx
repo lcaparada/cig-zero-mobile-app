@@ -37,7 +37,7 @@ export const AchievementHeading = ({
         mt={"s24"}
         {...boxProps}
       >
-        <Box rowGap={"s6"}>
+        <Box flex={1} rowGap={"s6"}>
           <Box flexDirection={"row"} alignItems={"center"} columnGap={"s8"}>
             <Icon name={icon} size="s24" color="primary" strokeWidth={2} />
             <Text
