@@ -10,6 +10,8 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Route } from "@routes";
 import { theme } from "@theme";
 
+import { AuthProvider, ToastProvider } from "@services";
+
 export default function App() {
   const [loaded, error] = useFonts({
     "SFProRounded-Regular": require("./src/assets/fonts/SF-Pro-Rounded-Regular.otf"),
@@ -35,7 +37,11 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <ThemeProvider theme={theme}>
-        <Route />
+        <ToastProvider>
+          <AuthProvider>
+            <Route />
+          </AuthProvider>
+        </ToastProvider>
       </ThemeProvider>
     </SafeAreaProvider>
   );

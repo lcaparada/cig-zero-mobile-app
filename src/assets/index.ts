@@ -9,6 +9,7 @@ export * from "./icons/clock";
 export * from "./icons/activity";
 export * from "./icons/settings";
 export * from "./icons/calendar";
+export * from "./icons/arrowLeft";
 export * from "./icons/arrowRight";
 export * from "./icons/dollarSign";
 export * from "./icons/chevronLeft";

@@ -19,6 +19,7 @@ import {
   ChevronLeft,
   ChevronDown,
   Zap,
+  ArrowLeft,
   TrendingDown,
 } from "@assets";
 
@@ -88,6 +89,7 @@ const iconRegistry = {
   activity: Activity,
   settings: Settings,
   calendar: Calendar,
+  arrowLeft: ArrowLeft,
   arrowRight: ArrowRight,
   dollarSign: DollarSign,
   chevronLeft: ChevronLeft,
