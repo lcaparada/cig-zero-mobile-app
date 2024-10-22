@@ -20,8 +20,6 @@ export const ProgressBar = ({ percentage, ...boxProps }: ProgressBarProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [percentage]);
 
-  console.log(percentage);
-
   const animatedStyle = useAnimatedStyle(() => {
     return {
       paddingTop: percentage > 0 ? 4 : 0,
