@@ -66,7 +66,7 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
 }
 
 const $boxStyle: BoxProps = {
-  height: 80,
+  height: 10,
   paddingTop: "s22",
   flexDirection: "row",
   backgroundColor: "background",

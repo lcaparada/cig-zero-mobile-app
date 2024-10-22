@@ -1,7 +1,7 @@
 import { Box } from "src/components/Box/Box";
 import { Text } from "src/components/Text/Text";
 
-import { formatNumber } from "../utils/formatNumber";
+import { formatNumber } from "./utils";
 
 interface CountProps {
   current?: number;

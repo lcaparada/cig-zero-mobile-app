@@ -1,7 +1,6 @@
 import { Box } from "../Box/Box";
+import { Count } from "../Count/Count";
 import { Text } from "../Text/Text";
-
-import { Count } from "./components";
 
 interface TitleAndDescriptionProps {
   title: string;

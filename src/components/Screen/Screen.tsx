@@ -26,12 +26,6 @@ export interface ScreenProps {
     text: string;
     disabled?: boolean;
     loading?: boolean;
-    insets?: {
-      top?: ThemeSpacing;
-      left?: ThemeSpacing;
-      right?: ThemeSpacing;
-      bottom?: ThemeSpacing;
-    };
   };
   scrollRef?: React.RefObject<ScrollView>;
   scrollable?: boolean;
@@ -111,10 +105,7 @@ export const Screen = ({
         </Container>
         {!!button ? (
           <Button
-            marginLeft={button.insets?.left}
-            marginRight={button.insets?.right}
-            marginBottom={button.insets?.bottom}
-            marginTop={button.insets?.top}
+            style={{ position: "absolute", bottom: 24, right: 24, left: 24 }}
             text={button.text}
             onPress={button.action}
             disabled={button.disabled ?? false}

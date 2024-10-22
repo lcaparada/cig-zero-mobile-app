@@ -13,16 +13,12 @@ export const CalendarScreen = () => {
     <Screen
       hasPaddingTop={false}
       scrollable
-      insets={{ left: "s0", right: "s0", top: "s0", bottom: "s24" }}
+      insets={{ left: "s0", right: "s0", top: "s0", bottom: "s0" }}
       button={
         isToday(date)
           ? {
               text: "Adicionar fumo",
               action: () => setShowAddSmokingHourModal(true),
-              insets: {
-                left: "s24",
-                right: "s24",
-              },
             }
           : undefined
       }

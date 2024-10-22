@@ -7,3 +7,4 @@ export * from "./auth/OnboardingScreen/OnboardingScreen";
 export * from "./app/HomeScreen/HomeScreen";
 export * from "./app/OMSTipsScreen/OMSTipsScreen";
 export * from "./app/CalendarScreen/CalendarScreen";
+export * from "./app/AchievementsScreen/AchievementsScreen";

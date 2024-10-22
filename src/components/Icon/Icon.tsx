@@ -18,6 +18,8 @@ import {
   ChevronRight,
   ChevronLeft,
   ChevronDown,
+  Zap,
+  TrendingDown,
 } from "@assets";
 
 import { TouchableOpacityBox } from "../Box/Box";
@@ -76,6 +78,7 @@ export const Icon = ({
 };
 
 const iconRegistry = {
+  zap: Zap,
   user: User,
   star: Star,
   wind: Wind,
@@ -90,4 +93,5 @@ const iconRegistry = {
   chevronLeft: ChevronLeft,
   chevronDown: ChevronDown,
   chevronRight: ChevronRight,
+  trendingDown: TrendingDown,
 };

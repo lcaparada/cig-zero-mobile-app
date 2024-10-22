@@ -2,6 +2,7 @@ export * from "./Box/Box";
 export * from "./Text/Text";
 export * from "./Icon/Icon";
 export * from "./Modal/Modal";
+export * from "./Count/Count";
 export * from "./TabBar/TabBar";
 export * from "./Button/Button";
 export * from "./Screen/Screen";

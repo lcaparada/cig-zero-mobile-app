@@ -15,4 +15,7 @@ export const mapScreenToProps: Record<
   OMSTipsScreen: {
     icon: "activity",
   },
+  AchievementsScreen: {
+    icon: "star",
+  },
 };

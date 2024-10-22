@@ -1,5 +1,5 @@
 // ICONS
-
+export * from "./icons/zap";
 export * from "./icons/user";
 export * from "./icons/star";
 export * from "./icons/home";
@@ -9,8 +9,9 @@ export * from "./icons/clock";
 export * from "./icons/activity";
 export * from "./icons/settings";
 export * from "./icons/calendar";
-export * from "./icons/chevronDown";
 export * from "./icons/arrowRight";
 export * from "./icons/dollarSign";
 export * from "./icons/chevronLeft";
+export * from "./icons/chevronDown";
+export * from "./icons/trendingDown";
 export * from "./icons/chevronRight";
