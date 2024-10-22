@@ -10,14 +10,15 @@ interface TimeCardProps {
 }
 
 export const TimeCard = ({ time, label, boxProps }: TimeCardProps) => {
+  const paddedTime = time.padStart(2, "0");
+  const [firstNumber, secondNumber] = paddedTime;
   return (
-    <Box rowGap={"s8"} alignItems={"center"} {...boxProps}>
-      <Box flexDirection={"row"} columnGap={"s4"} alignItems={"center"}>
-        {Array.from({ length: 2 }).map((_, index) => (
-          <TimeItem key={index} time={time} />
-        ))}
+    <Box rowGap="s8" alignItems="center" {...boxProps}>
+      <Box flexDirection="row" columnGap="s4" alignItems="center">
+        <TimeItem time={firstNumber} />
+        <TimeItem time={secondNumber} />
       </Box>
-      <Text preset="paragraphsBig" weight="medium" color={"neutralLighest"}>
+      <Text preset="paragraphsBig" weight="medium" color="neutralLighest">
         {label}
       </Text>
     </Box>

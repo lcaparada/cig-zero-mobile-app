@@ -1,9 +1,10 @@
-import { Box, Icon, ScreenHeader, TimeCard } from "@components";
+import { Box, ScreenHeader, TimeCard } from "@components";
 import { shadow } from "@theme";
 
-const timeUnits = ["dias", "horas", "minutos"];
+import { useHomeHeader } from "./useHomeHeader";
 
 export const HomeHeader = () => {
+  const { timeSinceLastSmokingRecord } = useHomeHeader();
   return (
     <Box
       backgroundColor={"primary"}
@@ -24,9 +25,18 @@ export const HomeHeader = () => {
         justifyContent={"center"}
         mt={"s30"}
       >
-        {timeUnits.map((item, index) => (
-          <TimeCard key={index} time="0" label={item} />
-        ))}
+        <TimeCard
+          label="dias"
+          time={timeSinceLastSmokingRecord.days.toString()}
+        />
+        <TimeCard
+          label="horas"
+          time={timeSinceLastSmokingRecord.hours.toString()}
+        />
+        <TimeCard
+          label="minutos"
+          time={timeSinceLastSmokingRecord.minutes.toString()}
+        />
       </Box>
     </Box>
   );

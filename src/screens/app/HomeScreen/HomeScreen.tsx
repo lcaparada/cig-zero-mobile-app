@@ -6,13 +6,15 @@ import {
   Historic,
   HomeHeader,
 } from "./components";
+import { useHomeScreen } from "./useHomeScreen";
 
 export const HomeScreen = () => {
+  useHomeScreen();
   return (
     <Screen
+      scrollable
       hasPaddingTop={false}
       insets={{ left: "s0", right: "s0", top: "s24" }}
-      scrollable
     >
       <HomeHeader />
       <GeneralProgress />
