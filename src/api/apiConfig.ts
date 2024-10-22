@@ -8,7 +8,7 @@ export const supabase = createClient(
   process.env.EXPO_PUBLIC_SUPABASE_KEY!,
   {
     auth: {
-      persistSession: false,
+      persistSession: true,
       storage: AsyncStorage,
     },
   }
