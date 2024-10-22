@@ -1,5 +1,3 @@
-import { isToday } from "date-fns";
-
 import { AddSmokingHourModal, Calendar, Divider, Screen } from "@components";
 
 import { CalendarHeader, SmokingActivities } from "./components";
@@ -14,14 +12,10 @@ export const CalendarScreen = () => {
       hasPaddingTop={false}
       scrollable
       insets={{ left: "s0", right: "s0", top: "s0", bottom: "s0" }}
-      button={
-        isToday(date)
-          ? {
-              text: "Adicionar fumo",
-              action: () => setShowAddSmokingHourModal(true),
-            }
-          : undefined
-      }
+      button={{
+        text: "Adicionar fumo",
+        action: () => setShowAddSmokingHourModal(true),
+      }}
     >
       <CalendarHeader />
       <Calendar date={date} setDate={setDate} />
