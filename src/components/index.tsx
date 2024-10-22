@@ -23,3 +23,4 @@ export * from "./ActivityIndicator/ActivityIndicator";
 export * from "./SmokingDetailsModal/SmokingDetailsModal";
 export * from "./AddSmokingHourModal/AddSmokingHourModal";
 export * from "./HeadingWithDescription/HeadingWithDescription";
+export * from "./AchievementProgressCard/AchievementProgressCard";

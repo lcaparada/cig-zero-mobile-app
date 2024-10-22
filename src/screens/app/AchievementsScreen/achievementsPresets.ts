@@ -1,4 +1,4 @@
-import { AchievementHeadingProps } from "./components/AchievementHeading";
+import { AchievementHeadingProps } from "./components";
 
 export const achievementsPresets: Omit<
   AchievementHeadingProps,
@@ -10,6 +10,56 @@ export const achievementsPresets: Omit<
     icon: "clock",
     current: 0,
     target: 12,
+    achievements: [
+      {
+        title: "1º Dia Livre",
+        description: "Passe seu primeiro dia sem fumar.",
+        lastItem: false,
+        current: 0,
+        target: 1,
+        percentage: (0 / 1) * 100,
+      },
+      {
+        title: "Primeira Semana Sem Fumar",
+        description: "Fique 7 dias consecutivos sem fumar",
+        lastItem: false,
+        current: 0,
+        target: 7,
+        percentage: (0 / 7) * 100,
+      },
+      {
+        title: "10 Dias Sem Fumar",
+        description: "Fique 10 dias consecutivos sem fumar.",
+        lastItem: false,
+        current: 0,
+        target: 10,
+        percentage: (0 / 10) * 100,
+      },
+      {
+        title: "1 Mês Sem Fumar",
+        description: "Complete 1 mês sem fumar.",
+        lastItem: false,
+        current: 0,
+        target: 30,
+        percentage: (0 / 30) * 100,
+      },
+      {
+        title: "100 Dias Sem Fumar",
+        description: "Fique 100 dias consecutivos sem fumar.",
+        lastItem: false,
+        current: 0,
+        target: 100,
+        percentage: (0 / 100) * 100,
+      },
+      {
+        title: "6 Meses Sem Fumar",
+        description: "Fique 6 meses sem cigarro.",
+        lastItem: true,
+        current: 2,
+        target: 270,
+        percentage: (0 / 270) * 100,
+      },
+    ],
   },
   {
     title: "Baseadas em Redução",
@@ -17,6 +67,33 @@ export const achievementsPresets: Omit<
     icon: "trendingDown",
     current: 0,
     target: 12,
+    achievements: [
+      {
+        title: "Primeiro Dia Reduzido",
+        description: "Reduza a quantidade de cigarros hoje.",
+        lastItem: false,
+        current: 0,
+        target: 1,
+        percentage: (0 / 1) * 100,
+      },
+      {
+        title: "Redução de 50%",
+        description:
+          "Reduza em 50% o número de cigarros que você fuma diariamente.",
+        lastItem: false,
+        current: 0,
+        target: 7,
+        percentage: (0 / 7) * 100,
+      },
+      {
+        title: "Fumando 1 Cigarro por Dia",
+        description: "Chegue ao ponto de fumar apenas 1 cigarro por dia.",
+        lastItem: true,
+        current: 0,
+        target: 10,
+        percentage: (0 / 10) * 100,
+      },
+    ],
   },
   {
     title: "Economia Financeira",
@@ -24,6 +101,24 @@ export const achievementsPresets: Omit<
     icon: "dollarSign",
     current: 0,
     target: 12,
+    achievements: [
+      {
+        title: "Economizou R$ 100",
+        description: "Economize R$ 100 ao reduzir ou parar de fumar.",
+        lastItem: false,
+        current: 0,
+        target: 1,
+        percentage: (0 / 1) * 100,
+      },
+      {
+        title: "Economizou R$ 500",
+        description: "Economize R$ 500 deixando de fumar.",
+        lastItem: true,
+        current: 0,
+        target: 7,
+        percentage: (0 / 7) * 100,
+      },
+    ],
   },
   {
     title: "Desafios Personalizados",
@@ -31,5 +126,31 @@ export const achievementsPresets: Omit<
     icon: "zap",
     current: 0,
     target: 12,
+    achievements: [
+      {
+        title: "Sem Fumo no Fim de Semana",
+        description: "Passe todo o fim de semana sem fumar.",
+        lastItem: false,
+        current: 0,
+        target: 1,
+        percentage: (0 / 1) * 100,
+      },
+      {
+        title: "3 Dias Seguidos Sem Cigarro",
+        description: "Complete 3 dias consecutivos sem fumar.",
+        lastItem: false,
+        current: 0,
+        target: 7,
+        percentage: (0 / 7) * 100,
+      },
+      {
+        title: "Redução Gradual",
+        description: "Reduza 1 cigarro por dia durante esta semana.",
+        lastItem: true,
+        current: 0,
+        target: 7,
+        percentage: (0 / 7) * 100,
+      },
+    ],
   },
 ];

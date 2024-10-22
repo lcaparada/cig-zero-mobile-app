@@ -15,6 +15,7 @@ export const AchievementsScreen = () => {
       {achievementsPresets.map((a, i) => (
         <AchievementHeading
           {...a}
+          key={i}
           mt={i === 0 ? "s24" : "s30"}
           isLastItem={i === achievementsPresets.length - 1}
         />

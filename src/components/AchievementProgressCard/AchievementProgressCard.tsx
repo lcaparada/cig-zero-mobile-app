@@ -1,29 +1,26 @@
-import {
-  Box,
-  BoxProps,
-  Divider,
-  HeadingWithDescription,
-  ProgressBar,
-} from "@components";
+import { Box, BoxProps } from "../Box/Box";
+import { Divider } from "../Divider/Divider";
+import { HeadingWithDescription } from "../HeadingWithDescription/HeadingWithDescription";
+import { ProgressBar } from "../ProgressBar/ProgressBar";
 
-export interface OMSItemProps extends BoxProps {
+export interface AchievementProgressCardProps extends BoxProps {
   title: string;
-  description: string;
-  percentage: number;
-  current: number;
   target: number;
+  current: number;
   lastItem: boolean;
+  percentage: number;
+  description: string;
 }
 
-export const OMSItem = ({
+export const AchievementProgressCard = ({
   title,
-  current,
   target,
+  current,
+  lastItem,
   percentage,
   description,
-  lastItem,
   ...boxProps
-}: OMSItemProps) => {
+}: AchievementProgressCardProps) => {
   return (
     <Box mt={"s24"} {...boxProps}>
       <Box paddingHorizontal={"s24"}>

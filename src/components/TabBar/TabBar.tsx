@@ -56,7 +56,7 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
               name={tabItem.icon}
               color={isFocused ? "primary" : "backgroundSecondConstrast"}
               size="s28"
-              strokeWidth={2}
+              strokeWidth={1.5}
             />
           </TouchableOpacityBox>
         );

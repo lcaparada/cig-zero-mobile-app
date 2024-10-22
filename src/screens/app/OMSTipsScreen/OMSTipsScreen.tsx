@@ -1,6 +1,6 @@
-import { Screen } from "@components";
+import { AchievementProgressCard, Screen } from "@components";
 
-import { OMSItem, OMSTipsHeader } from "./components";
+import { OMSTipsHeader } from "./components";
 import { omsTips } from "./OMSTipsPresets";
 
 export const OMSTipsScreen = () => {
@@ -12,7 +12,7 @@ export const OMSTipsScreen = () => {
     >
       <OMSTipsHeader />
       {omsTips.map((item, index) => (
-        <OMSItem
+        <AchievementProgressCard
           lastItem={index === omsTips.length - 1}
           {...item}
           key={index}

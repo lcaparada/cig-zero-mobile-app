@@ -1,7 +1,7 @@
-import { OMSItemProps } from "./components";
+import { AchievementProgressCardProps } from "@components";
 
 export const omsTips: Pick<
-  OMSItemProps,
+  AchievementProgressCardProps,
   "title" | "description" | "target" | "current" | "percentage"
 >[] = [
   {

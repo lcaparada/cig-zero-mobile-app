@@ -1,21 +1,29 @@
+import { useState } from "react";
+
 import {
   Box,
-  BoxProps,
+  Text,
+  Icon,
   Count,
   Divider,
-  Icon,
+  BoxProps,
   IconName,
-  Text,
   TouchableOpacityBox,
+  AchievementProgressCardProps,
+  AchievementProgressCard,
 } from "@components";
 
 export interface AchievementHeadingProps extends BoxProps {
   title: string;
-  target: number;
   icon: IconName;
+  target: number;
   current: number;
   isLastItem: boolean;
   description: string;
+  achievements: Pick<
+    AchievementProgressCardProps,
+    "title" | "target" | "current" | "lastItem" | "percentage" | "description"
+  >[];
 }
 
 export const AchievementHeading = ({
@@ -25,16 +33,24 @@ export const AchievementHeading = ({
   current,
   isLastItem,
   description,
+  achievements,
   ...boxProps
 }: AchievementHeadingProps) => {
+  const [showAchievements, setShowAchievements] = useState(false);
+
+  const handleToggleAchievements = () => {
+    setShowAchievements((prev) => !prev);
+  };
+
   return (
-    <>
+    <Box>
       <TouchableOpacityBox
         flexDirection={"row"}
         alignItems={"center"}
         justifyContent={"space-between"}
         paddingHorizontal={"s24"}
         mt={"s24"}
+        onPress={handleToggleAchievements}
         {...boxProps}
       >
         <Box flex={1} rowGap={"s6"}>
@@ -58,7 +74,16 @@ export const AchievementHeading = ({
         </Box>
         <Count target={target} current={current} />
       </TouchableOpacityBox>
+
+      {!!achievements && showAchievements ? (
+        <Box>
+          {achievements.map((item, index) => (
+            <AchievementProgressCard {...item} key={index} />
+          ))}
+        </Box>
+      ) : null}
+
       {!isLastItem && <Divider mt={"s30"} />}
-    </>
+    </Box>
   );
 };
