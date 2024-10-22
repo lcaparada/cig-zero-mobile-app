@@ -16,14 +16,6 @@ export const HomeHeader = () => {
         title="Resumo"
         description="Acompanhe o progresso"
         titleAndDescriptionColor="neutralLighest"
-        rightComponent={
-          <Icon
-            name="settings"
-            color="neutralLighest"
-            strokeWidth={2}
-            size="s24"
-          />
-        }
       />
       <Box
         flexDirection={"row"}
