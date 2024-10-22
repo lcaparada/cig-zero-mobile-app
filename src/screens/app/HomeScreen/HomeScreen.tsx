@@ -1,15 +1,13 @@
 import { Divider, Screen } from "@components";
 
 import {
-  ActionsButtons,
-  GeneralProgress,
   Historic,
   HomeHeader,
+  ActionsButtons,
+  GeneralProgress,
 } from "./components";
-import { useHomeScreen } from "./useHomeScreen";
 
 export const HomeScreen = () => {
-  useHomeScreen();
   return (
     <Screen
       scrollable

@@ -5,27 +5,32 @@ import {
   HeadingWithDescription,
 } from "@components";
 
+import { useGetHistoricData } from "@domain";
+import { formatToCurrency } from "@helpers";
+
 interface HistoricItemData {
   icon: IconName;
   label: string;
 }
 
-const historicItems: HistoricItemData[] = [
-  {
-    icon: "wind",
-    label: "244 cigarros fumados",
-  },
-  {
-    icon: "dollarSign",
-    label: "3.424,00 gastos",
-  },
-  {
-    icon: "clock",
-    label: "1 dia perdido",
-  },
-];
-
 export const Historic = () => {
+  const { historicData } = useGetHistoricData();
+
+  const historicItems: HistoricItemData[] = [
+    {
+      icon: "wind",
+      label: `${historicData?.smokedCigarettes} cigarros fumados`,
+    },
+    {
+      icon: "dollarSign",
+      label: `${formatToCurrency(historicData?.moneySpent ?? 0)} reais gastos`,
+    },
+    {
+      icon: "clock",
+      label: `${historicData?.lostTimeInDays} ${(historicData?.lostTimeInDays ?? 0 > 1) ? "dias perdidos" : "dia perdido"} `,
+    },
+  ];
+
   return (
     <Box paddingHorizontal={"s24"} paddingVertical={"s30"}>
       <HeadingWithDescription

@@ -6,7 +6,7 @@ import { Text } from "../Text/Text";
 
 export interface InformationCardProps {
   icon: IconName;
-  number: string;
+  number: string | number;
   label: string;
 }
 

@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect, useContext } from "react";
 
 import { AuthChangeEvent, Session } from "@supabase/supabase-js";
 
-import { supabase } from "@api";
+import { supabase, supabaseEdgeFunction } from "@api";
 
 import { AuthContextParams, AuthProviderProps } from "./authProviderTypes";
 
@@ -14,6 +14,15 @@ const AuthContext = createContext<AuthContextParams>({
 export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
+
+  const setAxiosAuthToken = (token: string | null) => {
+    if (token) {
+      supabaseEdgeFunction.defaults.headers.common["Authorization"] =
+        `Bearer ${token}`;
+    } else {
+      delete supabaseEdgeFunction.defaults.headers.common["Authorization"];
+    }
+  };
 
   useEffect(() => {
     const { data: authListener } = supabase.auth.onAuthStateChange(
@@ -40,6 +49,10 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
       authListener.subscription.unsubscribe();
     };
   }, []);
+
+  useEffect(() => {
+    setAxiosAuthToken(session?.access_token ?? null);
+  }, [session]);
 
   return (
     <AuthContext.Provider value={{ session, loading }}>
