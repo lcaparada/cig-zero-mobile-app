@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 
 import { ThemeProvider } from "@shopify/restyle";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { setDefaultOptions } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { useFonts } from "expo-font";
@@ -11,6 +12,8 @@ import { Route } from "@routes";
 import { theme } from "@theme";
 
 import { AuthProvider, ToastProvider } from "@services";
+
+const queryClient = new QueryClient();
 
 export default function App() {
   const [loaded, error] = useFonts({
@@ -38,9 +41,11 @@ export default function App() {
     <SafeAreaProvider>
       <ThemeProvider theme={theme}>
         <ToastProvider>
-          <AuthProvider>
-            <Route />
-          </AuthProvider>
+          <QueryClientProvider client={queryClient}>
+            <AuthProvider>
+              <Route />
+            </AuthProvider>
+          </QueryClientProvider>
         </ToastProvider>
       </ThemeProvider>
     </SafeAreaProvider>

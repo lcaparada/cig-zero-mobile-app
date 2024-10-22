@@ -1,9 +1,11 @@
 import { Box, Button, Screen, Text } from "@components";
 import { AuthScreenProps } from "@routes";
 
+import { useAuthSignInAnonymously } from "@domain";
+
 export const StartScreen = ({ route }: AuthScreenProps<"StartScreen">) => {
   const { name } = route.params;
-
+  const { handleSignInAnonymously, isPending } = useAuthSignInAnonymously();
   return (
     <Screen centerItems canGoBack>
       <Box alignItems={"center"} justifyContent={"center"} rowGap={"s20"}>
@@ -19,7 +21,13 @@ export const StartScreen = ({ route }: AuthScreenProps<"StartScreen">) => {
           juntos nessa jornada para parar de fumar, {name}!
         </Text>
       </Box>
-      <Button onPress={() => {}} mt={"s40"} text="Iniciar" preset="primary" />
+      <Button
+        mt={"s40"}
+        text="Iniciar"
+        preset="primary"
+        isLoading={isPending}
+        onPress={() => handleSignInAnonymously(route.params)}
+      />
     </Screen>
   );
 };

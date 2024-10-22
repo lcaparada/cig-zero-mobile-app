@@ -26,7 +26,7 @@ export const OnboardingScreen = () => {
         text: "Próximo",
         action: () =>
           step === MAX_STEPS
-            ? navigation.navigate("StartScreen", { name: watch("name") })
+            ? navigation.navigate("StartScreen", watch())
             : handleNextStep(),
         disabled: !handleCanGoNextPage(),
       }}
