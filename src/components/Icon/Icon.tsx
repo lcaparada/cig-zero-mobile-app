@@ -21,6 +21,9 @@ import {
   Zap,
   ArrowLeft,
   TrendingDown,
+  ErrorRound,
+  CheckRound,
+  Info,
 } from "@assets";
 
 import { TouchableOpacityBox } from "../Box/Box";
@@ -82,13 +85,16 @@ const iconRegistry = {
   zap: Zap,
   user: User,
   star: Star,
+  info: Info,
   wind: Wind,
   home: Home,
   rings: Rings,
   clock: Clock,
+  error: ErrorRound,
   activity: Activity,
   settings: Settings,
   calendar: Calendar,
+  success: CheckRound,
   arrowLeft: ArrowLeft,
   arrowRight: ArrowRight,
   dollarSign: DollarSign,

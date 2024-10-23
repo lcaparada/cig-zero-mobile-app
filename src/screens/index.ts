@@ -2,6 +2,7 @@
 export * from "./auth/StartScreen/StartScreen";
 export * from "./auth/WelcomeScreen/WelcomeScreen";
 export * from "./auth/OnboardingScreen/OnboardingScreen";
+export * from "./auth/OnboardingScreen/schema/onboardingScreenSchema";
 
 // APP
 export * from "./app/HomeScreen/HomeScreen";

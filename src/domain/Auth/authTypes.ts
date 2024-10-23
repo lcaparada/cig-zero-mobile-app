@@ -1,4 +1,4 @@
-import { OnboardingScreenSchemaType } from "src/screens/auth/OnboardingScreen/schema/onboardingScreenSchema";
+import { OnboardingScreenSchemaType } from "@screens";
 
 export namespace SignInAnonymously {
   export type Params = OnboardingScreenSchemaType;
