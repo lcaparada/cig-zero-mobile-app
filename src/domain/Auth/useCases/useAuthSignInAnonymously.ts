@@ -16,7 +16,7 @@ export const useAuthSignInAnonymously = () => {
     try {
       await mutateAsync(params);
     } catch (error: any) {
-      console.log(error);
+      console.error(error);
     }
   };
 

@@ -9,6 +9,7 @@ export const CalendarScreen = () => {
     setDate,
     dateString,
     isFetching,
+    scrollViewRef,
     indexedSmokingRecords,
     showAddSmokingHourModal,
     setShowAddSmokingHourModal,
@@ -18,6 +19,7 @@ export const CalendarScreen = () => {
     <Screen
       hasPaddingTop={false}
       scrollable
+      scrollRef={scrollViewRef}
       insets={{ left: "s0", right: "s0", top: "s0", bottom: "s0" }}
       button={{
         text: "Adicionar fumo",

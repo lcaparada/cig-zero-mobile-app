@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { ScrollView } from "react-native";
 
 import {
   SmokeLogWithDateAndCreatedAt,
@@ -12,6 +13,11 @@ export type IndexedSmokingRecordsState = Record<
 
 export const useCalendarScreen = () => {
   const [date, setDate] = useState(new Date());
+
+  const [shouldScrollToEnd, setShouldScrollToEnd] = useState(false);
+
+  const scrollViewRef = useRef<ScrollView>(null);
+  const firstRenderRef = useRef<boolean>(true);
 
   const [indexedSmokingRecords, setIndexedSmokingRecords] =
     useState<IndexedSmokingRecordsState>({});
@@ -36,8 +42,20 @@ export const useCalendarScreen = () => {
         {}
       );
       setIndexedSmokingRecords(groupedByDay);
+      setShouldScrollToEnd(firstRenderRef.current === false);
     }
   }, [isFetching, smokingRecords]);
+
+  useEffect(() => {
+    if (shouldScrollToEnd && scrollViewRef.current) {
+      scrollViewRef.current.scrollToEnd({ animated: true });
+      setShouldScrollToEnd(false);
+    }
+  }, [shouldScrollToEnd]);
+
+  useEffect(() => {
+    setTimeout(() => setShouldScrollToEnd(true), 500);
+  }, [date]);
 
   const dateString = date.toISOString()?.split("T")[0];
 
@@ -46,6 +64,7 @@ export const useCalendarScreen = () => {
     setDate,
     isFetching,
     dateString,
+    scrollViewRef,
     indexedSmokingRecords,
     showAddSmokingHourModal,
     setShowAddSmokingHourModal,

@@ -28,11 +28,15 @@ export const SmokingActivities = ({
 }: SmokingActivitiesProps) => {
   const [showSmokingDetailsModal, setShowSmokingDetailsModal] = useState(false);
   const [smokingRecordDetails, setSmokingRecordDetails] =
-    useState<SmokeLogWithDateAndCreatedAt>({ created_at: "", date: "" });
+    useState<SmokeLogWithDateAndCreatedAt>({
+      created_at: "",
+      date: "",
+      id: "",
+    });
 
   useEffect(() => {
     if (!showSmokingDetailsModal) {
-      setSmokingRecordDetails({ created_at: "", date: "" });
+      setSmokingRecordDetails({ created_at: "", date: "", id: "" });
     }
   }, [showSmokingDetailsModal]);
 
