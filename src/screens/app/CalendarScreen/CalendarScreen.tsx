@@ -20,6 +20,7 @@ export const CalendarScreen = () => {
     <Screen
       hasPaddingTop={false}
       scrollable
+      scrollViewPaddingBottom={200}
       scrollRef={scrollViewRef}
       insets={{ left: "s0", right: "s0", top: "s0", bottom: "s0" }}
       button={

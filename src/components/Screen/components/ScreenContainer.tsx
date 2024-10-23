@@ -4,6 +4,7 @@ interface ScreenContainerProps {
   children: React.ReactNode;
   backgroundColor: string;
   centerItems?: boolean;
+  scrollViewPaddingBottom: number;
   scrollRef?: React.RefObject<ScrollView>;
   overflowVisible?: boolean;
 }
@@ -14,6 +15,7 @@ export const ScrollViewContainer = ({
   backgroundColor,
   scrollRef,
   overflowVisible,
+  scrollViewPaddingBottom,
 }: ScreenContainerProps) => {
   return (
     <ScrollView
@@ -26,7 +28,7 @@ export const ScrollViewContainer = ({
         justifyContent: centerItems ? "center" : undefined,
       }}
       showsVerticalScrollIndicator={false}
-      contentContainerStyle={{ paddingBottom: 100 }}
+      contentContainerStyle={{ paddingBottom: scrollViewPaddingBottom }}
     >
       {children}
     </ScrollView>

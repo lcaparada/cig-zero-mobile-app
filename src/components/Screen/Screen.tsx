@@ -35,6 +35,7 @@ export interface ScreenProps {
   rightComponent?: JSX.Element;
   hasPaddingTop?: boolean;
   overflowVisible?: boolean;
+  scrollViewPaddingBottom?: number;
   insets?: {
     top?: ThemeSpacing;
     left?: ThemeSpacing;
@@ -57,6 +58,7 @@ export const Screen = ({
   progressBar,
   overflowVisible,
   screenTitle,
+  scrollViewPaddingBottom = 100,
   canGoBackSpecificyScreen,
   insets = { left: "s24", right: "s24", top: "s0", bottom: "s0" },
 }: ScreenProps) => {
@@ -99,6 +101,7 @@ export const Screen = ({
           centerItems={centerItems}
           scrollRef={scrollRef}
           overflowVisible={overflowVisible}
+          scrollViewPaddingBottom={scrollViewPaddingBottom}
         >
           <StatusBar />
           {children}

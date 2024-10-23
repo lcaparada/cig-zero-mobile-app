@@ -27,9 +27,6 @@ export const useDeleteSmokingRecord = () => {
         queryKey: [QueryKeys.GetAllSmokingRecordsByMonth],
       });
       queryClient.invalidateQueries({
-        queryKey: [QueryKeys.GetHistoricData],
-      });
-      queryClient.invalidateQueries({
         queryKey: [QueryKeys.GetLatestSmokingRecord],
       });
       queryClient.invalidateQueries({
