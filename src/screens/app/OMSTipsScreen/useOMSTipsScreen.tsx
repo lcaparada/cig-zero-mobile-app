@@ -1,27 +1,27 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 
+import { useIsFocused } from "@react-navigation/native";
 import { differenceInHours } from "date-fns";
 
 import { useGetLatestSmokingRecord } from "@domain";
 
 export const useOMSTipsScreen = () => {
-  const { smokingRecord } = useGetLatestSmokingRecord();
+  const { refetch, smokingRecord } = useGetLatestSmokingRecord();
 
-  const [
-    hoursBetweenLastestSmokingRecord,
-    setHoursBetweenLastestSmokingRecord,
-  ] = useState(
-    differenceInHours(new Date(), smokingRecord?.date ?? new Date())
-  );
+  const firstRenderRef = useRef(true);
+  const isFocused = useIsFocused();
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setHoursBetweenLastestSmokingRecord(
-        differenceInHours(new Date(), smokingRecord?.date ?? new Date())
-      );
-    }, 1000);
-    return () => clearTimeout(timeoutId);
-  }, [smokingRecord]);
+    if (isFocused && !firstRenderRef.current) {
+      refetch();
+    }
+    firstRenderRef.current = false;
+  }, [isFocused, refetch]);
 
-  return { hoursBetweenLastestSmokingRecord };
+  return {
+    hoursBetweenLastestSmokingRecord: differenceInHours(
+      new Date(),
+      smokingRecord?.date ?? new Date()
+    ),
+  };
 };
