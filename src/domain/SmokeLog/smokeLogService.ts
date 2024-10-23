@@ -2,6 +2,7 @@ import { supabase } from "@api";
 
 import {
   AddSmokingRecord,
+  DeleteSmokingRecord,
   GetAllSmokingRecordsByMonth,
   GetLatestSmokingRecord,
 } from "./smokeLogTypes";
@@ -25,7 +26,7 @@ const getAllSmokingRecordsByMonth = async (
 ): Promise<GetAllSmokingRecordsByMonth.Result> => {
   const { data, error } = await supabase
     .from("smoke_log")
-    .select("date, created_at")
+    .select("date, created_at, id")
     .eq("user_id", params.userId)
     .gte("date", params.startDate)
     .lte("date", params.endDate);
@@ -40,8 +41,20 @@ const addSmokingRecord = async (
   if (error) throw error;
 };
 
+const deleteSmokingRecord = async (
+  params: DeleteSmokingRecord.Params
+): Promise<DeleteSmokingRecord.Result> => {
+  const { error } = await supabase
+    .from("smoke_log")
+    .delete()
+    .eq("id", params.id)
+    .eq("user_id", params.user_id);
+  if (error) throw error;
+};
+
 export const smokeLogService = {
   addSmokingRecord,
+  deleteSmokingRecord,
   getLatestSmokingRecord,
   getAllSmokingRecordsByMonth,
 };

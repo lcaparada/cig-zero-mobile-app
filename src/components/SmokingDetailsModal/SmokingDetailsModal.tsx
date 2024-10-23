@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 
-import { SmokeLogWithDateAndCreatedAt } from "@domain";
+import { SmokeLogWithDateAndCreatedAt, useDeleteSmokingRecord } from "@domain";
 
 import { Modal, ModalProps } from "../Modal/Modal";
 import { Text } from "../Text/Text";
@@ -14,9 +14,18 @@ export const SmokingDetailsModal = ({
   setVisible,
   smokingRecord,
 }: SmokingDetailsModalProps) => {
+  const { handleDeleteSmokingRecord, isPending } = useDeleteSmokingRecord();
   return (
     <Modal
-      button={{ text: "Deletar", action: () => {}, preset: "delete" }}
+      button={{
+        text: "Deletar",
+        preset: "delete",
+        isLoading: isPending,
+        action: async () => {
+          await handleDeleteSmokingRecord({ id: smokingRecord.id ?? "" });
+          setVisible(false);
+        },
+      }}
       title="Detalhes do fumo"
       visible={visible}
       height={"25%"}

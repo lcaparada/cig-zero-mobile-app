@@ -7,7 +7,7 @@ export type SmokeLog = {
 
 export type SmokeLogWithDateAndCreatedAt = Pick<
   SmokeLog,
-  "date" | "created_at"
+  "date" | "created_at" | "id"
 >;
 
 export type GetAllSmokingRecordsByMonthProps = {
@@ -32,5 +32,10 @@ export namespace GetAllSmokingRecordsByMonth {
 
 export namespace AddSmokingRecord {
   export type Params = Pick<SmokeLog, "date" | "user_id">;
+  export type Result = void;
+}
+
+export namespace DeleteSmokingRecord {
+  export type Params = Pick<SmokeLog, "id" | "user_id">;
   export type Result = void;
 }
