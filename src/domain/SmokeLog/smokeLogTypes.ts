@@ -29,3 +29,8 @@ export namespace GetAllSmokingRecordsByMonth {
   };
   export type Result = SmokeLogWithDateAndCreatedAt[];
 }
+
+export namespace AddSmokingRecord {
+  export type Params = Pick<SmokeLog, "date" | "user_id">;
+  export type Result = void;
+}

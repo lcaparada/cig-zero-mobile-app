@@ -9,7 +9,8 @@ export const AddSmokingHourModal = ({
   visible,
   setVisible,
 }: SetTimeModalProps) => {
-  const { date, modalRef, setDate } = useAddSmokingHourModal();
+  const { date, modalRef, setDate, isPending, handleAddSmokingRecord } =
+    useAddSmokingHourModal();
 
   return (
     <Modal
@@ -21,8 +22,12 @@ export const AddSmokingHourModal = ({
       scrollable={false}
       button={{
         text: "Adicionar",
+        isLoading: isPending,
         action: () => {
-          modalRef.current?.closeModal();
+          if (date) {
+            handleAddSmokingRecord({ date: date?.toISOString() });
+            modalRef.current?.closeModal();
+          }
         },
       }}
     >

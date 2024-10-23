@@ -1,6 +1,7 @@
 import { supabase } from "@api";
 
 import {
+  AddSmokingRecord,
   GetAllSmokingRecordsByMonth,
   GetLatestSmokingRecord,
 } from "./smokeLogTypes";
@@ -32,7 +33,15 @@ const getAllSmokingRecordsByMonth = async (
   return data as GetAllSmokingRecordsByMonth.Result;
 };
 
+const addSmokingRecord = async (
+  params: AddSmokingRecord.Params
+): Promise<AddSmokingRecord.Result> => {
+  const { error } = await supabase.from("smoke_log").insert(params);
+  if (error) throw error;
+};
+
 export const smokeLogService = {
+  addSmokingRecord,
   getLatestSmokingRecord,
   getAllSmokingRecordsByMonth,
 };
