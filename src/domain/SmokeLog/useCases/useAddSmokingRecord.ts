@@ -30,6 +30,9 @@ export const useAddSmokingRecord = () => {
         queryKey: [QueryKeys.GetLatestSmokingRecord],
       });
       queryClient.invalidateQueries({
+        queryKey: [QueryKeys.GetHistoricData],
+      });
+      queryClient.invalidateQueries({
         queryKey: [QueryKeys.GetProgressData],
       });
     },

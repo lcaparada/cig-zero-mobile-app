@@ -35,7 +35,7 @@ export const Historic = () => {
     <Box paddingHorizontal={"s24"} paddingVertical={"s30"}>
       <HeadingWithDescription
         title="Histórico"
-        description="Seu histórico passado de fumo"
+        description="Seu histórico de fumo"
       />
       <Box mt={"s20"} rowGap={"s10"}>
         {historicItems.map((item, index) => (
