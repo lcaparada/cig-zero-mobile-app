@@ -5,7 +5,7 @@ import { omsTips } from "./OMSTipsPresets";
 import { useOMSTipsScreen } from "./useOMSTipsScreen";
 
 export const OMSTipsScreen = () => {
-  const { daysBetweenLastestSmokingRecord } = useOMSTipsScreen();
+  const { hoursBetweenLastestSmokingRecord } = useOMSTipsScreen();
   return (
     <Screen
       hasPaddingTop={false}
@@ -13,16 +13,24 @@ export const OMSTipsScreen = () => {
       insets={{ left: "s0", right: "s0", top: "s0", bottom: "s24" }}
     >
       <OMSTipsHeader />
-      {omsTips.map((item, index) => (
-        <AchievementProgressCard
-          lastItem={index === omsTips.length - 1}
-          {...item}
-          key={index}
-          mt={index === 0 ? "s24" : "s30"}
-          current={daysBetweenLastestSmokingRecord}
-          percentage={daysBetweenLastestSmokingRecord / item.target}
-        />
-      ))}
+      {omsTips.map((item, index) => {
+        const percentage =
+          (hoursBetweenLastestSmokingRecord / item.target) * 100;
+        return (
+          <AchievementProgressCard
+            {...item}
+            key={index}
+            mt={index === 0 ? "s24" : "s30"}
+            lastItem={index === omsTips.length - 1}
+            current={
+              hoursBetweenLastestSmokingRecord > item.target
+                ? item.target
+                : hoursBetweenLastestSmokingRecord
+            }
+            percentage={percentage > 100 ? 100 : percentage}
+          />
+        );
+      })}
     </Screen>
   );
 };

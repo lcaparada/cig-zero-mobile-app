@@ -5,10 +5,10 @@ import { useGetLatestSmokingRecord } from "@domain";
 export const useOMSTipsScreen = () => {
   const { smokingRecord } = useGetLatestSmokingRecord();
 
-  const daysBetweenLastestSmokingRecord = differenceInHours(
+  const hoursBetweenLastestSmokingRecord = differenceInHours(
     new Date(),
     smokingRecord?.date ?? new Date()
   );
 
-  return { daysBetweenLastestSmokingRecord };
+  return { hoursBetweenLastestSmokingRecord };
 };

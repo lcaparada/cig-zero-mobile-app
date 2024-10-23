@@ -21,9 +21,10 @@ export const AchievementProgressCard = ({
   description,
   ...boxProps
 }: AchievementProgressCardProps) => {
+  const isUnlocked = current < target ? 1 : 0.5;
   return (
     <Box mt={"s24"} {...boxProps}>
-      <Box paddingHorizontal={"s24"}>
+      <Box paddingHorizontal={"s24"} opacity={isUnlocked}>
         <HeadingWithDescription
           title={title}
           description={description}
