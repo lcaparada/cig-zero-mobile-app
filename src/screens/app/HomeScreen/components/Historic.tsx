@@ -19,7 +19,7 @@ export const Historic = () => {
   const historicItems: HistoricItemData[] = [
     {
       icon: "wind",
-      label: `${historicData?.smokedCigarettes} cigarros fumados`,
+      label: `${historicData?.smokedCigarettes ?? 0} cigarros fumados`,
     },
     {
       icon: "dollarSign",
@@ -27,7 +27,7 @@ export const Historic = () => {
     },
     {
       icon: "clock",
-      label: `${historicData?.lostTimeInDays} ${(historicData?.lostTimeInDays ?? 0 > 1) ? "dias perdidos" : "dia perdido"} `,
+      label: `${historicData?.lostTimeInDays ?? 0} ${(historicData?.lostTimeInDays ?? 0 > 1) ? "dias perdidos" : "dia perdido"} `,
     },
   ];
 
