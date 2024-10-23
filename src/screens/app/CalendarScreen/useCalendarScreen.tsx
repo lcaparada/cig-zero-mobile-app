@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 
-import { SmokeLog, useGetAllSmokingRecordsByMonth } from "@domain";
+import {
+  SmokeLogWithDateAndCreatedAt,
+  useGetAllSmokingRecordsByMonth,
+} from "@domain";
 
 export type IndexedSmokingRecordsState = Record<
   string,
-  Pick<SmokeLog, "date">[]
+  SmokeLogWithDateAndCreatedAt[]
 >;
 
 export const useCalendarScreen = () => {
@@ -36,9 +39,13 @@ export const useCalendarScreen = () => {
     }
   }, [isFetching, smokingRecords]);
 
+  const dateString = date.toISOString()?.split("T")[0];
+
   return {
     date,
     setDate,
+    isFetching,
+    dateString,
     indexedSmokingRecords,
     showAddSmokingHourModal,
     setShowAddSmokingHourModal,

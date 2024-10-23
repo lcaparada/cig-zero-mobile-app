@@ -24,7 +24,7 @@ const getAllSmokingRecordsByMonth = async (
 ): Promise<GetAllSmokingRecordsByMonth.Result> => {
   const { data, error } = await supabase
     .from("smoke_log")
-    .select("date")
+    .select("date, created_at")
     .eq("user_id", params.userId)
     .gte("date", params.startDate)
     .lte("date", params.endDate);

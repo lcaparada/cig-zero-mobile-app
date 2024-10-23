@@ -7,6 +7,8 @@ export const CalendarScreen = () => {
   const {
     date,
     setDate,
+    dateString,
+    isFetching,
     indexedSmokingRecords,
     showAddSmokingHourModal,
     setShowAddSmokingHourModal,
@@ -29,7 +31,11 @@ export const CalendarScreen = () => {
         indexedSmokingRecords={indexedSmokingRecords}
       />
       <Divider mt={"s30"} mb={"s30"} />
-      <SmokingActivities date={date} />
+      <SmokingActivities
+        date={date}
+        isLoading={isFetching}
+        smokingRecords={indexedSmokingRecords[dateString]}
+      />
       {showAddSmokingHourModal && (
         <AddSmokingHourModal
           visible={showAddSmokingHourModal}

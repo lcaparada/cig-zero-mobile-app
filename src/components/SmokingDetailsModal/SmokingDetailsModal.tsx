@@ -1,10 +1,19 @@
+import { format } from "date-fns";
+
+import { SmokeLogWithDateAndCreatedAt } from "@domain";
+
 import { Modal, ModalProps } from "../Modal/Modal";
 import { Text } from "../Text/Text";
+
+type SmokingDetailsModalProps = Pick<ModalProps, "visible" | "setVisible"> & {
+  smokingRecord: SmokeLogWithDateAndCreatedAt;
+};
 
 export const SmokingDetailsModal = ({
   visible,
   setVisible,
-}: Pick<ModalProps, "visible" | "setVisible">) => {
+  smokingRecord,
+}: SmokingDetailsModalProps) => {
   return (
     <Modal
       button={{ text: "Deletar", action: () => {}, preset: "delete" }}
@@ -13,13 +22,20 @@ export const SmokingDetailsModal = ({
       height={"25%"}
       setVisible={setVisible}
     >
-      <Text
-        preset="paragraphsBig"
-        weight="medium"
-        color={"backgroundSecondConstrast"}
-      >
-        Esse fumo foi registrado por você às 14:30 do dia 03 de agosto de 2024.
-      </Text>
+      {smokingRecord?.created_at && (
+        <Text
+          preset="paragraphsBig"
+          weight="medium"
+          color={"backgroundSecondConstrast"}
+        >
+          Esse fumo foi registrado por você às{" "}
+          {format(
+            smokingRecord?.created_at,
+            "HH:mm 'do dia' dd 'de' MMMM 'de' yyyy"
+          )}
+          .
+        </Text>
+      )}
     </Modal>
   );
 };

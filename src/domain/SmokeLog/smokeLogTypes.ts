@@ -5,6 +5,11 @@ export type SmokeLog = {
   created_at: string;
 };
 
+export type SmokeLogWithDateAndCreatedAt = Pick<
+  SmokeLog,
+  "date" | "created_at"
+>;
+
 export type GetAllSmokingRecordsByMonthProps = {
   selectedDate: string;
 };
@@ -22,5 +27,5 @@ export namespace GetAllSmokingRecordsByMonth {
     startDate: string;
     endDate: string;
   };
-  export type Result = Pick<SmokeLog, "date">[];
+  export type Result = SmokeLogWithDateAndCreatedAt[];
 }
