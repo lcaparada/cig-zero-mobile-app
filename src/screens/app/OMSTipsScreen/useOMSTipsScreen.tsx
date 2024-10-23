@@ -6,8 +6,8 @@ export const useOMSTipsScreen = () => {
   const { smokingRecord } = useGetLatestSmokingRecord();
 
   const daysBetweenLastestSmokingRecord = differenceInHours(
-    smokingRecord?.date ?? new Date(),
-    new Date()
+    new Date(),
+    smokingRecord?.date ?? new Date()
   );
 
   return { daysBetweenLastestSmokingRecord };
