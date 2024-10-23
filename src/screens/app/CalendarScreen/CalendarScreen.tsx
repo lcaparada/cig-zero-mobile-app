@@ -13,6 +13,7 @@ export const CalendarScreen = () => {
     indexedSmokingRecords,
     showAddSmokingHourModal,
     setShowAddSmokingHourModal,
+    showAddSmokingRecordButton,
   } = useCalendarScreen();
 
   return (
@@ -21,10 +22,14 @@ export const CalendarScreen = () => {
       scrollable
       scrollRef={scrollViewRef}
       insets={{ left: "s0", right: "s0", top: "s0", bottom: "s0" }}
-      button={{
-        text: "Adicionar fumo",
-        action: () => setShowAddSmokingHourModal(true),
-      }}
+      button={
+        showAddSmokingRecordButton
+          ? {
+              text: "Adicionar fumo",
+              action: () => setShowAddSmokingHourModal(true),
+            }
+          : undefined
+      }
     >
       <CalendarHeader />
       <Calendar
