@@ -1,3 +1,5 @@
+import { IndexedSmokingRecordsState } from "src/screens/app/CalendarScreen/useCalendarScreen";
+
 import { Box } from "../Box/Box";
 
 import {
@@ -11,9 +13,14 @@ import { useCalendar } from "./useCalendar";
 export interface CalendarProps {
   date: Date;
   setDate: React.Dispatch<React.SetStateAction<Date>>;
+  indexedSmokingRecords: IndexedSmokingRecordsState;
 }
 
-export const Calendar = ({ date, setDate }: CalendarProps) => {
+export const Calendar = ({
+  date,
+  setDate,
+  indexedSmokingRecords,
+}: CalendarProps) => {
   const {
     days,
     SCREEN_WIDTH,
@@ -40,6 +47,7 @@ export const Calendar = ({ date, setDate }: CalendarProps) => {
         days={days}
         COLUMN_GAP={COLUMN_GAP}
         selectDate={handleSelectDate}
+        indexedSmokingRecords={indexedSmokingRecords}
       />
       <CalendarInformations />
     </Box>

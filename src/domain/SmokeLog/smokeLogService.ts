@@ -1,6 +1,9 @@
 import { supabase } from "@api";
 
-import { GetLatestSmokingRecord } from "./smokeLogTypes";
+import {
+  GetAllSmokingRecordsByMonth,
+  GetLatestSmokingRecord,
+} from "./smokeLogTypes";
 
 const getLatestSmokingRecord = async (
   params: GetLatestSmokingRecord.Params
@@ -16,6 +19,20 @@ const getLatestSmokingRecord = async (
   return data?.[0] as GetLatestSmokingRecord.Result;
 };
 
+const getAllSmokingRecordsByMonth = async (
+  params: GetAllSmokingRecordsByMonth.Params
+): Promise<GetAllSmokingRecordsByMonth.Result> => {
+  const { data, error } = await supabase
+    .from("smoke_log")
+    .select("date")
+    .eq("user_id", params.userId)
+    .gte("date", params.startDate)
+    .lte("date", params.endDate);
+  if (error) throw error;
+  return data as GetAllSmokingRecordsByMonth.Result;
+};
+
 export const smokeLogService = {
   getLatestSmokingRecord,
+  getAllSmokingRecordsByMonth,
 };

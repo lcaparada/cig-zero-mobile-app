@@ -4,8 +4,13 @@ import { CalendarHeader, SmokingActivities } from "./components";
 import { useCalendarScreen } from "./useCalendarScreen";
 
 export const CalendarScreen = () => {
-  const { date, showAddSmokingHourModal, setDate, setShowAddSmokingHourModal } =
-    useCalendarScreen();
+  const {
+    date,
+    setDate,
+    indexedSmokingRecords,
+    showAddSmokingHourModal,
+    setShowAddSmokingHourModal,
+  } = useCalendarScreen();
 
   return (
     <Screen
@@ -18,7 +23,11 @@ export const CalendarScreen = () => {
       }}
     >
       <CalendarHeader />
-      <Calendar date={date} setDate={setDate} />
+      <Calendar
+        date={date}
+        setDate={setDate}
+        indexedSmokingRecords={indexedSmokingRecords}
+      />
       <Divider mt={"s30"} mb={"s30"} />
       <SmokingActivities date={date} />
       {showAddSmokingHourModal && (

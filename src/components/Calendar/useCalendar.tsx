@@ -13,7 +13,10 @@ import {
 
 import { CalendarProps } from "./Calendar";
 
-export const useCalendar = ({ date, setDate }: CalendarProps) => {
+export const useCalendar = ({
+  date,
+  setDate,
+}: Pick<CalendarProps, "date" | "setDate">) => {
   const [days, setDays] = useState<Date[]>([]);
 
   const { width: SCREEN_WIDTH } = useWindowDimensions();

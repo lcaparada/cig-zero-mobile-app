@@ -1,10 +1,17 @@
 import { isBefore, isSameMonth, isToday } from "date-fns";
 
-export const getTextColor = (date: Date, dateToCheck: Date) => {
-  if (isToday(dateToCheck)) {
-    return "primary";
+export const getTextColor = (
+  date: Date,
+  dateToCheck: Date,
+  hasSmokeRecord: boolean
+): "primary" | "backgroundSecondConstrast" | "background" => {
+  if (hasSmokeRecord) {
+    return "background";
   }
-  if (isSameMonth(date, dateToCheck) && !isBefore(dateToCheck, new Date())) {
+  if (
+    isToday(dateToCheck) ||
+    (isSameMonth(date, dateToCheck) && !isBefore(dateToCheck, new Date()))
+  ) {
     return "primary";
   }
   return "backgroundSecondConstrast";
