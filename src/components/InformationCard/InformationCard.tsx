@@ -26,6 +26,7 @@ export const InformationCard = ({
         textAlign={"center"}
         weight="medium"
         color="neutralLighest"
+        numberOfLines={2}
       >
         {label}
       </Text>
@@ -39,6 +40,7 @@ const $boxWrapper: BoxProps = {
   height: 103,
   alignItems: "center",
   borderRadius: "s16",
+  paddingHorizontal: "s10",
   paddingVertical: "s10",
   rowGap: "s4",
 };

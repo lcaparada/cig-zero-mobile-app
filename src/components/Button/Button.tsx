@@ -66,7 +66,11 @@ export const Button = ({
             />
           )}
           {text && (
-            <Text weight="semiBold" color={buttonPreset.content}>
+            <Text
+              weight="semiBold"
+              numberOfLines={1}
+              color={buttonPreset.content}
+            >
               {text}
             </Text>
           )}
