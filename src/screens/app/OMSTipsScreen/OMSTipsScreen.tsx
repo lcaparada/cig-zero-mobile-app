@@ -2,8 +2,10 @@ import { AchievementProgressCard, Screen } from "@components";
 
 import { OMSTipsHeader } from "./components";
 import { omsTips } from "./OMSTipsPresets";
+import { useOMSTipsScreen } from "./useOMSTipsScreen";
 
 export const OMSTipsScreen = () => {
+  const { daysBetweenLastestSmokingRecord } = useOMSTipsScreen();
   return (
     <Screen
       hasPaddingTop={false}
@@ -17,6 +19,8 @@ export const OMSTipsScreen = () => {
           {...item}
           key={index}
           mt={index === 0 ? "s24" : "s30"}
+          current={daysBetweenLastestSmokingRecord}
+          percentage={daysBetweenLastestSmokingRecord / item.target}
         />
       ))}
     </Screen>
