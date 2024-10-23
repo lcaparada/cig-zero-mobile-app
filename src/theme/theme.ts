@@ -30,6 +30,8 @@ const pallete = {
 
   neutralLight: "#F5F5F5",
   neutralLighest: "#FFFFFF",
+
+  shadowBlue: "#233D4D",
 };
 
 export const shadow: BoxProps = {

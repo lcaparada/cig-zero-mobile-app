@@ -1,4 +1,10 @@
-import { isBefore, isSameMonth, isToday, startOfDay } from "date-fns";
+import {
+  isBefore,
+  isSameDay,
+  isSameMonth,
+  isToday,
+  startOfDay,
+} from "date-fns";
 
 export const getBorderStyle = (
   date: Date,
@@ -9,7 +15,8 @@ export const getBorderStyle = (
   return (isToday(dateToCheck) ||
     (userCreatedAt && isBefore(dateToCheck, startOfDay(userCreatedAt)))) &&
     isSameMonth(dateToCheck, date) &&
-    !hasSmokeRecord
+    !hasSmokeRecord &&
+    !isSameDay(date, dateToCheck)
     ? "dashed"
     : "solid";
 };

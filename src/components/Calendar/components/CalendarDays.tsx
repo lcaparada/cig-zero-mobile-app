@@ -5,8 +5,12 @@ import { Box, BoxProps, TouchableOpacityBox } from "src/components/Box/Box";
 import { Text } from "src/components/Text/Text";
 import { IndexedSmokingRecordsState } from "src/screens/app/CalendarScreen/useCalendarScreen";
 
-import { getBorderColor, getTextColor } from "../utils";
-import { getBorderStyle } from "../utils/getBorderStyle";
+import {
+  getBorderColor,
+  getTextColor,
+  getBorderStyle,
+  getBackgroundColor,
+} from "../utils";
 
 interface CalendarDaysProps {
   days: Date[];
@@ -41,7 +45,7 @@ export const CalendarDays = ({
             onPress={() => selectDate(d)}
             opacity={isSameMonth(date, d) ? 1 : 0.2}
             borderColor={getBorderColor(date, d, hasSmokeRecord)}
-            backgroundColor={hasSmokeRecord ? "primary" : "background"}
+            backgroundColor={getBackgroundColor(date, d, hasSmokeRecord)}
             borderStyle={getBorderStyle(date, d, userCreatedAt, hasSmokeRecord)}
           >
             <Text

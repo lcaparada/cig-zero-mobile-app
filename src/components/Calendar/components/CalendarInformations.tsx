@@ -13,9 +13,25 @@ const informationItems: InformationItemsData[] = [
     text: "Dias de outro mês",
   },
   {
+    borderStyle: "solid",
+    borderColor: "shadowBlue",
+    backgroundColor: "shadowBlue",
+    text: "Dia selecionado",
+  },
+  {
     borderColor: "backgroundSecondConstrast",
     borderStyle: "dashed",
     text: "Dias anteriores ao começo",
+  },
+  {
+    borderColor: "primary",
+    borderStyle: "dashed",
+    text: "Dia atual não respondido sobre o fumo",
+  },
+  {
+    borderColor: "primary",
+    borderStyle: "solid",
+    text: "Dias futuros não respondido sobre o fumo",
   },
   {
     borderColor: "primary",
@@ -28,16 +44,6 @@ const informationItems: InformationItemsData[] = [
     borderStyle: "solid",
     backgroundColor: "errorDark",
     text: "Dias que você respondeu sim sobre o fumo",
-  },
-  {
-    borderColor: "primary",
-    borderStyle: "dashed",
-    text: "Dia atual não respondido sobre o fumo",
-  },
-  {
-    borderColor: "primary",
-    borderStyle: "solid",
-    text: "Dias futuros não respondido sobre o fumo",
   },
 ];
 
