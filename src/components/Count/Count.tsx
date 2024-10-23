@@ -1,14 +1,16 @@
 import { Box } from "src/components/Box/Box";
 import { Text } from "src/components/Text/Text";
 
+import { AchievementProgressCardProps } from "../AchievementProgressCard/AchievementProgressCard";
+
 import { formatNumber } from "./utils";
 
-interface CountProps {
-  current?: number;
-  target?: number;
-}
+type CountProps = Pick<
+  AchievementProgressCardProps,
+  "current" | "target" | "type"
+>;
 
-export const Count = ({ current, target }: CountProps) => {
+export const Count = ({ current, target, type }: CountProps) => {
   return (
     <Box
       backgroundColor={"primary"}
@@ -19,7 +21,7 @@ export const Count = ({ current, target }: CountProps) => {
       justifyContent={"center"}
     >
       <Text preset="notes" color={"neutralLighest"} weight="semiBold">
-        {formatNumber(current ?? 0)}/{formatNumber(target ?? 0)}
+        {formatNumber(current ?? 0, type)}/{formatNumber(target ?? 0, type)}
       </Text>
     </Box>
   );

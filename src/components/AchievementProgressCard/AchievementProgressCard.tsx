@@ -10,10 +10,12 @@ export interface AchievementProgressCardProps extends BoxProps {
   lastItem: boolean;
   percentage: number;
   description: string;
+  type: "hours" | "weeks" | "months" | "years";
 }
 
 export const AchievementProgressCard = ({
   title,
+  type,
   target,
   current,
   lastItem,
@@ -28,7 +30,7 @@ export const AchievementProgressCard = ({
         <HeadingWithDescription
           title={title}
           description={description}
-          count={{ current, target }}
+          count={{ current, target, type }}
         />
         <ProgressBar percentage={percentage} mt={"s14"} />
       </Box>

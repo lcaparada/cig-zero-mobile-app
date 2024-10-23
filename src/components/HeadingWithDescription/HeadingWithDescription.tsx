@@ -1,3 +1,4 @@
+import { AchievementProgressCardProps } from "../AchievementProgressCard/AchievementProgressCard";
 import { Box } from "../Box/Box";
 import { Count } from "../Count/Count";
 import { Text } from "../Text/Text";
@@ -5,10 +6,7 @@ import { Text } from "../Text/Text";
 interface TitleAndDescriptionProps {
   title: string;
   description: string;
-  count?: {
-    current: number;
-    target: number;
-  };
+  count?: Pick<AchievementProgressCardProps, "current" | "target" | "type">;
 }
 
 export const HeadingWithDescription = ({
@@ -31,7 +29,7 @@ export const HeadingWithDescription = ({
         >
           {title}
         </Text>
-        {!!count && <Count current={count.current} target={count.target} />}
+        {!!count && <Count {...count} />}
       </Box>
       <Text
         preset="paragraphsBig"
