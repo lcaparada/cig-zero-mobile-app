@@ -26,7 +26,7 @@ export const buttonPresets: Record<
         shadowOpacity: 1,
         shadowRadius: 0,
 
-        elevation: 14,
+        elevation: 5,
       },
       content: "buttonConstrast",
       icon: "buttonConstrast",
@@ -54,7 +54,7 @@ export const buttonPresets: Record<
         shadowOpacity: 1,
         shadowRadius: 0,
 
-        elevation: 14,
+        elevation: 5,
       },
       content: "buttonConstrast",
       icon: "buttonConstrast",

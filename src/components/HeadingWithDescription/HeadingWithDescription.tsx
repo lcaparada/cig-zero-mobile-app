@@ -19,16 +19,17 @@ export const HeadingWithDescription = ({
       <Box
         flexDirection={"row"}
         alignItems={"center"}
-        flex={1}
         justifyContent={"space-between"}
       >
-        <Text
-          preset="paragraphsXL"
-          weight="semiBold"
-          color={"backgroundConstrast"}
-        >
-          {title}
-        </Text>
+        <Box flex={1}>
+          <Text
+            preset="paragraphsXL"
+            weight="semiBold"
+            color={"backgroundConstrast"}
+          >
+            {title}
+          </Text>
+        </Box>
         {!!count && <Count {...count} />}
       </Box>
       <Text

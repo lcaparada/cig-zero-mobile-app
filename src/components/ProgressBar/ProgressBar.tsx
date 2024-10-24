@@ -49,7 +49,6 @@ export const ProgressBar = ({ percentage, ...boxProps }: ProgressBarProps) => {
 };
 
 const $progressBarBackground: BoxProps = {
-  flex: 1,
   height: 16,
   overflow: "hidden",
   borderRadius: "s16",

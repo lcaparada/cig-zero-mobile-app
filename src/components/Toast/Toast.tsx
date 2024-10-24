@@ -53,5 +53,5 @@ const $boxShadow: BoxProps = {
   },
   shadowOpacity: 1,
   shadowRadius: 0,
-  elevation: 4,
+  elevation: 5,
 };

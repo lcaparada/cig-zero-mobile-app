@@ -43,7 +43,7 @@ export const shadow: BoxProps = {
   shadowOpacity: 1,
   shadowRadius: 0,
 
-  elevation: 14,
+  elevation: 5,
 };
 
 export const theme = createTheme({
