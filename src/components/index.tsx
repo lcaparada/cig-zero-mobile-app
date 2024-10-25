@@ -8,6 +8,7 @@ export * from "./Button/Button";
 export * from "./Screen/Screen";
 export * from "./Divider/Divider";
 export * from "./Calendar/Calendar";
+export * from "./Skeleton/Skeleton";
 export * from "./TimeCard/TimeCard";
 export * from "./Form/FormTextInput";
 export * from "./TextInput/TextInput";

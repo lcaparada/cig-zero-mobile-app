@@ -1,6 +1,6 @@
 import { Screen } from "@components";
 
-import { AchievementsHeader } from "./components";
+import { AchievementsHeader, AchievementsSkeleton } from "./components";
 import { AchievementHeading } from "./components/AchievementHeading";
 import { useAchievementsScreen } from "./useAchievementsScreen";
 
@@ -15,8 +15,7 @@ export const AchievementsScreen = () => {
       <AchievementsHeader
         count={{ target: achievements?.length ?? 0, current }}
       />
-      {!isLoading &&
-        achievements &&
+      {!isLoading && achievements ? (
         achievements.map((a, i) => (
           <AchievementHeading
             {...a}
@@ -24,7 +23,10 @@ export const AchievementsScreen = () => {
             mt={i === 0 ? "s24" : "s30"}
             isLastItem={i === achievements.length - 1}
           />
-        ))}
+        ))
+      ) : (
+        <AchievementsSkeleton />
+      )}
     </Screen>
   );
 };
