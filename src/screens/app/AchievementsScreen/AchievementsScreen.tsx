@@ -12,21 +12,19 @@ export const AchievementsScreen = () => {
       scrollable
       insets={{ left: "s0", right: "s0", top: "s0", bottom: "s0" }}
     >
-      {!isLoading && achievements && (
-        <>
-          <AchievementsHeader
-            count={{ target: achievements.length, current }}
+      <AchievementsHeader
+        count={{ target: achievements?.length ?? 0, current }}
+      />
+      {!isLoading &&
+        achievements &&
+        achievements.map((a, i) => (
+          <AchievementHeading
+            {...a}
+            key={i}
+            mt={i === 0 ? "s24" : "s30"}
+            isLastItem={i === achievements.length - 1}
           />
-          {achievements.map((a, i) => (
-            <AchievementHeading
-              {...a}
-              key={i}
-              mt={i === 0 ? "s24" : "s30"}
-              isLastItem={i === achievements.length - 1}
-            />
-          ))}
-        </>
-      )}
+        ))}
     </Screen>
   );
 };
