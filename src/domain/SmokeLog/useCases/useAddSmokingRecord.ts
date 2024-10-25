@@ -35,6 +35,9 @@ export const useAddSmokingRecord = () => {
       queryClient.invalidateQueries({
         queryKey: [QueryKeys.GetProgressData],
       });
+      queryClient.invalidateQueries({
+        queryKey: [QueryKeys.GetAchievements],
+      });
     },
   });
 

@@ -7,30 +7,23 @@ import {
   Count,
   Divider,
   BoxProps,
-  IconName,
   TouchableOpacityBox,
-  AchievementProgressCardProps,
   AchievementProgressCard,
 } from "@components";
 
-export interface AchievementHeadingProps extends BoxProps {
-  title: string;
-  icon: IconName;
-  target: number;
-  current: number;
-  isLastItem: boolean;
-  description: string;
-  achievements: Pick<
-    AchievementProgressCardProps,
-    "title" | "target" | "current" | "lastItem" | "percentage" | "description"
-  >[];
-}
+import { AchievementCategory } from "@domain";
+
+export type AchievementHeadingProps = BoxProps &
+  Pick<
+    AchievementCategory,
+    "title" | "description" | "icon" | "achievements"
+  > & {
+    isLastItem: boolean;
+  };
 
 export const AchievementHeading = ({
   icon,
   title,
-  target,
-  current,
   isLastItem,
   description,
   achievements,
@@ -72,13 +65,25 @@ export const AchievementHeading = ({
             {description}
           </Text>
         </Box>
-        <Count target={target} current={current} />
+        <Count
+          target={achievements.length}
+          current={
+            achievements.filter(({ is_completed }) => is_completed).length
+          }
+          type="hours"
+        />
       </TouchableOpacityBox>
 
       {!!achievements && showAchievements ? (
         <Box>
           {achievements.map((item, index) => (
-            <AchievementProgressCard {...item} key={index} />
+            <AchievementProgressCard
+              key={index}
+              type="hours"
+              lastItem={achievements.length - 1 === index}
+              percentage={(item.current / item.target) * 100}
+              {...item}
+            />
           ))}
         </Box>
       ) : null}

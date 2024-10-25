@@ -1,17 +1,18 @@
+import { Achievement } from "@domain";
+
 import { Box, BoxProps } from "../Box/Box";
 import { Divider } from "../Divider/Divider";
 import { HeadingWithDescription } from "../HeadingWithDescription/HeadingWithDescription";
 import { ProgressBar } from "../ProgressBar/ProgressBar";
 
-export interface AchievementProgressCardProps extends BoxProps {
-  title: string;
-  target: number;
-  current: number;
-  lastItem: boolean;
-  percentage: number;
-  description: string;
-  type: "hours" | "weeks" | "months" | "years";
-}
+export type AchievementProgressCardProps = BoxProps &
+  Pick<Achievement, "description" | "title"> & {
+    target: number;
+    current: number;
+    lastItem: boolean;
+    percentage: number;
+    type: "hours" | "weeks" | "months" | "years";
+  };
 
 export const AchievementProgressCard = ({
   title,
