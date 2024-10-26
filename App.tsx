@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { setDefaultOptions } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { useFonts } from "expo-font";
+import * as Notifications from "expo-notifications";
 import * as SplashScreen from "expo-splash-screen";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
@@ -13,14 +14,22 @@ import { theme } from "@theme";
 
 import { AuthProvider, ToastProvider } from "@services";
 
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
+});
+
 const queryClient = new QueryClient();
 
 export default function App() {
   const [loaded, error] = useFonts({
-    "SFProRounded-Regular": require("./src/assets/fonts/SF-Pro-Rounded-Regular.otf"),
-    "SFProRounded-Medium": require("./src/assets/fonts/SF-Pro-Rounded-Medium.otf"),
-    "SFProRounded-Semibold": require("./src/assets/fonts/SF-Pro-Rounded-Semibold.otf"),
-    "SFProRounded-Bold": require("./src/assets/fonts/SF-Pro-Rounded-Bold.otf"),
+    "SFProRounded-Regular": require("./assets/fonts/SF-Pro-Rounded-Regular.otf"),
+    "SFProRounded-Medium": require("./assets/fonts/SF-Pro-Rounded-Medium.otf"),
+    "SFProRounded-Semibold": require("./assets/fonts/SF-Pro-Rounded-Semibold.otf"),
+    "SFProRounded-Bold": require("./assets/fonts/SF-Pro-Rounded-Bold.otf"),
   });
 
   useEffect(() => {

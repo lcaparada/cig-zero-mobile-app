@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "cig-zero",
-    "slug": "cig-zero",
+    "name": "CigZero",
+    "slug": "cig-zero-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -12,7 +12,9 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "buildNumber": "1",
+      "bundleIdentifier": "com.elevanteholdings.cigzero"
     },
     "android": {
       "adaptiveIcon": {
@@ -35,6 +37,12 @@
           ]
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "bd47c4d6-98ce-4ff1-beaf-21891fddbfd4"
+      }
+    },
+    "owner": "cavalcante.lucasx"
   }
 }
