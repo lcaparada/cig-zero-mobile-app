@@ -16,6 +16,7 @@ export * from "./Form/OnboardingInput";
 export * from "./ProgressBar/ProgressBar";
 export * from "./RadioButton/RadioButton";
 export * from "./ScreenHeader/ScreenHeader";
+export * from "./DailyMissions/DailyMissions";
 export * from "./InformationItem/InformationItem";
 export * from "./InformationCard/InformationCard";
 export * from "./OnboardingInput/onboardingTypes";

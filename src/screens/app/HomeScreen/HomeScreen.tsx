@@ -1,4 +1,4 @@
-import { Divider, Screen } from "@components";
+import { DailyMissions, Divider, Screen } from "@components";
 
 import {
   Historic,
@@ -16,6 +16,8 @@ export const HomeScreen = () => {
     >
       <HomeHeader />
       <GeneralProgress />
+      <Divider />
+      <DailyMissions />
       <Divider />
       <Historic />
       <Divider />

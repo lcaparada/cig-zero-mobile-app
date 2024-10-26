@@ -18,6 +18,7 @@ export type TextVariants =
   | "titleSmall"
   | "titleBig"
   | "display"
+  | "displayExtra"
   | "paragraphsLarge"
   | "notesSmall"
   | "timer"
@@ -67,5 +68,6 @@ export const $fontSize: Record<TextVariants, TextStyle> = {
   titleSmall: { fontSize: 24, lineHeight: 24 * MULTIPLIER_LINE_HEIGHT },
   titleBig: { fontSize: 28, lineHeight: 28 * MULTIPLIER_LINE_HEIGHT },
   display: { fontSize: 30, lineHeight: 30 * MULTIPLIER_LINE_HEIGHT },
+  displayExtra: { fontSize: 32, lineHeight: 30 * MULTIPLIER_LINE_HEIGHT },
   timer: { fontSize: 40, lineHeight: 40 * MULTIPLIER_LINE_HEIGHT },
 };
