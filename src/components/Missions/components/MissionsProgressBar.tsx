@@ -2,7 +2,7 @@ import { Box, BoxProps } from "src/components/Box/Box";
 import { Icon } from "src/components/Icon/Icon";
 import { Text } from "src/components/Text/Text";
 
-export const DailyMissionsProgressBar = () => {
+export const MissionsProgressBar = () => {
   return (
     <Box flexDirection={"row"} columnGap={"s8"}>
       <Box flex={1} flexDirection={"row"}>

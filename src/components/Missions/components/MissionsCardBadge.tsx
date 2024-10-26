@@ -1,12 +1,10 @@
 import { Text } from "src/components/Text/Text";
 
-interface DailyMissionsCardBadgeProps {
+interface MissionsCardBadgeProps {
   number: number;
 }
 
-export const DailyMissionCardBadge = ({
-  number,
-}: DailyMissionsCardBadgeProps) => {
+export const MissionCardBadge = ({ number }: MissionsCardBadgeProps) => {
   return (
     <Text preset="displayExtra" weight="semiBold" color="background">
       {number}.

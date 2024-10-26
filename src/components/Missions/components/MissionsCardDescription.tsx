@@ -1,6 +1,6 @@
 import { Text } from "src/components/Text/Text";
 
-export const DailyMissionsCardDescription = ({
+export const MissionsCardDescription = ({
   description,
 }: {
   description: string;

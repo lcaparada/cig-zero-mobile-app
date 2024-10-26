@@ -2,16 +2,16 @@ import { Box, BoxProps } from "../Box/Box";
 import { HeadingWithDescription } from "../HeadingWithDescription/HeadingWithDescription";
 import { IconName } from "../Icon/Icon";
 
-import { DailyMissionsCard } from "./components";
+import { MissionsCard } from "./components";
 
-interface DailyMissionsData {
+interface MissionsData {
   icon: IconName;
   title: string;
   description: string;
 }
 
-export const DailyMissions = () => {
-  const dailyMissionsData: DailyMissionsData[] = [
+export const Missions = () => {
+  const missionsData: MissionsData[] = [
     {
       title: "Tempo",
       icon: "clock",
@@ -36,8 +36,8 @@ export const DailyMissions = () => {
         description="Conclua as suas missões semanais"
       />
       <Box {...$boxWrapper}>
-        {dailyMissionsData.map((mission, index) => (
-          <DailyMissionsCard key={index} index={index + 1} {...mission} />
+        {missionsData.map((mission, index) => (
+          <MissionsCard key={index} index={index + 1} {...mission} />
         ))}
       </Box>
     </Box>
