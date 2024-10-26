@@ -3,5 +3,6 @@ export enum QueryKeys {
   GetHistoricData,
   GetAchievements,
   GetLatestSmokingRecord,
+  GetNotificationSettings,
   GetAllSmokingRecordsByMonth,
 }

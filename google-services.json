@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1050748790207",
+    "project_id": "cig-zero-app",
+    "storage_bucket": "cig-zero-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1050748790207:android:598153be4e3d0c4b20ed0a",
+        "android_client_info": {
+          "package_name": "com.elevanteholdings.cigzero"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsd3W57kX-u4j_Q9U89d6jylvy--rMC5M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

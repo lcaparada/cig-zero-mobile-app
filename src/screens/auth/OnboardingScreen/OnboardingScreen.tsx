@@ -6,11 +6,11 @@ export const OnboardingScreen = () => {
   const {
     step,
     navigation,
-    watch,
     handleNextStep,
     handleRenderSteps,
     handleCanGoNextPage,
     handleToPreviousStep,
+    handleNavigateToStartScreen,
   } = useOnboardingScreen();
 
   const MAX_STEPS = 8;
@@ -25,9 +25,7 @@ export const OnboardingScreen = () => {
       button={{
         text: "Próximo",
         action: () =>
-          step === MAX_STEPS
-            ? navigation.navigate("StartScreen", watch())
-            : handleNextStep(),
+          step === MAX_STEPS ? handleNavigateToStartScreen() : handleNextStep(),
         disabled: !handleCanGoNextPage(),
       }}
       progressBar={{ progress: (step / MAX_STEPS) * 100 }}

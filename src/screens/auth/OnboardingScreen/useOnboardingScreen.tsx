@@ -4,6 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigation } from "@react-navigation/native";
 import { useForm } from "react-hook-form";
 
+import { registerForPushNotificationsAsync } from "@helpers";
+
 import {
   EighthStepOnboarding,
   FifthStepOnboarding,
@@ -24,7 +26,7 @@ export const useOnboardingScreen = () => {
 
   const navigation = useNavigation();
 
-  const { control, watch } = useForm<OnboardingScreenSchemaType>({
+  const { control, watch, setValue } = useForm<OnboardingScreenSchemaType>({
     resolver: zodResolver(onboardingScreenSchema),
     defaultValues: {
       name: "",
@@ -76,13 +78,24 @@ export const useOnboardingScreen = () => {
     setStep((prevStep) => prevStep - 1);
   };
 
+  const handleNavigateToStartScreen = () => {
+    if (watch().likeToReceiveDailyReminders === "YES") {
+      registerForPushNotificationsAsync().then((token) => {
+        if (!token) {
+          setValue("likeToReceiveDailyReminders", "NO");
+        }
+      });
+    }
+    navigation.navigate("StartScreen", watch());
+  };
+
   return {
     step,
     navigation,
-    watch,
     handleNextStep,
     handleRenderSteps,
     handleCanGoNextPage,
     handleToPreviousStep,
+    handleNavigateToStartScreen,
   };
 };

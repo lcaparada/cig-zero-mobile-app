@@ -1,11 +1,11 @@
 import { Box, Button, Screen, Text } from "@components";
 import { AuthScreenProps } from "@routes";
 
-import { useAuthSignInAnonymously } from "@domain";
+import { useStartScreen } from "./useStartScreen";
 
 export const StartScreen = ({ route }: AuthScreenProps<"StartScreen">) => {
   const { name } = route.params;
-  const { handleSignInAnonymously, isPending } = useAuthSignInAnonymously();
+  const { authenticateSignInAnonymously, isPending } = useStartScreen();
   return (
     <Screen centerItems canGoBack>
       <Box alignItems={"center"} justifyContent={"center"} rowGap={"s20"}>
@@ -26,7 +26,7 @@ export const StartScreen = ({ route }: AuthScreenProps<"StartScreen">) => {
         text="Iniciar"
         preset="primary"
         isLoading={isPending}
-        onPress={() => handleSignInAnonymously(route.params)}
+        onPress={() => authenticateSignInAnonymously(route.params)}
       />
     </Screen>
   );

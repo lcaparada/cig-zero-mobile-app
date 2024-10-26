@@ -1,3 +1,4 @@
+import { AuthResponse } from "@supabase/supabase-js";
 import { useMutation } from "@tanstack/react-query";
 
 import { authService } from "../authService";
@@ -5,7 +6,7 @@ import { SignInAnonymously } from "../authTypes";
 
 export const useAuthSignInAnonymously = () => {
   const { mutateAsync, isPending } = useMutation<
-    unknown,
+    AuthResponse["data"],
     Error,
     SignInAnonymously.Params
   >({
@@ -14,9 +15,11 @@ export const useAuthSignInAnonymously = () => {
 
   const handleSignInAnonymously = async (params: SignInAnonymously.Params) => {
     try {
-      await mutateAsync(params);
+      const result = await mutateAsync(params);
+      return result;
     } catch (error: any) {
       console.error(error);
+      throw error;
     }
   };
 
