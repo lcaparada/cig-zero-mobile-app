@@ -23,7 +23,6 @@ export const DailyMissionsCard = ({
 }: DailyMissionsCardProps) => {
   return (
     <Box
-      height={95}
       width="100%"
       borderRadius="s16"
       paddingVertical="s18"
