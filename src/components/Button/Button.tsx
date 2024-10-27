@@ -17,6 +17,7 @@ export interface ButtonProps extends TouchableOpacityBoxProps {
   disabled?: boolean;
   isLoading?: boolean;
   hasArrowRight?: boolean;
+  rightComponent?: JSX.Element;
   disabledWithPrimaryPreset?: boolean;
 }
 
@@ -27,6 +28,7 @@ export const Button = ({
   isLoading = false,
   iconName = undefined,
   hasArrowRight = false,
+  rightComponent,
   disabledWithPrimaryPreset = false,
   onPress,
   ...touchableOpacityBoxProps
@@ -54,7 +56,8 @@ export const Button = ({
         <Box
           columnGap={"s8"}
           flexDirection={"row"}
-          justifyContent={"center"}
+          flex={!!rightComponent ? 1 : undefined}
+          justifyContent={!!rightComponent ? undefined : "center"}
           alignItems={"center"}
         >
           {iconName && (
@@ -86,6 +89,7 @@ export const Button = ({
           />
         </Box>
       )}
+      {rightComponent && <Box>{rightComponent}</Box>}
     </TouchableOpacityBox>
   );
 };

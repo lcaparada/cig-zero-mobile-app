@@ -16,7 +16,7 @@ export const AdjustmentsScreen = () => {
     {
       icon: "fileText",
       label: "Dados de Fumo Passado",
-      action: () => {},
+      action: () => navigation.navigate("PastSmokingDataScreen"),
     },
     {
       icon: "star",
