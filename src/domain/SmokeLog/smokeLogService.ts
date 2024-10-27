@@ -11,7 +11,7 @@ const getLatestSmokingRecord = async (
   params: GetLatestSmokingRecord.Params
 ): Promise<GetLatestSmokingRecord.Result> => {
   const { data, error } = await supabase
-    .from("smoke_log")
+    .from("smoke_logs")
     .select("date")
     .eq("user_id", params.userId)
     .order("date", { ascending: false })
@@ -25,7 +25,7 @@ const getAllSmokingRecordsByMonth = async (
   params: GetAllSmokingRecordsByMonth.Params
 ): Promise<GetAllSmokingRecordsByMonth.Result> => {
   const { data, error } = await supabase
-    .from("smoke_log")
+    .from("smoke_logs")
     .select("date, created_at, id")
     .eq("user_id", params.userId)
     .gte("date", params.startDate)
@@ -37,7 +37,7 @@ const getAllSmokingRecordsByMonth = async (
 const addSmokingRecord = async (
   params: AddSmokingRecord.Params
 ): Promise<AddSmokingRecord.Result> => {
-  const { error } = await supabase.from("smoke_log").insert(params);
+  const { error } = await supabase.from("smoke_logs").insert(params);
   if (error) throw error;
 };
 
@@ -45,7 +45,7 @@ const deleteSmokingRecord = async (
   params: DeleteSmokingRecord.Params
 ): Promise<DeleteSmokingRecord.Result> => {
   const { error } = await supabase
-    .from("smoke_log")
+    .from("smoke_logs")
     .delete()
     .eq("id", params.id)
     .eq("user_id", params.user_id);
