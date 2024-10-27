@@ -1,10 +1,10 @@
-import { Box, ScreenHeader, TimeCard } from "@components";
+import { Box, Icon, ScreenHeader, TimeCard } from "@components";
 import { shadow } from "@theme";
 
 import { useHomeHeader } from "./useHomeHeader";
 
 export const HomeHeader = () => {
-  const { timeSinceLastSmokingRecord } = useHomeHeader();
+  const { navigation, timeSinceLastSmokingRecord } = useHomeHeader();
   return (
     <Box
       backgroundColor={"primary"}
@@ -17,6 +17,15 @@ export const HomeHeader = () => {
         title="Resumo"
         description="Acompanhe o progresso"
         titleAndDescriptionColor="neutralLighest"
+        rightComponent={
+          <Icon
+            name="settings"
+            color="neutralLighest"
+            size="s24"
+            strokeWidth={2}
+            onPress={() => navigation.navigate("AdjustmentsScreen")}
+          />
+        }
       />
       <Box
         flexDirection={"row"}

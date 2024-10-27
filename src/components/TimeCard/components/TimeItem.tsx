@@ -10,7 +10,11 @@ export const TimeItem = ({ time }: TimeItemProps) => {
   return (
     <Box>
       <Box {...$boxWrapper} {...$boxShadow}>
-        <Text preset="timer" weight="semiBold" color={"backgroundConstrast"}>
+        <Text
+          preset="displayXL"
+          weight="semiBold"
+          color={"backgroundConstrast"}
+        >
           {time}
         </Text>
       </Box>

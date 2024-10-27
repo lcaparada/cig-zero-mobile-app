@@ -5,6 +5,7 @@ export * from "./Modal/Modal";
 export * from "./Count/Count";
 export * from "./TabBar/TabBar";
 export * from "./Button/Button";
+export * from "./Avatar/Avatar";
 export * from "./Screen/Screen";
 export * from "./Divider/Divider";
 export * from "./Missions/Missions";

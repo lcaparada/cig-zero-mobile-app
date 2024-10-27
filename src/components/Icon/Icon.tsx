@@ -24,6 +24,9 @@ import {
   ErrorRound,
   CheckRound,
   Info,
+  Shield,
+  Bell,
+  FileText,
 } from "@assets";
 
 import { TouchableOpacityBox } from "../Box/Box";
@@ -88,9 +91,12 @@ const iconRegistry = {
   info: Info,
   wind: Wind,
   home: Home,
+  bell: Bell,
   rings: Rings,
   clock: Clock,
+  shield: Shield,
   error: ErrorRound,
+  fileText: FileText,
   activity: Activity,
   settings: Settings,
   calendar: Calendar,

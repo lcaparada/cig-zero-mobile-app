@@ -7,6 +7,8 @@ const pallete = {
 
   bluePrimaryWith25PercentOpacity: "#7ea2aa40",
 
+  abyssGreen: "#042628",
+
   backgroundModal: "#00000080",
 
   errorDark: "#6B0F1A",
@@ -19,6 +21,9 @@ const pallete = {
   softWhiteGray: "#F4F4F4",
 
   mutedAqua: "#9BBDC4",
+
+  mutedAquaWith20PercentOpacity: "#9bbdc433",
+
   mutedSlate: "#6B8A90",
   mutedCyan: "#A5BEC4",
   translucentBlack: "#00000040",

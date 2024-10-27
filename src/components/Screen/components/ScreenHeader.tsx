@@ -53,24 +53,32 @@ export const ScreenHeader = ({
         canGoBack ? "center" : handleAdapterAlignItems(titleAlign ?? "center")
       }
     >
-      <Box flex={1}>
+      <Box
+        flex={!!progressBar ? 1 : undefined}
+        position={!!progressBar ? undefined : "absolute"}
+        left={!!progressBar ? undefined : 0}
+      >
         {canGoBack || canGoBackSpecificyScreen ? (
           <ScreenGoBack action={canGoBackSpecificyScreen} />
         ) : null}
       </Box>
-      <Box flex={7} height={16}>
-        {!!progressBar && <ProgressBar percentage={progressBar.progress} />}
-        {!!title ? (
-          <Text
-            weight="semiBold"
-            preset={titleSize}
-            color={"backgroundConstrast"}
-          >
-            {title}
-          </Text>
-        ) : null}
+      {!!title ? (
+        <Text
+          weight="semiBold"
+          preset={titleSize}
+          color={"backgroundConstrast"}
+        >
+          {title}
+        </Text>
+      ) : null}
+      {!!progressBar && (
+        <Box flex={7} height={16}>
+          <ProgressBar percentage={progressBar.progress} />
+        </Box>
+      )}
+      <Box flex={!!progressBar ? 1 : undefined}>
+        {rightComponent && rightComponent}
       </Box>
-      <Box flex={1}>{rightComponent && rightComponent}</Box>
     </Box>
   );
 };

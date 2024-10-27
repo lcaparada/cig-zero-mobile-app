@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import { useNavigation } from "@react-navigation/native";
+
 import { useGetLatestSmokingRecord } from "@domain";
 import { calculateTimeDifferenceFromNow } from "@helpers";
 import { useAuth } from "@services";
@@ -7,6 +9,8 @@ import { useAuth } from "@services";
 export const useHomeHeader = () => {
   const { session } = useAuth();
   const { smokingRecord, isFetching } = useGetLatestSmokingRecord();
+
+  const navigation = useNavigation();
 
   const [timeSinceLastSmokingRecord, setTimeSinceLastSmokingRecord] = useState({
     days: 0,
@@ -27,5 +31,5 @@ export const useHomeHeader = () => {
     }
   }, [isFetching, smokingRecord?.date, session?.user?.created_at]);
 
-  return { timeSinceLastSmokingRecord };
+  return { navigation, timeSinceLastSmokingRecord };
 };
