@@ -69,7 +69,6 @@ export const TextInput = ({
               $fontFamily.medium,
               $fontSize.default,
               {
-                height,
                 flex: 1,
                 color: colors.backgroundConstrast,
               },

@@ -1,13 +1,17 @@
+import { useNavigation } from "@react-navigation/native";
+
 import { Box, Screen } from "@components";
 
 import { AdjusmentsHeader, Section, SectionItemData } from "./components";
 
 export const AdjustmentsScreen = () => {
+  const navigation = useNavigation();
+
   const generalItems: SectionItemData[] = [
     {
       icon: "user",
       label: "Informações Pessoais",
-      action: () => {},
+      action: () => navigation.navigate("PersonalInformationScreen"),
     },
     {
       icon: "fileText",

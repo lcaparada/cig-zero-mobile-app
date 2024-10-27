@@ -63,7 +63,7 @@ export const Screen = ({
   insets = { left: "s24", right: "s24", top: "s0", bottom: "s0" },
 }: ScreenProps) => {
   const { colors } = useAppTheme();
-  const { top } = useAppSafeAreaContext();
+  const { top, bottom } = useAppSafeAreaContext();
 
   const Container = scrollable ? ScrollViewContainer : ViewContainer;
 
@@ -108,7 +108,12 @@ export const Screen = ({
         </Container>
         {!!button ? (
           <Button
-            style={{ position: "absolute", bottom: 24, right: 24, left: 24 }}
+            style={{
+              position: "absolute",
+              bottom: bottom,
+              right: 24,
+              left: 24,
+            }}
             text={button.text}
             onPress={button.action}
             disabled={button.disabled ?? false}
