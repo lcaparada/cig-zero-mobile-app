@@ -27,6 +27,8 @@ import {
   Shield,
   Bell,
   FileText,
+  AlertTriangle,
+  HelpCircle,
 } from "@assets";
 
 import { TouchableOpacityBox } from "../Box/Box";
@@ -102,10 +104,12 @@ const iconRegistry = {
   calendar: Calendar,
   success: CheckRound,
   arrowLeft: ArrowLeft,
+  helpCircle: HelpCircle,
   arrowRight: ArrowRight,
   dollarSign: DollarSign,
   chevronLeft: ChevronLeft,
   chevronDown: ChevronDown,
   chevronRight: ChevronRight,
   trendingDown: TrendingDown,
+  alertTriangle: AlertTriangle,
 };

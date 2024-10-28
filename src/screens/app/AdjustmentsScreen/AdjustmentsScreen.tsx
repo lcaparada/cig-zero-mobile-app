@@ -32,12 +32,12 @@ export const AdjustmentsScreen = () => {
 
   const supportItems: SectionItemData[] = [
     {
-      icon: "user",
+      icon: "alertTriangle",
       label: "Reportar um problema",
       action: () => {},
     },
     {
-      icon: "shield",
+      icon: "helpCircle",
       label: "FAQ",
       action: () => {},
     },
