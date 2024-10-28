@@ -26,7 +26,7 @@ export const AdjustmentsScreen = () => {
     {
       icon: "bell",
       label: "Notificações",
-      action: () => {},
+      action: () => navigation.navigate("NotificationsScreen"),
     },
   ];
 

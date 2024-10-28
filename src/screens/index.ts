@@ -10,5 +10,6 @@ export * from "./app/OMSTipsScreen/OMSTipsScreen";
 export * from "./app/CalendarScreen/CalendarScreen";
 export * from "./app/AdjustmentsScreen/AdjustmentsScreen";
 export * from "./app/AchievementsScreen/AchievementsScreen";
+export * from "./app/NotificationsScreen/NotificationsScreen";
 export * from "./app/PastSmokingDataScreen/PastSmokingDataScreen";
 export * from "./app/PersonalInformationScreen/PersonalInformationScreen";
