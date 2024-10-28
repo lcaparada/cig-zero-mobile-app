@@ -1,9 +1,10 @@
 import { Avatar, Box, FormTextInput, Screen, TextInput } from "@components";
 
+import { gender } from "./personalInformationPreset";
 import { usePersonalInformation } from "./usePersonalInformation";
 
 export const PersonalInformationScreen = () => {
-  const { control } = usePersonalInformation();
+  const { control, userMetaData } = usePersonalInformation();
 
   return (
     <Screen
@@ -27,6 +28,7 @@ export const PersonalInformationScreen = () => {
           boxProps={{ flex: 1 }}
           icon="user"
           label="Idade"
+          value={userMetaData.age}
           editable={false}
           placeholder="Digite a idade"
         />
@@ -34,6 +36,7 @@ export const PersonalInformationScreen = () => {
           boxProps={{ flex: 1 }}
           icon="user"
           label="Gênero"
+          value={gender[userMetaData.gender]}
           editable={false}
           placeholder="Digite o gênero"
         />
