@@ -5,27 +5,42 @@ import {
   Screen,
 } from "@components";
 
+import {
+  averageCigarettesPerDay,
+  goal,
+  mainReasonForQuitting,
+  yearsSmoking,
+} from "./pastSmokingDataPreset";
+import { usePastSmokingDataScreen } from "./usePastSmokingDataScreen";
+
 export const PastSmokingDataScreen = () => {
+  const {
+    userGoal,
+    userYearsSmoking,
+    userMainReasonForQuitting,
+    userAverageCigarettesPerDay,
+  } = usePastSmokingDataScreen();
+
   const informationsData: InformationItemProps[] = [
     {
       icon: "clock",
       text: "Anos fumando",
-      rightText: "+10 anos",
+      rightText: yearsSmoking[userYearsSmoking],
     },
     {
       icon: "wind",
       text: "Média de cigarros por dia",
-      rightText: "+21",
+      rightText: averageCigarettesPerDay[userAverageCigarettesPerDay],
     },
     {
       icon: "user",
       text: "Principal motivo para parar",
-      rightText: "Economizar",
+      rightText: mainReasonForQuitting[userMainReasonForQuitting],
     },
     {
       icon: "star",
       text: "Objetivo",
-      rightText: "Parar imediatamente",
+      rightText: goal[userGoal],
     },
   ];
 
