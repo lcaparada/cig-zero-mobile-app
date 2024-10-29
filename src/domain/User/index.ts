@@ -7,3 +7,4 @@ export * from "./userTypes";
 // USE CASES
 export * from "./useCases/useGetProgressData";
 export * from "./useCases/useGetHistoricData";
+export * from "./useCases/useUpdateUserInformation";

@@ -4,13 +4,18 @@ import { gender } from "./personalInformationPreset";
 import { usePersonalInformation } from "./usePersonalInformation";
 
 export const PersonalInformationScreen = () => {
-  const { control, userMetaData } = usePersonalInformation();
+  const { isPending, handleUpdateUserInformation, control, userMetaData } =
+    usePersonalInformation();
 
   return (
     <Screen
       canGoBack
       screenTitle="Informações Pessoais"
-      button={{ action: () => {}, text: "Salvar" }}
+      button={{
+        text: "Salvar",
+        loading: isPending,
+        action: handleUpdateUserInformation,
+      }}
     >
       <Box alignItems={"center"}>
         <Avatar size={120} name="Lucas" borderWidth={4} textSize="display2XL" />

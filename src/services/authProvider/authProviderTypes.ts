@@ -1,4 +1,4 @@
-import { Session } from "@supabase/supabase-js";
+import { Session, User } from "@supabase/supabase-js";
 
 import {
   AgeRange,
@@ -13,6 +13,7 @@ import {
 export type AuthContextParams = {
   session: Session | null;
   loading: boolean;
+  updateUserInformation: (user: User) => void;
 };
 
 export type UserMetaData = {

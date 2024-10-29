@@ -1,6 +1,21 @@
-import { supabaseEdgeFunction } from "@api";
+import { supabase, supabaseEdgeFunction } from "@api";
 
-import { GetProgressData, GetHistoricData } from "./userTypes";
+import {
+  GetProgressData,
+  GetHistoricData,
+  UpdateUserInformation,
+} from "./userTypes";
+
+const updateUserInformation = async (
+  params: UpdateUserInformation.Params
+): Promise<UpdateUserInformation.Result> => {
+  const { data, error } = await supabase.auth.updateUser({ data: params });
+  if (error) {
+    console.error("updateUserInformationError", error);
+    throw error;
+  }
+  return data.user;
+};
 
 const getProgressData = async (): Promise<GetProgressData.Result> => {
   try {
@@ -23,4 +38,5 @@ const getHistoricData = async (): Promise<GetHistoricData.Result> => {
 export const userService = {
   getProgressData,
   getHistoricData,
+  updateUserInformation,
 };

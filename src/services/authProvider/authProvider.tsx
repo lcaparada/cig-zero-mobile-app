@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
 
-import { AuthChangeEvent, Session } from "@supabase/supabase-js";
+import { AuthChangeEvent, Session, User } from "@supabase/supabase-js";
 
 import { supabase, supabaseEdgeFunction } from "@api";
 
@@ -9,6 +9,7 @@ import { AuthContextParams, AuthProviderProps } from "./authProviderTypes";
 const AuthContext = createContext<AuthContextParams>({
   session: null,
   loading: true,
+  updateUserInformation: () => {},
 });
 
 export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
@@ -21,6 +22,12 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
         `Bearer ${token}`;
     } else {
       delete supabaseEdgeFunction.defaults.headers.common["Authorization"];
+    }
+  };
+
+  const updateUserInformation = (user: User) => {
+    if (session) {
+      setSession({ ...session, user: { ...session.user, ...user } });
     }
   };
 
@@ -55,7 +62,7 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
   }, [session]);
 
   return (
-    <AuthContext.Provider value={{ session, loading }}>
+    <AuthContext.Provider value={{ session, loading, updateUserInformation }}>
       {children}
     </AuthContext.Provider>
   );
