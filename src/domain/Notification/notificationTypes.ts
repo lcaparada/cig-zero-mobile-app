@@ -1,6 +1,8 @@
 export interface NotificationSettings {
   notification_token: string;
   user_id: string;
+  daily_motivational_messages: boolean;
+  achievement_notifications: boolean;
 }
 
 export type NotificationSettingsData = Omit<

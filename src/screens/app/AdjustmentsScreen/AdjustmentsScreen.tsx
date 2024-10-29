@@ -18,11 +18,11 @@ export const AdjustmentsScreen = () => {
       label: "Dados de Fumo Passado",
       action: () => navigation.navigate("PastSmokingDataScreen"),
     },
-    {
-      icon: "star",
-      label: "Objetivos e Missões Semanais",
-      action: () => {},
-    },
+    // {
+    //   icon: "star",
+    //   label: "Objetivos e Missões Semanais",
+    //   action: () => {},
+    // },
     {
       icon: "bell",
       label: "Notificações",

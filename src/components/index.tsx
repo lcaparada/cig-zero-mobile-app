@@ -7,6 +7,7 @@ export * from "./TabBar/TabBar";
 export * from "./Button/Button";
 export * from "./Avatar/Avatar";
 export * from "./Screen/Screen";
+export * from "./Switch/Switch";
 export * from "./Divider/Divider";
 export * from "./Missions/Missions";
 export * from "./Calendar/Calendar";

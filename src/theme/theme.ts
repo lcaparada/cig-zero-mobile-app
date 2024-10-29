@@ -73,6 +73,8 @@ export const theme = createTheme({
     background: pallete.neutralLighest,
     backgroundConstrast: pallete.neutralDarkest,
     backgroundSecondConstrast: pallete.neutralMedium,
+
+    switchBackground: pallete.neutralMedium,
   },
   spacing: {
     s0: 0,
