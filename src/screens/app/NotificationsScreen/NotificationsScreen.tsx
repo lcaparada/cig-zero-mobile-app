@@ -14,7 +14,7 @@ export const NotificationsScreen = () => {
         key: "daily_motivational_messages",
         title: "Mensagens Diárias de Incentivo",
         description:
-          "Ative para receber mensagens motivacionais diárias e manter-se inspirado em sua jornada. Você pode definir o horário preferido para as notificações.",
+          "Ative para receber mensagens motivacionais diárias e manter-se inspirado em sua jornada.",
       },
       {
         key: "achievement_notifications",
