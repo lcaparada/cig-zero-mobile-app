@@ -4,8 +4,10 @@ import { useIsFocused } from "@react-navigation/native";
 import { differenceInHours } from "date-fns";
 
 import { useGetLatestSmokingRecord } from "@domain";
+import { useAuth } from "@services";
 
 export const useOMSTipsScreen = () => {
+  const { session } = useAuth();
   const { refetch, smokingRecord } = useGetLatestSmokingRecord();
 
   const firstRenderRef = useRef(true);
@@ -21,7 +23,7 @@ export const useOMSTipsScreen = () => {
   return {
     hoursBetweenLastestSmokingRecord: differenceInHours(
       new Date(),
-      smokingRecord?.date ?? new Date()
+      smokingRecord?.date ?? session?.user?.created_at ?? new Date()
     ),
   };
 };
