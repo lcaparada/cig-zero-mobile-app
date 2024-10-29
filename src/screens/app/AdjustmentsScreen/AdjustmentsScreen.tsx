@@ -29,12 +29,12 @@ export const AdjustmentsScreen = () => {
     {
       icon: "alertTriangle",
       label: "Reportar um problema",
-      action: () => {},
+      action: () => navigation.navigate("ReportAnIssueScreen"),
     },
     {
       icon: "helpCircle",
       label: "FAQ",
-      action: () => {},
+      action: () => navigation.navigate("FaqScreen"),
     },
   ];
 

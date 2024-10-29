@@ -29,6 +29,10 @@ import {
   FileText,
   AlertTriangle,
   HelpCircle,
+  CameraIcon,
+  Trash2,
+  Minus,
+  Plus,
 } from "@assets";
 
 import { TouchableOpacityBox } from "../Box/Box";
@@ -94,10 +98,14 @@ const iconRegistry = {
   wind: Wind,
   home: Home,
   bell: Bell,
+  plus: Plus,
+  minus: Minus,
   rings: Rings,
   clock: Clock,
   shield: Shield,
+  trash2: Trash2,
   error: ErrorRound,
+  camera: CameraIcon,
   fileText: FileText,
   activity: Activity,
   settings: Settings,
