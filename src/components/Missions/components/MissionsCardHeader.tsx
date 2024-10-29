@@ -13,7 +13,7 @@ export const MissionsCardHeader = ({
 }: MissionsCardHeaderProps) => (
   <Box flexDirection="row" alignItems="center" columnGap="s8">
     <Icon name={iconName} size={"s18"} color="background" strokeWidth={2.5} />
-    <Text preset={"paragraphsBig"} color="background" weight="medium">
+    <Text preset={"default"} color="background" weight="medium">
       {text}
     </Text>
   </Box>
