@@ -6,7 +6,7 @@ import { HeadingWithDescription } from "../HeadingWithDescription/HeadingWithDes
 import { ProgressBar } from "../ProgressBar/ProgressBar";
 
 export type AchievementProgressCardProps = BoxProps &
-  Pick<Achievement, "description" | "title"> & {
+  Pick<Achievement, "description" | "title" | "is_completed"> & {
     target: number;
     current: number;
     lastItem: boolean;
@@ -22,12 +22,12 @@ export const AchievementProgressCard = ({
   lastItem,
   percentage,
   description,
+  is_completed,
   ...boxProps
 }: AchievementProgressCardProps) => {
-  const isUnlocked = current < target ? 1 : 0.5;
   return (
     <Box mt={"s24"} {...boxProps}>
-      <Box paddingHorizontal={"s24"} opacity={isUnlocked}>
+      <Box paddingHorizontal={"s24"} opacity={is_completed ? 0.5 : 1}>
         <HeadingWithDescription
           title={title}
           description={description}
