@@ -14,7 +14,7 @@
     "ios": {
       "supportsTablet": true,
       "buildNumber": "1",
-      "bundleIdentifier": "com.elevanteholdings.cigzero"
+      "bundleIdentifier": "com.elevanteholdings.cig-zero"
     },
     "android": {
       "adaptiveIcon": {
@@ -22,7 +22,7 @@
         "backgroundColor": "#ffffff"
       },
       "googleServicesFile": "./google-services.json",
-      "package": "com.elevanteholdings.cigzero"
+      "package": "com.elevanteholdings.cig-zero"
     },
     "web": {
       "favicon": "./assets/favicon.png"
