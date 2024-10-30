@@ -14,7 +14,7 @@ export const AchievementsHeader = ({ count }: AchievementsHeaderProps) => {
         title="Conquistas"
         description="Acompanhe as conquistas do progresso"
         rightComponent={
-          <Count current={count?.current} target={count?.target} type="hours" />
+          <Count current={count?.current} target={count?.target} />
         }
       />
     </Box>

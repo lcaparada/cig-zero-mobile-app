@@ -70,7 +70,6 @@ export const AchievementHeading = ({
           current={
             achievements.filter(({ is_completed }) => is_completed).length
           }
-          type="hours"
         />
       </TouchableOpacityBox>
 
@@ -81,7 +80,6 @@ export const AchievementHeading = ({
               key={index}
               type="hours"
               lastItem={achievements.length - 1 === index}
-              percentage={(item.current / item.target) * 100}
               {...item}
             />
           ))}

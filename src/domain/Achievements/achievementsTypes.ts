@@ -3,10 +3,13 @@ import { IconName } from "@components";
 export type Achievement = {
   id: string;
   title: string;
-  target: number;
-  current: number;
   description: string;
   is_completed: boolean;
+  percentage: number;
+  data: {
+    target: number;
+    current: number;
+  }[];
 };
 
 export type AchievementCategory = {

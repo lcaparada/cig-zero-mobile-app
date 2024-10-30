@@ -5,13 +5,13 @@ import { Text } from "../Text/Text";
 
 interface TitleAndDescriptionProps {
   title: string;
-  count?: Pick<AchievementProgressCardProps, "current" | "target" | "type">;
+  data?: AchievementProgressCardProps["data"];
   description: string;
 }
 
 export const HeadingWithDescription = ({
+  data,
   title,
-  count,
   description,
 }: TitleAndDescriptionProps) => {
   return (
@@ -30,7 +30,11 @@ export const HeadingWithDescription = ({
             {title}
           </Text>
         </Box>
-        {!!count && <Count {...count} />}
+        <Box flexDirection={"row"} columnGap={"s8"}>
+          {!!data &&
+            data.length &&
+            data.map((item, index) => <Count key={index} {...item} />)}
+        </Box>
       </Box>
       <Text
         preset="paragraphsBig"
