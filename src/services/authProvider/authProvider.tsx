@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
 
+import * as Sentry from "@sentry/react-native";
 import { AuthChangeEvent, Session, User } from "@supabase/supabase-js";
 
 import { supabase, supabaseEdgeFunction } from "@api";
@@ -28,6 +29,10 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
   const updateUserInformation = (user: User) => {
     if (session) {
       setSession({ ...session, user: { ...session.user, ...user } });
+      Sentry.setUser({
+        id: session?.user?.id,
+        email: session.user?.email,
+      });
     }
   };
 
@@ -46,6 +51,7 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
             break;
           case "SIGNED_OUT":
             setSession(null);
+            Sentry.setUser(null);
             break;
         }
         setLoading(false);

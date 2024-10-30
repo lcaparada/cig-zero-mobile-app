@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 
+import * as Sentry from "@sentry/react-native";
 import { ThemeProvider } from "@shopify/restyle";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { setDefaultOptions } from "date-fns";
@@ -23,6 +24,11 @@ Notifications.setNotificationHandler({
 });
 
 const queryClient = new QueryClient();
+
+Sentry.init({
+  dsn: "",
+  debug: process.env.NODE_ENV === "DEV" ? true : false,
+});
 
 export default function App() {
   const [loaded, error] = useFonts({
