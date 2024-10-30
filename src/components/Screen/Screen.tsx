@@ -85,10 +85,7 @@ export const Screen = ({
           paddingTop: hasPaddingTop ? top : 0,
         }}
       >
-        <Box
-          paddingLeft={insets.left === "s0" ? "s24" : insets.left}
-          paddingRight={insets.right === "s0" ? "s24" : insets.right}
-        >
+        <Box>
           {canGoBack || !!screenTitle || canGoBackSpecificyScreen ? (
             <ScreenHeader
               title={screenTitle}
