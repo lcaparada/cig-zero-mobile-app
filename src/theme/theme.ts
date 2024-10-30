@@ -11,6 +11,9 @@ const pallete = {
 
   backgroundModal: "#00000080",
 
+  solarGold: "#F6AE2D",
+  amberBrown: "#B58328",
+
   errorDark: "#6B0F1A",
   errorMedium: "#530811",
   errorLight: "#EB9494",
