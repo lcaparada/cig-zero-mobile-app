@@ -5,8 +5,8 @@ import { Text } from "../Text/Text";
 
 interface TitleAndDescriptionProps {
   title: string;
-  description: string;
   count?: Pick<AchievementProgressCardProps, "current" | "target" | "type">;
+  description: string;
 }
 
 export const HeadingWithDescription = ({

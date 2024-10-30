@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
   AdjustmentsScreen,
   FaqScreen,
+  HistoricalChartScreen,
   NotificationsScreen,
   PastSmokingDataScreen,
   PersonalInformationScreen,
@@ -18,6 +19,7 @@ export type AppStackParamList = {
   AdjustmentsScreen: undefined;
   NotificationsScreen: undefined;
   ReportAnIssueScreen: undefined;
+  HistoricalChartScreen: undefined;
   PastSmokingDataScreen: undefined;
   PersonalInformationScreen: undefined;
 };
@@ -43,6 +45,10 @@ export const AppStack = () => {
       <Stack.Screen
         name="PastSmokingDataScreen"
         component={PastSmokingDataScreen}
+      />
+      <Stack.Screen
+        name="HistoricalChartScreen"
+        component={HistoricalChartScreen}
       />
       <Stack.Screen
         name="ReportAnIssueScreen"

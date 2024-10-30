@@ -33,6 +33,7 @@ import {
   Trash2,
   Minus,
   Plus,
+  BarChart,
 } from "@assets";
 
 import { TouchableOpacityBox } from "../Box/Box";
@@ -106,6 +107,7 @@ const iconRegistry = {
   trash2: Trash2,
   error: ErrorRound,
   camera: CameraIcon,
+  barChart: BarChart,
   fileText: FileText,
   activity: Activity,
   settings: Settings,

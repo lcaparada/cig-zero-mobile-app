@@ -1,8 +1,11 @@
+import { useNavigation } from "@react-navigation/native";
+
 import {
   Box,
   IconName,
   InformationItem,
   HeadingWithDescription,
+  TouchableOpacityBox,
 } from "@components";
 
 import { useGetHistoricData } from "@domain";
@@ -15,6 +18,8 @@ interface HistoricItemData {
 
 export const Historic = () => {
   const { historicData } = useGetHistoricData();
+
+  const navigation = useNavigation();
 
   const historicItems: HistoricItemData[] = [
     {
@@ -32,7 +37,12 @@ export const Historic = () => {
   ];
 
   return (
-    <Box paddingHorizontal={"s24"} paddingVertical={"s30"}>
+    <TouchableOpacityBox
+      paddingHorizontal={"s24"}
+      paddingVertical={"s30"}
+      activeOpacity={1}
+      onPress={() => navigation.navigate("HistoricalChartScreen")}
+    >
       <HeadingWithDescription
         title="Histórico"
         description="Seu histórico de fumo"
@@ -42,6 +52,6 @@ export const Historic = () => {
           <InformationItem key={index} text={item.label} icon={item.icon} />
         ))}
       </Box>
-    </Box>
+    </TouchableOpacityBox>
   );
 };

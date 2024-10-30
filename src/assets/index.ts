@@ -13,6 +13,7 @@ export * from "./icons/minus";
 export * from "./icons/trash2";
 export * from "./icons/camera";
 export * from "./icons/shield";
+export * from "./icons/barChart";
 export * from "./icons/activity";
 export * from "./icons/fileText";
 export * from "./icons/settings";

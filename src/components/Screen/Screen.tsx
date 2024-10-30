@@ -85,17 +85,22 @@ export const Screen = ({
           paddingTop: hasPaddingTop ? top : 0,
         }}
       >
-        {canGoBack || !!screenTitle || canGoBackSpecificyScreen ? (
-          <ScreenHeader
-            title={screenTitle}
-            canGoBack={canGoBack}
-            titleSize={titleSize}
-            titleAlign={titleAlign}
-            progressBar={progressBar}
-            rightComponent={rightComponent}
-            canGoBackSpecificyScreen={canGoBackSpecificyScreen}
-          />
-        ) : null}
+        <Box
+          paddingLeft={insets.left === "s0" ? "s24" : insets.left}
+          paddingRight={insets.right === "s0" ? "s24" : insets.right}
+        >
+          {canGoBack || !!screenTitle || canGoBackSpecificyScreen ? (
+            <ScreenHeader
+              title={screenTitle}
+              canGoBack={canGoBack}
+              titleSize={titleSize}
+              titleAlign={titleAlign}
+              progressBar={progressBar}
+              rightComponent={rightComponent}
+              canGoBackSpecificyScreen={canGoBackSpecificyScreen}
+            />
+          ) : null}
+        </Box>
         <Container
           backgroundColor={colors.background}
           centerItems={centerItems}

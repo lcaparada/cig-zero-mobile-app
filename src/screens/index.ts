@@ -14,4 +14,5 @@ export * from "./app/AchievementsScreen/AchievementsScreen";
 export * from "./app/ReportAnIssueScreen/ReportAnIssueScreen";
 export * from "./app/NotificationsScreen/NotificationsScreen";
 export * from "./app/PastSmokingDataScreen/PastSmokingDataScreen";
+export * from "./app/HistoricalChartScreen/HistoricalChartScreen";
 export * from "./app/PersonalInformationScreen/PersonalInformationScreen";
