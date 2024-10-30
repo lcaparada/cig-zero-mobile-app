@@ -30,7 +30,7 @@ Sentry.init({
   debug: process.env.NODE_ENV === "DEV" ? true : false,
 });
 
-export default function App() {
+function App() {
   const [loaded, error] = useFonts({
     "SFProRounded-Regular": require("./assets/fonts/SF-Pro-Rounded-Regular.otf"),
     "SFProRounded-Medium": require("./assets/fonts/SF-Pro-Rounded-Medium.otf"),
@@ -66,3 +66,5 @@ export default function App() {
     </SafeAreaProvider>
   );
 }
+
+export default Sentry.wrap(App);
