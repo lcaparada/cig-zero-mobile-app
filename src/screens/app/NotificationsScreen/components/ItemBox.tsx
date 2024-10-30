@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { BoxProps, Box, Text, Switch } from "@components";
+import { useNotificationsSettings } from "@hooks";
 
 import {
   NotificationSettingsData,
@@ -25,6 +26,8 @@ export const ItemBox = ({
   isActive: isActiveData,
 }: ItemBoxProps) => {
   const [isActive, setIsActive] = useState(isActiveData);
+
+  const { areNotificationsActive } = useNotificationsSettings();
 
   const { isPending, updateNotificationSetting } =
     useUpdateNotificationSetting();
@@ -64,7 +67,7 @@ export const ItemBox = ({
         </Box>
         <Switch
           isActive={isActive}
-          disabled={isPending}
+          disabled={!areNotificationsActive || isPending}
           setIsActive={setIsActive}
           onPress={() => handleUpdateNotificationSetting()}
         />

@@ -46,12 +46,13 @@ const $boxStyle: BoxProps = {
 };
 
 const $boxShadow: BoxProps = {
-  shadowColor: "neutralLight",
+  shadowColor: "dark",
   shadowOffset: {
     width: 0,
-    height: 5,
+    height: 2,
   },
-  shadowOpacity: 1,
-  shadowRadius: 0,
+  shadowOpacity: 0.25,
+  shadowRadius: 3.84,
+
   elevation: 5,
 };

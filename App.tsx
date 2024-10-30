@@ -10,6 +10,7 @@ import * as Notifications from "expo-notifications";
 import * as SplashScreen from "expo-splash-screen";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
+import { Toast } from "@components";
 import { Route } from "@routes";
 import { theme } from "@theme";
 
@@ -59,6 +60,7 @@ function App() {
           <QueryClientProvider client={queryClient}>
             <AuthProvider>
               <Route />
+              <Toast />
             </AuthProvider>
           </QueryClientProvider>
         </ToastProvider>

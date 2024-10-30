@@ -6,7 +6,8 @@ import { NotificationSkeleton, Section } from "./components";
 import { useNotificationsScreen } from "./useNotificationsScreen";
 
 export const NotificationsScreen = () => {
-  const { isFetching, notificationSettings } = useNotificationsScreen();
+  const { isFetching, notificationSettings, areNotificationsActive } =
+    useNotificationsScreen();
 
   const handleGetNotificationConfig = () => {
     return [
@@ -39,8 +40,9 @@ export const NotificationsScreen = () => {
               title,
               description,
               notificationKey: key as keyof NotificationSettingsData,
-              isActive:
-                notificationSettings[key as keyof NotificationSettingsData],
+              isActive: !areNotificationsActive
+                ? false
+                : notificationSettings[key as keyof NotificationSettingsData],
             })
           )}
         />

@@ -4,9 +4,9 @@ import { Toast, ToastService } from "../toastType";
 
 export const ToastContext = createContext<ToastService>({
   toast: null,
+  shouldHideToast: true,
   hideToast: () => {},
   showToast: () => {},
-  shouldHideToast: true,
 });
 
 export const ToastProvider = ({ children }: React.PropsWithChildren<{}>) => {
