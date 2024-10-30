@@ -37,13 +37,13 @@ const informationItems: InformationItemsData[] = [
     borderColor: "primary",
     borderStyle: "solid",
     backgroundColor: "primary",
-    text: "Dias que você respondeu não sobre o fumo",
+    text: "Dias que você respondeu que não fumou",
   },
   {
     borderColor: "errorDark",
     borderStyle: "solid",
     backgroundColor: "errorDark",
-    text: "Dias que você respondeu sim sobre o fumo",
+    text: "Dias que você fumou",
   },
 ];
 

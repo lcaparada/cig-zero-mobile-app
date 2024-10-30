@@ -1,13 +1,22 @@
-import { isSameDay } from "date-fns";
+import { isAfter, isBefore, isSameDay, isToday, subDays } from "date-fns";
+
+import { ThemeColors } from "@theme";
 
 export const getBackgroundColor = (
   date: Date,
   dateToCheck: Date,
+  userCreatedAt: string,
   hasSmokeRecord: boolean
-) => {
-  return isSameDay(date, dateToCheck)
-    ? "shadowBlue"
-    : hasSmokeRecord
-      ? "primary"
-      : "background";
+): Partial<ThemeColors> => {
+  const isSameDate = isSameDay(date, dateToCheck);
+  const isOutOfRange =
+    isBefore(dateToCheck, subDays(new Date(userCreatedAt), 1)) ||
+    isAfter(dateToCheck, new Date()) ||
+    isToday(dateToCheck);
+
+  if (isSameDate) return "shadowBlue";
+  if (hasSmokeRecord) return "errorDark";
+  if (isOutOfRange) return "background";
+
+  return "primary";
 };

@@ -67,13 +67,13 @@ export const useCalendarScreen = () => {
 
   return {
     date,
-    setDate,
     isFetching,
     dateString,
     scrollViewRef,
     indexedSmokingRecords,
     showAddSmokingHourModal,
-    setShowAddSmokingHourModal,
     showAddSmokingRecordButton,
+    setDate,
+    setShowAddSmokingHourModal,
   };
 };

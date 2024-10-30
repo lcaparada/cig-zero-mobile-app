@@ -3,13 +3,16 @@ import { SetTimeInput } from "../SetTimeInput/SetTimeInput";
 
 import { useAddSmokingHourModal } from "./useAddSmokingHourModal";
 
-type SetTimeModalProps = Pick<ModalProps, "visible" | "setVisible">;
+type SetTimeModalProps = Pick<ModalProps, "visible" | "setVisible"> & {
+  calendarDate: Date;
+};
 
 export const AddSmokingHourModal = ({
   visible,
+  calendarDate,
   setVisible,
 }: SetTimeModalProps) => {
-  const { date, modalRef, setDate, isPending, handleAddSmokingRecord } =
+  const { date, modalRef, isPending, handleCreateSmokingRecord, setDate } =
     useAddSmokingHourModal();
 
   return (
@@ -23,12 +26,7 @@ export const AddSmokingHourModal = ({
       button={{
         text: "Adicionar",
         isLoading: isPending,
-        action: () => {
-          if (date) {
-            handleAddSmokingRecord({ date: date?.toISOString() });
-            modalRef.current?.closeModal();
-          }
-        },
+        action: () => handleCreateSmokingRecord(calendarDate),
       }}
     >
       <SetTimeInput date={date} setDate={setDate} />

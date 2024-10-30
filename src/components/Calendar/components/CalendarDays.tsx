@@ -44,14 +44,19 @@ export const CalendarDays = ({
             activeOpacity={0}
             onPress={() => selectDate(d)}
             opacity={isSameMonth(date, d) ? 1 : 0.2}
-            borderColor={getBorderColor(date, d, hasSmokeRecord)}
-            backgroundColor={getBackgroundColor(date, d, hasSmokeRecord)}
+            borderColor={getBorderColor(date, d, userCreatedAt, hasSmokeRecord)}
+            backgroundColor={getBackgroundColor(
+              date,
+              d,
+              userCreatedAt,
+              hasSmokeRecord
+            )}
             borderStyle={getBorderStyle(date, d, userCreatedAt, hasSmokeRecord)}
           >
             <Text
               weight="semiBold"
               preset="paragraphsBig"
-              color={getTextColor(date, d, hasSmokeRecord)}
+              color={getTextColor(date, d, userCreatedAt, hasSmokeRecord)}
             >
               {format(d, "d")}
             </Text>

@@ -44,6 +44,7 @@ export const useAddSmokingRecord = () => {
   const handleAddSmokingRecord = async (
     params: Pick<AddSmokingRecord.Params, "date">
   ) => {
+    console.log(params);
     try {
       await mutateAsync(params);
     } catch (error: any) {

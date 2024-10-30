@@ -6,14 +6,14 @@ import { useCalendarScreen } from "./useCalendarScreen";
 export const CalendarScreen = () => {
   const {
     date,
-    setDate,
     dateString,
     isFetching,
     scrollViewRef,
     indexedSmokingRecords,
     showAddSmokingHourModal,
-    setShowAddSmokingHourModal,
     showAddSmokingRecordButton,
+    setDate,
+    setShowAddSmokingHourModal,
   } = useCalendarScreen();
 
   return (
@@ -46,6 +46,7 @@ export const CalendarScreen = () => {
       />
       {showAddSmokingHourModal && (
         <AddSmokingHourModal
+          calendarDate={date}
           visible={showAddSmokingHourModal}
           setVisible={setShowAddSmokingHourModal}
         />

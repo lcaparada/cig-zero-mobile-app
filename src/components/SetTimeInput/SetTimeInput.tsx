@@ -33,8 +33,8 @@ export const SetTimeInput = ({ date, setDate }: SetTimeInputProps) => {
           mode="time"
           confirmTextIOS={"Confirmar"}
           cancelTextIOS={"Cancelar"}
-          textColor={colors.primary}
-          buttonTextColorIOS={colors.primary}
+          textColor={colors.backgroundConstrast}
+          buttonTextColorIOS={colors.backgroundConstrast}
           onConfirm={(date) => {
             setDate(date);
             hideDatePicker();
