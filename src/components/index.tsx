@@ -20,7 +20,6 @@ export * from "./TextInput/TextInput";
 export * from "./Form/OnboardingInput";
 export * from "./ProgressBar/ProgressBar";
 export * from "./RadioButton/RadioButton";
-export * from "./StarLoading/StarLoading";
 export * from "./ScreenHeader/ScreenHeader";
 export * from "./InformationItem/InformationItem";
 export * from "./InformationCard/InformationCard";

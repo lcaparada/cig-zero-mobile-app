@@ -1,7 +1,6 @@
 import { Box, BoxProps } from "../Box/Box";
 import { HeadingWithDescription } from "../HeadingWithDescription/HeadingWithDescription";
 import { IconName } from "../Icon/Icon";
-import { StarLoading } from "../StarLoading/StarLoading";
 
 import { MissionsCard } from "./components";
 
@@ -41,10 +40,9 @@ export const Missions = () => {
         description="Conclua as suas missões semanais"
       />
       <Box {...$boxWrapper}>
-        {/* {missionsData.map((mission, index) => (
+        {missionsData.map((mission, index) => (
           <MissionsCard key={index} index={index + 1} {...mission} />
-        ))} */}
-        <StarLoading />
+        ))}
       </Box>
     </Box>
   );
@@ -52,6 +50,7 @@ export const Missions = () => {
 
 const $boxWrapper: BoxProps = {
   mt: "s20",
+  width: "100%",
   rowGap: "s10",
   alignItems: "center",
   justifyContent: "center",
