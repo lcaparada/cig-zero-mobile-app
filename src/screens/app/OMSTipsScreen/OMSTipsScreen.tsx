@@ -13,20 +13,21 @@ export const OMSTipsScreen = () => {
       insets={{ left: "s0", right: "s0", top: "s0", bottom: "s24" }}
     >
       <OMSTipsHeader />
-      {omsTips.map((item, index) => {
-        const percentage =
-          (hoursBetweenLastestSmokingRecord / item.target) * 100;
+      {omsTips.map(({ target, title, description, type }, index) => {
+        const current =
+          hoursBetweenLastestSmokingRecord > target
+            ? target
+            : hoursBetweenLastestSmokingRecord;
+        const percentage = (hoursBetweenLastestSmokingRecord / target) * 100;
         return (
           <AchievementProgressCard
-            {...item}
             key={index}
+            title={title}
+            description={description}
+            is_completed={current >= target}
             mt={index === 0 ? "s24" : "s30"}
+            data={[{ target, current, type }]}
             lastItem={index === omsTips.length - 1}
-            current={
-              hoursBetweenLastestSmokingRecord > item.target
-                ? item.target
-                : hoursBetweenLastestSmokingRecord
-            }
             percentage={percentage > 100 ? 100 : percentage}
           />
         );

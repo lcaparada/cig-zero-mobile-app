@@ -7,7 +7,7 @@ import { formatNumber } from "./utils";
 
 type CountProps = AchievementProgressCardProps["data"][0];
 
-export const Count = ({ current, target }: CountProps) => {
+export const Count = ({ current, target, type }: CountProps) => {
   return (
     <Box
       backgroundColor={"primary"}
@@ -18,8 +18,7 @@ export const Count = ({ current, target }: CountProps) => {
       justifyContent={"center"}
     >
       <Text preset="notes" color={"neutralLighest"} weight="semiBold">
-        {formatNumber(current ?? 0, "hours")}/
-        {formatNumber(target ?? 0, "hours")}
+        {formatNumber(current ?? 0, type)}/{formatNumber(target ?? 0, type)}
       </Text>
     </Box>
   );

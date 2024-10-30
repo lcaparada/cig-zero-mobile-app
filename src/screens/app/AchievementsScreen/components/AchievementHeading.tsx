@@ -78,7 +78,6 @@ export const AchievementHeading = ({
           {achievements.map((item, index) => (
             <AchievementProgressCard
               key={index}
-              type="hours"
               lastItem={achievements.length - 1 === index}
               {...item}
             />

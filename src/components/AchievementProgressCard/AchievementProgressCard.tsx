@@ -9,13 +9,11 @@ export type AchievementProgressCardProps = BoxProps &
   Pick<Achievement, "description" | "title" | "is_completed" | "data"> & {
     lastItem: boolean;
     percentage: number;
-    type: "hours" | "weeks" | "months" | "years";
   };
 
 export const AchievementProgressCard = ({
-  title,
-  type,
   data,
+  title,
   lastItem,
   percentage,
   description,

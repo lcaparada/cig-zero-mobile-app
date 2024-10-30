@@ -1,9 +1,9 @@
-import { AchievementProgressCardProps } from "@components";
+import { Achievement } from "@domain";
 
-export const omsTips: Pick<
-  AchievementProgressCardProps,
-  "title" | "description" | "target" | "type"
->[] = [
+export const omsTips: (Pick<Achievement, "title" | "description"> & {
+  target: number;
+  type: "hours" | "weeks" | "months" | "years";
+})[] = [
   {
     title: "Primeiras 24 horas",
     description:

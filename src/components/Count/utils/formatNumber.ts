@@ -2,7 +2,7 @@ import { AchievementProgressCardProps } from "src/components/AchievementProgress
 
 export const formatNumber = (
   num: number,
-  type: AchievementProgressCardProps["type"] = "hours"
+  type: AchievementProgressCardProps["data"][0]["type"] = "hours"
 ) => {
   let convertedNum: number;
   switch (type) {

@@ -9,6 +9,7 @@ export type Achievement = {
   data: {
     target: number;
     current: number;
+    type?: "hours" | "weeks" | "months" | "years";
   }[];
 };
 
