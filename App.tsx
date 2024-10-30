@@ -26,7 +26,7 @@ Notifications.setNotificationHandler({
 const queryClient = new QueryClient();
 
 Sentry.init({
-  dsn: "",
+  dsn: process.env.EXPO_PUBLIC_SENTRY_DSN,
   debug: process.env.NODE_ENV === "DEV" ? true : false,
 });
 
