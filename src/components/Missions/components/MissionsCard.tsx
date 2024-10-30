@@ -11,7 +11,7 @@ import { MissionsCardDescription } from "./MissionsCardDescription";
 import { MissionsCardHeader } from "./MissionsCardHeader";
 import { MissionsProgressBar } from "./MissionsProgressBar";
 
-interface MissionsCardProps extends Omit<Missions, "category" | "id"> {
+interface MissionsCardProps extends Omit<Missions, "id" | "title"> {
   icon: IconName;
   index: number;
 }
@@ -19,9 +19,9 @@ interface MissionsCardProps extends Omit<Missions, "category" | "id"> {
 export const MissionsCard = ({
   icon,
   index,
-  title,
   target,
   current,
+  category,
   description,
   isCompleted,
 }: MissionsCardProps) => {
@@ -39,7 +39,7 @@ export const MissionsCard = ({
         <Box flexDirection="row" columnGap="s8">
           <MissionCardBadge number={index} />
           <Box flex={1}>
-            <MissionsCardHeader iconName={icon} text={title} />
+            <MissionsCardHeader iconName={icon} text={category.name} />
             <MissionsCardDescription description={description} />
             <MissionsProgressBar current={current} target={target} />
           </Box>
