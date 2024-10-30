@@ -11,10 +11,16 @@ export const MissionsCardHeader = ({
   iconName,
   text,
 }: MissionsCardHeaderProps) => (
-  <Box flexDirection="row" alignItems="center" columnGap="s8">
+  <Box
+    flexDirection="row"
+    alignItems="center"
+    columnGap={iconName === "dollarSign" ? "s4" : "s8"}
+  >
     <Icon name={iconName} size={"s18"} color="background" strokeWidth={2.5} />
-    <Text preset={"default"} color="background" weight="medium">
-      {text}
-    </Text>
+    <Box flex={1}>
+      <Text preset={"default"} color="background" weight="medium">
+        {text}
+      </Text>
+    </Box>
   </Box>
 );

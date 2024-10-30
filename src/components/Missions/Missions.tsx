@@ -1,50 +1,14 @@
-import { useEffect, useState } from "react";
+import { useGetMissions } from "@domain";
 
 import { Box, BoxProps } from "../Box/Box";
 import { HeadingWithDescription } from "../HeadingWithDescription/HeadingWithDescription";
-import { IconName } from "../Icon/Icon";
 import { Skeleton } from "../Skeleton/Skeleton";
 
 import { MissionsCard } from "./components";
-
-interface MissionsData {
-  icon: IconName;
-  title: string;
-  description: string;
-  isCompleted: boolean;
-}
+import { getMissionsCardIcon } from "./utils";
 
 export const Missions = () => {
-  const [showMissions, setShowMissions] = useState(false);
-
-  const missionsData: MissionsData[] = [
-    {
-      title: "Tempo",
-      icon: "clock",
-      description: "Passe 3 dias consecutivos sem fumar",
-      isCompleted: false,
-    },
-    {
-      title: "Redução",
-      icon: "trendingDown",
-      description: "Fume 1 cigarro a menos do que o habitual",
-      isCompleted: false,
-    },
-    {
-      title: "Redução",
-      icon: "trendingDown",
-      description: "Passe o final de semana sem fumar",
-      isCompleted: true,
-    },
-  ];
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowMissions(true);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
+  const { missions, isLoading } = useGetMissions();
 
   return (
     <Box paddingHorizontal={"s24"} paddingVertical={"s30"}>
@@ -53,10 +17,17 @@ export const Missions = () => {
         description="Conclua as suas missões semanais"
       />
       <Box {...$boxWrapper}>
-        {showMissions
-          ? missionsData.map((mission, index) => (
-              <MissionsCard key={index} index={index + 1} {...mission} />
-            ))
+        {!isLoading
+          ? missions?.length
+            ? missions?.map((mission, index) => (
+                <MissionsCard
+                  key={index}
+                  index={index + 1}
+                  icon={getMissionsCardIcon(mission)}
+                  {...mission}
+                />
+              ))
+            : null
           : Array.from({ length: 3 }).map((_, index) => (
               <Skeleton
                 width={"100%"}

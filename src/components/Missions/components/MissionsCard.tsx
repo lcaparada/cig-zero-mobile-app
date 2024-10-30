@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native";
 
 import { shadow } from "@theme";
 
+import { Missions } from "@domain";
 import { Box } from "src/components/Box/Box";
 import { Icon, IconName } from "src/components/Icon/Icon";
 
@@ -10,18 +11,17 @@ import { MissionsCardDescription } from "./MissionsCardDescription";
 import { MissionsCardHeader } from "./MissionsCardHeader";
 import { MissionsProgressBar } from "./MissionsProgressBar";
 
-interface MissionsCardProps {
+interface MissionsCardProps extends Omit<Missions, "category" | "id"> {
   icon: IconName;
-  title: string;
   index: number;
-  description: string;
-  isCompleted: boolean;
 }
 
 export const MissionsCard = ({
   icon,
   index,
   title,
+  target,
+  current,
   description,
   isCompleted,
 }: MissionsCardProps) => {
@@ -41,7 +41,7 @@ export const MissionsCard = ({
           <Box flex={1}>
             <MissionsCardHeader iconName={icon} text={title} />
             <MissionsCardDescription description={description} />
-            <MissionsProgressBar />
+            <MissionsProgressBar current={current} target={target} />
           </Box>
         </Box>
       </Box>
