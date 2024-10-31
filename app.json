@@ -23,7 +23,7 @@
       },
       "versionCode": 1,
       "googleServicesFile": "./google-services.json",
-      "package": "com.elevanteholdings.cig-zero"
+      "package": "com.elevanteholdings.cigzero"
     },
     "web": {
       "favicon": "./assets/favicon.png"
