@@ -5,9 +5,15 @@ import { AbstractChartConfig } from "react-native-chart-kit/dist/AbstractChart";
 
 import { useAppTheme } from "@hooks";
 
+import { YearlyData } from "@domain";
+
 import { Box } from "../Box/Box";
 
-export const Chart = () => {
+type ChartProps = {
+  data: YearlyData[];
+};
+
+export const Chart = ({ data }: ChartProps) => {
   const { width: SCREEN_WIDTH } = useWindowDimensions();
 
   const { colors } = useAppTheme();
@@ -28,20 +34,18 @@ export const Chart = () => {
     },
   };
 
-  const data = {
-    labels: ["2021", "2022", "2023"],
-    datasets: [
-      {
-        data: [32000, 48000, 96000],
-        color: () => colors.primary,
-      },
-    ],
-  };
-
   return (
     <Box flex={1}>
       <LineChart
-        data={data}
+        data={{
+          labels: data.map(({ year }) => year.toString()),
+          datasets: [
+            {
+              data: data.map(({ values }) => values),
+              color: () => colors.primary,
+            },
+          ],
+        }}
         width={SCREEN_WIDTH - 50}
         height={300}
         bezier

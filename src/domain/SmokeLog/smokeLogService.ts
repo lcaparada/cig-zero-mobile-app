@@ -1,9 +1,10 @@
-import { supabase } from "@api";
+import { supabase, supabaseEdgeFunction } from "@api";
 
 import {
   AddSmokingRecord,
   DeleteSmokingRecord,
   GetAllSmokingRecordsByMonth,
+  GetChartData,
   GetLatestSmokingRecord,
 } from "./smokeLogTypes";
 
@@ -52,7 +53,13 @@ const deleteSmokingRecord = async (
   if (error) throw error;
 };
 
+const getChartData = async (): Promise<GetChartData.Result> => {
+  const { data } = await supabaseEdgeFunction.get("get-chart-data");
+  return data;
+};
+
 export const smokeLogService = {
+  getChartData,
   addSmokingRecord,
   deleteSmokingRecord,
   getLatestSmokingRecord,

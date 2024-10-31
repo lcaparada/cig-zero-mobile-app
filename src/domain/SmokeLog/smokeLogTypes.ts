@@ -39,3 +39,21 @@ export namespace DeleteSmokingRecord {
   export type Params = Pick<SmokeLog, "id" | "user_id">;
   export type Result = void;
 }
+
+export interface YearlyData {
+  values: number;
+  year: number;
+}
+
+type StatisticsCategory = {
+  interval: number[];
+  data: YearlyData[];
+};
+
+export type StatisticsSummary = {
+  [key: string]: StatisticsCategory;
+};
+
+export namespace GetChartData {
+  export type Result = StatisticsSummary;
+}

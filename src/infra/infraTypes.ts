@@ -1,5 +1,6 @@
 export enum QueryKeys {
   GetMissions,
+  GetChartData,
   GetProgressData,
   GetHistoricData,
   GetAchievements,
