@@ -46,6 +46,10 @@ export const Historic = () => {
       <HeadingWithDescription
         title="Histórico"
         description="Seu histórico de fumo"
+        button={{
+          iconName: "barChart",
+          onPress: () => navigation.navigate("HistoricalChartScreen"),
+        }}
       />
       <Box mt={"s20"} rowGap={"s10"}>
         {historicItems.map((item, index) => (
