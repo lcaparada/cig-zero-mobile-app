@@ -1,7 +1,5 @@
 import { Fragment } from "react";
 
-import { differenceInYears } from "date-fns";
-
 import { Divider, Screen } from "@components";
 
 import { StatisticsSummary } from "@domain";
@@ -24,7 +22,8 @@ export const HistoricalChartScreen = () => {
           const statisticSummary = data[key as keyof StatisticsSummary];
           const initialYear = statisticSummary.interval[0];
           const endYear = statisticSummary.interval[1];
-          const diff = differenceInYears(endYear, initialYear);
+          const diff = endYear - initialYear;
+
           return (
             <Fragment key={index}>
               <HistoricalChart
