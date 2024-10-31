@@ -23,6 +23,16 @@ export const AdjustmentsScreen = () => {
       label: "Notificações",
       action: () => navigation.navigate("NotificationsScreen"),
     },
+    {
+      icon: "shield",
+      label: "Termos de Privacidade",
+      action: () => navigation.navigate("TermsOfServiceScreen"),
+    },
+    {
+      icon: "fileText",
+      label: "Política de Privacidade",
+      action: () => navigation.navigate("PrivacyPolicyScreen"),
+    },
   ];
 
   const supportItems: SectionItemData[] = [

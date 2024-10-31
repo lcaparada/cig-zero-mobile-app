@@ -13,6 +13,8 @@ export * from "./app/AdjustmentsScreen/AdjustmentsScreen";
 export * from "./app/AchievementsScreen/AchievementsScreen";
 export * from "./app/ReportAnIssueScreen/ReportAnIssueScreen";
 export * from "./app/NotificationsScreen/NotificationsScreen";
+export * from "./app/PrivacyPolicyScreen/PrivacyPolicyScreen";
+export * from "./app/TermsOfServiceScreen/TermsOfServiceScreen";
 export * from "./app/PastSmokingDataScreen/PastSmokingDataScreen";
 export * from "./app/HistoricalChartScreen/HistoricalChartScreen";
 export * from "./app/PersonalInformationScreen/PersonalInformationScreen";

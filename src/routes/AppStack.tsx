@@ -2,13 +2,15 @@ import { NavigatorScreenParams } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import {
-  AdjustmentsScreen,
   FaqScreen,
-  HistoricalChartScreen,
+  AdjustmentsScreen,
+  ReportAnIssueScreen,
+  PrivacyPolicyScreen,
   NotificationsScreen,
+  TermsOfServiceScreen,
+  HistoricalChartScreen,
   PastSmokingDataScreen,
   PersonalInformationScreen,
-  ReportAnIssueScreen,
 } from "@screens";
 
 import { AppTabBottomTabParamList, AppTabNavigator } from "./AppTabNavigator";
@@ -18,7 +20,9 @@ export type AppStackParamList = {
   AppTabNavigator: NavigatorScreenParams<AppTabBottomTabParamList>;
   AdjustmentsScreen: undefined;
   NotificationsScreen: undefined;
+  PrivacyPolicyScreen: undefined;
   ReportAnIssueScreen: undefined;
+  TermsOfServiceScreen: undefined;
   HistoricalChartScreen: undefined;
   PastSmokingDataScreen: undefined;
   PersonalInformationScreen: undefined;
@@ -37,6 +41,14 @@ export const AppStack = () => {
       <Stack.Screen
         name="NotificationsScreen"
         component={NotificationsScreen}
+      />
+      <Stack.Screen
+        name="PrivacyPolicyScreen"
+        component={PrivacyPolicyScreen}
+      />
+      <Stack.Screen
+        name="TermsOfServiceScreen"
+        component={TermsOfServiceScreen}
       />
       <Stack.Screen
         name="PersonalInformationScreen"
