@@ -5,12 +5,7 @@ import { Box, BoxProps, TouchableOpacityBox } from "src/components/Box/Box";
 import { Text } from "src/components/Text/Text";
 import { IndexedSmokingRecordsState } from "src/screens/app/CalendarScreen/useCalendarScreen";
 
-import {
-  getBorderColor,
-  getTextColor,
-  getBorderStyle,
-  getBackgroundColor,
-} from "../utils";
+import { getCircleStyle } from "../utils";
 
 interface CalendarDaysProps {
   days: Date[];
@@ -37,6 +32,12 @@ export const CalendarDays = ({
         const dateString = new Date(d)?.toISOString()?.split("T")[0];
         const hasSmokeRecord =
           indexedSmokingRecords?.hasOwnProperty(dateString);
+        const circleStyle = getCircleStyle(
+          d,
+          date,
+          userCreatedAt,
+          hasSmokeRecord
+        );
         return (
           <TouchableOpacityBox
             key={i}
@@ -44,19 +45,12 @@ export const CalendarDays = ({
             activeOpacity={0}
             onPress={() => selectDate(d)}
             opacity={isSameMonth(date, d) ? 1 : 0.2}
-            borderColor={getBorderColor(date, d, userCreatedAt, hasSmokeRecord)}
-            backgroundColor={getBackgroundColor(
-              date,
-              d,
-              userCreatedAt,
-              hasSmokeRecord
-            )}
-            borderStyle={getBorderStyle(date, d, userCreatedAt, hasSmokeRecord)}
+            {...circleStyle.circle}
           >
             <Text
               weight="semiBold"
               preset="paragraphsBig"
-              color={getTextColor(date, d, userCreatedAt, hasSmokeRecord)}
+              {...circleStyle.text}
             >
               {format(d, "d")}
             </Text>

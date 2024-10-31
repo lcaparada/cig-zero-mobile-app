@@ -1,5 +1,3 @@
-export * from "./getTextColor";
-export * from "./getBorderColor";
-export * from "./getBorderStyle";
-export * from "./getBackgroundColor";
+export * from "./circleStyles";
+export * from "./getCircleStyle";
 export * from "./capitalizeFirstLetter";
