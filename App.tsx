@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import * as Sentry from "@sentry/react-native";
 import { ThemeProvider } from "@shopify/restyle";
@@ -7,10 +7,9 @@ import { setDefaultOptions } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { useFonts } from "expo-font";
 import * as Notifications from "expo-notifications";
-import * as SplashScreen from "expo-splash-screen";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
-import { Toast } from "@components";
+import { Splash, Toast } from "@components";
 import { Route } from "@routes";
 import { theme } from "@theme";
 
@@ -32,6 +31,8 @@ Sentry.init({
 });
 
 function App() {
+  const [splashComplete, setSplashComplete] = useState(false);
+
   const [loaded, error] = useFonts({
     "SFProRounded-Regular": require("./assets/fonts/SF-Pro-Rounded-Regular.otf"),
     "SFProRounded-Medium": require("./assets/fonts/SF-Pro-Rounded-Medium.otf"),
@@ -43,16 +44,6 @@ function App() {
     setDefaultOptions({ locale: ptBR });
   }, []);
 
-  useEffect(() => {
-    if (loaded || error) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded, error]);
-
-  if (!loaded && !error) {
-    return null;
-  }
-
   return (
     <SafeAreaProvider>
       <ThemeProvider theme={theme}>
@@ -60,6 +51,9 @@ function App() {
           <QueryClientProvider client={queryClient}>
             <AuthProvider>
               <Route />
+              {(!loaded && !error) || !splashComplete ? (
+                <Splash onComplete={setSplashComplete} />
+              ) : null}
               <Toast />
             </AuthProvider>
           </QueryClientProvider>
