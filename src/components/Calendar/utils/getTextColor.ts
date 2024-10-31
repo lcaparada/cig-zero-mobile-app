@@ -24,11 +24,11 @@ export const getTextColor = (
   const isFutureDate = isAfter(dateToCheck, new Date());
   const isDifferentMonth = !isSameMonth(date, dateToCheck);
 
+  if (hasSmokeRecord) return "background";
+
   if (isOutOfUserRange) return "backgroundSecondConstrast";
 
   if (isSameDay(date, dateToCheck)) return "neutralLighest";
-
-  if (hasSmokeRecord) return "background";
 
   if (isFutureDate && isDifferentMonth) return "backgroundSecondConstrast";
 
