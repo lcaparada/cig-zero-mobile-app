@@ -2,7 +2,7 @@ import { shadow } from "@theme";
 
 import { Box, BoxProps } from "../Box/Box";
 import { Icon, IconName } from "../Icon/Icon";
-import { Text } from "../Text/Text";
+import { Text, TextVariants } from "../Text/Text";
 
 export interface InformationCardProps {
   icon: IconName;
@@ -15,12 +15,33 @@ export const InformationCard = ({
   label,
   number,
 }: InformationCardProps) => {
+  const getFontPresent = (length: number): TextVariants => {
+    switch (length) {
+      case 9:
+        return "notesSmall";
+      case 8:
+        return "notes";
+      case 7:
+        return "paragraphs";
+      case 6:
+        return "paragraphsBig";
+      default:
+        return "default";
+    }
+  };
   return (
     <Box {...$boxWrapper} {...shadow}>
       <Icon name={icon} color="neutralLighest" size="s20" strokeWidth={2} />
-      <Text color="neutralLighest" weight="semiBold">
-        {number}
-      </Text>
+      <Box flex={1} alignItems={"center"} justifyContent={"center"}>
+        <Text
+          weight="semiBold"
+          numberOfLines={1}
+          color="neutralLighest"
+          preset={getFontPresent(number?.toString()?.length)}
+        >
+          {number}
+        </Text>
+      </Box>
       <Text
         preset="notes"
         textAlign={"center"}
