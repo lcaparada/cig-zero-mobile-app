@@ -1,7 +1,8 @@
 import { useGetAchievements } from "@domain";
 
 export const useAchievementsScreen = () => {
-  const { achievements, isLoading } = useGetAchievements();
+  const { achievements, isLoading, isRefetching, refetch } =
+    useGetAchievements();
 
   const current =
     achievements?.reduce((acc, category) => {
@@ -15,5 +16,7 @@ export const useAchievementsScreen = () => {
     current,
     isLoading,
     achievements,
+    isRefetching,
+    refetch,
   };
 };

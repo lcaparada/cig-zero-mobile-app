@@ -5,11 +5,13 @@ import { AchievementHeading } from "./components/AchievementHeading";
 import { useAchievementsScreen } from "./useAchievementsScreen";
 
 export const AchievementsScreen = () => {
-  const { current, achievements, isLoading } = useAchievementsScreen();
+  const { current, achievements, isLoading, isRefetching, refetch } =
+    useAchievementsScreen();
   return (
     <Screen
       hasPaddingTop={false}
       scrollable
+      pullToRefresh={{ refreshing: isRefetching, onRefresh: refetch }}
       insets={{ left: "s0", right: "s0", top: "s0", bottom: "s0" }}
     >
       <AchievementsHeader

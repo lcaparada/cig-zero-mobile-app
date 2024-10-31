@@ -36,6 +36,10 @@ export interface ScreenProps {
   hasPaddingTop?: boolean;
   overflowVisible?: boolean;
   scrollViewPaddingBottom?: number;
+  pullToRefresh?: {
+    refreshing: boolean;
+    onRefresh: () => void;
+  };
   insets?: {
     top?: ThemeSpacing;
     left?: ThemeSpacing;
@@ -57,6 +61,7 @@ export const Screen = ({
   rightComponent,
   progressBar,
   overflowVisible,
+  pullToRefresh,
   screenTitle,
   scrollViewPaddingBottom = 100,
   canGoBackSpecificyScreen,
@@ -105,6 +110,7 @@ export const Screen = ({
           backgroundColor={colors.background}
           centerItems={centerItems}
           scrollRef={scrollRef}
+          pullToRefresh={pullToRefresh}
           overflowVisible={overflowVisible}
           scrollViewPaddingBottom={scrollViewPaddingBottom}
         >

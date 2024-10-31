@@ -1,4 +1,4 @@
-import { ScrollView, View } from "react-native";
+import { RefreshControl, ScrollView, View } from "react-native";
 
 interface ScreenContainerProps {
   children: React.ReactNode;
@@ -7,13 +7,18 @@ interface ScreenContainerProps {
   scrollViewPaddingBottom: number;
   scrollRef?: React.RefObject<ScrollView>;
   overflowVisible?: boolean;
+  pullToRefresh?: {
+    refreshing: boolean;
+    onRefresh: () => void;
+  };
 }
 
 export const ScrollViewContainer = ({
   children,
-  centerItems,
-  backgroundColor,
   scrollRef,
+  centerItems,
+  pullToRefresh,
+  backgroundColor,
   overflowVisible,
   scrollViewPaddingBottom,
 }: ScreenContainerProps) => {
@@ -21,6 +26,14 @@ export const ScrollViewContainer = ({
     <ScrollView
       keyboardShouldPersistTaps="handled"
       ref={scrollRef}
+      refreshControl={
+        !!pullToRefresh ? (
+          <RefreshControl
+            refreshing={pullToRefresh.refreshing}
+            onRefresh={pullToRefresh.onRefresh}
+          />
+        ) : undefined
+      }
       style={{
         flex: 1,
         backgroundColor,

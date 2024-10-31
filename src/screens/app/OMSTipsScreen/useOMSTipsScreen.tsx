@@ -8,7 +8,7 @@ import { useAuth } from "@services";
 
 export const useOMSTipsScreen = () => {
   const { session } = useAuth();
-  const { refetch, smokingRecord } = useGetLatestSmokingRecord();
+  const { smokingRecord, isRefetching, refetch } = useGetLatestSmokingRecord();
 
   const firstRenderRef = useRef(true);
   const isFocused = useIsFocused();
@@ -25,5 +25,7 @@ export const useOMSTipsScreen = () => {
       new Date(),
       smokingRecord?.date ?? session?.user?.created_at ?? new Date()
     ),
+    isRefetching,
+    refetch,
   };
 };

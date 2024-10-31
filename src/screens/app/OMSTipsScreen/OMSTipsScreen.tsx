@@ -5,11 +5,13 @@ import { omsTips } from "./OMSTipsPresets";
 import { useOMSTipsScreen } from "./useOMSTipsScreen";
 
 export const OMSTipsScreen = () => {
-  const { hoursBetweenLastestSmokingRecord } = useOMSTipsScreen();
+  const { hoursBetweenLastestSmokingRecord, isRefetching, refetch } =
+    useOMSTipsScreen();
   return (
     <Screen
       hasPaddingTop={false}
       scrollable
+      pullToRefresh={{ refreshing: isRefetching, onRefresh: refetch }}
       insets={{ left: "s0", right: "s0", top: "s0", bottom: "s24" }}
     >
       <OMSTipsHeader />
