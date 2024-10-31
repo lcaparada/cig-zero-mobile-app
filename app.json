@@ -19,8 +19,9 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#7EA2AA"
       },
+      "versionCode": 1,
       "googleServicesFile": "./google-services.json",
       "package": "com.elevanteholdings.cig-zero"
     },
