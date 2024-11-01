@@ -1,4 +1,4 @@
-import { format, isSameMonth } from "date-fns";
+import { format, isBefore, isSameMonth, subDays } from "date-fns";
 
 import { useAuth } from "@services";
 import { Box, BoxProps, TouchableOpacityBox } from "src/components/Box/Box";
@@ -43,7 +43,13 @@ export const CalendarDays = ({
             key={i}
             {...$dayWrapper}
             activeOpacity={0}
-            onPress={() => selectDate(d)}
+            onPress={() => {
+              if (isBefore(d, subDays(userCreatedAt, 1))) {
+                return null;
+              } else {
+                selectDate(d);
+              }
+            }}
             opacity={isSameMonth(date, d) ? 1 : 0.2}
             {...circleStyle.circle}
           >
