@@ -8,7 +8,6 @@ export const CalendarScreen = () => {
     date,
     dateString,
     isFetching,
-    scrollViewRef,
     indexedSmokingRecords,
     showAddSmokingHourModal,
     showAddSmokingRecordButton,
@@ -21,7 +20,6 @@ export const CalendarScreen = () => {
       hasPaddingTop={false}
       scrollable
       scrollViewPaddingBottom={200}
-      scrollRef={scrollViewRef}
       insets={{ left: "s0", right: "s0", top: "s0", bottom: "s0" }}
       button={
         showAddSmokingRecordButton

@@ -1,5 +1,4 @@
-import { useEffect, useRef, useState } from "react";
-import { ScrollView } from "react-native";
+import { useEffect, useState } from "react";
 
 import { isBefore, isSameDay, startOfDay } from "date-fns";
 
@@ -15,17 +14,25 @@ export type IndexedSmokingRecordsState = Record<
 >;
 
 export const useCalendarScreen = () => {
-  const { session } = useAuth();
   const [date, setDate] = useState(new Date());
-  const [shouldScrollToEnd, setShouldScrollToEnd] = useState(false);
-  const scrollViewRef = useRef<ScrollView>(null);
-  const firstRenderRef = useRef<boolean>(true);
   const [indexedSmokingRecords, setIndexedSmokingRecords] =
     useState<IndexedSmokingRecordsState>({});
+  const [showAddSmokingHourModal, setShowAddSmokingHourModal] = useState(false);
+
   const { smokingRecords, isFetching } = useGetAllSmokingRecordsByMonth({
     selectedDate: date.toISOString(),
   });
-  const [showAddSmokingHourModal, setShowAddSmokingHourModal] = useState(false);
+
+  const { session } = useAuth();
+
+  const dateString = date.toISOString().split("T")[0];
+
+  const userCreatedAt = session?.user?.created_at;
+
+  const showAddSmokingRecordButton =
+    userCreatedAt &&
+    (isBefore(startOfDay(userCreatedAt), date) ||
+      isSameDay(userCreatedAt, date));
 
   useEffect(() => {
     if (isFetching || !smokingRecords) return;
@@ -41,35 +48,12 @@ export const useCalendarScreen = () => {
     );
 
     setIndexedSmokingRecords(groupedByDay);
-    setShouldScrollToEnd(!firstRenderRef.current);
   }, [isFetching, smokingRecords]);
-
-  useEffect(() => {
-    if (shouldScrollToEnd && scrollViewRef.current) {
-      scrollViewRef.current.scrollToEnd({ animated: true });
-      setShouldScrollToEnd(false);
-    }
-  }, [shouldScrollToEnd]);
-
-  useEffect(() => {
-    const timeoutId = setTimeout(() => setShouldScrollToEnd(true), 500);
-    return () => clearTimeout(timeoutId);
-  }, [date]);
-
-  const dateString = date.toISOString().split("T")[0];
-
-  const userCreatedAt = session?.user?.created_at;
-
-  const showAddSmokingRecordButton =
-    userCreatedAt &&
-    (isBefore(startOfDay(userCreatedAt), date) ||
-      isSameDay(userCreatedAt, date));
 
   return {
     date,
     isFetching,
     dateString,
-    scrollViewRef,
     indexedSmokingRecords,
     showAddSmokingHourModal,
     showAddSmokingRecordButton,
