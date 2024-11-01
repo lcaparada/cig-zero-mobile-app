@@ -24,7 +24,7 @@ export const CalendarComponentHeader = ({
       <Text preset="paragraphsLarge" weight="semiBold">
         {capitalizeFirstLetter(formattedDate)}
       </Text>
-      <Box flexDirection="row">
+      <Box flexDirection="row" columnGap={"s10"}>
         {["chevronLeft", "chevronRight"].map((name, index) => (
           <Icon
             key={name}
