@@ -43,13 +43,7 @@ export const CalendarDays = ({
             key={i}
             {...$dayWrapper}
             activeOpacity={0}
-            onPress={() => {
-              if (isBefore(d, subDays(userCreatedAt, 1))) {
-                return null;
-              } else {
-                selectDate(d);
-              }
-            }}
+            onPress={() => selectDate(d)}
             opacity={isSameMonth(date, d) ? 1 : 0.2}
             {...circleStyle.circle}
           >
