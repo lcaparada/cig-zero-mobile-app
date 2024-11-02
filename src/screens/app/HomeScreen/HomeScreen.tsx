@@ -9,7 +9,7 @@ import {
 import { useHomeScreen } from "./useHomeScreen";
 
 export const HomeScreen = () => {
-  const { isFetching, refreshHomeScreenData } = useHomeScreen();
+  const { isRefreshing, handleRefresh } = useHomeScreen();
 
   return (
     <Screen
@@ -17,8 +17,8 @@ export const HomeScreen = () => {
       hasPaddingTop={false}
       insets={{ left: "s0", right: "s0", top: "s24" }}
       pullToRefresh={{
-        refreshing: isFetching,
-        onRefresh: refreshHomeScreenData,
+        refreshing: isRefreshing,
+        onRefresh: handleRefresh,
       }}
     >
       <HomeHeader />

@@ -1,8 +1,11 @@
+import { useState } from "react";
+
 import { useGetAchievements } from "@domain";
 
 export const useAchievementsScreen = () => {
-  const { achievements, isLoading, isRefetching, refetch } =
-    useGetAchievements();
+  const [isRefreshing, setIsRefreshing] = useState(false);
+
+  const { achievements, isLoading, refetch } = useGetAchievements();
 
   const current =
     achievements?.reduce((acc, category) => {
@@ -12,11 +15,18 @@ export const useAchievementsScreen = () => {
       return completedCount === category.achievements.length ? acc + 1 : acc;
     }, 0) || 0;
 
+  const handleRefresh = async () => {
+    if (isRefreshing) return null;
+    setIsRefreshing(true);
+    await refetch();
+    setIsRefreshing(false);
+  };
+
   return {
     current,
     isLoading,
     achievements,
-    isRefetching,
-    refetch,
+    isRefreshing,
+    handleRefresh,
   };
 };

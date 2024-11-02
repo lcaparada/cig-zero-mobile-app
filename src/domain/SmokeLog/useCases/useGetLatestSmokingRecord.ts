@@ -15,6 +15,7 @@ export const useGetLatestSmokingRecord = () => {
     isFetching,
     error,
     isRefetching,
+
     refetch,
   } = useQuery<unknown, Error, GetLatestSmokingRecord.Result>({
     queryKey: [QueryKeys.GetLatestSmokingRecord, session?.user?.id],
