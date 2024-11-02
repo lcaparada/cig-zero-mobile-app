@@ -1,8 +1,4 @@
-import {
-  State,
-  GestureHandlerRootView,
-  PanGestureHandler,
-} from "react-native-gesture-handler";
+import { State, PanGestureHandler } from "react-native-gesture-handler";
 
 import { IndexedSmokingRecordsState } from "src/screens/app/CalendarScreen/useCalendarScreen";
 
@@ -31,8 +27,8 @@ export const Calendar = ({
     days,
     SCREEN_WIDTH,
     handleAddMonth,
+    handleSubMonth,
     handleSelectDate,
-    handleSubtractMonth,
   } = useCalendar({ date, setDate });
 
   const PADDING_SCREEN = 24;
@@ -43,7 +39,7 @@ export const Calendar = ({
   const onHandlerStateChange = ({ nativeEvent }: any) => {
     if (nativeEvent.state === State.END) {
       if (nativeEvent.translationX > 50) {
-        handleSubtractMonth();
+        handleSubMonth();
       } else if (nativeEvent.translationX < -50) {
         handleAddMonth();
       }
@@ -51,25 +47,26 @@ export const Calendar = ({
   };
 
   return (
-    <GestureHandlerRootView>
-      <PanGestureHandler onHandlerStateChange={onHandlerStateChange}>
-        <Box mt={"s24"} paddingHorizontal={"s24"}>
-          <CalendarComponentHeader
-            date={date}
-            addMonth={handleAddMonth}
-            subMonth={handleSubtractMonth}
-          />
-          <CalendarDaysOfWeek COLUMN_GAP={COLUMN_GAP} />
-          <CalendarDays
-            date={date}
-            days={days}
-            COLUMN_GAP={COLUMN_GAP}
-            selectDate={handleSelectDate}
-            indexedSmokingRecords={indexedSmokingRecords}
-          />
-          <CalendarInformations />
-        </Box>
-      </PanGestureHandler>
-    </GestureHandlerRootView>
+    <PanGestureHandler
+      onHandlerStateChange={onHandlerStateChange}
+      activeOffsetX={[-10, 10]}
+    >
+      <Box mt={"s24"} paddingHorizontal={"s24"}>
+        <CalendarComponentHeader
+          date={date}
+          addMonth={handleAddMonth}
+          subMonth={handleSubMonth}
+        />
+        <CalendarDaysOfWeek COLUMN_GAP={COLUMN_GAP} />
+        <CalendarDays
+          date={date}
+          days={days}
+          COLUMN_GAP={COLUMN_GAP}
+          selectDate={handleSelectDate}
+          indexedSmokingRecords={indexedSmokingRecords}
+        />
+        <CalendarInformations />
+      </Box>
+    </PanGestureHandler>
   );
 };

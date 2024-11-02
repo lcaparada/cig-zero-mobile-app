@@ -35,7 +35,7 @@ export const useCalendar = ({
     updateDate(1);
   };
 
-  const handleSubtractMonth = () => {
+  const handleSubMonth = () => {
     updateDate(-1);
   };
 
@@ -65,7 +65,7 @@ export const useCalendar = ({
     date,
     SCREEN_WIDTH,
     handleAddMonth,
+    handleSubMonth,
     handleSelectDate,
-    handleSubtractMonth,
   };
 };

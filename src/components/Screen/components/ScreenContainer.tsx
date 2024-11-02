@@ -1,11 +1,12 @@
-import { RefreshControl, ScrollView, View } from "react-native";
+import { RefreshControl, View } from "react-native";
+
+import { ScrollView } from "react-native-gesture-handler";
 
 interface ScreenContainerProps {
   children: React.ReactNode;
   backgroundColor: string;
   centerItems?: boolean;
   scrollViewPaddingBottom: number;
-  scrollRef?: React.RefObject<ScrollView>;
   overflowVisible?: boolean;
   pullToRefresh?: {
     refreshing: boolean;
@@ -15,7 +16,6 @@ interface ScreenContainerProps {
 
 export const ScrollViewContainer = ({
   children,
-  scrollRef,
   centerItems,
   pullToRefresh,
   backgroundColor,
@@ -25,7 +25,6 @@ export const ScrollViewContainer = ({
   return (
     <ScrollView
       keyboardShouldPersistTaps="handled"
-      ref={scrollRef}
       refreshControl={
         !!pullToRefresh ? (
           <RefreshControl

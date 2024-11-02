@@ -1,4 +1,4 @@
-import { KeyboardAvoidingView, Platform, ScrollView } from "react-native";
+import { KeyboardAvoidingView, Platform } from "react-native";
 
 import { StatusBar } from "expo-status-bar";
 
@@ -27,7 +27,6 @@ export interface ScreenProps {
     disabled?: boolean;
     loading?: boolean;
   };
-  scrollRef?: React.RefObject<ScrollView>;
   scrollable?: boolean;
   centerItems?: boolean;
   titleAlign?: TitleAlign;
@@ -51,7 +50,6 @@ export interface ScreenProps {
 export const Screen = ({
   children,
   button,
-  scrollRef,
   canGoBack = false,
   scrollable = false,
   centerItems = false,
@@ -109,7 +107,6 @@ export const Screen = ({
         <Container
           backgroundColor={colors.background}
           centerItems={centerItems}
-          scrollRef={scrollRef}
           pullToRefresh={pullToRefresh}
           overflowVisible={overflowVisible}
           scrollViewPaddingBottom={scrollViewPaddingBottom}

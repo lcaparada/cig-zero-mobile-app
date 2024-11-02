@@ -7,6 +7,7 @@ import { setDefaultOptions } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { useFonts } from "expo-font";
 import * as Notifications from "expo-notifications";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { Splash, Toast } from "@components";
@@ -45,21 +46,23 @@ function App() {
   }, []);
 
   return (
-    <SafeAreaProvider>
-      <ThemeProvider theme={theme}>
-        <ToastProvider>
-          <QueryClientProvider client={queryClient}>
-            <AuthProvider>
-              <Route />
-              {(!loaded && !error) || !splashComplete ? (
-                <Splash onComplete={setSplashComplete} />
-              ) : null}
-              <Toast />
-            </AuthProvider>
-          </QueryClientProvider>
-        </ToastProvider>
-      </ThemeProvider>
-    </SafeAreaProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <SafeAreaProvider>
+        <ThemeProvider theme={theme}>
+          <ToastProvider>
+            <QueryClientProvider client={queryClient}>
+              <AuthProvider>
+                <Route />
+                {(!loaded && !error) || !splashComplete ? (
+                  <Splash onComplete={setSplashComplete} />
+                ) : null}
+                <Toast />
+              </AuthProvider>
+            </QueryClientProvider>
+          </ToastProvider>
+        </ThemeProvider>
+      </SafeAreaProvider>
+    </GestureHandlerRootView>
   );
 }
 
