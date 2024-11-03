@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import {
   FaqScreen,
+  ChatScreen,
   AdjustmentsScreen,
   ReportAnIssueScreen,
   PrivacyPolicyScreen,
@@ -17,6 +18,7 @@ import { AppTabBottomTabParamList, AppTabNavigator } from "./AppTabNavigator";
 
 export type AppStackParamList = {
   FaqScreen: undefined;
+  ChatScreen: undefined;
   AppTabNavigator: NavigatorScreenParams<AppTabBottomTabParamList>;
   AdjustmentsScreen: undefined;
   NotificationsScreen: undefined;
@@ -66,6 +68,7 @@ export const AppStack = () => {
         name="ReportAnIssueScreen"
         component={ReportAnIssueScreen}
       />
+      <Stack.Screen name="ChatScreen" component={ChatScreen} />
       <Stack.Screen name="FaqScreen" component={FaqScreen} />
     </Stack.Navigator>
   );

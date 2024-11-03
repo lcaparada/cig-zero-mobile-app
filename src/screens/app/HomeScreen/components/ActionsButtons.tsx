@@ -1,5 +1,6 @@
 import { Box, Button, IconName } from "@components";
 import { useAppTabNavigator } from "@hooks";
+import { useNavigation } from "@react-navigation/native";
 
 interface ActionsButtonsData {
   text: string;
@@ -9,8 +10,14 @@ interface ActionsButtonsData {
 
 export const ActionsButtons = () => {
   const { navigate } = useAppTabNavigator();
+  const navigation = useNavigation();
 
   const actionsButtons: ActionsButtonsData[] = [
+    {
+      text: "Converse com a IA",
+      icon: "messageCircle",
+      action: () => navigation.navigate("ChatScreen"),
+    },
     {
       text: "Acesse as dicas da OMS",
       icon: "activity",

@@ -34,6 +34,8 @@ import {
   Minus,
   Plus,
   BarChart,
+  MessageCircle,
+  Send,
 } from "@assets";
 
 import { TouchableOpacityBox } from "../Box/Box";
@@ -100,6 +102,7 @@ const iconRegistry = {
   home: Home,
   bell: Bell,
   plus: Plus,
+  send: Send,
   minus: Minus,
   rings: Rings,
   clock: Clock,
@@ -121,5 +124,6 @@ const iconRegistry = {
   chevronDown: ChevronDown,
   chevronRight: ChevronRight,
   trendingDown: TrendingDown,
+  messageCircle: MessageCircle,
   alertTriangle: AlertTriangle,
 };

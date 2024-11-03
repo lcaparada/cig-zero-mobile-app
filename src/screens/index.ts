@@ -6,6 +6,7 @@ export * from "./auth/OnboardingScreen/schema/onboardingScreenSchema";
 
 // APP
 export * from "./app/FaqScreen/FaqScreen";
+export * from "./app/ChatScreen/ChatScreen";
 export * from "./app/HomeScreen/HomeScreen";
 export * from "./app/OMSTipsScreen/OMSTipsScreen";
 export * from "./app/CalendarScreen/CalendarScreen";

@@ -36,6 +36,9 @@ const pallete = {
   dark: "#000",
   grayishSilver: "#B9B9B9",
 
+  lightSilver: "#EEE",
+  mediumSilver: "#DDD",
+
   neutralLight: "#F5F5F5",
   neutralLighest: "#FFFFFF",
 
@@ -78,6 +81,9 @@ export const theme = createTheme({
     backgroundSecondConstrast: pallete.neutralMedium,
 
     switchBackground: pallete.neutralMedium,
+
+    lightSilver: pallete.lightSilver,
+    mediumSilver: pallete.mediumSilver,
   },
   spacing: {
     s0: 0,
