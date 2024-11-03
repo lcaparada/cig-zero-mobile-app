@@ -2,17 +2,23 @@ import { format } from "date-fns";
 
 import { Box, BoxProps, Text } from "@components";
 
-type ChatMessageProps = {
-  text: string;
-  sentAt: Date;
-  isMine: boolean;
-};
+import { useAuth } from "@services";
+import { Message } from "src/domain/Conversation";
 
-export const ChatMessage = ({ isMine, text, sentAt }: ChatMessageProps) => {
+type ChatMessageProps = Message;
+
+export const ChatMessage = ({
+  authorId,
+  text,
+  createdAt,
+}: ChatMessageProps) => {
+  const { session } = useAuth();
+  const isMine = authorId === session?.user?.id;
   return (
     <Box alignItems={isMine ? "flex-end" : "flex-start"}>
       <Box
         rowGap={"s4"}
+        maxWidth={"90%"}
         borderRadius={"s8"}
         paddingVertical={"s8"}
         paddingHorizontal={"s12"}
@@ -31,7 +37,7 @@ export const ChatMessage = ({ isMine, text, sentAt }: ChatMessageProps) => {
             weight="medium"
             color={isMine ? "neutralLighest" : "neutralDarkest"}
           >
-            {format(sentAt, "hh:mm")}
+            {format(createdAt, "hh:mm")}
           </Text>
         </Box>
       </Box>

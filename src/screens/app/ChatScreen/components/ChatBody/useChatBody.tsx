@@ -1,38 +1,75 @@
-import { useKeyboardStatus } from "@hooks";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ScrollView } from "react-native";
 
-type Message = {
-  text: string;
-  isMine: boolean;
-  sentAt: Date;
-};
+import { useKeyboardStatus } from "@hooks";
 
-type Data = {
-  [date: string]: Message[];
+import {
+  Message,
+  useAddMessageToPrivateConversation,
+  useGetMessagesFromPrivateConversation,
+} from "src/domain/Conversation";
+
+export type AddNewMessageParams = {
+  text: string;
+  authorId?: string | null;
 };
 
 export const useChatBody = () => {
   const { isKeyboardOpen } = useKeyboardStatus();
+  const scrollViewRef = useRef<ScrollView>(null);
 
-  const data: Data = {
-    "2024-10-02": [
-      { text: "Test", isMine: true, sentAt: new Date() },
-      { text: "Test", isMine: false, sentAt: new Date() },
-      { text: "Test", isMine: true, sentAt: new Date() },
-    ],
-    "2024-10-03": [
-      { text: "Test", isMine: true, sentAt: new Date() },
-      { text: "Test da sda sa das das d", isMine: false, sentAt: new Date() },
-      {
-        text: "Test dakw jdakwdj kawjd kawjd",
-        isMine: true,
-        sentAt: new Date(),
-      },
-    ],
+  const {
+    isAddMessageToPrivateConversationPending,
+    handleAddMessageToPrivateConversation,
+  } = useAddMessageToPrivateConversation();
+  const { isLoading, conversation } = useGetMessagesFromPrivateConversation();
+
+  const [groupedMessagesByDate, setGroupedMessagesByDate] = useState<
+    Record<string, Message[]>
+  >({});
+
+  const groupMessagesByDate = (messages: Message[]) => {
+    return messages.reduce<Record<string, Message[]>>((groups, message) => {
+      const date = message.createdAt.split("T")[0];
+      if (!groups[date]) {
+        groups[date] = [];
+      }
+      groups[date].push(message);
+      return groups;
+    }, {});
   };
 
-  const scrollViewRef = useRef<ScrollView>(null);
+  const handleAddNewMessage = ({
+    text,
+    authorId = null,
+  }: AddNewMessageParams) => {
+    const payload: Message = {
+      text,
+      authorId,
+      createdAt: new Date().toISOString(),
+    };
+    updateInUI(payload);
+    handleAddMessageToPrivateConversation({
+      text,
+      conversationId: conversation?.conversationId ?? "",
+    }).then(({ author_id, created_at, text }) => {
+      updateInUI({
+        text,
+        authorId: author_id,
+        createdAt: created_at,
+      });
+    });
+  };
+
+  const updateInUI = (payload: Message) => {
+    const dateString = payload.createdAt.split("T")[0];
+    const groupedMessagesByDateCloned = { ...groupedMessagesByDate };
+    groupedMessagesByDateCloned[dateString] = [
+      ...groupedMessagesByDateCloned[dateString],
+      payload,
+    ];
+    setGroupedMessagesByDate(groupedMessagesByDateCloned);
+  };
 
   const handleScrollToBottom = () => {
     setTimeout(
@@ -47,5 +84,18 @@ export const useChatBody = () => {
     }
   }, [isKeyboardOpen]);
 
-  return { data, scrollViewRef, handleScrollToBottom };
+  useEffect(() => {
+    if (conversation) {
+      setGroupedMessagesByDate(groupMessagesByDate(conversation.messages));
+    }
+  }, [conversation]);
+
+  return {
+    isLoading,
+    scrollViewRef,
+    data: groupedMessagesByDate,
+    isAddMessageToPrivateConversationPending,
+    handleAddNewMessage,
+    handleScrollToBottom,
+  };
 };
