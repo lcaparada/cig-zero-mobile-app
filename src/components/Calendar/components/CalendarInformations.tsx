@@ -43,7 +43,7 @@ const informationItems: InformationItemsData[] = [
     borderColor: "errorDark",
     borderStyle: "solid",
     backgroundColor: "errorDark",
-    text: "Dias que você fumou",
+    text: "Dias que você respondeu que fumou",
   },
 ];
 
