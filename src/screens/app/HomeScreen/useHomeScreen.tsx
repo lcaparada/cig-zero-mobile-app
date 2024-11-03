@@ -20,6 +20,7 @@ export const useHomeScreen = () => {
       QueryKeys.GetProgressData,
       QueryKeys.GetHistoricData,
       QueryKeys.GetMissions,
+      QueryKeys.GetLatestSmokingRecord,
     ];
     try {
       await Promise.all(
