@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
+import { useFocusEffect } from "@react-navigation/native";
 import { useQueryClient } from "@tanstack/react-query";
 
+import { useUpdateUserInformation } from "@domain";
 import { QueryKeys } from "@infra";
 
 export const useHomeScreen = () => {
+  const { handleUpdateUserInformation } = useUpdateUserInformation();
+
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   const queryClient = useQueryClient();
@@ -27,6 +31,15 @@ export const useHomeScreen = () => {
       setIsRefreshing(false);
     }
   };
+
+  useFocusEffect(
+    useCallback(() => {
+      handleUpdateUserInformation({
+        last_activity_at: new Date().toISOString(),
+      });
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+  );
 
   return {
     isRefreshing,

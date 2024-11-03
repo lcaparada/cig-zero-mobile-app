@@ -19,7 +19,8 @@ export namespace GetHistoricData {
 
 export namespace UpdateUserInformation {
   export type Params = {
-    name: string;
+    name?: string;
+    last_activity_at?: string;
   };
   export type Result = User;
 }
