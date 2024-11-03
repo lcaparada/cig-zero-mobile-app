@@ -3,11 +3,13 @@ export interface MissionsAPI {
     name: string;
     type: "REDUCTION_BASED" | "FINANCIAL_ECONOMY" | "TIME_BASED";
   };
-  current: number;
+  data: {
+    current: number;
+    target: number;
+  }[];
+  percentage: number;
   description: string;
   id: string;
-  is_completed: boolean;
-  target: number;
   title: string;
 }
 
@@ -16,11 +18,13 @@ export interface Missions {
     name: string;
     type: "REDUCTION_BASED" | "FINANCIAL_ECONOMY" | "TIME_BASED";
   };
-  current: number;
+  data: {
+    current: number;
+    target: number;
+  }[];
+  percentage: number;
   description: string;
   id: string;
-  isCompleted: boolean;
-  target: number;
   title: string;
 }
 

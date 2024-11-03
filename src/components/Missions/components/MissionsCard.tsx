@@ -19,11 +19,10 @@ interface MissionsCardProps extends Omit<Missions, "id" | "title"> {
 export const MissionsCard = ({
   icon,
   index,
-  target,
-  current,
+  data,
+  percentage,
   category,
   description,
-  isCompleted,
 }: MissionsCardProps) => {
   return (
     <Box width={"100%"}>
@@ -33,7 +32,7 @@ export const MissionsCard = ({
         paddingVertical="s18"
         paddingHorizontal="s20"
         backgroundColor="primary"
-        opacity={isCompleted ? 0.5 : 1}
+        opacity={percentage >= 100 ? 0.5 : 1}
         {...shadow}
       >
         <Box flexDirection="row" columnGap="s8">
@@ -41,11 +40,14 @@ export const MissionsCard = ({
           <Box flex={1}>
             <MissionsCardHeader iconName={icon} text={category.name} />
             <MissionsCardDescription description={description} />
-            <MissionsProgressBar current={current} target={target} />
+            <MissionsProgressBar
+              current={data[0].current}
+              target={data[0].target}
+            />
           </Box>
         </Box>
       </Box>
-      {isCompleted ? (
+      {percentage >= 100 ? (
         <Box
           style={StyleSheet.absoluteFillObject}
           alignItems={"center"}

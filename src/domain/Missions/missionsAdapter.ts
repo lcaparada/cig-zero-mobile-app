@@ -6,11 +6,10 @@ const getAllMissionsAdapter = (missionsAPI: MissionsAPI[]): Missions[] => {
       name: mission.category.name,
       type: mission.category.type,
     },
-    current: mission.current,
+    data: mission.data,
+    percentage: mission.percentage,
     description: mission.description,
     id: mission.id,
-    isCompleted: mission.is_completed,
-    target: mission.target,
     title: mission.title,
   }));
 };
