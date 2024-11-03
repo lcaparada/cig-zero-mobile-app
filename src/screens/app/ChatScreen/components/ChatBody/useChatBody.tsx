@@ -63,12 +63,16 @@ export const useChatBody = () => {
 
   const updateInUI = (payload: Message) => {
     const dateString = payload.createdAt.split("T")[0];
-    const groupedMessagesByDateCloned = { ...groupedMessagesByDate };
-    groupedMessagesByDateCloned[dateString] = [
-      ...groupedMessagesByDateCloned[dateString],
-      payload,
-    ];
-    setGroupedMessagesByDate(groupedMessagesByDateCloned);
+    setGroupedMessagesByDate((prevGroupedMessagesByDate) => {
+      const updatedGroupedMessages = {
+        ...prevGroupedMessagesByDate,
+        [dateString]: [
+          ...(prevGroupedMessagesByDate[dateString] || []),
+          payload,
+        ],
+      };
+      return updatedGroupedMessages;
+    });
   };
 
   const handleScrollToBottom = () => {

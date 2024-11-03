@@ -48,7 +48,12 @@ export const ChatBody = (props: ChatBodyProps) => {
           )}
         </ScrollView>
       </Box>
-      {!isLoading ? <ChatInput onSubmit={handleAddNewMessage} /> : null}
+      {!isLoading ? (
+        <ChatInput
+          disabled={isAddMessageToPrivateConversationPending}
+          onSubmit={handleAddNewMessage}
+        />
+      ) : null}
     </Box>
   );
 };

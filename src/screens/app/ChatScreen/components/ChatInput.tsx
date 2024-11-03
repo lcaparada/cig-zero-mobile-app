@@ -7,10 +7,11 @@ import { useAuth } from "@services";
 import { AddNewMessageParams } from "./ChatBody/useChatBody";
 
 type ChatInputProps = {
+  disabled: boolean;
   onSubmit: (params: AddNewMessageParams) => void;
 };
 
-export const ChatInput = ({ onSubmit }: ChatInputProps) => {
+export const ChatInput = ({ onSubmit, disabled }: ChatInputProps) => {
   const { session } = useAuth();
   const [text, setText] = useState("");
 
@@ -18,16 +19,17 @@ export const ChatInput = ({ onSubmit }: ChatInputProps) => {
     <Box flexDirection={"row"} alignItems={"center"} columnGap={"s8"}>
       <Box flex={1}>
         <TextInput
+          value={text}
+          editable={!disabled}
           placeholder="Digite a mensagem"
           onChangeText={(text) => setText(text)}
-          value={text}
         />
       </Box>
       <Button
         iconName="send"
         width={54}
         height={54}
-        disabled={text === ""}
+        disabled={text === "" || disabled}
         onPress={() => {
           onSubmit({ text, authorId: session?.user?.id });
           setText("");
