@@ -18,7 +18,7 @@ export const SetTimeInput = ({ date, setDate }: SetTimeInputProps) => {
 
   return (
     <>
-      <Box rowGap={"s8"} mb={"s20"}>
+      <Box rowGap={"s8"}>
         <TouchableOpacityBox {...$boxWrapper} onPress={showDatePicker}>
           <Icon name="clock" color="backgroundConstrast" strokeWidth={2} />
           <Text weight="medium" color={"backgroundSecondConstrast"}>

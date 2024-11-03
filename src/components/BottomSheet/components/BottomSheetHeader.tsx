@@ -12,7 +12,7 @@ interface ModalHeaderProps {
   };
 }
 
-export const ModalHeader = ({
+export const BottomSheetHeader = ({
   title,
   disabledToClose,
   rightButton,

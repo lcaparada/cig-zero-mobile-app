@@ -1,15 +1,15 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 import { set } from "date-fns";
 
 import { useAddSmokingRecord } from "@domain";
 
-import { ModalHandle } from "../Modal/Modal";
+import { BottomSheetProps } from "../BottomSheet/BottomSheet";
 
-export const useAddSmokingHourModal = () => {
+export const useAddSmokingHourBottomSheet = ({
+  setVisible,
+}: Pick<BottomSheetProps, "setVisible">) => {
   const [date, setDate] = useState<Date | null>(null);
-
-  const modalRef = useRef<ModalHandle>(null);
 
   const { handleAddSmokingRecord, isPending } = useAddSmokingRecord();
 
@@ -22,9 +22,9 @@ export const useAddSmokingHourModal = () => {
         milliseconds: date.getMilliseconds(),
       });
       handleAddSmokingRecord({ date: smokingRecordDate?.toISOString() });
-      modalRef.current?.closeModal();
+      setVisible(false);
     }
   };
 
-  return { date, modalRef, isPending, setDate, handleCreateSmokingRecord };
+  return { date, isPending, setDate, handleCreateSmokingRecord };
 };

@@ -126,6 +126,7 @@ export const theme = createTheme({
   textVariants: {
     defaults: {},
   },
+  zIndices: undefined,
 });
 
 export type Theme = typeof theme;

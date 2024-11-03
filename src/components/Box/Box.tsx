@@ -1,27 +1,30 @@
 import {
   ImageBackground,
+  Pressable,
   Animated as RNAnimated,
   TouchableOpacity,
   TouchableOpacityProps,
 } from "react-native";
 
 import {
-  border,
-  layout,
-  shadow,
-  spacing,
-  opacity,
   createBox,
-  ShadowProps,
-  LayoutProps,
-  BorderProps,
-  OpacityProps,
-  SpacingProps,
-  backgroundColor,
-  spacingShorthand,
-  BackgroundColorProps,
-  SpacingShorthandProps,
   createRestyleComponent,
+  backgroundColor,
+  BackgroundColorProps,
+  border,
+  BorderProps,
+  spacing,
+  SpacingProps,
+  spacingShorthand,
+  SpacingShorthandProps,
+  layout,
+  LayoutProps,
+  shadow,
+  ShadowProps,
+  OpacityProps,
+  opacity,
+  position,
+  PositionProps,
 } from "@shopify/restyle";
 import Animated from "react-native-reanimated";
 
@@ -36,7 +39,18 @@ export type TouchableOpacityBoxProps = BackgroundColorProps<Theme> &
   LayoutProps<Theme> &
   TouchableOpacityProps &
   ShadowProps<Theme> &
-  OpacityProps<Theme>;
+  OpacityProps<Theme> &
+  PositionProps<Theme>;
+
+export type PressableBoxProps = BackgroundColorProps<Theme> &
+  BorderProps<Theme> &
+  SpacingProps<Theme> &
+  SpacingShorthandProps<Theme> &
+  LayoutProps<Theme> &
+  TouchableOpacityProps &
+  ShadowProps<Theme> &
+  OpacityProps<Theme> &
+  PositionProps<Theme>;
 
 export type BoxProps = React.ComponentProps<typeof Box>;
 export type AnimatedBoxProps = React.ComponentProps<typeof AnimatedBoxRNR>;
@@ -45,8 +59,31 @@ export const TouchableOpacityBox = createRestyleComponent<
   TouchableOpacityBoxProps,
   Theme
 >(
-  [backgroundColor, border, spacing, spacingShorthand, layout, shadow, opacity],
+  [
+    backgroundColor,
+    border,
+    spacing,
+    spacingShorthand,
+    layout,
+    shadow,
+    position,
+    opacity,
+  ],
   TouchableOpacity
+);
+
+export const PressableBox = createRestyleComponent<PressableBoxProps, Theme>(
+  [
+    backgroundColor,
+    border,
+    spacing,
+    spacingShorthand,
+    layout,
+    shadow,
+    opacity,
+    position,
+  ],
+  Pressable
 );
 
 export const AnimatedBoxRNR = Animated.createAnimatedComponent(Box);
@@ -55,6 +92,9 @@ export const AnimatedTouchableOpacityBoxRNR =
   Animated.createAnimatedComponent(TouchableOpacityBox);
 
 export const AnimatedFlatlist = Animated.FlatList;
+
+export const AnimatedPressableBox =
+  Animated.createAnimatedComponent(PressableBox);
 
 export const AnimatedImageBackground =
   Animated.createAnimatedComponent(ImageBackground);

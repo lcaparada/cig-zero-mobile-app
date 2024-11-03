@@ -1,13 +1,6 @@
-import { useEffect, useState } from "react";
-
 import { format } from "date-fns";
 
-import {
-  Box,
-  Button,
-  HeadingWithDescription,
-  SmokingDetailsModal,
-} from "@components";
+import { Box, Button, HeadingWithDescription } from "@components";
 
 import { SmokeLogWithDateAndCreatedAt } from "@domain";
 
@@ -19,27 +12,15 @@ interface SmokingActivitiesProps {
   date: Date;
   isLoading: boolean;
   smokingRecords: SmokeLogWithDateAndCreatedAt[];
+  action: (record: SmokeLogWithDateAndCreatedAt) => void;
 }
 
 export const SmokingActivities = ({
   date,
   isLoading,
   smokingRecords,
+  action,
 }: SmokingActivitiesProps) => {
-  const [showSmokingDetailsModal, setShowSmokingDetailsModal] = useState(false);
-  const [smokingRecordDetails, setSmokingRecordDetails] =
-    useState<SmokeLogWithDateAndCreatedAt>({
-      created_at: "",
-      date: "",
-      id: "",
-    });
-
-  useEffect(() => {
-    if (!showSmokingDetailsModal) {
-      setSmokingRecordDetails({ created_at: "", date: "", id: "" });
-    }
-  }, [showSmokingDetailsModal]);
-
   return (
     <Box paddingHorizontal={"s24"}>
       <HeadingWithDescription
@@ -55,10 +36,7 @@ export const SmokingActivities = ({
                 iconName="wind"
                 text={`1 cigarro às ${format(record.date, "HH:mm")}`}
                 justifyContent={"flex-start"}
-                onPress={() => {
-                  setSmokingRecordDetails(record);
-                  setShowSmokingDetailsModal(true);
-                }}
+                onPress={() => action(record)}
               />
             ))
           ) : (
@@ -66,13 +44,6 @@ export const SmokingActivities = ({
           )
         ) : null}
       </Box>
-      {showSmokingDetailsModal && (
-        <SmokingDetailsModal
-          smokingRecord={smokingRecordDetails}
-          visible={showSmokingDetailsModal}
-          setVisible={setShowSmokingDetailsModal}
-        />
-      )}
     </Box>
   );
 };

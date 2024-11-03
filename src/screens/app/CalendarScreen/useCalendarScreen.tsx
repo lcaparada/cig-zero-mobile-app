@@ -18,6 +18,13 @@ export const useCalendarScreen = () => {
   const [indexedSmokingRecords, setIndexedSmokingRecords] =
     useState<IndexedSmokingRecordsState>({});
   const [showAddSmokingHourModal, setShowAddSmokingHourModal] = useState(false);
+  const [showSmokingDetailsModal, setShowSmokingDetailsModal] = useState(false);
+  const [smokingRecordDetails, setSmokingRecordDetails] =
+    useState<SmokeLogWithDateAndCreatedAt>({
+      created_at: "",
+      date: "",
+      id: "",
+    });
 
   const { smokingRecords, isFetching } = useGetAllSmokingRecordsByMonth({
     selectedDate: date.toISOString(),
@@ -28,6 +35,11 @@ export const useCalendarScreen = () => {
   const dateString = date.toISOString().split("T")[0];
 
   const userCreatedAt = session?.user?.created_at;
+
+  const handleAddSmokeRecord = (record: SmokeLogWithDateAndCreatedAt) => {
+    setSmokingRecordDetails(record);
+    setShowSmokingDetailsModal(true);
+  };
 
   const showAddSmokingRecordButton =
     userCreatedAt &&
@@ -50,14 +62,24 @@ export const useCalendarScreen = () => {
     setIndexedSmokingRecords(groupedByDay);
   }, [isFetching, smokingRecords]);
 
+  useEffect(() => {
+    if (!showSmokingDetailsModal) {
+      setSmokingRecordDetails({ created_at: "", date: "", id: "" });
+    }
+  }, [showSmokingDetailsModal]);
+
   return {
     date,
     isFetching,
     dateString,
+    smokingRecordDetails,
     indexedSmokingRecords,
     showAddSmokingHourModal,
+    showSmokingDetailsModal,
     showAddSmokingRecordButton,
     setDate,
+    handleAddSmokeRecord,
     setShowAddSmokingHourModal,
+    setShowSmokingDetailsModal,
   };
 };

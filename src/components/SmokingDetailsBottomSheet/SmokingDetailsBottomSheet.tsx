@@ -2,21 +2,20 @@ import { format } from "date-fns";
 
 import { SmokeLogWithDateAndCreatedAt, useDeleteSmokingRecord } from "@domain";
 
-import { Modal, ModalProps } from "../Modal/Modal";
+import { BottomSheetProps, BottomSheet } from "../BottomSheet/BottomSheet";
 import { Text } from "../Text/Text";
 
-type SmokingDetailsModalProps = Pick<ModalProps, "visible" | "setVisible"> & {
+type SmokingDetailsBottomSheetProps = Pick<BottomSheetProps, "setVisible"> & {
   smokingRecord: SmokeLogWithDateAndCreatedAt;
 };
 
-export const SmokingDetailsModal = ({
-  visible,
+export const SmokingDetailsBottomSheet = ({
   setVisible,
   smokingRecord,
-}: SmokingDetailsModalProps) => {
+}: SmokingDetailsBottomSheetProps) => {
   const { handleDeleteSmokingRecord, isPending } = useDeleteSmokingRecord();
   return (
-    <Modal
+    <BottomSheet
       button={{
         text: "Deletar",
         preset: "delete",
@@ -27,8 +26,8 @@ export const SmokingDetailsModal = ({
         },
       }}
       title="Detalhes do fumo"
-      visible={visible}
-      height={"25%"}
+      height={"28%"}
+      scrollable={false}
       setVisible={setVisible}
     >
       {smokingRecord?.created_at && (
@@ -45,6 +44,6 @@ export const SmokingDetailsModal = ({
           .
         </Text>
       )}
-    </Modal>
+    </BottomSheet>
   );
 };

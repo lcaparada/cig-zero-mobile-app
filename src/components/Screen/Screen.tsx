@@ -119,6 +119,7 @@ export const Screen = ({
             style={{
               position: "absolute",
               bottom: bottom,
+              zIndex: 0,
               right: 24,
               left: 24,
             }}
