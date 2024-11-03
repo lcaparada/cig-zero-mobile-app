@@ -128,6 +128,7 @@ export const BottomSheet = ({
               width={"100%"}
               mt={"s20"}
               text={button.text}
+              preset={button.preset}
               disabled={button.disabled}
               isLoading={button.isLoading}
               onPress={button.action}
