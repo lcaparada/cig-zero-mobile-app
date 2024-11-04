@@ -6,7 +6,7 @@ import { conversationsService } from "../conversationsService";
 import { GetMessagesFromPrivateConversation } from "../conversationsTypes";
 
 export const useGetMessagesFromPrivateConversation = () => {
-  const { data: conversation, isLoading } = useQuery<
+  const { data: conversation, isFetching } = useQuery<
     unknown,
     Error,
     GetMessagesFromPrivateConversation.Result
@@ -15,5 +15,5 @@ export const useGetMessagesFromPrivateConversation = () => {
     queryFn: () => conversationsService.getMessagesFromPrivateConversation(),
   });
 
-  return { conversation, isLoading };
+  return { conversation, isFetching };
 };

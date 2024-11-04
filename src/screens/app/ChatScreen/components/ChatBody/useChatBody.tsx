@@ -23,7 +23,7 @@ export const useChatBody = () => {
     isAddMessageToPrivateConversationPending,
     handleAddMessageToPrivateConversation,
   } = useAddMessageToPrivateConversation();
-  const { isLoading, conversation } = useGetMessagesFromPrivateConversation();
+  const { isFetching, conversation } = useGetMessagesFromPrivateConversation();
 
   const [groupedMessagesByDate, setGroupedMessagesByDate] = useState<
     Record<string, Message[]>
@@ -104,7 +104,7 @@ export const useChatBody = () => {
   }, [conversation]);
 
   return {
-    isLoading,
+    isFetching,
     showButton,
     flatListRef,
     data: groupedMessagesByDate,

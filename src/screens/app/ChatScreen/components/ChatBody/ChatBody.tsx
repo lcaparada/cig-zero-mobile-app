@@ -14,7 +14,7 @@ type ChatBodyProps = ViewProps;
 export const ChatBody = (props: ChatBodyProps) => {
   const {
     data,
-    isLoading,
+    isFetching,
     showButton,
     flatListRef,
     isAddMessageToPrivateConversationPending,
@@ -31,7 +31,7 @@ export const ChatBody = (props: ChatBodyProps) => {
       {...props}
     >
       <Box flex={1}>
-        {!isLoading ? (
+        {!isFetching ? (
           <FlatList
             inverted
             ref={flatListRef}
@@ -72,7 +72,7 @@ export const ChatBody = (props: ChatBodyProps) => {
           </Box>
         )}
       </Box>
-      {!isLoading ? (
+      {!isFetching ? (
         <ChatInput
           disabled={isAddMessageToPrivateConversationPending}
           onSubmit={handleAddNewMessage}
