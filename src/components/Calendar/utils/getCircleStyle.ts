@@ -29,7 +29,7 @@ export const getCircleStyle = (
       return $selectedDayStyle;
     case !isSameMonth(d, date):
       return $otherMonthStyle;
-    case isBefore(d, startOfDay(subDays(userCreatedAt, 1))):
+    case isBefore(d, startOfDay(userCreatedAt)):
       return $daysBeforeStartStyle;
     case isAfter(d, new Date()):
       return $futureDaysAndNotAnswerStyle;
