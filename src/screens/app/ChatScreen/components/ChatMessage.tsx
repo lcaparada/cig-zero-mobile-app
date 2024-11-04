@@ -18,7 +18,7 @@ export const ChatMessage = ({
     <Box alignItems={isMine ? "flex-end" : "flex-start"}>
       <Box
         rowGap={"s4"}
-        maxWidth={"90%"}
+        maxWidth={"80%"}
         borderRadius={"s8"}
         paddingVertical={"s8"}
         paddingHorizontal={"s12"}

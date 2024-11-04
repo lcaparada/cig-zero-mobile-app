@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import { ScrollView } from "react-native";
-
-import { useKeyboardStatus } from "@hooks";
+import {
+  FlatList,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+} from "react-native";
 
 import {
   Message,
@@ -15,8 +17,7 @@ export type AddNewMessageParams = {
 };
 
 export const useChatBody = () => {
-  const { isKeyboardOpen } = useKeyboardStatus();
-  const scrollViewRef = useRef<ScrollView>(null);
+  const flatListRef = useRef<FlatList>(null);
 
   const {
     isAddMessageToPrivateConversationPending,
@@ -27,6 +28,8 @@ export const useChatBody = () => {
   const [groupedMessagesByDate, setGroupedMessagesByDate] = useState<
     Record<string, Message[]>
   >({});
+
+  const [showButton, setShowButton] = useState(false);
 
   const groupMessagesByDate = (messages: Message[]) => {
     return messages.reduce<Record<string, Message[]>>((groups, message) => {
@@ -49,6 +52,7 @@ export const useChatBody = () => {
       createdAt: new Date().toISOString(),
     };
     updateInUI(payload);
+    handleScrollToBottom();
     handleAddMessageToPrivateConversation({
       text,
       conversationId: conversation?.conversationId ?? "",
@@ -59,6 +63,11 @@ export const useChatBody = () => {
         createdAt: created_at,
       });
     });
+  };
+
+  const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const scrollY = event.nativeEvent.contentOffset.y;
+    setShowButton(scrollY >= 300);
   };
 
   const updateInUI = (payload: Message) => {
@@ -77,16 +86,10 @@ export const useChatBody = () => {
 
   const handleScrollToBottom = () => {
     setTimeout(
-      () => scrollViewRef?.current?.scrollToEnd({ animated: true }),
+      () => flatListRef?.current?.scrollToOffset({ offset: 0, animated: true }),
       50
     );
   };
-
-  useEffect(() => {
-    if (isKeyboardOpen) {
-      handleScrollToBottom();
-    }
-  }, [isKeyboardOpen]);
 
   useEffect(() => {
     if (conversation) {
@@ -96,9 +99,11 @@ export const useChatBody = () => {
 
   return {
     isLoading,
-    scrollViewRef,
+    showButton,
+    flatListRef,
     data: groupedMessagesByDate,
     isAddMessageToPrivateConversationPending,
+    handleScroll,
     handleAddNewMessage,
     handleScrollToBottom,
   };

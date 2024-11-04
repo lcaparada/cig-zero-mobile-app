@@ -1,4 +1,4 @@
-import { supabase, supabaseEdgeFunction } from "@api";
+import { supabaseEdgeFunction } from "@api";
 
 import { conversationsAdapter } from "./conversationsAdapter";
 import {

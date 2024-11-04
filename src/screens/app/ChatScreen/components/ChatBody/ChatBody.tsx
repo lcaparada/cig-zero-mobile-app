@@ -1,6 +1,6 @@
-import { ScrollView, ViewProps } from "react-native";
+import { FlatList, ViewProps } from "react-native";
 
-import { Box } from "@components";
+import { Box, Button } from "@components";
 
 import { ChatGroupedMessages } from "../ChatGroupedMessages";
 import { ChatInput } from "../ChatInput";
@@ -15,8 +15,10 @@ export const ChatBody = (props: ChatBodyProps) => {
   const {
     data,
     isLoading,
-    scrollViewRef,
+    showButton,
+    flatListRef,
     isAddMessageToPrivateConversationPending,
+    handleScroll,
     handleAddNewMessage,
     handleScrollToBottom,
   } = useChatBody();
@@ -29,24 +31,46 @@ export const ChatBody = (props: ChatBodyProps) => {
       {...props}
     >
       <Box flex={1}>
-        <ScrollView
-          style={{ flex: 1 }}
-          ref={scrollViewRef}
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ paddingBottom: 5, rowGap: 24 }}
-          onContentSizeChange={handleScrollToBottom}
-        >
-          {!isLoading ? (
-            <>
-              <ChatGroupedMessages data={data} />
-              {isAddMessageToPrivateConversationPending && (
-                <ChatWritingIndicator />
-              )}
-            </>
-          ) : (
-            <ChatSkeleton />
-          )}
-        </ScrollView>
+        {!isLoading ? (
+          <FlatList
+            inverted
+            ref={flatListRef}
+            scrollEnabled={true}
+            onScroll={handleScroll}
+            data={Object.entries(data)}
+            showsVerticalScrollIndicator={false}
+            keyExtractor={(_, index) => index.toString()}
+            contentContainerStyle={{
+              rowGap: 24,
+              flexGrow: 1,
+            }}
+            renderItem={({ item, index }) => {
+              const [key, value] = item;
+              return (
+                <ChatGroupedMessages key={index} date={key} value={value} />
+              );
+            }}
+            ListHeaderComponent={() =>
+              isAddMessageToPrivateConversationPending ? (
+                <Box marginBottom={"s6"}>
+                  <ChatWritingIndicator />
+                </Box>
+              ) : null
+            }
+          />
+        ) : (
+          <ChatSkeleton />
+        )}
+        {showButton && (
+          <Box position={"absolute"} right={0} bottom={0}>
+            <Button
+              width={45}
+              height={45}
+              iconName="chevronDown"
+              onPress={handleScrollToBottom}
+            />
+          </Box>
+        )}
       </Box>
       {!isLoading ? (
         <ChatInput
