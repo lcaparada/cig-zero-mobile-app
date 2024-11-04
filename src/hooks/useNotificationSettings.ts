@@ -4,7 +4,7 @@ import { isDevice } from "expo-device";
 import * as Notifications from "expo-notifications";
 
 export const useNotificationsSettings = () => {
-  const [areNotificationsActive, setAreNotificationsActive] = useState(false);
+  const [areNotificationsActive, setAreNotificationsActive] = useState(true);
 
   async function checkNotificationPermission() {
     if (!isDevice) {

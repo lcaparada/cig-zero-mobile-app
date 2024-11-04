@@ -71,6 +71,8 @@ export const TextInput = ({
               {
                 height,
                 flex: 1,
+                textAlign: "auto",
+                lineHeight: undefined,
                 color: colors.backgroundConstrast,
               },
               style,
