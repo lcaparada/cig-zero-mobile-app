@@ -93,7 +93,13 @@ export const useChatBody = () => {
 
   useEffect(() => {
     if (conversation) {
-      setGroupedMessagesByDate(groupMessagesByDate(conversation.messages));
+      const entriesArray = Object.entries(
+        groupMessagesByDate(conversation.messages)
+      );
+      entriesArray.sort(
+        (a, b) => new Date(b[0]).getTime() - new Date(a[0]).getTime()
+      );
+      setGroupedMessagesByDate(Object.fromEntries(entriesArray));
     }
   }, [conversation]);
 
