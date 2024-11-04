@@ -36,6 +36,7 @@ import {
   BarChart,
   MessageCircle,
   Send,
+  InfoCircle,
 } from "@assets";
 
 import { TouchableOpacityBox } from "../Box/Box";
@@ -117,6 +118,7 @@ const iconRegistry = {
   calendar: Calendar,
   success: CheckRound,
   arrowLeft: ArrowLeft,
+  infoCircle: InfoCircle,
   helpCircle: HelpCircle,
   arrowRight: ArrowRight,
   dollarSign: DollarSign,

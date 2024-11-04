@@ -20,6 +20,7 @@ export * from "./icons/fileText";
 export * from "./icons/settings";
 export * from "./icons/calendar";
 export * from "./icons/arrowLeft";
+export * from "./icons/infoCircle";
 export * from "./icons/checkRound";
 export * from "./icons/errorRound";
 export * from "./icons/arrowRight";

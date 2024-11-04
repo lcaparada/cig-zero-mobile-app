@@ -4,6 +4,7 @@ export * from "./Icon/Icon";
 export * from "./Toast/Toast";
 export * from "./Chart/Chart";
 export * from "./Count/Count";
+export * from "./Popup/Popup";
 export * from "./TabBar/TabBar";
 export * from "./Button/Button";
 export * from "./Avatar/Avatar";
