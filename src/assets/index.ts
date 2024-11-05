@@ -11,6 +11,7 @@ export * from "./icons/send";
 export * from "./icons/rings";
 export * from "./icons/clock";
 export * from "./icons/minus";
+export * from "./icons/userX";
 export * from "./icons/trash2";
 export * from "./icons/camera";
 export * from "./icons/shield";

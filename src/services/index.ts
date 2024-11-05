@@ -6,3 +6,7 @@ export * from "./authProvider/authProviderTypes";
 export * from "./toast/useToastService";
 export * from "./toast/toastType";
 export * from "./toast/Provider/ToastProvider";
+
+// LOCAL STORAGE SERVICE
+export * from "./localStorage/implementations/secureStorage";
+export * from "./localStorage/localStorage";

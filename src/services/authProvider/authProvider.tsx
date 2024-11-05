@@ -5,17 +5,30 @@ import { AuthChangeEvent, Session, User } from "@supabase/supabase-js";
 
 import { supabase, supabaseEdgeFunction } from "@api";
 
+import { authService } from "../../domain/Auth/authService";
+
 import { AuthContextParams, AuthProviderProps } from "./authProviderTypes";
 
 const AuthContext = createContext<AuthContextParams>({
   session: null,
   loading: true,
+  signOut: async () => {},
   updateUserInformation: () => {},
 });
 
 export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
+
+  const signOut = async () => {
+    try {
+      await authService.signOut();
+      setSession(null);
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  };
 
   const setAxiosAuthToken = (token: string | null) => {
     if (token) {
@@ -68,7 +81,9 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
   }, [session]);
 
   return (
-    <AuthContext.Provider value={{ session, loading, updateUserInformation }}>
+    <AuthContext.Provider
+      value={{ session, loading, signOut, updateUserInformation }}
+    >
       {children}
     </AuthContext.Provider>
   );

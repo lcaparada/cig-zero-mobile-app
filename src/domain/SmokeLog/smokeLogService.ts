@@ -54,8 +54,12 @@ const deleteSmokingRecord = async (
 };
 
 const getChartData = async (): Promise<GetChartData.Result> => {
-  const { data } = await supabaseEdgeFunction.get("get-chart-data");
-  return data;
+  try {
+    const { data } = await supabaseEdgeFunction.get("get-chart-data");
+    return data;
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const smokeLogService = {

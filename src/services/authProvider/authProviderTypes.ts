@@ -13,6 +13,7 @@ import {
 export type AuthContextParams = {
   session: Session | null;
   loading: boolean;
+  signOut: () => Promise<void>;
   updateUserInformation: (user: User) => void;
 };
 

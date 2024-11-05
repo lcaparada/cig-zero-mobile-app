@@ -1,4 +1,5 @@
-import { supabase } from "@api";
+import { supabase, supabaseEdgeFunction } from "@api";
+import { secureStorage } from "@services";
 
 import { SignInAnonymously } from "./authTypes";
 
@@ -12,6 +13,26 @@ const signInAnonymously = async (
   return data;
 };
 
+const signOut = async () => {
+  const { error } = await supabase.auth.signOut();
+  if (error) throw error;
+  try {
+    await secureStorage.removeItem("supabase.auth.token");
+  } catch (error) {
+    throw error;
+  }
+};
+
+const deleteAccount = async () => {
+  try {
+    await supabaseEdgeFunction.post("delete-user-account");
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const authService = {
+  signOut,
+  deleteAccount,
   signInAnonymously,
 };

@@ -37,6 +37,7 @@ import {
   MessageCircle,
   Send,
   InfoCircle,
+  UserX,
 } from "@assets";
 
 import { TouchableOpacityBox } from "../Box/Box";
@@ -107,6 +108,7 @@ const iconRegistry = {
   minus: Minus,
   rings: Rings,
   clock: Clock,
+  userX: UserX,
   shield: Shield,
   trash2: Trash2,
   error: ErrorRound,
