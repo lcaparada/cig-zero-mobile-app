@@ -36,9 +36,12 @@ export const useGetAllSmokingRecordsByMonth = ({
       }),
   });
 
-  if (error) {
-    showToast({ message: error.message, duration: 5000, type: "error" });
-  }
+  useEffect(() => {
+    if (error) {
+      showToast({ message: error.message, duration: 5000, type: "error" });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [error]);
 
   useEffect(() => {
     if (

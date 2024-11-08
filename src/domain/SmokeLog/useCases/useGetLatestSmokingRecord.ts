@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import { useQuery } from "@tanstack/react-query";
 
 import { QueryKeys } from "@infra";
@@ -25,9 +27,12 @@ export const useGetLatestSmokingRecord = () => {
       }),
   });
 
-  if (error) {
-    showToast({ message: error.message, duration: 5000, type: "error" });
-  }
+  useEffect(() => {
+    if (error) {
+      showToast({ message: error.message, duration: 5000, type: "error" });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [error]);
 
   return {
     isFetching,
