@@ -1,6 +1,10 @@
 import { useState } from "react";
 
+import { usePostHog } from "posthog-react-native";
+
 import { Box, Icon, Text, TouchableOpacityBox } from "@components";
+
+import { PostHogEventsName } from "@constraints";
 
 type FaqItemProps = {
   question: string;
@@ -9,6 +13,9 @@ type FaqItemProps = {
 
 export const FaqItem = ({ question, answers }: FaqItemProps) => {
   const [isOpened, setIsOpened] = useState(false);
+
+  const posthog = usePostHog();
+
   return (
     <Box
       rowGap={"s14"}
@@ -23,7 +30,10 @@ export const FaqItem = ({ question, answers }: FaqItemProps) => {
         paddingVertical={"s8"}
         backgroundColor={"background"}
         justifyContent={"space-between"}
-        onPress={() => setIsOpened(!isOpened)}
+        onPress={() => {
+          posthog.capture(PostHogEventsName.PRESS_TO_OPEN_OR_CLOSE_FAQ_ITEM);
+          setIsOpened(!isOpened);
+        }}
         borderColor={
           isOpened ? "background" : "bluePrimaryWith25PercentOpacity"
         }

@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import { usePostHog } from "posthog-react-native";
+
 import {
   Box,
   Text,
@@ -35,6 +37,8 @@ export const AchievementHeading = ({
     setShowAchievements((prev) => !prev);
   };
 
+  const posthog = usePostHog();
+
   return (
     <Box>
       <TouchableOpacityBox
@@ -43,7 +47,10 @@ export const AchievementHeading = ({
         justifyContent={"space-between"}
         paddingHorizontal={"s24"}
         mt={"s24"}
-        onPress={handleToggleAchievements}
+        onPress={() => {
+          posthog.capture("PRESS_TO_TOGGLE_ACHIEVEMENTS");
+          handleToggleAchievements();
+        }}
         {...boxProps}
       >
         <Box flex={1} rowGap={"s6"}>

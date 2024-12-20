@@ -1,7 +1,9 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigation } from "@react-navigation/native";
+import { usePostHog } from "posthog-react-native";
 import { useForm } from "react-hook-form";
 
+import { PostHogEventsName } from "@constraints";
 import { useUpdateUserInformation } from "@domain";
 import { useAuth, UserMetaData } from "@services";
 
@@ -16,6 +18,8 @@ export const usePersonalInformation = () => {
 
   const userMetaData = session?.user.user_metadata as UserMetaData;
 
+  const posthog = usePostHog();
+
   const navigation = useNavigation();
 
   const { control, getValues } = useForm<PersonalInformationSchemaType>({
@@ -27,6 +31,7 @@ export const usePersonalInformation = () => {
   });
 
   const updateUserInformation = () => {
+    posthog.capture(PostHogEventsName.PRESS_TO_UPDATE_USER_INFORMATION);
     handleUpdateUserInformation(getValues()).then(() => navigation.goBack());
   };
 

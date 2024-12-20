@@ -1,5 +1,7 @@
+import { usePostHog } from "posthog-react-native";
 import { State, PanGestureHandler } from "react-native-gesture-handler";
 
+import { PostHogEventsName } from "@constraints";
 import { IndexedSmokingRecordsState } from "src/screens/app/CalendarScreen/useCalendarScreen";
 
 import { Box } from "../Box/Box";
@@ -31,6 +33,8 @@ export const Calendar = ({
     handleSelectDate,
   } = useCalendar({ date, setDate });
 
+  const posthog = usePostHog();
+
   const PADDING_SCREEN = 24;
   const AVAILABLE_SPACE_SCREEN = SCREEN_WIDTH - PADDING_SCREEN * 2;
   const WIDTH_BALL = 37;
@@ -39,8 +43,10 @@ export const Calendar = ({
   const onHandlerStateChange = ({ nativeEvent }: any) => {
     if (nativeEvent.state === State.END) {
       if (nativeEvent.translationX > 50) {
+        posthog.capture(PostHogEventsName.SWIPE_LEFT_TO_SUBTRACT_MONTH);
         handleSubMonth();
       } else if (nativeEvent.translationX < -50) {
+        posthog.capture(PostHogEventsName.SWIPE_RIGHT_TO_ADD_MONTH);
         handleAddMonth();
       }
     }

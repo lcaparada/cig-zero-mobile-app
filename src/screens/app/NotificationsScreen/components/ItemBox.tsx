@@ -1,8 +1,11 @@
 import { useState } from "react";
 
+import { usePostHog } from "posthog-react-native";
+
 import { BoxProps, Box, Text, Switch } from "@components";
 import { useNotificationsSettings } from "@hooks";
 
+import { PostHogEventsName } from "@constraints";
 import {
   NotificationSettingsData,
   useUpdateNotificationSetting,
@@ -41,7 +44,7 @@ export const ItemBox = ({
       });
     } catch (error) {
       setIsActive(!isActive);
-      throw error;
+      console.error(error);
     }
   };
 
@@ -50,6 +53,13 @@ export const ItemBox = ({
     borderTopRightRadius: index === 0 ? "s10" : undefined,
     borderBottomLeftRadius: index === length - 1 ? "s10" : undefined,
     borderBottomRightRadius: index === length - 1 ? "s10" : undefined,
+  };
+
+  const posthog = usePostHog();
+
+  const _handleUpdateNotificationSetting = async () => {
+    posthog.capture(PostHogEventsName.PRESS_TO_UPDATE_NOTIFICATION_SETTINGS);
+    handleUpdateNotificationSetting();
   };
 
   return (
@@ -69,7 +79,7 @@ export const ItemBox = ({
           isActive={isActive}
           disabled={!areNotificationsActive || isPending}
           setIsActive={setIsActive}
-          onPress={() => handleUpdateNotificationSetting()}
+          onPress={_handleUpdateNotificationSetting}
         />
       </Box>
     </Box>

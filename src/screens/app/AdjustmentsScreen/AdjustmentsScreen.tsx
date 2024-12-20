@@ -1,12 +1,17 @@
 import { useNavigation } from "@react-navigation/native";
+import { usePostHog } from "posthog-react-native";
 
 import { Box, Popup, Screen } from "@components";
+
+import { PostHogEventsName } from "@constraints";
 
 import { AdjusmentsHeader, Section, SectionItemData } from "./components";
 import { useAdjustmentsScreen } from "./useAdjustmentsScreen";
 
 export const AdjustmentsScreen = () => {
   const navigation = useNavigation();
+  const posthog = usePostHog();
+
   const {
     handleDeleteAccount,
     isDeleteAccountPending,
@@ -43,7 +48,12 @@ export const AdjustmentsScreen = () => {
     {
       icon: "userX",
       label: "Deletar conta",
-      action: () => setConfirmDeleteAccountModal(true),
+      action: () => {
+        posthog.capture(
+          PostHogEventsName.PRESS_TO_SHOW_CONFIRM_DELETE_MODAL_ACCOUNT
+        );
+        setConfirmDeleteAccountModal(true);
+      },
     },
   ];
 
@@ -80,6 +90,9 @@ export const AdjustmentsScreen = () => {
             preset: "outline",
             isLoading: isDeleteAccountPending,
             onPress: () => {
+              posthog.capture(
+                PostHogEventsName.PRESS_TO_CONFIRM_DELETE_ACCOUNT
+              );
               handleDeleteAccount().then(() => {
                 setConfirmDeleteAccountModal(false);
               });

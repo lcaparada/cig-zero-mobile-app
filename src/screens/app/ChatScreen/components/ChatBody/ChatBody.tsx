@@ -1,6 +1,10 @@
 import { FlatList, ViewProps } from "react-native";
 
+import { usePostHog } from "posthog-react-native";
+
 import { Box, Button } from "@components";
+
+import { PostHogEventsName } from "@constraints";
 
 import { ChatGroupedMessages } from "../ChatGroupedMessages";
 import { ChatInput } from "../ChatInput";
@@ -22,6 +26,9 @@ export const ChatBody = (props: ChatBodyProps) => {
     handleAddNewMessage,
     handleScrollToBottom,
   } = useChatBody();
+
+  const posthog = usePostHog();
+
   return (
     <Box
       flex={1}
@@ -67,7 +74,12 @@ export const ChatBody = (props: ChatBodyProps) => {
               width={45}
               height={45}
               iconName="chevronDown"
-              onPress={handleScrollToBottom}
+              onPress={() => {
+                posthog.capture(
+                  PostHogEventsName.PRESS_TO_SCROLL_TO_BOTTOM_ON_CHAT
+                );
+                handleScrollToBottom();
+              }}
             />
           </Box>
         )}

@@ -1,3 +1,7 @@
+import { Fragment } from "react";
+
+import { usePostHog } from "posthog-react-native";
+
 import {
   Screen,
   Divider,
@@ -5,6 +9,8 @@ import {
   AddSmokingHourBottomSheet,
   SmokingDetailsBottomSheet,
 } from "@components";
+
+import { PostHogEventsName } from "@constraints";
 
 import { CalendarHeader, SmokingActivities } from "./components";
 import { useCalendarScreen } from "./useCalendarScreen";
@@ -25,8 +31,10 @@ export const CalendarScreen = () => {
     setShowAddSmokingHourModal,
   } = useCalendarScreen();
 
+  const posthog = usePostHog();
+
   return (
-    <>
+    <Fragment>
       <Screen
         hasPaddingTop={false}
         scrollable
@@ -36,7 +44,12 @@ export const CalendarScreen = () => {
           showAddSmokingRecordButton
             ? {
                 text: "Adicionar fumo",
-                action: () => setShowAddSmokingHourModal(true),
+                action: () => {
+                  posthog.capture(
+                    PostHogEventsName.PRESS_TO_SHOW_ADD_SMOKING_HOUR_MODAL
+                  );
+                  setShowAddSmokingHourModal(true);
+                },
               }
             : undefined
         }
@@ -67,6 +80,6 @@ export const CalendarScreen = () => {
           setVisible={setShowSmokingDetailsModal}
         />
       )}
-    </>
+    </Fragment>
   );
 };

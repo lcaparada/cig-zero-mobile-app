@@ -1,5 +1,7 @@
 import { format, isSameMonth } from "date-fns";
+import { usePostHog } from "posthog-react-native";
 
+import { PostHogEventsName } from "@constraints";
 import { useAuth } from "@services";
 import { Box, BoxProps, TouchableOpacityBox } from "src/components/Box/Box";
 import { Text } from "src/components/Text/Text";
@@ -26,6 +28,9 @@ export const CalendarDays = ({
   const userCreatedAt = session?.user?.created_at
     ? new Date(session.user.created_at).toISOString()
     : new Date().toISOString();
+
+  const posthog = usePostHog();
+
   return (
     <Box {...$numberDayWrapper} style={{ columnGap: Math.floor(COLUMN_GAP) }}>
       {days.map((d, i) => {
@@ -43,7 +48,10 @@ export const CalendarDays = ({
             key={i}
             {...$dayWrapper}
             activeOpacity={0}
-            onPress={() => selectDate(d)}
+            onPress={() => {
+              posthog.capture(PostHogEventsName.PRESS_TO_SELECT_DATE);
+              selectDate(d);
+            }}
             opacity={isSameMonth(date, d) ? 1 : 0.2}
             {...circleStyle.circle}
           >

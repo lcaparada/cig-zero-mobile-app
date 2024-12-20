@@ -1,12 +1,18 @@
 import { useState } from "react";
 
 import { useNavigation } from "@react-navigation/native";
+import { usePostHog } from "posthog-react-native";
 
 import { Box, BoxProps, Icon, Popup, Text } from "@components";
+
+import { PostHogEventsName } from "@constraints";
 
 export const ChatHeader = () => {
   const [infoModalVisible, setInfoModalVisible] = useState(false);
   const navigation = useNavigation();
+
+  const posthog = usePostHog();
+
   return (
     <Box backgroundColor={"primary"} {...$shadow}>
       <Box
@@ -36,7 +42,12 @@ export const ChatHeader = () => {
             strokeWidth={2}
             name="infoCircle"
             color="neutralLighest"
-            onPress={() => setInfoModalVisible(true)}
+            onPress={() => {
+              posthog.capture(
+                PostHogEventsName.PRESS_TO_SHOW_INFO_MODAL_ON_CHAT
+              );
+              setInfoModalVisible(true);
+            }}
           />
         </Box>
       </Box>
