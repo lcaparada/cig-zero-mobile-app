@@ -1,4 +1,5 @@
 import { NavigationContainer } from "@react-navigation/native";
+import { PostHogProvider } from "posthog-react-native";
 
 import { useAuth } from "@services";
 
@@ -10,7 +11,14 @@ export const Route = () => {
   if (loading) return null;
   return (
     <NavigationContainer>
-      {session ? <AppStack /> : <AuthStack />}
+      <PostHogProvider
+        apiKey="<ph_project_api_key>"
+        options={{
+          host: "https://us.i.posthog.com",
+        }}
+      >
+        {session ? <AppStack /> : <AuthStack />}
+      </PostHogProvider>
     </NavigationContainer>
   );
 };
