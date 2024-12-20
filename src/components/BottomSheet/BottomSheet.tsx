@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { StyleSheet } from "react-native";
 
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
@@ -93,7 +94,7 @@ export const BottomSheet = ({
   }));
 
   return (
-    <>
+    <Fragment>
       <AnimatedPressableBox
         {...$backdrop}
         style={[StyleSheet.absoluteFillObject, { zIndex: 999 }]}
@@ -136,7 +137,7 @@ export const BottomSheet = ({
           )}
         </AnimatedBoxRNR>
       </GestureDetector>
-    </>
+    </Fragment>
   );
 };
 

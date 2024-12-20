@@ -26,7 +26,7 @@ export const SmokingDetailsBottomSheet = ({
         },
       }}
       title="Detalhes do fumo"
-      height={"28%"}
+      height={"auto"}
       scrollable={false}
       setVisible={setVisible}
     >
