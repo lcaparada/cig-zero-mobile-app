@@ -1,11 +1,17 @@
+import { usePostHog } from "posthog-react-native";
+
 import { Box, Button, Screen, Text } from "@components";
 import { AuthScreenProps } from "@routes";
+
+import { PostHogEventsName } from "@constraints";
 
 import { useStartScreen } from "./useStartScreen";
 
 export const StartScreen = ({ route }: AuthScreenProps<"StartScreen">) => {
   const { name } = route.params;
   const { authenticateSignInAnonymously, isPending } = useStartScreen();
+  const posthog = usePostHog();
+
   return (
     <Screen centerItems canGoBack>
       <Box alignItems={"center"} justifyContent={"center"} rowGap={"s20"}>
@@ -26,7 +32,10 @@ export const StartScreen = ({ route }: AuthScreenProps<"StartScreen">) => {
         text="Iniciar"
         preset="primary"
         isLoading={isPending}
-        onPress={() => authenticateSignInAnonymously(route.params)}
+        onPress={() => {
+          posthog.capture(PostHogEventsName.PRESS_TO_AUTHENTICATE_ANONYMOUSLY);
+          authenticateSignInAnonymously(route.params);
+        }}
       />
     </Screen>
   );

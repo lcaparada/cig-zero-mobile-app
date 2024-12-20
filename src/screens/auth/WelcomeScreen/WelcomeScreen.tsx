@@ -1,9 +1,13 @@
 import { useNavigation } from "@react-navigation/native";
+import { usePostHog } from "posthog-react-native";
 
 import { Box, Button, Screen, Text } from "@components";
 
+import { PostHogEventsName } from "@constraints";
+
 export const WelcomeScreen = () => {
   const { navigate } = useNavigation();
+  const posthog = usePostHog();
 
   return (
     <Screen centerItems>
@@ -22,7 +26,10 @@ export const WelcomeScreen = () => {
         </Text>
       </Box>
       <Button
-        onPress={() => navigate("OnboardingScreen")}
+        onPress={() => {
+          posthog.capture(PostHogEventsName.PRESS_TO_START_ONBOARDING);
+          navigate("OnboardingScreen");
+        }}
         mt={"s40"}
         text="Começar agora"
         preset="primary"

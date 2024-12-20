@@ -1,4 +1,8 @@
+import { usePostHog } from "posthog-react-native";
+
 import { Screen } from "@components";
+
+import { PostHogEventsName } from "@constraints";
 
 import { useOnboardingScreen } from "./useOnboardingScreen";
 
@@ -15,6 +19,10 @@ export const OnboardingScreen = () => {
 
   const MAX_STEPS = 8;
 
+  const posthog = usePostHog();
+
+  const isLastStep = step === MAX_STEPS;
+
   return (
     <Screen
       scrollable
@@ -24,8 +32,17 @@ export const OnboardingScreen = () => {
       insets={{ bottom: "s35", left: "s24", right: "s24", top: "s24" }}
       button={{
         text: "Próximo",
-        action: () =>
-          step === MAX_STEPS ? handleNavigateToStartScreen() : handleNextStep(),
+        action: () => {
+          if (isLastStep) {
+            posthog.capture(
+              PostHogEventsName.PRESS_TO_NAVIGATE_TO_START_SCREEN
+            );
+            handleNavigateToStartScreen();
+          } else {
+            posthog.capture(PostHogEventsName.PRESS_TO_NEXT_STEP, { step });
+            handleNextStep();
+          }
+        },
         disabled: !handleCanGoNextPage(),
       }}
       progressBar={{ progress: (step / MAX_STEPS) * 100 }}
