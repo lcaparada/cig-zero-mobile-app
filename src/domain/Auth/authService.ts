@@ -1,5 +1,6 @@
 import { supabase, supabaseEdgeFunction } from "@api";
-import { secureStorage } from "@services";
+
+import { secureStorage } from "../../services/localStorage/implementations/secureStorage";
 
 import { SignInAnonymously } from "./authTypes";
 
