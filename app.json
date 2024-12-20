@@ -23,7 +23,11 @@
       },
       "versionCode": 3,
       "googleServicesFile": "./google-services.json",
-      "package": "com.elevanteholdings.cigzero"
+      "package": "com.elevanteholdings.cigzero",
+      "permissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.INTERNET"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -62,6 +66,12 @@
         "projectId": "bd47c4d6-98ce-4ff1-beaf-21891fddbfd4"
       }
     },
-    "owner": "cavalcante.lucasx"
+    "owner": "cavalcante.lucasx",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/bd47c4d6-98ce-4ff1-beaf-21891fddbfd4"
+    }
   }
 }
