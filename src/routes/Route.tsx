@@ -17,7 +17,7 @@ export const Route = () => {
           host: "https://us.i.posthog.com",
         }}
       >
-        {session ? <AppStack /> : <AuthStack />}
+        <AuthStack />
       </PostHogProvider>
     </NavigationContainer>
   );

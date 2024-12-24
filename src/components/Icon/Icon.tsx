@@ -38,6 +38,10 @@ import {
   Send,
   InfoCircle,
   UserX,
+  Smile,
+  X,
+  TrendingUp,
+  Check,
 } from "@assets";
 
 import { TouchableOpacityBox } from "../Box/Box";
@@ -96,6 +100,7 @@ export const Icon = ({
 };
 
 const iconRegistry = {
+  x: X,
   zap: Zap,
   user: User,
   star: Star,
@@ -109,6 +114,8 @@ const iconRegistry = {
   rings: Rings,
   clock: Clock,
   userX: UserX,
+  smile: Smile,
+  check: Check,
   shield: Shield,
   trash2: Trash2,
   error: ErrorRound,
@@ -124,6 +131,7 @@ const iconRegistry = {
   helpCircle: HelpCircle,
   arrowRight: ArrowRight,
   dollarSign: DollarSign,
+  trendingUp: TrendingUp,
   chevronLeft: ChevronLeft,
   chevronDown: ChevronDown,
   chevronRight: ChevronRight,

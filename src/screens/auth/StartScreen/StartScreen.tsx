@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import { usePostHog } from "posthog-react-native";
 
 import { Box, Button, Screen, Text } from "@components";
@@ -5,12 +6,10 @@ import { AuthScreenProps } from "@routes";
 
 import { PostHogEventsName } from "@constraints";
 
-import { useStartScreen } from "./useStartScreen";
-
 export const StartScreen = ({ route }: AuthScreenProps<"StartScreen">) => {
   const { name } = route.params;
-  const { authenticateSignInAnonymously, isPending } = useStartScreen();
   const posthog = usePostHog();
+  const navigation = useNavigation();
 
   return (
     <Screen centerItems canGoBack>
@@ -31,10 +30,9 @@ export const StartScreen = ({ route }: AuthScreenProps<"StartScreen">) => {
         mt={"s40"}
         text="Iniciar"
         preset="primary"
-        isLoading={isPending}
         onPress={() => {
-          posthog.capture(PostHogEventsName.PRESS_TO_AUTHENTICATE_ANONYMOUSLY);
-          authenticateSignInAnonymously(route.params);
+          posthog.capture(PostHogEventsName.PRESS_TO_START);
+          navigation.navigate("SubscriptionScreen");
         }}
       />
     </Screen>

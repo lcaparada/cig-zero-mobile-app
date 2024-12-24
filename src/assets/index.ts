@@ -1,4 +1,5 @@
 // ICONS
+export * from "./icons/x";
 export * from "./icons/zap";
 export * from "./icons/user";
 export * from "./icons/star";
@@ -8,6 +9,8 @@ export * from "./icons/bell";
 export * from "./icons/wind";
 export * from "./icons/plus";
 export * from "./icons/send";
+export * from "./icons/check";
+export * from "./icons/smile";
 export * from "./icons/rings";
 export * from "./icons/clock";
 export * from "./icons/minus";
@@ -21,6 +24,7 @@ export * from "./icons/fileText";
 export * from "./icons/settings";
 export * from "./icons/calendar";
 export * from "./icons/arrowLeft";
+export * from "./icons/trendingUp";
 export * from "./icons/infoCircle";
 export * from "./icons/checkRound";
 export * from "./icons/errorRound";
