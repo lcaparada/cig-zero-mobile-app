@@ -17,7 +17,7 @@ export const usePopup = ({
   const translateY = useSharedValue(SCREEN_HEIGHT);
 
   const animatedStyles = useAnimatedStyle(() => ({
-    transform: [{ translateY: withSpring(translateY.value) }],
+    transform: [{ translateY: withSpring(translateY.value, { damping: 17 }) }],
   }));
 
   const hidePopup = () => {
