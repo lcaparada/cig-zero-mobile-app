@@ -61,7 +61,7 @@ export const Screen = ({
   overflowVisible,
   pullToRefresh,
   screenTitle,
-  scrollViewPaddingBottom = 100,
+  scrollViewPaddingBottom = 40,
   canGoBackSpecificyScreen,
   insets = { left: "s24", right: "s24", top: "s0", bottom: "s0" },
 }: ScreenProps) => {
