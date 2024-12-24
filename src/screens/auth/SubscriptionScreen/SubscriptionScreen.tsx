@@ -2,10 +2,10 @@ import { useState } from "react";
 
 import {
   Box,
-  Icon,
-  Reviews,
-  Screen,
   Text,
+  Icon,
+  Screen,
+  Reviews,
   TouchableOpacityBox,
 } from "@components";
 
