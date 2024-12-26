@@ -25,7 +25,7 @@ export const FirstStep = () => {
             motivadora.
           </Text>
           <Text color={"backgroundConstrast"} weight="medium" preset="default">
-            Selecionamos as principais ferramentas do Cigzero para apoiar seu
+            Selecionamos as principais ferramentas do CigZero para apoiar seu
             progresso.
           </Text>
         </Box>
