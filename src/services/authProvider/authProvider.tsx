@@ -55,15 +55,18 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
         switch (event) {
           case "SIGNED_IN":
           case "INITIAL_SESSION":
+            setAxiosAuthToken(session?.access_token ?? null);
             setSession(session);
             break;
           case "TOKEN_REFRESHED":
             if (session?.access_token) {
+              setAxiosAuthToken(session?.access_token ?? null);
               setSession({ ...session, access_token: session.access_token });
             }
             break;
           case "SIGNED_OUT":
             setSession(null);
+            setAxiosAuthToken(null);
             Sentry.setUser(null);
             break;
         }
@@ -75,10 +78,6 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
       authListener.subscription.unsubscribe();
     };
   }, []);
-
-  useEffect(() => {
-    setAxiosAuthToken(session?.access_token ?? null);
-  }, [session]);
 
   return (
     <AuthContext.Provider
