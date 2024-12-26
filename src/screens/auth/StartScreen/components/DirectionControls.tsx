@@ -29,7 +29,7 @@ export const DirectionControls = ({
         <DirectionButton
           iconName="arrowDown"
           onPress={onDownPress}
-          disabled={currentPage === 4}
+          disabled={currentPage === 3}
         />
       </Box>
     </Box>
