@@ -5,16 +5,6 @@ import RevenueCat, {
   PurchasesStoreProductDiscount,
 } from "react-native-purchases";
 
-import { SetAttributesParams } from "./revenueCatTypes";
-
-const setAttributes = async (params: SetAttributesParams) => {
-  try {
-    await RevenueCat.setAttributes(params);
-  } catch (error) {
-    throw error;
-  }
-};
-
 const getOfferings = async () => {
   try {
     const offerings = await RevenueCat.getOfferings();
@@ -88,7 +78,6 @@ const getCustomerInfo = async () => {
 
 export const revenueCatService = {
   getOfferings,
-  setAttributes,
   purchasePackage,
   getCustomerInfo,
   restorePurchases,

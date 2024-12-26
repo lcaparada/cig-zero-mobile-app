@@ -23,8 +23,8 @@ export const ReviewItem = ({ name, review, style }: ReviewItemProps) => {
       >
         <Box flexDirection={"row"} columnGap={"s8"} alignItems={"center"}>
           <Text
+            preset="default"
             weight="semiBold"
-            preset="paragraphsBig"
             color={"backgroundConstrast"}
           >
             {name}
@@ -43,11 +43,7 @@ export const ReviewItem = ({ name, review, style }: ReviewItemProps) => {
           ))}
         </Box>
       </Box>
-      <Text
-        weight="medium"
-        preset="paragraphs"
-        color="backgroundSecondConstrast"
-      >
+      <Text weight="medium" preset="default" color="backgroundSecondConstrast">
         {review}
       </Text>
     </Box>

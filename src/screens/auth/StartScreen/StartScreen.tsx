@@ -7,6 +7,8 @@ import {
   useWindowDimensions,
 } from "react-native";
 
+import { useNavigation } from "@react-navigation/native";
+
 import { Box, Button } from "@components";
 import { useAppSafeAreaContext } from "@hooks";
 
@@ -21,6 +23,7 @@ export const StartScreen = () => {
   const scrollRef = useRef<ScrollView>(null);
   const { bottom } = useAppSafeAreaContext();
   const { width: WIDTH_SCREEN } = useWindowDimensions();
+  const navigation = useNavigation();
 
   const handleLayout = (event: LayoutChangeEvent) => {
     const height = event.nativeEvent.layout.height;
@@ -73,7 +76,10 @@ export const StartScreen = () => {
           position={"absolute"}
           width={WIDTH_SCREEN - 24 * 2}
         >
-          <Button text="Iniciar jornada" />
+          <Button
+            text="Iniciar jornada"
+            onPress={() => navigation.navigate("SubscriptionScreen")}
+          />
         </Box>
       )}
     </Box>

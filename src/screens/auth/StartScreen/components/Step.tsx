@@ -26,7 +26,7 @@ export const Step = ({
       justifyContent={"center"}
     >
       <Box flexDirection={"row"} columnGap={"s35"} alignItems={"center"}>
-        <Box flex={1} rowGap={"s28"} alignItems={"center"}>
+        <Box flex={1} rowGap={"s28"}>
           <ImageComponent width={200} imageName={imageName} />
           <Box rowGap={"s18"}>
             <Text weight="medium" color="primary">
