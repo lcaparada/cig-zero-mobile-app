@@ -44,6 +44,10 @@ export const useSubscriptionsScreen = () => {
 
   const handlePurchasePackage = async (params: OnboardingScreenSchemaType) => {
     try {
+      if (process.env.EXPO_PUBLIC_NODE_ENV === "DEV") {
+        authenticateSignInAnonymously(params);
+        return;
+      }
       await purchasePackage();
       authenticateSignInAnonymously(params);
     } catch (error: any) {
