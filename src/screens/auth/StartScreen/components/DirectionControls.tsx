@@ -1,6 +1,7 @@
 import { Box, BoxProps, Icon, TouchableOpacityBox } from "@components";
 
 interface DirectionControlsProps {
+  length: number;
   currentPage: number;
   onUpPress: () => void;
   onDownPress: () => void;
@@ -15,11 +16,12 @@ interface DirectionButtonProps {
 export const DirectionControls = ({
   onUpPress,
   onDownPress,
+  length,
   currentPage,
 }: DirectionControlsProps) => {
   return (
     <Box alignItems={"center"} rowGap={"s20"}>
-      <DirectionIndicator currentPage={currentPage} />
+      <DirectionIndicator length={length} currentPage={currentPage} />
       <Box rowGap={"s16"}>
         <DirectionButton
           iconName="arrowUp"
@@ -29,7 +31,7 @@ export const DirectionControls = ({
         <DirectionButton
           iconName="arrowDown"
           onPress={onDownPress}
-          disabled={currentPage === 3}
+          disabled={currentPage === length - 1}
         />
       </Box>
     </Box>
@@ -51,10 +53,16 @@ const DirectionButton = ({
   </TouchableOpacityBox>
 );
 
-const DirectionIndicator = ({ currentPage }: { currentPage: number }) => {
+const DirectionIndicator = ({
+  currentPage,
+  length,
+}: {
+  currentPage: number;
+  length: number;
+}) => {
   return (
     <Box rowGap={"s12"}>
-      {Array.from({ length: 4 }).map((_, index) => (
+      {Array.from({ length }).map((_, index) => (
         <Box
           key={index}
           width={12}

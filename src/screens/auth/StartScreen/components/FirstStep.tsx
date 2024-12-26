@@ -2,7 +2,17 @@ import { useWindowDimensions } from "react-native";
 
 import { Box, Text } from "@components";
 
-export const FirstStep = () => {
+type StepProps = {
+  primaryTitle: string;
+  secondaryTitle: string;
+  description: string;
+};
+
+export const Step = ({
+  primaryTitle,
+  secondaryTitle,
+  description,
+}: StepProps) => {
   const { height: HEIGHT_SCREEN } = useWindowDimensions();
 
   return (
@@ -14,19 +24,17 @@ export const FirstStep = () => {
       <Box flexDirection={"row"} columnGap={"s35"} alignItems={"center"}>
         <Box flex={1} rowGap={"s18"}>
           <Text weight="medium" color="primary">
-            Próximos passos
+            {primaryTitle}
           </Text>
           <Text
             weight="bold"
             color={"backgroundConstrast"}
             preset="paragraphsXL"
           >
-            Vamos te ajudar a reduzir ou parar de fumar de forma segura e
-            motivadora.
+            {secondaryTitle}
           </Text>
           <Text color={"backgroundConstrast"} weight="medium" preset="default">
-            Selecionamos as principais ferramentas do CigZero para apoiar seu
-            progresso.
+            {description}
           </Text>
         </Box>
       </Box>
