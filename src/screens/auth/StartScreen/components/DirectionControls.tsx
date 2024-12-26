@@ -1,27 +1,35 @@
-import { Box, Icon, TouchableOpacityBox } from "@components";
+import { Box, BoxProps, Icon, TouchableOpacityBox } from "@components";
 
 interface DirectionControlsProps {
+  currentPage: number;
   onUpPress: () => void;
   onDownPress: () => void;
+}
+
+interface DirectionButtonProps {
+  iconName: "arrowUp" | "arrowDown";
+  disabled?: boolean;
+  onPress: () => void;
 }
 
 export const DirectionControls = ({
   onUpPress,
   onDownPress,
+  currentPage,
 }: DirectionControlsProps) => {
   return (
     <Box alignItems={"center"} rowGap={"s20"}>
-      <DirectionIndicator />
+      <DirectionIndicator currentPage={currentPage} />
       <Box rowGap={"s16"}>
         <DirectionButton
           iconName="arrowUp"
           onPress={onUpPress}
-          label="Increase value" // Descrição acessível
+          disabled={currentPage === 0}
         />
         <DirectionButton
           iconName="arrowDown"
           onPress={onDownPress}
-          label="Decrease value" // Descrição acessível
+          disabled={currentPage === 4}
         />
       </Box>
     </Box>
@@ -29,31 +37,21 @@ export const DirectionControls = ({
 };
 
 const DirectionButton = ({
-  iconName,
   onPress,
-  label,
-}: {
-  iconName: "arrowUp" | "arrowDown";
-  onPress: () => void;
-  label: string;
-}) => (
+  iconName,
+  disabled = false,
+}: DirectionButtonProps) => (
   <TouchableOpacityBox
-    width={45}
-    height={45}
-    alignItems={"center"}
-    justifyContent={"center"}
-    backgroundColor={"primary"}
-    borderRadius={"s12"}
+    {...$directionButtonWrapper}
     onPress={onPress}
-    accessibilityRole="button"
-    accessibilityLabel={label}
-    style={{ padding: 8 }}
+    disabled={disabled}
+    backgroundColor={disabled ? "lightNeutralGray" : "primary"}
   >
     <Icon name={iconName} color="background" strokeWidth={2} size="s24" />
   </TouchableOpacityBox>
 );
 
-const DirectionIndicator = () => {
+const DirectionIndicator = ({ currentPage }: { currentPage: number }) => {
   return (
     <Box rowGap={"s12"}>
       {Array.from({ length: 4 }).map((_, index) => (
@@ -62,9 +60,19 @@ const DirectionIndicator = () => {
           width={12}
           height={12}
           borderRadius={"s12"}
-          backgroundColor={"lightNeutralGray"}
+          backgroundColor={
+            currentPage === index ? "primary" : "lightNeutralGray"
+          }
         />
       ))}
     </Box>
   );
+};
+
+const $directionButtonWrapper: BoxProps = {
+  width: 45,
+  height: 45,
+  borderRadius: "s12",
+  alignItems: "center",
+  justifyContent: "center",
 };
