@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Platform } from "react-native";
 
 import * as Sentry from "@sentry/react-native";
 import { ThemeProvider } from "@shopify/restyle";
@@ -8,6 +9,7 @@ import { ptBR } from "date-fns/locale";
 import { useFonts } from "expo-font";
 import * as Notifications from "expo-notifications";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import RevenueCat from "react-native-purchases";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { Splash, Toast } from "@components";
@@ -46,6 +48,15 @@ function App() {
     "SFProRounded-Semibold": require("./assets/fonts/SF-Pro-Rounded-Semibold.otf"),
     "SFProRounded-Bold": require("./assets/fonts/SF-Pro-Rounded-Bold.otf"),
   });
+
+  useEffect(() => {
+    RevenueCat.setLogLevel(RevenueCat.LOG_LEVEL.VERBOSE);
+    if (Platform.OS === "ios") {
+      RevenueCat.configure({ apiKey: "appl_ZgnVRfDLhSQVjUZWNVXrSmcZZNY" });
+    } else if (Platform.OS === "android") {
+      RevenueCat.configure({ apiKey: "" });
+    }
+  }, []);
 
   useEffect(() => {
     setDefaultOptions({ locale: ptBR });

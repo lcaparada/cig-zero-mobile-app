@@ -15,11 +15,10 @@ import { useAppTheme } from "@hooks";
 import { AnimatedBoxRNR } from "../Box/Box";
 
 type SplashProps = {
-  loading: boolean;
   onComplete: (status: boolean) => void;
 };
 
-export const Splash = ({ loading, onComplete }: SplashProps) => {
+export const Splash = ({ onComplete }: SplashProps) => {
   const [animationDone, setAnimationDone] = useState(false);
 
   const opacity = useSharedValue(1);
@@ -48,14 +47,14 @@ export const Splash = ({ loading, onComplete }: SplashProps) => {
   }));
 
   useEffect(() => {
-    if (animationDone && !loading) {
+    if (animationDone) {
       opacity.value = withTiming(0, {
         duration: FADE_ANIMATION_DURATION,
       });
       setTimeout(() => onComplete(true), FADE_ANIMATION_DURATION);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [animationDone, loading]);
+  }, [animationDone]);
 
   return (
     <AnimatedBoxRNR

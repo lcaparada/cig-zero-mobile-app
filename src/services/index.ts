@@ -10,3 +10,8 @@ export * from "./toast/Provider/ToastProvider";
 // LOCAL STORAGE SERVICE
 export * from "./localStorage/implementations/secureStorage";
 export * from "./localStorage/localStorage";
+
+// REVENUE CAT SERVICE
+export * from "./revenueCat/useRevenueCat";
+export * from "./revenueCat/revenueCatTypes";
+export * from "./revenueCat/revenueCatService";
