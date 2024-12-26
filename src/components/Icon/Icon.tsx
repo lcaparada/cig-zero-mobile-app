@@ -42,6 +42,8 @@ import {
   X,
   TrendingUp,
   Check,
+  ArrowDown,
+  ArrowUp,
 } from "@assets";
 
 import { TouchableOpacityBox } from "../Box/Box";
@@ -118,6 +120,7 @@ const iconRegistry = {
   check: Check,
   shield: Shield,
   trash2: Trash2,
+  arrowUp: ArrowUp,
   error: ErrorRound,
   camera: CameraIcon,
   barChart: BarChart,
@@ -126,6 +129,7 @@ const iconRegistry = {
   settings: Settings,
   calendar: Calendar,
   success: CheckRound,
+  arrowDown: ArrowDown,
   arrowLeft: ArrowLeft,
   infoCircle: InfoCircle,
   helpCircle: HelpCircle,

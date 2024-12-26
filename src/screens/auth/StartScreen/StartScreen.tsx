@@ -1,40 +1,26 @@
-import { useNavigation } from "@react-navigation/native";
-import { usePostHog } from "posthog-react-native";
+import { ScrollView } from "react-native";
 
-import { Box, Button, Screen, Text } from "@components";
-import { AuthScreenProps } from "@routes";
+import { Box } from "@components";
 
-import { PostHogEventsName } from "@constraints";
+import { DirectionControls, FirstStep } from "./components";
 
-export const StartScreen = ({ route }: AuthScreenProps<"StartScreen">) => {
-  const { name } = route.params;
-  const posthog = usePostHog();
-  const navigation = useNavigation();
-
+export const StartScreen = () => {
   return (
-    <Screen centerItems canGoBack>
-      <Box alignItems={"center"} justifyContent={"center"} rowGap={"s20"}>
-        <Text preset="titleBig" weight="bold">
-          Pronto para Começar
-        </Text>
-        <Text
-          preset="paragraphsLarge"
-          textAlign={"center"}
-          color={"backgroundSecondConstrast"}
-        >
-          Estamos animados para te ajudar a alcançar seus objetivos. Vamos
-          juntos nessa jornada para parar de fumar, {name}!
-        </Text>
-      </Box>
-      <Button
-        mt={"s40"}
-        text="Iniciar"
-        preset="primary"
-        onPress={() => {
-          posthog.capture(PostHogEventsName.PRESS_TO_START);
-          navigation.navigate("SubscriptionScreen");
-        }}
-      />
-    </Screen>
+    <Box
+      flex={1}
+      flexDirection={"row"}
+      alignItems={"center"}
+      paddingRight={"s24"}
+    >
+      <ScrollView
+        pagingEnabled
+        decelerationRate={"fast"}
+        showsVerticalScrollIndicator={false}
+        style={{ flex: 1, paddingHorizontal: 24 }}
+      >
+        <FirstStep />
+      </ScrollView>
+      <DirectionControls onDownPress={() => {}} onUpPress={() => {}} />
+    </Box>
   );
 };
