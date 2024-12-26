@@ -1,2 +1,2 @@
-export * from "./FirstStep";
+export * from "./Step";
 export * from "./DirectionControls";
