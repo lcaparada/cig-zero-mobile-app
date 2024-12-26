@@ -11,7 +11,6 @@ export * from "./Avatar/Avatar";
 export * from "./Screen/Screen";
 export * from "./Splash/Splash";
 export * from "./Switch/Switch";
-export * from "./Reviews/Reviews";
 export * from "./Divider/Divider";
 export * from "./Checkbox/Checkbox";
 export * from "./Missions/Missions";
