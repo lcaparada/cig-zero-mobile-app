@@ -1,22 +1,39 @@
 import { Box, Text, Screen, Reviews } from "@components";
+import { AuthScreenProps } from "@routes";
 
 import { getBenefits } from "@constraints";
+import { extractUnitFrequency } from "@helpers";
 
 import { BenefitItem } from "./components";
 import { PackageItem } from "./components/PackageItem";
 import { useSubscriptionsScreen } from "./useSubscriptionsScreen";
 
-export const SubscriptionScreen = () => {
-  const { packages, selectedPackage } = useSubscriptionsScreen();
+export const SubscriptionScreen = ({
+  route,
+}: AuthScreenProps<"SubscriptionScreen">) => {
+  const {
+    packages,
+    isLoading,
+    isPending,
+    selectedPackage,
+    handlePurchasePackage,
+  } = useSubscriptionsScreen();
   const selectedPackageData = packages.find(
     (pkg) => pkg.identifier === selectedPackage
   );
-  console.log(selectedPackageData);
+
   return (
     <Screen
       overflowVisible
       scrollable
-      button={{ text: "Test", action: () => {} }}
+      button={{
+        text: selectedPackageData?.product.introPrice
+          ? "Iniciar teste gratuito"
+          : "Continuar",
+        action: () => handlePurchasePackage(route.params),
+        disabled: isPending || isLoading,
+        loading: isPending || isLoading,
+      }}
     >
       <Box rowGap={"s26"} paddingVertical={"s18"}>
         <Box alignItems={"center"} justifyContent={"center"}>
@@ -44,9 +61,20 @@ export const SubscriptionScreen = () => {
             textAlign={"center"}
             color="backgroundSecondConstrast"
           >
-            Experimente 3 dias grátis e depois pague{" "}
-            {selectedPackageData.product.pricePerMonthString} mensalmente.
-            Cancele a qualquer momento
+            Experimente{" "}
+            <Text
+              weight="bold"
+              preset="paragraphs"
+              textAlign={"center"}
+              color="primary"
+            >
+              {extractUnitFrequency(
+                selectedPackageData.product.introPrice.period
+              )}{" "}
+              grátis
+            </Text>{" "}
+            e depois pague {selectedPackageData.product.pricePerMonthString}{" "}
+            mensalmente. Cancele a qualquer momento
           </Text>
         )}
       </Box>

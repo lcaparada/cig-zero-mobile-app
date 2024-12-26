@@ -7,14 +7,14 @@ import { useForm } from "react-hook-form";
 import { registerForPushNotificationsAsync } from "@helpers";
 
 import {
-  EighthStepOnboarding,
+  SixthStepOnboarding,
   FifthStepOnboarding,
   FirstStepOnboarding,
+  ThirdStepOnboarding,
   FourthStepOnboarding,
+  EighthStepOnboarding,
   SecondStepOnboarding,
   SeventhStepOnboarding,
-  SixthStepOnboarding,
-  ThirdStepOnboarding,
 } from "./components";
 import {
   onboardingScreenSchema,
@@ -86,7 +86,10 @@ export const useOnboardingScreen = () => {
         }
       });
     }
-    navigation.reset({ index: 0, routes: [{ name: "StartScreen" }] });
+    navigation.reset({
+      index: 0,
+      routes: [{ name: "StartScreen", params: watch() }],
+    });
   };
 
   return {

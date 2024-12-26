@@ -22,6 +22,10 @@ export const PackageItem = ({
   const isSelected = packageIdentifier === selectedPackage;
   const discount = discounts?.[0];
 
+  const titleTranslation: Record<string, string> = {
+    Monthly: "Mensal",
+  };
+
   return (
     <TouchableOpacityBox
       padding="s16"
@@ -38,7 +42,7 @@ export const PackageItem = ({
         <Checkbox isSelected={isSelected} />
         <Box>
           <Text weight="medium" color="primary">
-            {title}
+            {titleTranslation[title] ?? title}
           </Text>
         </Box>
       </Box>

@@ -1,46 +1,24 @@
-import { useRef, useState } from "react";
-import {
-  ScrollView,
-  LayoutChangeEvent,
-  NativeScrollEvent,
-  NativeSyntheticEvent,
-  useWindowDimensions,
-} from "react-native";
-
-import { useNavigation } from "@react-navigation/native";
+import { ScrollView } from "react-native";
 
 import { Box, Button } from "@components";
-import { useAppSafeAreaContext } from "@hooks";
+import { AuthScreenProps } from "@routes";
 
 import { steps } from "@constraints";
 
 import { DirectionControls, Step } from "./components";
+import { useStartScreen } from "./useStartScreen";
 
-export const StartScreen = () => {
-  const [pageHeight, setPageHeight] = useState(0);
-  const [currentPage, setCurrentPage] = useState(0);
-
-  const scrollRef = useRef<ScrollView>(null);
-  const { bottom } = useAppSafeAreaContext();
-  const { width: WIDTH_SCREEN } = useWindowDimensions();
-  const navigation = useNavigation();
-
-  const handleLayout = (event: LayoutChangeEvent) => {
-    const height = event.nativeEvent.layout.height;
-    setPageHeight(height);
-  };
-
-  const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    const yOffset = event.nativeEvent.contentOffset.y;
-    const page = Math.round(yOffset / pageHeight);
-    setCurrentPage(page);
-  };
-
-  const scrollToPage = (page: number) => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTo({ y: page * pageHeight, animated: true });
-    }
-  };
+export const StartScreen = ({ route }: AuthScreenProps<"StartScreen">) => {
+  const {
+    bottom,
+    scrollRef,
+    currentPage,
+    navigation,
+    WIDTH_SCREEN,
+    handleScroll,
+    handleLayout,
+    scrollToPage,
+  } = useStartScreen();
 
   return (
     <Box
@@ -78,7 +56,9 @@ export const StartScreen = () => {
         >
           <Button
             text="Iniciar jornada"
-            onPress={() => navigation.navigate("SubscriptionScreen")}
+            onPress={() =>
+              navigation.navigate("SubscriptionScreen", route.params)
+            }
           />
         </Box>
       )}

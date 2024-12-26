@@ -5,13 +5,14 @@ import {
   WelcomeScreen,
   OnboardingScreen,
   SubscriptionScreen,
+  OnboardingScreenSchemaType,
 } from "@screens";
 
 export type AuthStackParamList = {
-  StartScreen: undefined;
+  StartScreen: OnboardingScreenSchemaType;
   WelcomeScreen: undefined;
   OnboardingScreen: undefined;
-  SubscriptionScreen: undefined;
+  SubscriptionScreen: OnboardingScreenSchemaType;
 };
 
 const Stack = createNativeStackNavigator<AuthStackParamList>();

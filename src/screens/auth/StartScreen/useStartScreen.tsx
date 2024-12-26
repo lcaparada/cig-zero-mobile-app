@@ -1,33 +1,50 @@
+import { useRef, useState } from "react";
 import {
-  useAuthSignInAnonymously,
-  useUpdateNotificationSetting,
-} from "@domain";
-import { registerForPushNotificationsAsync } from "@helpers";
+  ScrollView,
+  LayoutChangeEvent,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+  useWindowDimensions,
+} from "react-native";
 
-import { OnboardingScreenSchemaType } from "../OnboardingScreen/schema/onboardingScreenSchema";
+import { useNavigation } from "@react-navigation/native";
+
+import { useAppSafeAreaContext } from "@hooks";
 
 export const useStartScreen = () => {
-  const { handleSignInAnonymously, isPending } = useAuthSignInAnonymously();
-  const { updateNotificationSetting } = useUpdateNotificationSetting();
+  const [pageHeight, setPageHeight] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
 
-  const authenticateSignInAnonymously = async (
-    params: OnboardingScreenSchemaType
-  ) => {
-    try {
-      const { session } = await handleSignInAnonymously(params);
-      if (params.likeToReceiveDailyReminders === "YES" && session) {
-        registerForPushNotificationsAsync().then((token) => {
-          updateNotificationSetting({
-            state: token ?? null,
-            userId: session?.user?.id,
-            key: "notification_token",
-          });
-        });
-      }
-    } catch (error) {
-      console.error(error);
+  const scrollRef = useRef<ScrollView>(null);
+  const { bottom } = useAppSafeAreaContext();
+  const { width: WIDTH_SCREEN } = useWindowDimensions();
+  const navigation = useNavigation();
+
+  const handleLayout = (event: LayoutChangeEvent) => {
+    const height = event.nativeEvent.layout.height;
+    setPageHeight(height);
+  };
+
+  const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const yOffset = event.nativeEvent.contentOffset.y;
+    const page = Math.round(yOffset / pageHeight);
+    setCurrentPage(page);
+  };
+
+  const scrollToPage = (page: number) => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTo({ y: page * pageHeight, animated: true });
     }
   };
 
-  return { authenticateSignInAnonymously, isPending };
+  return {
+    bottom,
+    scrollRef,
+    currentPage,
+    navigation,
+    WIDTH_SCREEN,
+    handleScroll,
+    handleLayout,
+    scrollToPage,
+  };
 };
