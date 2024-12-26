@@ -43,6 +43,7 @@ export const MissionsCard = ({
             <MissionsProgressBar
               current={data[0].current}
               target={data[0].target}
+              percentage={percentage}
             />
           </Box>
         </Box>

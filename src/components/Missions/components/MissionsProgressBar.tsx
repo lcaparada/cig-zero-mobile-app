@@ -13,15 +13,15 @@ import { Text } from "src/components/Text/Text";
 interface MissionsProgressBarProps {
   current: number;
   target: number;
+  percentage: number;
 }
 
 export const MissionsProgressBar = ({
   current,
   target,
+  percentage,
 }: MissionsProgressBarProps) => {
   const animatedPercentage = useSharedValue(0);
-
-  const percentage = (current / target) * 100;
 
   useEffect(() => {
     animatedPercentage.value = withTiming(percentage, { duration: 500 });
@@ -44,7 +44,7 @@ export const MissionsProgressBar = ({
           <Icon
             name="star"
             color="background"
-            fill={percentage === 100 ? "neutralLighest" : "primary"}
+            fill={percentage >= 100 ? "neutralLighest" : "primary"}
           />
         </Box>
       </Box>
@@ -70,4 +70,5 @@ const $progressInner: BoxProps = {
   height: "100%",
   borderRadius: "s16",
   backgroundColor: "background",
+  maxWidth: "100%",
 };
