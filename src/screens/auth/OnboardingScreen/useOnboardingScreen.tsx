@@ -86,7 +86,7 @@ export const useOnboardingScreen = () => {
         }
       });
     }
-    navigation.navigate("StartScreen", watch());
+    navigation.reset({ index: 0, routes: [{ name: "StartScreen" }] });
   };
 
   return {

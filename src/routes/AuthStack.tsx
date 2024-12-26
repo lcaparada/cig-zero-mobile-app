@@ -1,16 +1,14 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import {
-  OnboardingScreen,
   StartScreen,
-  SubscriptionScreen,
   WelcomeScreen,
+  OnboardingScreen,
+  SubscriptionScreen,
 } from "@screens";
 
-import { OnboardingScreenSchemaType } from "src/screens/auth/OnboardingScreen/schema/onboardingScreenSchema";
-
 export type AuthStackParamList = {
-  StartScreen: OnboardingScreenSchemaType;
+  StartScreen: undefined;
   WelcomeScreen: undefined;
   OnboardingScreen: undefined;
   SubscriptionScreen: undefined;
