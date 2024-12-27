@@ -12,7 +12,7 @@ export const Route = () => {
   return (
     <NavigationContainer>
       <PostHogProvider
-        apiKey="<ph_project_api_key>"
+        apiKey={process.env.EXPO_PUBLIC_POSTHOG_API_KEY!}
         options={{
           host: "https://us.i.posthog.com",
         }}
