@@ -36,7 +36,7 @@ const queryClient = new QueryClient({
 
 Sentry.init({
   dsn: process.env.SENTRY_DSN,
-  debug: process.env.NODE_ENV === "DEV" ? true : false,
+  debug: process.env.EXPO_PUBLIC_NODE_ENV === "DEV" ? true : false,
 });
 
 function App() {
