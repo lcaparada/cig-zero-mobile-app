@@ -1,3 +1,5 @@
+import { CopilotStep, walkthroughable } from "react-native-copilot";
+
 import { useGetMissions } from "@domain";
 
 import { Box, BoxProps } from "../Box/Box";
@@ -7,37 +9,45 @@ import { Skeleton } from "../Skeleton/Skeleton";
 import { MissionsCard } from "./components";
 import { getMissionsCardIcon } from "./utils";
 
+const WalkthroughableBox = walkthroughable(Box);
+
 export const Missions = () => {
   const { missions, isLoading } = useGetMissions();
 
   return (
-    <Box paddingHorizontal={"s24"} paddingVertical={"s30"}>
-      <HeadingWithDescription
-        title="Missões"
-        description="Conclua as suas missões semanais"
-      />
-      <Box {...$boxWrapper}>
-        {!isLoading
-          ? missions?.length
-            ? missions?.map((mission, index) => (
-                <MissionsCard
+    <CopilotStep
+      text="Esta seção mostra suas missões semanais para ajudar na luta contra o fumo, que reiniciam todo domingo."
+      order={3}
+      name="missions"
+    >
+      <WalkthroughableBox paddingHorizontal={"s24"} paddingVertical={"s30"}>
+        <HeadingWithDescription
+          title="Missões"
+          description="Conclua as suas missões semanais"
+        />
+        <Box {...$boxWrapper}>
+          {!isLoading
+            ? missions?.length
+              ? missions?.map((mission, index) => (
+                  <MissionsCard
+                    key={index}
+                    index={index + 1}
+                    icon={getMissionsCardIcon(mission)}
+                    {...mission}
+                  />
+                ))
+              : null
+            : Array.from({ length: 3 }).map((_, index) => (
+                <Skeleton
+                  width={"100%"}
+                  height={95}
                   key={index}
-                  index={index + 1}
-                  icon={getMissionsCardIcon(mission)}
-                  {...mission}
+                  borderRadius={"s16"}
                 />
-              ))
-            : null
-          : Array.from({ length: 3 }).map((_, index) => (
-              <Skeleton
-                width={"100%"}
-                height={95}
-                key={index}
-                borderRadius={"s16"}
-              />
-            ))}
-      </Box>
-    </Box>
+              ))}
+        </Box>
+      </WalkthroughableBox>
+    </CopilotStep>
   );
 };
 

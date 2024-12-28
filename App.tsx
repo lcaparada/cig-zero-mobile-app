@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Platform } from "react-native";
 
 import * as Sentry from "@sentry/react-native";
@@ -8,15 +8,16 @@ import { setDefaultOptions } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { useFonts } from "expo-font";
 import * as Notifications from "expo-notifications";
+import { CopilotProvider } from "react-native-copilot";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import RevenueCat from "react-native-purchases";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
-import { Splash, Toast } from "@components";
+import { Splash, StepNumberCopilot, Toast, TooltipCopilot } from "@components";
 import { Route } from "@routes";
 import { theme } from "@theme";
 
-import { AuthProvider, ToastProvider } from "@services";
+import { AuthProvider, ToastProvider, useSplash } from "@services";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -40,7 +41,7 @@ Sentry.init({
 });
 
 function App() {
-  const [splashComplete, setSplashComplete] = useState(false);
+  const { splashComplete } = useSplash();
 
   const [loaded, error] = useFonts({
     "SFProRounded-Regular": require("./assets/fonts/SF-Pro-Rounded-Regular.otf"),
@@ -66,17 +67,27 @@ function App() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
         <ThemeProvider theme={theme}>
-          <ToastProvider>
-            <QueryClientProvider client={queryClient}>
-              <AuthProvider>
-                <Route />
-                {(!loaded && !error) || !splashComplete ? (
-                  <Splash onComplete={setSplashComplete} />
-                ) : null}
-                <Toast />
-              </AuthProvider>
-            </QueryClientProvider>
-          </ToastProvider>
+          <CopilotProvider
+            labels={{
+              previous: "Anterior",
+              next: "Próximo",
+              skip: "Pular",
+              finish: "Finalizar",
+            }}
+            tooltipStyle={{ borderRadius: 12 }}
+            stepNumberComponent={StepNumberCopilot}
+            tooltipComponent={TooltipCopilot}
+          >
+            <ToastProvider>
+              <QueryClientProvider client={queryClient}>
+                <AuthProvider>
+                  <Route />
+                  {(!loaded && !error) || !splashComplete ? <Splash /> : null}
+                  <Toast />
+                </AuthProvider>
+              </QueryClientProvider>
+            </ToastProvider>
+          </CopilotProvider>
         </ThemeProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>

@@ -126,6 +126,7 @@ export const theme = createTheme({
     s25: 25,
     s32: 32,
     s48: 48,
+    full: 999,
   },
   breakpoints: {
     phone: 0,

@@ -1,52 +1,64 @@
+import { CopilotStep, walkthroughable } from "react-native-copilot";
+
 import { Box, Icon, ScreenHeader, TimeCard } from "@components";
 import { shadow } from "@theme";
 
 import { useHomeHeader } from "./useHomeHeader";
 
+const WalkthroughableBox = walkthroughable(Box);
+
 export const HomeHeader = () => {
   const { navigation, timeSinceLastSmokingRecord } = useHomeHeader();
+
   return (
-    <Box
-      backgroundColor={"primary"}
-      paddingTop={"s48"}
-      paddingHorizontal={"s24"}
-      paddingBottom={"s30"}
-      {...shadow}
+    <CopilotStep
+      text="Este é um contador que registra o tempo, em dias, horas e minutos, desde que você parou de fumar. Agora é pra valer!!"
+      order={1}
+      name="counter"
     >
-      <ScreenHeader
-        title="Resumo"
-        description="Acompanhe o progresso"
-        titleAndDescriptionColor="neutralLighest"
-        rightComponent={
-          <Icon
-            name="settings"
-            color="neutralLighest"
-            size="s24"
-            strokeWidth={2}
-            onPress={() => navigation.navigate("AdjustmentsScreen")}
-          />
-        }
-      />
-      <Box
-        flexDirection={"row"}
-        columnGap={"s10"}
-        alignItems={"center"}
-        justifyContent={"center"}
-        mt={"s30"}
+      <WalkthroughableBox
+        backgroundColor={"primary"}
+        paddingTop={"s48"}
+        paddingHorizontal={"s24"}
+        paddingBottom={"s30"}
+        {...shadow}
       >
-        <TimeCard
-          label="dias"
-          time={timeSinceLastSmokingRecord.days.toString()}
+        <ScreenHeader
+          title="Resumo"
+          description="Acompanhe o progresso"
+          titleAndDescriptionColor="neutralLighest"
+          rightComponent={
+            <Icon
+              name="settings"
+              color="neutralLighest"
+              size="s24"
+              strokeWidth={2}
+              onPress={() => navigation.navigate("AdjustmentsScreen")}
+            />
+          }
         />
-        <TimeCard
-          label="horas"
-          time={timeSinceLastSmokingRecord.hours.toString()}
-        />
-        <TimeCard
-          label="minutos"
-          time={timeSinceLastSmokingRecord.minutes.toString()}
-        />
-      </Box>
-    </Box>
+
+        <Box
+          flexDirection={"row"}
+          columnGap={"s10"}
+          alignItems={"center"}
+          justifyContent={"center"}
+          mt={"s30"}
+        >
+          <TimeCard
+            label="dias"
+            time={timeSinceLastSmokingRecord.days.toString()}
+          />
+          <TimeCard
+            label="horas"
+            time={timeSinceLastSmokingRecord.hours.toString()}
+          />
+          <TimeCard
+            label="minutos"
+            time={timeSinceLastSmokingRecord.minutes.toString()}
+          />
+        </Box>
+      </WalkthroughableBox>
+    </CopilotStep>
   );
 };

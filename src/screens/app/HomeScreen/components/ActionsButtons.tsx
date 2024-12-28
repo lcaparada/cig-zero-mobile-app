@@ -1,4 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
+import { CopilotStep, walkthroughable } from "react-native-copilot";
 
 import { Box, Button, IconName } from "@components";
 import { useAppTabNavigator } from "@hooks";
@@ -9,13 +10,15 @@ interface ActionsButtonsData {
   action: () => void;
 }
 
+const WalkthroughableBox = walkthroughable(Box);
+
 export const ActionsButtons = () => {
   const { navigate } = useAppTabNavigator();
   const navigation = useNavigation();
 
   const actionsButtons: ActionsButtonsData[] = [
     {
-      text: "Assistente Cigzero",
+      text: "Assistente CigZero",
       icon: "messageCircle",
       action: () => navigation.navigate("ChatScreen"),
     },
@@ -32,17 +35,27 @@ export const ActionsButtons = () => {
   ];
 
   return (
-    <Box paddingHorizontal={"s24"} paddingVertical={"s30"} rowGap={"s10"}>
-      {actionsButtons.map((item, index) => (
-        <Button
-          key={index}
-          iconName={item.icon}
-          text={item.text}
-          onPress={item.action}
-          hasArrowRight
-          justifyContent={"flex-start"}
-        />
-      ))}
-    </Box>
+    <CopilotStep
+      text="Esta seção apresenta o assistente do CigZero, onde você pode enviar dúvidas. Também há um atalho para as telas de dicas da OMS e conquistas."
+      order={5}
+      name="shortcuts"
+    >
+      <WalkthroughableBox
+        paddingHorizontal={"s24"}
+        paddingVertical={"s30"}
+        rowGap={"s10"}
+      >
+        {actionsButtons.map((item, index) => (
+          <Button
+            key={index}
+            iconName={item.icon}
+            text={item.text}
+            onPress={item.action}
+            hasArrowRight
+            justifyContent={"flex-start"}
+          />
+        ))}
+      </WalkthroughableBox>
+    </CopilotStep>
   );
 };

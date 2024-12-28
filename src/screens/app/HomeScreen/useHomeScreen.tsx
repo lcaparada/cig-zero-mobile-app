@@ -3,6 +3,8 @@ import { useCallback, useState } from "react";
 import { useFocusEffect } from "@react-navigation/native";
 import { useQueryClient } from "@tanstack/react-query";
 
+import { useTutorial } from "@hooks";
+
 import { useUpdateUserInformation } from "@domain";
 import { QueryKeys } from "@infra";
 
@@ -12,6 +14,8 @@ export const useHomeScreen = () => {
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   const queryClient = useQueryClient();
+
+  const { scrollRef } = useTutorial();
 
   const handleRefresh = async () => {
     if (isRefreshing) return null;
@@ -43,6 +47,7 @@ export const useHomeScreen = () => {
   );
 
   return {
+    scrollRef,
     isRefreshing,
     handleRefresh,
   };

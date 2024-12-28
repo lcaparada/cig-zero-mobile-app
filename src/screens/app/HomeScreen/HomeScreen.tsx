@@ -1,4 +1,6 @@
-import { Missions, Divider, Screen } from "@components";
+import { RefreshControl, ScrollView } from "react-native";
+
+import { Missions, Divider } from "@components";
 
 import {
   Historic,
@@ -9,17 +11,15 @@ import {
 import { useHomeScreen } from "./useHomeScreen";
 
 export const HomeScreen = () => {
-  const { isRefreshing, handleRefresh } = useHomeScreen();
+  const { isRefreshing, handleRefresh, scrollRef } = useHomeScreen();
 
   return (
-    <Screen
-      scrollable
-      hasPaddingTop={false}
-      insets={{ left: "s0", right: "s0", top: "s24" }}
-      pullToRefresh={{
-        refreshing: isRefreshing,
-        onRefresh: handleRefresh,
-      }}
+    <ScrollView
+      ref={scrollRef}
+      refreshControl={
+        <RefreshControl refreshing={isRefreshing} onRefresh={handleRefresh} />
+      }
+      showsVerticalScrollIndicator={false}
     >
       <HomeHeader />
       <GeneralProgress />
@@ -29,6 +29,6 @@ export const HomeScreen = () => {
       <Historic />
       <Divider />
       <ActionsButtons />
-    </Screen>
+    </ScrollView>
   );
 };

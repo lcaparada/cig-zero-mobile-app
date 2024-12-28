@@ -12,13 +12,13 @@ import {
 
 import { useAppTheme } from "@hooks";
 
+import { useSplash } from "@services";
+
 import { AnimatedBoxRNR } from "../Box/Box";
 
-type SplashProps = {
-  onComplete: (status: boolean) => void;
-};
+export const Splash = () => {
+  const { setSplashComplete } = useSplash();
 
-export const Splash = ({ onComplete }: SplashProps) => {
   const [animationDone, setAnimationDone] = useState(false);
 
   const opacity = useSharedValue(1);
@@ -51,7 +51,7 @@ export const Splash = ({ onComplete }: SplashProps) => {
       opacity.value = withTiming(0, {
         duration: FADE_ANIMATION_DURATION,
       });
-      setTimeout(() => onComplete(true), FADE_ANIMATION_DURATION);
+      setTimeout(() => setSplashComplete(true), FADE_ANIMATION_DURATION);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [animationDone]);

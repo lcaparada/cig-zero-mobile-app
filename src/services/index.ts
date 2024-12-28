@@ -15,3 +15,7 @@ export * from "./localStorage/localStorage";
 export * from "./revenueCat/useRevenueCat";
 export * from "./revenueCat/revenueCatTypes";
 export * from "./revenueCat/revenueCatService";
+
+// SPLASH
+export * from "./splash/useSplash";
+export * from "./splash/splashTypes";
