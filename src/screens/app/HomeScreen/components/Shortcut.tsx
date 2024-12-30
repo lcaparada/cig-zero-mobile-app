@@ -1,12 +1,17 @@
 import { useNavigation } from "@react-navigation/native";
+import { usePostHog } from "posthog-react-native";
 import { CopilotStep, walkthroughable } from "react-native-copilot";
 
 import { Box, Button } from "@components";
+
+import { PostHogEventsName } from "@constraints";
 
 const WalkthroughableBox = walkthroughable(Box);
 
 export const Shortcut = () => {
   const navigation = useNavigation();
+
+  const posthog = usePostHog();
 
   return (
     <CopilotStep
@@ -17,12 +22,13 @@ export const Shortcut = () => {
       <WalkthroughableBox paddingHorizontal={"s24"} paddingTop={"s30"}>
         <Button
           text="Adicionar fumo"
-          onPress={() =>
+          onPress={() => {
+            posthog.capture(PostHogEventsName.PRESS_TO_ADD_SMOKING_FROM_HOME);
             navigation.navigate("AppTabNavigator", {
               screen: "CalendarScreen",
               params: { comeFromHome: true },
-            })
-          }
+            });
+          }}
         />
       </WalkthroughableBox>
     </CopilotStep>
