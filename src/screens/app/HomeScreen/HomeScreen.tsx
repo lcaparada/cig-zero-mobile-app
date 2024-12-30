@@ -14,6 +14,7 @@ import { useHomeScreen } from "./useHomeScreen";
 export const HomeScreen = () => {
   const {
     start,
+    colors,
     scrollRef,
     isRefreshing,
     handleRefresh,
@@ -24,6 +25,9 @@ export const HomeScreen = () => {
   return (
     <ScrollView
       ref={scrollRef}
+      contentContainerStyle={{
+        backgroundColor: colors.background,
+      }}
       refreshControl={
         <RefreshControl refreshing={isRefreshing} onRefresh={handleRefresh} />
       }

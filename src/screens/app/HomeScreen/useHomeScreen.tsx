@@ -4,7 +4,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import { useQueryClient } from "@tanstack/react-query";
 import { useCopilot } from "react-native-copilot";
 
-import { useTutorial } from "@hooks";
+import { useAppTheme, useTutorial } from "@hooks";
 
 import { useUpdateUserInformation } from "@domain";
 import { QueryKeys } from "@infra";
@@ -13,6 +13,8 @@ export const useHomeScreen = () => {
   const { handleUpdateUserInformation } = useUpdateUserInformation();
 
   const { start } = useCopilot();
+
+  const { colors } = useAppTheme();
 
   const [isRefreshing, setIsRefreshing] = useState(false);
 
@@ -51,6 +53,7 @@ export const useHomeScreen = () => {
   );
 
   return {
+    colors,
     scrollRef,
     isRefreshing,
     showStartTutorialPopup,
