@@ -3,6 +3,8 @@ import { ScrollView } from "react-native";
 
 import { secureStorage, useSplash } from "@services";
 
+const TUTORIAL_KEY = "isTutorialSeen";
+
 export const useTutorial = () => {
   const { splashComplete } = useSplash();
 
@@ -12,14 +14,14 @@ export const useTutorial = () => {
 
   useEffect(() => {
     const checkFirstTime = async () => {
-      const hasSeenTutorial = await secureStorage.getItem("hasSeenTutorial");
+      const hasSeenTutorial = await secureStorage.getItem(TUTORIAL_KEY);
 
       if (hasSeenTutorial) {
         return;
       } else if (splashComplete) {
         setShowStartTutorialPopup(true);
 
-        await secureStorage.setItem("hasSeenTutorial", "true");
+        await secureStorage.setItem(TUTORIAL_KEY, "true");
       }
     };
 
