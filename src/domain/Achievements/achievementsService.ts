@@ -1,6 +1,6 @@
-import { supabaseEdgeFunction } from "@api";
+import { supabase, supabaseEdgeFunction } from "@api";
 
-import { GetAll } from "./achievementsTypes";
+import { GetAchievement, GetAll } from "./achievementsTypes";
 
 const getAll = async (): Promise<GetAll.Result> => {
   try {
@@ -13,6 +13,20 @@ const getAll = async (): Promise<GetAll.Result> => {
   }
 };
 
+const getAchievement = async (
+  params: GetAchievement.Params
+): Promise<GetAchievement.Result> => {
+  const { data, error } = await supabase
+    .from("achievements")
+    .select("*")
+    .eq("id", params.id)
+    .single();
+  if (error && error.code === "PGRST116") return null;
+  if (error) throw error;
+  return data;
+};
+
 export const achievementsService = {
   getAll,
+  getAchievement,
 };

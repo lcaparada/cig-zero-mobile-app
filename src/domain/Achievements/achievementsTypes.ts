@@ -1,5 +1,11 @@
 import { IconName } from "@components";
 
+export type AchievementOnUser = {
+  achievement_id: string;
+  user_id: string;
+  id: string;
+};
+
 export type Achievement = {
   id: string;
   title: string;
@@ -23,4 +29,11 @@ export type AchievementCategory = {
 
 export namespace GetAll {
   export type Result = AchievementCategory[];
+}
+
+export namespace GetAchievement {
+  export type Params = {
+    id: string;
+  };
+  export type Result = Achievement | null;
 }

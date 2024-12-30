@@ -1,4 +1,4 @@
-import { Modal, StyleSheet } from "react-native";
+import { Image, Modal, StyleSheet } from "react-native";
 
 import { AnimatedBoxRNR, Box, BoxProps } from "../Box/Box";
 import { Button, ButtonProps } from "../Button/Button";
@@ -12,6 +12,7 @@ export interface PopupProps {
   description: string;
   button?: ButtonProps;
   hideCloseButton?: boolean;
+  imageComponent?: React.JSX.Element;
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -29,6 +30,10 @@ export const Popup = ({
     <Modal transparent visible={visible} animationType="fade">
       <Box style={StyleSheet.absoluteFillObject} {...$boxWrapper}>
         <AnimatedBoxRNR {...$animatedBoxWrapper} style={[animatedStyles]}>
+          <Image
+            source={require("../../assets/trophy.png")}
+            style={{ width: 140, height: 140, alignSelf: "center" }}
+          />
           <Text
             preset="titleSmall"
             weight="semiBold"
@@ -37,8 +42,8 @@ export const Popup = ({
             {title}
           </Text>
           <Text
-            preset="paragraphs"
-            weight="semiBold"
+            preset="paragraphsBig"
+            weight="medium"
             mt={"s12"}
             color={"backgroundSecondConstrast"}
           >
