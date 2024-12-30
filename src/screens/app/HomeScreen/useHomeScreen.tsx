@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 
-import { useFocusEffect } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { useQueryClient } from "@tanstack/react-query";
 
 import { useTutorial } from "@hooks";
@@ -16,6 +16,8 @@ export const useHomeScreen = () => {
   const queryClient = useQueryClient();
 
   const { scrollRef } = useTutorial();
+
+  const navigation = useNavigation();
 
   const handleRefresh = async () => {
     if (isRefreshing) return null;
@@ -48,6 +50,7 @@ export const useHomeScreen = () => {
 
   return {
     scrollRef,
+    navigation,
     isRefreshing,
     handleRefresh,
   };

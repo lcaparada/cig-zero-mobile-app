@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { StyleSheet } from "react-native";
 
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
@@ -6,12 +6,12 @@ import {
   FadeIn,
   FadeOut,
   runOnJS,
-  withSpring,
   withTiming,
+  withSpring,
   SlideInDown,
   SlideOutDown,
-  useAnimatedStyle,
   useSharedValue,
+  useAnimatedStyle,
 } from "react-native-reanimated";
 
 import { useAppTheme } from "@hooks";
@@ -23,7 +23,6 @@ import {
   AnimatedPressableBox,
 } from "../Box/Box";
 import { Button } from "../Button/Button";
-import { ButtonPresetType } from "../Button/buttonPreset";
 
 import {
   BottomSheetHeader,
@@ -41,11 +40,11 @@ export interface BottomSheetProps {
   disabledToClose?: boolean;
   scrollable?: boolean;
   children: React.ReactNode;
+  hasKeyboard?: boolean;
   hasFlexOne?: boolean;
   button?: {
     action: () => void;
     text: string;
-    preset?: ButtonPresetType;
     disabled?: boolean;
     isLoading?: boolean;
   };
@@ -63,12 +62,16 @@ export const BottomSheet = ({
   height = "70%",
   disabledToClose = false,
   rightButton,
+  hasKeyboard = false,
   setVisible,
 }: BottomSheetProps) => {
   const { colors } = useAppTheme();
 
-  const BOTTOM_SHEET_HEIGHT =
-    typeof height === "number" ? height : calculateHeight(height as string);
+  const [bottomSheetLayout, setBottomSheetLayout] = useState(0);
+
+  const BOTTOM_SHEET_HEIGHT = calculateHeight(
+    height === "auto" ? bottomSheetLayout : height
+  );
 
   const Container = scrollable ? ScrollViewContainer : ViewContainer;
 
@@ -84,9 +87,13 @@ export const BottomSheet = ({
       if (offset.value < BOTTOM_SHEET_HEIGHT / 3) {
         offset.value = withTiming(0);
       } else {
-        offset.value = withTiming(BOTTOM_SHEET_HEIGHT, {}, () =>
-          runOnJS(setVisible)(false)
-        );
+        if (disabledToClose) {
+          offset.value = withTiming(0);
+        } else {
+          offset.value = withTiming(BOTTOM_SHEET_HEIGHT, {}, () =>
+            runOnJS(setVisible)(false)
+          );
+        }
       }
     });
   const translateY = useAnimatedStyle(() => ({
@@ -97,8 +104,14 @@ export const BottomSheet = ({
     <Fragment>
       <AnimatedPressableBox
         {...$backdrop}
-        style={[StyleSheet.absoluteFillObject, { zIndex: 999 }]}
-        onPress={() => setVisible(false)}
+        style={[StyleSheet.absoluteFillObject, { zIndex: 1 }]}
+        onPress={() => {
+          if (disabledToClose) {
+            return;
+          } else {
+            setVisible(false);
+          }
+        }}
         entering={FadeIn}
         exiting={FadeOut}
       />
@@ -106,7 +119,10 @@ export const BottomSheet = ({
       <GestureDetector gesture={pan}>
         <AnimatedBoxRNR
           {...($sheet as any)}
-          entering={SlideInDown.springify().damping(17)}
+          onLayout={(event) =>
+            setBottomSheetLayout(event.nativeEvent.layout.height)
+          }
+          entering={SlideInDown.springify().damping(18)}
           exiting={SlideOutDown}
           style={translateY}
           height={BOTTOM_SHEET_HEIGHT}
@@ -122,14 +138,25 @@ export const BottomSheet = ({
             hasFlexOne={hasFlexOne}
           >
             {children}
+            {hasKeyboard && button && (
+              <Button
+                alignSelf={"center"}
+                width={"100%"}
+                mt={"s30"}
+                text={button.text}
+                disabled={button.disabled}
+                isLoading={button.isLoading}
+                onPress={button.action}
+              />
+            )}
           </Container>
-          {button && (
+          {!hasKeyboard && button && (
             <Button
               alignSelf={"center"}
               width={"100%"}
-              mt={"s20"}
+              mb={"s20"}
+              mt={"s30"}
               text={button.text}
-              preset={button.preset}
               disabled={button.disabled}
               isLoading={button.isLoading}
               onPress={button.action}
@@ -149,7 +176,7 @@ const $sheet: AnimatedBoxProps = {
   borderTopLeftRadius: "s25",
   borderTopRightRadius: "s25",
   backgroundColor: "background",
-  zIndex: 999,
+  zIndex: 1,
   position: "absolute",
   bottom: -20 * 1.1,
 };

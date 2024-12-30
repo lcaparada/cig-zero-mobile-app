@@ -1,6 +1,6 @@
 import { RefreshControl, ScrollView } from "react-native";
 
-import { Missions, Divider } from "@components";
+import { Missions, Divider, Button, Box } from "@components";
 
 import {
   Historic,
@@ -11,7 +11,8 @@ import {
 import { useHomeScreen } from "./useHomeScreen";
 
 export const HomeScreen = () => {
-  const { isRefreshing, handleRefresh, scrollRef } = useHomeScreen();
+  const { isRefreshing, handleRefresh, scrollRef, navigation } =
+    useHomeScreen();
 
   return (
     <ScrollView
@@ -22,6 +23,17 @@ export const HomeScreen = () => {
       showsVerticalScrollIndicator={false}
     >
       <HomeHeader />
+      <Box paddingHorizontal={"s24"} paddingTop={"s30"}>
+        <Button
+          text="Adicionar fumo"
+          onPress={() =>
+            navigation.navigate("AppTabNavigator", {
+              screen: "CalendarScreen",
+              params: { comeFromHome: true },
+            })
+          }
+        />
+      </Box>
       <GeneralProgress />
       <Divider />
       <Missions />

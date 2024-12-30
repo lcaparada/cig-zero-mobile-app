@@ -9,13 +9,16 @@ import {
   AddSmokingHourBottomSheet,
   SmokingDetailsBottomSheet,
 } from "@components";
+import { AppTabScreenProps } from "@routes";
 
 import { PostHogEventsName } from "@constraints";
 
 import { CalendarHeader, SmokingActivities } from "./components";
 import { useCalendarScreen } from "./useCalendarScreen";
 
-export const CalendarScreen = () => {
+export const CalendarScreen = ({
+  route,
+}: AppTabScreenProps<"CalendarScreen">) => {
   const {
     date,
     dateString,
@@ -29,7 +32,9 @@ export const CalendarScreen = () => {
     handleAddSmokeRecord,
     setShowSmokingDetailsModal,
     setShowAddSmokingHourModal,
-  } = useCalendarScreen();
+  } = useCalendarScreen({
+    showAddSmokingHourModalParam: route?.params?.comeFromHome ?? false,
+  });
 
   const posthog = usePostHog();
 

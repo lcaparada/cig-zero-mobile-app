@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
+import { useFocusEffect } from "@react-navigation/native";
 import { isBefore, isSameDay, startOfDay } from "date-fns";
 
 import {
@@ -13,11 +14,19 @@ export type IndexedSmokingRecordsState = Record<
   SmokeLogWithDateAndCreatedAt[]
 >;
 
-export const useCalendarScreen = () => {
+type useCalendarScreenProps = {
+  showAddSmokingHourModalParam?: boolean;
+};
+
+export const useCalendarScreen = ({
+  showAddSmokingHourModalParam,
+}: useCalendarScreenProps) => {
   const [date, setDate] = useState(new Date());
   const [indexedSmokingRecords, setIndexedSmokingRecords] =
     useState<IndexedSmokingRecordsState>({});
-  const [showAddSmokingHourModal, setShowAddSmokingHourModal] = useState(false);
+  const [showAddSmokingHourModal, setShowAddSmokingHourModal] = useState(
+    showAddSmokingHourModalParam ?? false
+  );
   const [showSmokingDetailsModal, setShowSmokingDetailsModal] = useState(false);
   const [smokingRecordDetails, setSmokingRecordDetails] =
     useState<SmokeLogWithDateAndCreatedAt>({
@@ -67,6 +76,17 @@ export const useCalendarScreen = () => {
       setSmokingRecordDetails({ created_at: "", date: "", id: "" });
     }
   }, [showSmokingDetailsModal]);
+
+  useFocusEffect(
+    useCallback(() => {
+      if (showAddSmokingHourModalParam) {
+        setShowAddSmokingHourModal(true);
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [showAddSmokingHourModalParam])
+  );
+
+  useEffect(() => {}, []);
 
   return {
     date,

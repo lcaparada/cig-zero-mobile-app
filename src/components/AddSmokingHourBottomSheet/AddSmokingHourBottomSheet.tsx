@@ -21,7 +21,7 @@ export const AddSmokingHourBottomSheet = ({
     <BottomSheet
       setVisible={setVisible}
       title={"Insira o horário"}
-      height={"auto"}
+      height={"30%"}
       scrollable={false}
       button={{
         text: "Adicionar",

@@ -1,3 +1,5 @@
+import { Fragment } from "react";
+
 import { format } from "date-fns";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
@@ -17,7 +19,7 @@ export const SetTimeInput = ({ date, setDate }: SetTimeInputProps) => {
     useSetTimeInput();
 
   return (
-    <>
+    <Fragment>
       <Box rowGap={"s8"}>
         <TouchableOpacityBox {...$boxWrapper} onPress={showDatePicker}>
           <Icon name="clock" color="backgroundConstrast" strokeWidth={2} />
@@ -42,7 +44,7 @@ export const SetTimeInput = ({ date, setDate }: SetTimeInputProps) => {
           onCancel={hideDatePicker}
         />
       ) : null}
-    </>
+    </Fragment>
   );
 };
 
