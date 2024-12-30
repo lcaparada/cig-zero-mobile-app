@@ -28,10 +28,26 @@ const renderTabBar = (props: BottomTabBarProps) => <TabBar {...props} />;
 export const AppTabNavigator = () => {
   return (
     <Tab.Navigator screenOptions={{ headerShown: false }} tabBar={renderTabBar}>
-      <Tab.Screen name="HomeScreen" component={HomeScreen} />
-      <Tab.Screen name="CalendarScreen" component={CalendarScreen} />
-      <Tab.Screen name="OMSTipsScreen" component={OMSTipsScreen} />
-      <Tab.Screen name="AchievementsScreen" component={AchievementsScreen} />
+      <Tab.Screen
+        name="HomeScreen"
+        component={HomeScreen}
+        options={{ tabBarLabel: "Início" }}
+      />
+      <Tab.Screen
+        name="CalendarScreen"
+        component={CalendarScreen}
+        options={{ tabBarLabel: "Calendário" }}
+      />
+      <Tab.Screen
+        name="OMSTipsScreen"
+        component={OMSTipsScreen}
+        options={{ tabBarLabel: "OMS" }}
+      />
+      <Tab.Screen
+        name="AchievementsScreen"
+        component={AchievementsScreen}
+        options={{ tabBarLabel: "Conquistas" }}
+      />
     </Tab.Navigator>
   );
 };

@@ -5,15 +5,22 @@ import { AppTabBottomTabParamList } from "@routes";
 
 import { Box, BoxProps, TouchableOpacityBox } from "../Box/Box";
 import { Icon } from "../Icon/Icon";
+import { Text } from "../Text/Text";
 
 import { mapScreenToProps } from "./mapScreenToProps";
 
 export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
   const { bottom } = useAppSafeAreaContext();
   return (
-    <Box {...$boxStyle} style={[{ paddingBottom: bottom + 35 }]}>
+    <Box {...$boxStyle} style={[{ paddingBottom: bottom }]}>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
+        const label =
+          options.tabBarLabel !== undefined
+            ? options.tabBarLabel
+            : options.title !== undefined
+              ? options.title
+              : route.name;
 
         const isFocused = state.index === index;
 
@@ -48,9 +55,10 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
             testID={options.tabBarTestID}
             onPress={onPress}
             onLongPress={onLongPress}
-            flex={1}
-            alignItems={"center"}
             key={index}
+            flex={1}
+            justifyContent={"center"}
+            alignItems={"center"}
           >
             <Icon
               name={tabItem.icon}
@@ -58,6 +66,13 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
               size="s28"
               strokeWidth={2}
             />
+            <Text
+              color={isFocused ? "primary" : "backgroundSecondConstrast"}
+              preset="paragraphsBig"
+              weight="medium"
+            >
+              {label as string}
+            </Text>
           </TouchableOpacityBox>
         );
       })}
@@ -66,8 +81,6 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
 }
 
 const $boxStyle: BoxProps = {
-  height: 10,
   paddingTop: "s22",
   flexDirection: "row",
-  backgroundColor: "background",
 };
