@@ -42,7 +42,7 @@ export const Historic = () => {
   return (
     <CopilotStep
       text="Esta seção exibe seu histórico de fumo com base nos dados coletados: número de cigarros fumados, dinheiro gasto e dias de vida perdidos. Os valores são estimativas e podem não ser exatos."
-      order={4}
+      order={5}
       name="historic"
     >
       <WalkthroughableTouchableOpacityBox

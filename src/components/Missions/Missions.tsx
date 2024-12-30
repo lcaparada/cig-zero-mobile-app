@@ -17,7 +17,7 @@ export const Missions = () => {
   return (
     <CopilotStep
       text="Esta seção mostra suas missões semanais para ajudar na luta contra o fumo, que reiniciam todo domingo."
-      order={3}
+      order={4}
       name="missions"
     >
       <WalkthroughableBox paddingHorizontal={"s24"} paddingVertical={"s30"}>

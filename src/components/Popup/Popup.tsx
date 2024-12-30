@@ -11,6 +11,7 @@ export interface PopupProps {
   visible: boolean;
   description: string;
   button?: ButtonProps;
+  hideCloseButton?: boolean;
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -19,6 +20,7 @@ export const Popup = ({
   button,
   visible,
   description,
+  hideCloseButton,
   setVisible,
 }: PopupProps) => {
   const { animatedStyles, hidePopup } = usePopup({ visible, setVisible });
@@ -35,7 +37,7 @@ export const Popup = ({
             {title}
           </Text>
           <Text
-            preset="notes"
+            preset="paragraphs"
             weight="semiBold"
             mt={"s12"}
             color={"backgroundSecondConstrast"}
@@ -45,7 +47,9 @@ export const Popup = ({
 
           <Box flexDirection={"row"} mt={"s20"} columnGap={"s10"}>
             {button && <Button {...button} flex={1} />}
-            <Button text={"Fechar"} onPress={hidePopup} flex={1} />
+            {hideCloseButton ? null : (
+              <Button text={"Fechar"} onPress={hidePopup} flex={1} />
+            )}
           </Box>
         </AnimatedBoxRNR>
       </Box>

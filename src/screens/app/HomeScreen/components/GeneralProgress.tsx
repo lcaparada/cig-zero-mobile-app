@@ -41,7 +41,7 @@ export const GeneralProgress = () => {
   return (
     <CopilotStep
       text="Esta seção exibe seu progresso geral: dias sem fumar, cigarros evitados, dinheiro economizado e dias de vida recuperados."
-      order={2}
+      order={3}
       name="generalProgress"
     >
       <WalkthroughableBox paddingHorizontal={"s24"} paddingVertical={"s30"}>

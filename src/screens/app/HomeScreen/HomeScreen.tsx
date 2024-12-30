@@ -1,9 +1,10 @@
 import { RefreshControl, ScrollView } from "react-native";
 
-import { Missions, Divider, Button, Box } from "@components";
+import { Missions, Divider, Popup } from "@components";
 
 import {
   Historic,
+  Shortcut,
   HomeHeader,
   ActionsButtons,
   GeneralProgress,
@@ -11,8 +12,14 @@ import {
 import { useHomeScreen } from "./useHomeScreen";
 
 export const HomeScreen = () => {
-  const { isRefreshing, handleRefresh, scrollRef, navigation } =
-    useHomeScreen();
+  const {
+    start,
+    scrollRef,
+    isRefreshing,
+    handleRefresh,
+    showStartTutorialPopup,
+    setShowStartTutorialPopup,
+  } = useHomeScreen();
 
   return (
     <ScrollView
@@ -23,17 +30,7 @@ export const HomeScreen = () => {
       showsVerticalScrollIndicator={false}
     >
       <HomeHeader />
-      <Box paddingHorizontal={"s24"} paddingTop={"s30"}>
-        <Button
-          text="Adicionar fumo"
-          onPress={() =>
-            navigation.navigate("AppTabNavigator", {
-              screen: "CalendarScreen",
-              params: { comeFromHome: true },
-            })
-          }
-        />
-      </Box>
+      <Shortcut />
       <GeneralProgress />
       <Divider />
       <Missions />
@@ -41,6 +38,22 @@ export const HomeScreen = () => {
       <Historic />
       <Divider />
       <ActionsButtons />
+      {showStartTutorialPopup && (
+        <Popup
+          visible={showStartTutorialPopup}
+          setVisible={setShowStartTutorialPopup}
+          hideCloseButton
+          button={{
+            text: "Iniciar tutorial",
+            onPress: () => {
+              start("counter", scrollRef.current);
+              setShowStartTutorialPopup(false);
+            },
+          }}
+          title="Seja bem vindo ao CigZero!"
+          description="Aqui começa um breve tutorial que apresentará as principais ferramentas para ajudá-lo a superar o vício do cigarro de forma eficaz."
+        />
+      )}
     </ScrollView>
   );
 };

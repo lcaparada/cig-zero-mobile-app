@@ -37,7 +37,7 @@ export const ActionsButtons = () => {
   return (
     <CopilotStep
       text="Esta seção apresenta o assistente do CigZero, onde você pode enviar dúvidas. Também há um atalho para as telas de dicas da OMS e conquistas."
-      order={5}
+      order={6}
       name="shortcuts"
     >
       <WalkthroughableBox

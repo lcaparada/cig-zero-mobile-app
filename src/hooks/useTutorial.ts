@@ -1,15 +1,14 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ScrollView } from "react-native";
-
-import { useCopilot } from "react-native-copilot";
 
 import { secureStorage, useSplash } from "@services";
 
 export const useTutorial = () => {
   const { splashComplete } = useSplash();
 
+  const [showStartTutorialPopup, setShowStartTutorialPopup] = useState(false);
+
   const scrollRef = useRef<ScrollView>(null);
-  const { start } = useCopilot();
 
   useEffect(() => {
     const checkFirstTime = async () => {
@@ -18,7 +17,7 @@ export const useTutorial = () => {
       if (hasSeenTutorial) {
         return;
       } else if (splashComplete) {
-        start("counter", scrollRef.current);
+        setShowStartTutorialPopup(true);
 
         await secureStorage.setItem("hasSeenTutorial", "true");
       }
@@ -28,5 +27,5 @@ export const useTutorial = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [splashComplete]);
 
-  return { scrollRef };
+  return { scrollRef, showStartTutorialPopup, setShowStartTutorialPopup };
 };

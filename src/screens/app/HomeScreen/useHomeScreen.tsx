@@ -1,7 +1,8 @@
 import { useCallback, useState } from "react";
 
-import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import { useFocusEffect } from "@react-navigation/native";
 import { useQueryClient } from "@tanstack/react-query";
+import { useCopilot } from "react-native-copilot";
 
 import { useTutorial } from "@hooks";
 
@@ -11,13 +12,14 @@ import { QueryKeys } from "@infra";
 export const useHomeScreen = () => {
   const { handleUpdateUserInformation } = useUpdateUserInformation();
 
+  const { start } = useCopilot();
+
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   const queryClient = useQueryClient();
 
-  const { scrollRef } = useTutorial();
-
-  const navigation = useNavigation();
+  const { scrollRef, showStartTutorialPopup, setShowStartTutorialPopup } =
+    useTutorial();
 
   const handleRefresh = async () => {
     if (isRefreshing) return null;
@@ -50,8 +52,10 @@ export const useHomeScreen = () => {
 
   return {
     scrollRef,
-    navigation,
     isRefreshing,
+    showStartTutorialPopup,
+    setShowStartTutorialPopup,
+    start,
     handleRefresh,
   };
 };
