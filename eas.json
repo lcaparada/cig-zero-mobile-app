@@ -9,13 +9,6 @@
       "ios": {
         "simulator": true
       },
-      "env": {
-        "EXPO_PUBLIC_SUPABASE_URL": "https://zttdrjkncjppvnmtyupk.supabase.co",
-        "SUPABASE_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp0dGRyamtuY2pwcHZubXR5dXBrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjk2MDc3NjUsImV4cCI6MjA0NTE4Mzc2NX0.x2KiIn1MegggpJsU1cgCaUhatC6QPZYV9fZwlbuKxCY",
-        "SENTRY_AUTH_TOKEN": "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",
-        "SENTRY_DSN": "https://678917d64d4aa4f2bfc7d15d74e3ceff@o4508123312422912.ingest.us.sentry.io/4508211951435776",
-        "EXPO_PUBLIC_NODE_ENV": "PROD"
-      },
       "channel": "development"
     },
     "preview": {
