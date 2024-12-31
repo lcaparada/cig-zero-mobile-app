@@ -2,6 +2,8 @@ import { useCallback, useEffect, useState } from "react";
 
 import { useFocusEffect } from "@react-navigation/native";
 import { isBefore, isSameDay, startOfDay } from "date-fns";
+import { format, toZonedTime } from "date-fns-tz";
+import { useCalendars } from "expo-localization";
 
 import {
   SmokeLogWithDateAndCreatedAt,
@@ -39,6 +41,7 @@ export const useCalendarScreen = ({
     selectedDate: date.toISOString(),
   });
 
+  const calendars = useCalendars();
   const { session } = useAuth();
 
   const dateString = date.toISOString().split("T")[0];
@@ -57,18 +60,25 @@ export const useCalendarScreen = ({
 
   useEffect(() => {
     if (isFetching || !smokingRecords) return;
-
-    const groupedByDay = smokingRecords.reduce<IndexedSmokingRecordsState>(
-      (acc, item) => {
+    const timeZone = calendars[0].timeZone ?? "America/Sao_Paulo";
+    const groupedByDay = smokingRecords
+      .map((sr) => ({
+        ...sr,
+        date: format(
+          toZonedTime(sr.date, timeZone),
+          "yyyy-MM-dd'T'HH:mm:ssXXX",
+          { timeZone }
+        ),
+      }))
+      .reduce<IndexedSmokingRecordsState>((acc, item) => {
         const dateKey = item.date.split("T")[0];
         acc[dateKey] = acc[dateKey] || [];
         acc[dateKey].push(item);
         return acc;
-      },
-      {}
-    );
+      }, {});
 
     setIndexedSmokingRecords(groupedByDay);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFetching, smokingRecords]);
 
   useEffect(() => {
