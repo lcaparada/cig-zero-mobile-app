@@ -21,7 +21,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#7EA2AA"
       },
-      "versionCode": 3,
+      "versionCode": 5,
       "googleServicesFile": "./google-services.json",
       "package": "com.elevanteholdings.cigzero",
       "permissions": [
