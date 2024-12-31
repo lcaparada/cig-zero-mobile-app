@@ -23,6 +23,7 @@ import {
   AnimatedPressableBox,
 } from "../Box/Box";
 import { Button } from "../Button/Button";
+import { ButtonPresetType } from "../Button/buttonPreset";
 
 import {
   BottomSheetHeader,
@@ -46,6 +47,7 @@ export interface BottomSheetProps {
     action: () => void;
     text: string;
     disabled?: boolean;
+    preset: ButtonPresetType;
     isLoading?: boolean;
   };
   height?: string | number;
@@ -144,6 +146,7 @@ export const BottomSheet = ({
                 width={"100%"}
                 mt={"s30"}
                 text={button.text}
+                preset={button.preset}
                 disabled={button.disabled}
                 isLoading={button.isLoading}
                 onPress={button.action}
@@ -157,6 +160,7 @@ export const BottomSheet = ({
               mb={"s20"}
               mt={"s30"}
               text={button.text}
+              preset={button.preset}
               disabled={button.disabled}
               isLoading={button.isLoading}
               onPress={button.action}
