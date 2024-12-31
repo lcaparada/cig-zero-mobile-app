@@ -55,7 +55,7 @@ function App() {
     if (Platform.OS === "ios") {
       RevenueCat.configure({ apiKey: "appl_ZgnVRfDLhSQVjUZWNVXrSmcZZNY" });
     } else if (Platform.OS === "android") {
-      RevenueCat.configure({ apiKey: "" });
+      RevenueCat.configure({ apiKey: "goog_rPjtZoHkGCzKRgjzvbLdxhpizUw" });
     }
   }, []);
 
