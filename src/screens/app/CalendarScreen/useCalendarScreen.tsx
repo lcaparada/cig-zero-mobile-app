@@ -37,7 +37,9 @@ export const useCalendarScreen = ({
       id: "",
     });
 
-  const { smokingRecords, isFetching } = useGetAllSmokingRecordsByMonth({
+  const [isFetching, setIsFetching] = useState(false);
+
+  const { smokingRecords } = useGetAllSmokingRecordsByMonth({
     selectedDate: date.toISOString(),
   });
 
@@ -56,10 +58,12 @@ export const useCalendarScreen = ({
   const showAddSmokingRecordButton =
     userCreatedAt &&
     (isBefore(startOfDay(userCreatedAt), date) ||
-      isSameDay(userCreatedAt, date));
+      isSameDay(userCreatedAt, date)) &&
+    isBefore(date, new Date());
 
   useEffect(() => {
     if (isFetching || !smokingRecords) return;
+    setIsFetching(true);
     const timeZone = calendars[0].timeZone ?? "America/Sao_Paulo";
     const groupedByDay = smokingRecords
       .map((sr) => ({
@@ -78,6 +82,7 @@ export const useCalendarScreen = ({
       }, {});
 
     setIndexedSmokingRecords(groupedByDay);
+    setIsFetching(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFetching, smokingRecords]);
 
@@ -95,8 +100,6 @@ export const useCalendarScreen = ({
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [showAddSmokingHourModalParam])
   );
-
-  useEffect(() => {}, []);
 
   return {
     date,

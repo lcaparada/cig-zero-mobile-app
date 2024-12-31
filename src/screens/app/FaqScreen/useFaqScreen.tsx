@@ -31,14 +31,6 @@ export const useFaqScreen = () => {
         ],
       },
       {
-        question: "Para que serve o chat global?",
-        answers: [
-          "O chat global permite que você converse com outros usuários que estão na jornada de parar de fumar.",
-          "É um espaço de apoio e troca de experiências.",
-          "Você pode compartilhar suas dificuldades e sucessos com a comunidade.",
-        ],
-      },
-      {
         question: "Como funcionam as missões semanais?",
         answers: [
           "As missões semanais são desafios específicos para ajudá-lo a reduzir o consumo de cigarros.",
@@ -52,13 +44,6 @@ export const useFaqScreen = () => {
           "As conquistas são baseadas em tempo, redução no consumo e economia financeira.",
           "Você ganha conquistas conforme atinge marcos importantes, como uma semana sem fumar.",
           "Essas conquistas são projetadas para incentivar e celebrar seu progresso.",
-        ],
-      },
-      {
-        question: "O aplicativo é gratuito?",
-        answers: [
-          "Sim, o aplicativo oferece várias funcionalidades gratuitas para ajudar você a parar de fumar.",
-          "Há também opções de recursos adicionais que podem ser desbloqueados, caso deseje.",
         ],
       },
       {

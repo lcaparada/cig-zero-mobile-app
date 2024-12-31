@@ -13,6 +13,7 @@ export const FaqScreen = () => {
       canGoBack
       scrollable
       screenTitle={"FAQ"}
+      scrollViewPaddingBottom={140}
       insets={{ bottom: "s24", left: "s24", right: "s24", top: "s0" }}
       button={{
         text: "Fale conosco",

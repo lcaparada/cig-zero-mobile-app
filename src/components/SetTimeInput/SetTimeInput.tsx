@@ -35,6 +35,7 @@ export const SetTimeInput = ({ date, setDate }: SetTimeInputProps) => {
           mode="time"
           confirmTextIOS={"Confirmar"}
           cancelTextIOS={"Cancelar"}
+          maximumDate={new Date()}
           textColor={colors.backgroundConstrast}
           buttonTextColorIOS={colors.backgroundConstrast}
           onConfirm={(date) => {
