@@ -25,6 +25,7 @@ export const AddSmokingHourBottomSheet = ({
       scrollable={false}
       button={{
         text: "Adicionar",
+        preset: "primary",
         isLoading: isPending,
         action: () => handleCreateSmokingRecord(calendarDate),
       }}
