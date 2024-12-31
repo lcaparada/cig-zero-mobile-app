@@ -1,4 +1,4 @@
-import { useWindowDimensions } from "react-native";
+import { Platform, useWindowDimensions } from "react-native";
 
 import { Box, Text } from "@components";
 
@@ -21,12 +21,12 @@ export const Step = ({
 
   return (
     <Box
-      paddingVertical={"s40"}
-      height={HEIGHT_SCREEN}
+      width={"100%"}
+      height={Platform.OS === "ios" ? HEIGHT_SCREEN : HEIGHT_SCREEN - 74}
       justifyContent={"center"}
     >
-      <Box flexDirection={"row"} columnGap={"s35"} alignItems={"center"}>
-        <Box flex={1} rowGap={"s28"}>
+      <Box flexDirection={"row"} columnGap={"s35"}>
+        <Box rowGap={"s28"}>
           <ImageComponent width={200} imageName={imageName} />
           <Box rowGap={"s18"}>
             <Text weight="medium" color="primary">

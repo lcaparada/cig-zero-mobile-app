@@ -38,7 +38,13 @@ export const StartScreen = ({ route }: AuthScreenProps<"StartScreen">) => {
         style={{ flex: 1, paddingHorizontal: 24 }}
       >
         {steps.map((step, index) => (
-          <Step key={index} {...step} />
+          <Step
+            key={index}
+            description={step.description}
+            imageName={step.imageName}
+            primaryTitle={step.primaryTitle}
+            secondaryTitle={step.secondaryTitle}
+          />
         ))}
       </ScrollView>
       <DirectionControls
