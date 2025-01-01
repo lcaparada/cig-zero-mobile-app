@@ -121,8 +121,6 @@ export const useRevenueCatStore = create<RevenueCatService>((set, get) => ({
           .filter((pkg) => pkg.product.defaultOption?.freePhase)
           .map((pkg) => pkg.identifier);
 
-        console.log(availablePackages[0].product.defaultOption?.freePhase);
-
         isFirstAvailablePackageEligible = eligibleProductIds.includes(
           firstAvailablePackage.identifier
         );
