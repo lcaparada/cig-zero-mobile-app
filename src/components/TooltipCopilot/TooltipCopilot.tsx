@@ -67,9 +67,6 @@ export const TooltipCopilot = () => {
         {!isLastStep ? (
           <TouchableOpacityBox
             onPress={() => {
-              posthog.capture(PostHogEventsName.PRESS_TO_NEXT_STEP_TUTORIAL, {
-                step: currentStep?.order,
-              });
               handleNext();
             }}
           >

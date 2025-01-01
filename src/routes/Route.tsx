@@ -1,5 +1,8 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { PostHogProvider } from "posthog-react-native";
+import { CopilotProvider } from "react-native-copilot";
+
+import { StepNumberCopilot, TooltipCopilot } from "@components";
 
 import { useAuth } from "@services";
 
@@ -17,7 +20,19 @@ export const Route = () => {
           host: "https://us.i.posthog.com",
         }}
       >
-        {session ? <AppStack /> : <AuthStack />}
+        <CopilotProvider
+          labels={{
+            previous: "Anterior",
+            next: "Próximo",
+            skip: "Pular",
+            finish: "Finalizar",
+          }}
+          tooltipStyle={{ borderRadius: 12 }}
+          stepNumberComponent={StepNumberCopilot}
+          tooltipComponent={TooltipCopilot}
+        >
+          {session ? <AppStack /> : <AuthStack />}
+        </CopilotProvider>
       </PostHogProvider>
     </NavigationContainer>
   );
