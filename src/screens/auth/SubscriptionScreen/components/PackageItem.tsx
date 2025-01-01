@@ -1,3 +1,5 @@
+import { Platform } from "react-native";
+
 import { PurchasesStoreProduct } from "react-native-purchases";
 
 import { Checkbox } from "@components";
@@ -24,6 +26,7 @@ export const PackageItem = ({
 
   const titleTranslation: Record<string, string> = {
     Monthly: "Mensal",
+    $rc_monthly: "Mensal",
   };
 
   return (
@@ -42,7 +45,9 @@ export const PackageItem = ({
         <Checkbox isSelected={isSelected} />
         <Box>
           <Text weight="medium" color="primary">
-            {titleTranslation[title] ?? title}
+            {titleTranslation[
+              Platform.OS === "android" ? packageIdentifier : title
+            ] ?? title}
           </Text>
         </Box>
       </Box>

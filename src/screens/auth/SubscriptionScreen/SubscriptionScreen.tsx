@@ -2,9 +2,8 @@ import { Box, Text, Screen, Reviews } from "@components";
 import { AuthScreenProps } from "@routes";
 
 import { getBenefits } from "@constraints";
-import { extractUnitFrequency } from "@helpers";
 
-import { BenefitItem } from "./components";
+import { BenefitItem, TrialText } from "./components";
 import { PackageItem } from "./components/PackageItem";
 import { useSubscriptionsScreen } from "./useSubscriptionsScreen";
 
@@ -54,29 +53,7 @@ export const SubscriptionScreen = ({
             packageIdentifier={identifier}
           />
         ))}
-        {selectedPackageData?.product.introPrice && (
-          <Text
-            weight="medium"
-            preset="paragraphs"
-            textAlign={"center"}
-            color="backgroundSecondConstrast"
-          >
-            Experimente{" "}
-            <Text
-              weight="bold"
-              preset="paragraphs"
-              textAlign={"center"}
-              color="primary"
-            >
-              {extractUnitFrequency(
-                selectedPackageData.product.introPrice.period
-              )}{" "}
-              grátis
-            </Text>{" "}
-            e depois pague {selectedPackageData.product.pricePerMonthString}{" "}
-            mensalmente. Cancele a qualquer momento
-          </Text>
-        )}
+        <TrialText selectedPackageData={selectedPackageData} />
       </Box>
     </Screen>
   );

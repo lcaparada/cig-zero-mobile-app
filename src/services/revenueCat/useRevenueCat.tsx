@@ -1,3 +1,5 @@
+import { Platform } from "react-native";
+
 import {
   INTRO_ELIGIBILITY_STATUS,
   PurchasesPromotionalOffer,
@@ -77,39 +79,63 @@ export const useRevenueCatStore = create<RevenueCatService>((set, get) => ({
     set({ isLoading: true });
     try {
       const offerings = await revenueCatService.getOfferings();
+
       const currentOffering = offerings.current;
 
       if (!currentOffering) return;
 
       const availablePackages = currentOffering.availablePackages;
+
       if (!availablePackages.length) return;
-
-      const productIdentifiers = availablePackages.map(
-        (pkg) => pkg.product.identifier
-      );
-      const productsWithEligibility =
-        await revenueCatService.checkTrialOrIntroductoryPriceEligibility(
-          productIdentifiers
-        );
-
-      const eligibleProductIds = Object.entries(productsWithEligibility)
-        .filter(
-          ([_, eligibility]) =>
-            eligibility.status ===
-            INTRO_ELIGIBILITY_STATUS.INTRO_ELIGIBILITY_STATUS_ELIGIBLE
-        )
-        .map(([productId]) => productId);
 
       const firstAvailablePackage = availablePackages[0];
 
       if (!firstAvailablePackage) return;
 
-      const { identifier, introPrice } = firstAvailablePackage.product;
-      const isEligibleProduct = eligibleProductIds.includes(identifier);
+      let isFirstAvailablePackageEligible = false;
+      let eligibleProductIds: string[] = [];
+
+      if (Platform.OS === "ios") {
+        const productIdentifiers = availablePackages.map(
+          (pkg) => pkg.product.identifier
+        );
+
+        const productsWithEligibility =
+          await revenueCatService.checkTrialOrIntroductoryPriceEligibility(
+            productIdentifiers
+          );
+
+        eligibleProductIds = Object.entries(productsWithEligibility)
+          .filter(
+            ([_, eligibility]) =>
+              eligibility.status ===
+              INTRO_ELIGIBILITY_STATUS.INTRO_ELIGIBILITY_STATUS_ELIGIBLE
+          )
+          .map(([productId]) => productId);
+
+        isFirstAvailablePackageEligible = eligibleProductIds.includes(
+          firstAvailablePackage.identifier
+        );
+      } else {
+        eligibleProductIds = availablePackages
+          .filter((pkg) => pkg.product.defaultOption?.freePhase)
+          .map((pkg) => pkg.identifier);
+
+        console.log(availablePackages[0].product.defaultOption?.freePhase);
+
+        isFirstAvailablePackageEligible = eligibleProductIds.includes(
+          firstAvailablePackage.identifier
+        );
+      }
 
       set({
-        availableIntroPrice: isEligibleProduct ? introPrice : null,
-        selectedPackage: firstAvailablePackage.identifier,
+        availableIntroPrice: isFirstAvailablePackageEligible
+          ? firstAvailablePackage?.product?.introPrice
+          : null,
+        selectedPackage:
+          Platform.OS === "ios"
+            ? firstAvailablePackage?.product?.identifier
+            : firstAvailablePackage.identifier,
         packages: availablePackages.map((pkg) => {
           const isPackageEligible = eligibleProductIds.includes(
             pkg.product.identifier

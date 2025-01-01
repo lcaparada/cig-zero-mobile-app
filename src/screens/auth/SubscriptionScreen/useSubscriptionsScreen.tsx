@@ -19,6 +19,7 @@ export const useSubscriptionsScreen = () => {
     loadProducts,
     selectedPackage,
     purchasePackage,
+    availableIntroPrice,
   } = useRevenueCatService();
 
   const { showToast } = useToastService();
@@ -73,6 +74,7 @@ export const useSubscriptionsScreen = () => {
     isPending,
     isLoading,
     selectedPackage,
+    availableIntroPrice,
     handlePurchasePackage,
   };
 };
