@@ -130,10 +130,7 @@ export const useRevenueCatStore = create<RevenueCatService>((set, get) => ({
         availableIntroPrice: isFirstAvailablePackageEligible
           ? firstAvailablePackage?.product?.introPrice
           : null,
-        selectedPackage:
-          Platform.OS === "ios"
-            ? firstAvailablePackage?.product?.identifier
-            : firstAvailablePackage.identifier,
+        selectedPackage: firstAvailablePackage.identifier,
         packages: availablePackages.map((pkg) => {
           const isPackageEligible = eligibleProductIds.includes(
             pkg.product.identifier
