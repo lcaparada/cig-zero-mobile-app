@@ -14,9 +14,11 @@ import {
 export type AppTabBottomTabParamList = {
   HomeScreen: undefined;
   OMSTipsScreen: undefined;
-  CalendarScreen: {
-    comeFromHome: boolean;
-  };
+  CalendarScreen:
+    | {
+        comeFromHome: boolean;
+      }
+    | undefined;
 
   AchievementsScreen: undefined;
 };
