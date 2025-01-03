@@ -14,6 +14,7 @@ const AuthContext = createContext<AuthContextParams>({
   loading: true,
   signOut: async () => {},
   updateUserInformation: () => {},
+  updateNewUserStatus: () => {},
 });
 
 export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
@@ -49,6 +50,22 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
     }
   };
 
+  const updateNewUserStatus = (status: boolean) => {
+    if (session) {
+      setSession({
+        ...session,
+        user: {
+          ...session.user,
+          user_metadata: {
+            ...session.user.user_metadata,
+            isNewUser: status,
+          },
+        },
+      });
+    }
+    supabase.auth.updateUser({ data: { isNewUser: status } });
+  };
+
   useEffect(() => {
     const { data: authListener } = supabase.auth.onAuthStateChange(
       (event: AuthChangeEvent, session: Session | null) => {
@@ -81,7 +98,13 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
 
   return (
     <AuthContext.Provider
-      value={{ session, loading, signOut, updateUserInformation }}
+      value={{
+        session,
+        loading,
+        signOut,
+        updateUserInformation,
+        updateNewUserStatus,
+      }}
     >
       {children}
     </AuthContext.Provider>

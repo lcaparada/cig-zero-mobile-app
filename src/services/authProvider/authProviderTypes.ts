@@ -15,6 +15,7 @@ export type AuthContextParams = {
   loading: boolean;
   signOut: () => Promise<void>;
   updateUserInformation: (user: User) => void;
+  updateNewUserStatus: (status: boolean) => void;
 };
 
 export type UserMetaData = {

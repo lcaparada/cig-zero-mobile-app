@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { ScrollView } from "react-native";
 
-import { secureStorage, useSplash } from "@services";
-
-const TUTORIAL_KEY = "isTutorialSeen";
+import { useAuth, useSplash } from "@services";
 
 export const useTutorial = () => {
+  const { session, updateNewUserStatus } = useAuth();
+
   const { splashComplete } = useSplash();
 
   const [showStartTutorialPopup, setShowStartTutorialPopup] = useState(false);
@@ -14,14 +14,12 @@ export const useTutorial = () => {
 
   useEffect(() => {
     const checkFirstTime = async () => {
-      const hasSeenTutorial = await secureStorage.getItem(TUTORIAL_KEY);
-
-      if (hasSeenTutorial) {
+      if (!session?.user.user_metadata?.isNewUser) {
         return;
       } else if (splashComplete) {
         setShowStartTutorialPopup(true);
 
-        await secureStorage.setItem(TUTORIAL_KEY, "true");
+        updateNewUserStatus(false);
       }
     };
 

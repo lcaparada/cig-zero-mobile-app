@@ -28,7 +28,10 @@ export const useSubscriptionsScreen = () => {
     params: OnboardingScreenSchemaType
   ) => {
     try {
-      const { session } = await handleSignInAnonymously(params);
+      const { session } = await handleSignInAnonymously({
+        ...params,
+        isNewUser: true,
+      });
       if (params.likeToReceiveDailyReminders === "YES" && session) {
         registerForPushNotificationsAsync().then((token) => {
           updateNotificationSetting({
