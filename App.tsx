@@ -8,6 +8,8 @@ import { setDefaultOptions } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { useFonts } from "expo-font";
 import * as Notifications from "expo-notifications";
+import { requestTrackingPermissionsAsync } from "expo-tracking-transparency";
+import { Settings } from "react-native-fbsdk-next";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import RevenueCat from "react-native-purchases";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -48,6 +50,16 @@ function App() {
     "SFProRounded-Semibold": require("./assets/fonts/SF-Pro-Rounded-Semibold.otf"),
     "SFProRounded-Bold": require("./assets/fonts/SF-Pro-Rounded-Bold.otf"),
   });
+
+  useEffect(() => {
+    (async () => {
+      const { status } = await requestTrackingPermissionsAsync();
+      Settings.initializeSDK();
+      if (status === "granted") {
+        await Settings.setAdvertiserTrackingEnabled(true);
+      }
+    })();
+  }, []);
 
   useEffect(() => {
     RevenueCat.setLogLevel(RevenueCat.LOG_LEVEL.VERBOSE);
