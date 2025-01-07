@@ -13,7 +13,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "buildNumber": "17",
+      "buildNumber": "18",
       "bundleIdentifier": "com.elevanteholdings.cig-zero"
     },
     "android": {
@@ -45,6 +45,12 @@
         }
       ],
       [
+        "expo-tracking-transparency",
+        {
+          "userTrackingPermission": "Este identificador será usado para entregar anúncios personalizados para você."
+        }
+      ],
+      [
         "react-native-fbsdk-next",
         {
           "appID": "974567211189495",
@@ -54,7 +60,7 @@
           "autoLogAppEventsEnabled": true,
           "scheme": "fb974567211189495",
           "isAutoInitEnabled": true,
-          "iosUserTrackingPermission": "This identifier will be used to deliver personalized ads to you."
+          "iosUserTrackingPermission": "Este identificador será usado para entregar anúncios personalizados para você."
         }
       ],
       [
@@ -72,7 +78,8 @@
         }
       ],
       "expo-secure-store",
-      "expo-localization"
+      "expo-localization",
+      "expo-tracking-transparency"
     ],
     "extra": {
       "eas": {
