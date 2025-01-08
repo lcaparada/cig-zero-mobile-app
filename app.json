@@ -14,7 +14,10 @@
     "ios": {
       "supportsTablet": true,
       "buildNumber": "18",
-      "bundleIdentifier": "com.elevanteholdings.cig-zero"
+      "bundleIdentifier": "com.elevanteholdings.cig-zero",
+      "infoPlist": {
+        "NSUserTrackingUsageDescription": "This identifier will be used to deliver personalized ads to you."
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -47,7 +50,7 @@
       [
         "expo-tracking-transparency",
         {
-          "userTrackingPermission": "Este identificador será usado para entregar anúncios personalizados para você."
+          "userTrackingPermission": "This identifier will be used to deliver personalized ads to you."
         }
       ],
       [
@@ -60,7 +63,7 @@
           "autoLogAppEventsEnabled": true,
           "scheme": "fb974567211189495",
           "isAutoInitEnabled": true,
-          "iosUserTrackingPermission": "Este identificador será usado para entregar anúncios personalizados para você."
+          "iosUserTrackingPermission": "This identifier will be used to deliver personalized ads to you."
         }
       ],
       [
