@@ -51,14 +51,16 @@ function App() {
     "SFProRounded-Bold": require("./assets/fonts/SF-Pro-Rounded-Bold.otf"),
   });
 
-  useEffect(() => {
-    (async () => {
-      const { status } = await requestTrackingPermissionsAsync();
+  const requestTrackingPermission = async () => {
+    const { status } = await requestTrackingPermissionsAsync();
+    if (status === "granted") {
       Settings.initializeSDK();
-      if (status === "granted") {
-        await Settings.setAdvertiserTrackingEnabled(true);
-      }
-    })();
+      await Settings.setAdvertiserTrackingEnabled(true);
+    }
+  };
+
+  useEffect(() => {
+    requestTrackingPermission();
   }, []);
 
   useEffect(() => {
