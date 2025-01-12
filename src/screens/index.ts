@@ -20,3 +20,6 @@ export * from "./app/TermsOfServiceScreen/TermsOfServiceScreen";
 export * from "./app/PastSmokingDataScreen/PastSmokingDataScreen";
 export * from "./app/HistoricalChartScreen/HistoricalChartScreen";
 export * from "./app/PersonalInformationScreen/PersonalInformationScreen";
+
+// NETWORK
+export * from "./network/NetworkErrorScreen";

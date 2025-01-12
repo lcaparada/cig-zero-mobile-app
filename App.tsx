@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
 import { Platform } from "react-native";
 
+import { useNetInfo } from "@react-native-community/netinfo";
 import * as Sentry from "@sentry/react-native";
 import { ThemeProvider } from "@shopify/restyle";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -16,6 +17,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { Splash, Toast } from "@components";
 import { Route } from "@routes";
+import { NetworkErrorScreen } from "@screens";
 import { theme } from "@theme";
 
 import { AuthProvider, ToastProvider, useSplash } from "@services";
@@ -43,6 +45,8 @@ Sentry.init({
 
 function App() {
   const { splashComplete } = useSplash();
+
+  const netInfo = useNetInfo();
 
   const [loaded, error] = useFonts({
     "SFProRounded-Regular": require("./assets/fonts/SF-Pro-Rounded-Regular.otf"),
@@ -83,9 +87,15 @@ function App() {
           <ToastProvider>
             <QueryClientProvider client={queryClient}>
               <AuthProvider>
-                <Route />
-                {(!loaded && !error) || !splashComplete ? <Splash /> : null}
-                <Toast />
+                {netInfo.isConnected ? (
+                  <Fragment>
+                    <Route />
+                    {(!loaded && !error) || !splashComplete ? <Splash /> : null}
+                    <Toast />
+                  </Fragment>
+                ) : (
+                  <NetworkErrorScreen />
+                )}
               </AuthProvider>
             </QueryClientProvider>
           </ToastProvider>
