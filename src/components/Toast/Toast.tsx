@@ -19,6 +19,8 @@ export const Toast = () => {
       onTouchStart={() => hideToast(toast?.duration ?? 7000)}
       style={[animatedStyles, { position: "absolute" }]}
       {...$boxShadow}
+      backgroundColor={"background"}
+      borderRadius={"s16"}
     >
       <Box {...$boxStyle} maxWidth={MAX_WIDTH * 0.95}>
         <Icon name={mapTypeToIcon[toast?.type ?? "success"]} size="s40" />
