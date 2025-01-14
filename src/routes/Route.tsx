@@ -18,6 +18,7 @@ export const Route = () => {
         apiKey={process.env.EXPO_PUBLIC_POSTHOG_API_KEY!}
         options={{
           host: "https://us.i.posthog.com",
+          disabled: process.env.EXPO_PUBLIC_NODE_ENV === "DEV",
         }}
       >
         <CopilotProvider
