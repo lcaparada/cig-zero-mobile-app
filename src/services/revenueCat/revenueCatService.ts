@@ -52,6 +52,14 @@ const checkTrialOrIntroductoryPriceEligibility = async (
   }
 };
 
+const setAttributes = async (attributes: { [key: string]: string | null }) => {
+  try {
+    await RevenueCat.setAttributes(attributes);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const purchasePackage = async (
   pkg: PurchasesPackage,
   discount?: PurchasesPromotionalOffer
@@ -78,6 +86,7 @@ const getCustomerInfo = async () => {
 
 export const revenueCatService = {
   getOfferings,
+  setAttributes,
   purchasePackage,
   getCustomerInfo,
   restorePurchases,

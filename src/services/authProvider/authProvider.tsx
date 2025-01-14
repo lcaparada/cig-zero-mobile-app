@@ -6,6 +6,7 @@ import { AuthChangeEvent, Session, User } from "@supabase/supabase-js";
 import { supabase, supabaseEdgeFunction } from "@api";
 
 import { authService } from "../../domain/Auth/authService";
+import { revenueCatService } from "../revenueCat/revenueCatService";
 
 import { AuthContextParams, AuthProviderProps } from "./authProviderTypes";
 
@@ -74,6 +75,10 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
           case "INITIAL_SESSION":
             setAxiosAuthToken(session?.access_token ?? null);
             setSession(session);
+            revenueCatService.setAttributes({
+              user_id: session?.user.id ?? "",
+              user_name: session?.user?.user_metadata?.name ?? "",
+            });
             break;
           case "TOKEN_REFRESHED":
             if (session?.access_token) {
