@@ -17,6 +17,10 @@ export const useRevenueCatStore = create<RevenueCatService>((set, get) => ({
   availableIntroPrice: null,
   currentSubscriptionIsVisibled: false,
 
+  setSelectedPackage: (spkg) => {
+    set({ selectedPackage: spkg });
+  },
+
   purchasePackage: async () => {
     const { packages, selectedPackage } = get();
     if (!selectedPackage) return;
@@ -159,6 +163,9 @@ export function useRevenueCatService() {
   const customerInfo = useRevenueCatStore((state) => state.customerInfo);
   const selectedPackage = useRevenueCatStore((state) => state.selectedPackage);
   const purchasePackage = useRevenueCatStore((state) => state.purchasePackage);
+  const setSelectedPackage = useRevenueCatStore(
+    (state) => state.setSelectedPackage
+  );
   const restorePurchases = useRevenueCatStore(
     (state) => state.restorePurchases
   );
@@ -177,6 +184,7 @@ export function useRevenueCatService() {
     purchasePackage,
     selectedPackage,
     restorePurchases,
+    setSelectedPackage,
     availableIntroPrice,
     currentSubscriptionIsVisibled,
   };

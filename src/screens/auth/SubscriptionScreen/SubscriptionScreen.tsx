@@ -46,13 +46,15 @@ export const SubscriptionScreen = ({
           ))}
         </Box>
         <Reviews />
-        {packages.map(({ product, identifier }) => (
-          <PackageItem
-            key={product.identifier}
-            {...product}
-            packageIdentifier={identifier}
-          />
-        ))}
+        <Box rowGap={"s16"}>
+          {packages.map(({ product, identifier }) => (
+            <PackageItem
+              key={product.identifier}
+              {...product}
+              packageIdentifier={identifier}
+            />
+          ))}
+        </Box>
         <TrialText selectedPackageData={selectedPackageData} />
       </Box>
     </Screen>

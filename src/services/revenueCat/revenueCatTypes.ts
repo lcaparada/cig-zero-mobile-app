@@ -24,8 +24,9 @@ export type RevenueCatService = {
   currentSubscriptionIsVisibled: boolean;
   availableIntroPrice: null | PurchasesIntroPrice;
   loadProducts: () => Promise<void>;
+  getCustomerInfo: () => Promise<CustomerInfo>;
   purchasePackage: () => Promise<void>;
   restorePurchases: () => Promise<void>;
-  getCustomerInfo: () => Promise<CustomerInfo>;
+  setSelectedPackage: (selectedPackage: string) => void;
   hideCurrentSubscriptionBottomSheet: () => void;
 };

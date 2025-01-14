@@ -19,7 +19,8 @@ export const PackageItem = ({
   pricePerWeekString,
   packageIdentifier,
 }: PackageItemProps) => {
-  const { selectedPackage, isLoading } = useRevenueCatService();
+  const { selectedPackage, isLoading, setSelectedPackage } =
+    useRevenueCatService();
 
   const isSelected = packageIdentifier === selectedPackage;
   const discount = discounts?.[0];
@@ -39,7 +40,8 @@ export const PackageItem = ({
       alignItems="center"
       disabled={isLoading}
       backgroundColor={"background"}
-      borderColor={isSelected ? "primary" : "backgroundSecondConstrast"}
+      onPress={() => setSelectedPackage(packageIdentifier)}
+      borderColor={isSelected ? "primary" : "lightGray"}
     >
       <Box flex={1} flexDirection="row" alignItems="center" columnGap="s12">
         <Checkbox isSelected={isSelected} />

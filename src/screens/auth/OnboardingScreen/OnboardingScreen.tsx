@@ -36,7 +36,6 @@ export const OnboardingScreen = () => {
             );
             handleNavigateToStartScreen();
           } else {
-            console.log(step);
             posthog.capture(PostHogEventsName.PRESS_TO_NEXT_STEP, { step });
             handleNextStep();
           }
