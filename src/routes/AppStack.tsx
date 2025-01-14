@@ -1,5 +1,4 @@
 import { Fragment, useState } from "react";
-import { Image } from "react-native";
 
 import { NavigatorScreenParams } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -110,12 +109,7 @@ export const AppStack = () => {
           title="Parabéns, Conquista Alcançada!"
           description={achievementsPopupData.description}
           setVisible={() => setAchievementsPopupData(null)}
-          imageComponent={
-            <Image
-              source={require("../assets/trophy.png")}
-              style={{ width: 140, height: 140, alignSelf: "center" }}
-            />
-          }
+          showTrophy
         />
       )}
     </Fragment>

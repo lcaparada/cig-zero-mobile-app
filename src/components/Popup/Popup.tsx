@@ -9,10 +9,10 @@ import { usePopup } from "./usePopup";
 export interface PopupProps {
   title: string;
   visible: boolean;
-  description: string;
   button?: ButtonProps;
+  showTrophy?: boolean;
+  description: string;
   hideCloseButton?: boolean;
-  imageComponent?: React.JSX.Element;
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -20,6 +20,7 @@ export const Popup = ({
   title,
   button,
   visible,
+  showTrophy,
   description,
   hideCloseButton,
   setVisible,
@@ -30,10 +31,13 @@ export const Popup = ({
     <Modal transparent visible={visible} animationType="fade">
       <Box style={StyleSheet.absoluteFillObject} {...$boxWrapper}>
         <AnimatedBoxRNR {...$animatedBoxWrapper} style={[animatedStyles]}>
-          <Image
-            source={require("../../assets/trophy.png")}
-            style={{ width: 140, height: 140, alignSelf: "center" }}
-          />
+          {showTrophy && (
+            <Image
+              source={require("../../assets/trophy.png")}
+              style={{ width: 140, height: 140, alignSelf: "center" }}
+            />
+          )}
+
           <Text
             preset="titleSmall"
             weight="semiBold"
