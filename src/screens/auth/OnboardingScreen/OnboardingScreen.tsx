@@ -1,5 +1,3 @@
-import { usePostHog } from "posthog-react-native";
-
 import { Screen } from "@components";
 
 import { PostHogEventsName } from "@constraints";
@@ -9,6 +7,7 @@ import { useOnboardingScreen } from "./useOnboardingScreen";
 export const OnboardingScreen = () => {
   const {
     step,
+    posthog,
     navigation,
     handleNextStep,
     handleRenderSteps,
@@ -18,8 +17,6 @@ export const OnboardingScreen = () => {
   } = useOnboardingScreen();
 
   const MAX_STEPS = 8;
-
-  const posthog = usePostHog();
 
   const isLastStep = step === MAX_STEPS;
 
@@ -39,6 +36,7 @@ export const OnboardingScreen = () => {
             );
             handleNavigateToStartScreen();
           } else {
+            console.log(step);
             posthog.capture(PostHogEventsName.PRESS_TO_NEXT_STEP, { step });
             handleNextStep();
           }

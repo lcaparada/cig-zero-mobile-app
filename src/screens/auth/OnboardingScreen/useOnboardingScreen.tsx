@@ -2,8 +2,10 @@ import { useState } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigation } from "@react-navigation/native";
+import { usePostHog } from "posthog-react-native";
 import { useForm } from "react-hook-form";
 
+import { PostHogEventsName } from "@constraints";
 import { registerForPushNotificationsAsync } from "@helpers";
 
 import {
@@ -25,6 +27,8 @@ export const useOnboardingScreen = () => {
   const [step, setStep] = useState(1);
 
   const navigation = useNavigation();
+
+  const posthog = usePostHog();
 
   const { control, watch, setValue } = useForm<OnboardingScreenSchemaType>({
     resolver: zodResolver(onboardingScreenSchema),
@@ -75,6 +79,7 @@ export const useOnboardingScreen = () => {
   };
 
   const handleToPreviousStep = () => {
+    posthog.capture(PostHogEventsName.PRESS_TO_PREVIOUS_STEP, { step });
     setStep((prevStep) => prevStep - 1);
   };
 
@@ -94,6 +99,7 @@ export const useOnboardingScreen = () => {
 
   return {
     step,
+    posthog,
     navigation,
     handleNextStep,
     handleRenderSteps,
