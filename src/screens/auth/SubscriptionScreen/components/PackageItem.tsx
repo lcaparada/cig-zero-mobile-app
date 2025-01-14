@@ -31,8 +31,6 @@ export const PackageItem = ({
   const isSelected = packageIdentifier === selectedPackage;
   const discount = discounts?.[0];
 
-  console.log(discounts);
-
   const titleTranslation: Record<string, string> = {
     Monthly: "Mensal",
     $rc_monthly: "Mensal",
