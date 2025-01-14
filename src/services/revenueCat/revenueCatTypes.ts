@@ -5,6 +5,10 @@ import {
 } from "react-native-purchases";
 
 export type RevenueCatOfferingMetadataData = { discount?: string };
+export type RevenueCatOfferingMetadata = Record<
+  string,
+  RevenueCatOfferingMetadataData
+>;
 
 export type PurchasePackageParams = {
   email: string;
@@ -20,6 +24,7 @@ export type RevenueCatService = {
   isLoading: boolean;
   selectedPackage: string;
   packages: PurchasesPackage[];
+  metadata: RevenueCatOfferingMetadata;
   customerInfo: CustomerInfo | null;
   currentSubscriptionIsVisibled: boolean;
   availableIntroPrice: null | PurchasesIntroPrice;

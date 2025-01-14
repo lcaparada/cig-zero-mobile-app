@@ -26,6 +26,7 @@ export * from "./ProgressBar/ProgressBar";
 export * from "./BottomSheet/BottomSheet";
 export * from "./RadioButton/RadioButton";
 export * from "./ScreenHeader/ScreenHeader";
+export * from "./DiscountBadge/DiscountBadge";
 export * from "./TooltipCopilot/TooltipCopilot";
 export * from "./InformationItem/InformationItem";
 export * from "./InformationCard/InformationCard";

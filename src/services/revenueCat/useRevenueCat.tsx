@@ -7,7 +7,10 @@ import {
 import { create } from "zustand";
 
 import { revenueCatService } from "./revenueCatService";
-import { RevenueCatService } from "./revenueCatTypes";
+import {
+  RevenueCatOfferingMetadata,
+  RevenueCatService,
+} from "./revenueCatTypes";
 
 export const useRevenueCatStore = create<RevenueCatService>((set, get) => ({
   packages: [],
@@ -16,6 +19,7 @@ export const useRevenueCatStore = create<RevenueCatService>((set, get) => ({
   selectedPackage: "",
   availableIntroPrice: null,
   currentSubscriptionIsVisibled: false,
+  metadata: {},
 
   setSelectedPackage: (spkg) => {
     set({ selectedPackage: spkg });
@@ -135,10 +139,12 @@ export const useRevenueCatStore = create<RevenueCatService>((set, get) => ({
           ? firstAvailablePackage?.product?.introPrice
           : null,
         selectedPackage: firstAvailablePackage.identifier,
+        metadata: currentOffering.metadata as RevenueCatOfferingMetadata,
         packages: availablePackages.map((pkg) => {
           const isPackageEligible = eligibleProductIds.includes(
             pkg.product.identifier
           );
+
           return isPackageEligible
             ? pkg
             : { ...pkg, product: { ...pkg.product, introPrice: null } };
@@ -158,6 +164,7 @@ export const useRevenueCatStore = create<RevenueCatService>((set, get) => ({
 
 export function useRevenueCatService() {
   const packages = useRevenueCatStore((state) => state.packages);
+  const metadata = useRevenueCatStore((state) => state.metadata);
   const isLoading = useRevenueCatStore((state) => state.isLoading);
   const loadProducts = useRevenueCatStore((state) => state.loadProducts);
   const customerInfo = useRevenueCatStore((state) => state.customerInfo);
@@ -177,6 +184,7 @@ export function useRevenueCatService() {
   );
 
   return {
+    metadata,
     packages,
     isLoading,
     customerInfo,

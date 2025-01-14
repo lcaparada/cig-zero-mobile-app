@@ -2,19 +2,25 @@ import { Platform } from "react-native";
 
 import { PurchasesStoreProduct } from "react-native-purchases";
 
-import { Checkbox } from "@components";
+import { Checkbox, DiscountBadge } from "@components";
 
-import { useRevenueCatService } from "@services";
+import {
+  RevenueCatOfferingMetadataData,
+  useRevenueCatService,
+} from "@services";
 import { Box, TouchableOpacityBox } from "src/components/Box/Box";
 import { Text } from "src/components/Text/Text";
 
 type PackageItemProps = PurchasesStoreProduct & {
   packageIdentifier: string;
+  metadata: RevenueCatOfferingMetadataData;
 };
 
 export const PackageItem = ({
   title,
+  price,
   discounts,
+  metadata,
   priceString,
   pricePerWeekString,
   packageIdentifier,
@@ -25,9 +31,13 @@ export const PackageItem = ({
   const isSelected = packageIdentifier === selectedPackage;
   const discount = discounts?.[0];
 
+  console.log(discounts);
+
   const titleTranslation: Record<string, string> = {
     Monthly: "Mensal",
     $rc_monthly: "Mensal",
+    $rc_annually: "Anual",
+    Anual: "Anual",
   };
 
   return (
@@ -65,6 +75,9 @@ export const PackageItem = ({
           {pricePerWeekString} por semana
         </Text>
       </Box>
+      {(discount || metadata?.discount) && (
+        <DiscountBadge price={price} discount={discount} metadata={metadata} />
+      )}
     </TouchableOpacityBox>
   );
 };

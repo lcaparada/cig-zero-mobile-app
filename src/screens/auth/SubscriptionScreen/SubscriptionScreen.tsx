@@ -12,6 +12,7 @@ export const SubscriptionScreen = ({
 }: AuthScreenProps<"SubscriptionScreen">) => {
   const {
     packages,
+    metadata,
     isLoading,
     isPending,
     selectedPackage,
@@ -51,6 +52,7 @@ export const SubscriptionScreen = ({
             <PackageItem
               key={product.identifier}
               {...product}
+              metadata={metadata[identifier]}
               packageIdentifier={identifier}
             />
           ))}

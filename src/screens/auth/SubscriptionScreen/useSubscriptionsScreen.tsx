@@ -15,6 +15,7 @@ export const useSubscriptionsScreen = () => {
 
   const {
     packages,
+    metadata,
     isLoading,
     loadProducts,
     selectedPackage,
@@ -74,6 +75,7 @@ export const useSubscriptionsScreen = () => {
 
   return {
     packages,
+    metadata,
     isPending,
     isLoading,
     selectedPackage,
