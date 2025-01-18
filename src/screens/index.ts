@@ -11,6 +11,7 @@ export * from "./app/ChatScreen/ChatScreen";
 export * from "./app/HomeScreen/HomeScreen";
 export * from "./app/OMSTipsScreen/OMSTipsScreen";
 export * from "./app/CalendarScreen/CalendarScreen";
+export * from "./app/AppearanceScreen/AppearanceScreen";
 export * from "./app/AdjustmentsScreen/AdjustmentsScreen";
 export * from "./app/AchievementsScreen/AchievementsScreen";
 export * from "./app/ReportAnIssueScreen/ReportAnIssueScreen";

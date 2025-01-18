@@ -31,12 +31,12 @@ export const InformationCard = ({
   };
   return (
     <Box {...$boxWrapper} {...shadow}>
-      <Icon name={icon} color="neutralLighest" size="s20" strokeWidth={2} />
+      <Icon name={icon} color="buttonConstrast" size="s20" strokeWidth={2} />
       <Box flex={1} alignItems={"center"} justifyContent={"center"}>
         <Text
           weight="semiBold"
           numberOfLines={1}
-          color="neutralLighest"
+          color="buttonConstrast"
           preset={getFontPresent(number?.toString()?.length)}
         >
           {number}
@@ -46,7 +46,7 @@ export const InformationCard = ({
         preset="notes"
         textAlign={"center"}
         weight="medium"
-        color="neutralLighest"
+        color="buttonConstrast"
         numberOfLines={2}
       >
         {label}

@@ -22,6 +22,7 @@ const pallete = {
 
   lightGray: "#E5E5E5",
   lightNeutralGray: "#D2D2D2",
+  softGray: "#E0E0E0",
 
   softWhiteGray: "#F4F4F4",
 
@@ -30,6 +31,8 @@ const pallete = {
   mutedAquaWith20PercentOpacity: "#9bbdc433",
 
   mutedSlate: "#6B8A90",
+
+  mediumGray: "#B0B0B0",
   mutedCyan: "#A5BEC4",
   translucentBlack: "#00000040",
   neutralDarkest: "#333333",
@@ -37,6 +40,8 @@ const pallete = {
   neutral: "#D6D1CF",
   dark: "#000",
   grayishSilver: "#B9B9B9",
+
+  deepCharcoal: "#1C1C1C",
 
   lightSilver: "#EEE",
   mediumSilver: "#DDD",
@@ -138,7 +143,39 @@ export const theme = createTheme({
   zIndices: undefined,
 });
 
+export const darkTheme: Theme = {
+  ...theme,
+  colors: {
+    ...pallete,
+    primary: pallete.bluePrimary,
+
+    progressBarCartoon: pallete.mutedAqua,
+    progressBarBackground: pallete.neutralMedium,
+
+    radioButtonBorder: pallete.grayishSilver,
+    radioButtonBackground: pallete.mutedCyan,
+
+    dividerColor: pallete.neutralMedium,
+
+    onboardingInputSelected: pallete.bluePrimaryWith25PercentOpacity,
+
+    button: pallete.bluePrimary,
+    buttonShadow: pallete.mutedSlate,
+    buttonConstrast: pallete.neutralLighest,
+
+    background: pallete.deepCharcoal,
+    backgroundConstrast: pallete.softGray,
+    backgroundSecondConstrast: pallete.mediumGray,
+
+    switchBackground: pallete.neutralMedium,
+
+    lightSilver: pallete.lightSilver,
+    mediumSilver: pallete.mediumSilver,
+  },
+};
+
 export type Theme = typeof theme;
+export type DarkTheme = typeof darkTheme;
 export type ThemeColors = keyof (typeof theme)["colors"];
 export type ThemeSpacing = keyof (typeof theme)["spacing"];
 export type ThemeBorderRadii = keyof (typeof theme)["borderRadii"];

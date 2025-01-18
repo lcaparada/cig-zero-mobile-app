@@ -16,9 +16,14 @@ export const MissionsCardHeader = ({
     alignItems="center"
     columnGap={iconName === "dollarSign" ? "s4" : "s8"}
   >
-    <Icon name={iconName} size={"s18"} color="background" strokeWidth={2.5} />
+    <Icon
+      name={iconName}
+      size={"s18"}
+      color="buttonConstrast"
+      strokeWidth={2.5}
+    />
     <Box flex={1}>
-      <Text preset={"default"} color="background" weight="medium">
+      <Text preset={"default"} color="buttonConstrast" weight="medium">
         {text}
       </Text>
     </Box>

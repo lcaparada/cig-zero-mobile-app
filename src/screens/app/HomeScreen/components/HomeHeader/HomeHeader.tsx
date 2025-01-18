@@ -26,11 +26,12 @@ export const HomeHeader = () => {
         <ScreenHeader
           title="Resumo"
           description="Acompanhe o progresso"
-          titleAndDescriptionColor="neutralLighest"
+          titleColor="neutralLighest"
+          descriptionColor="neutralLighest"
           rightComponent={
             <Icon
               name="settings"
-              color="neutralLighest"
+              color="buttonConstrast"
               size="s24"
               strokeWidth={2}
               onPress={() => navigation.navigate("AdjustmentsScreen")}

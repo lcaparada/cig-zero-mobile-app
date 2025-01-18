@@ -25,7 +25,11 @@ export const CalendarComponentHeader = ({
 
   return (
     <Box flexDirection="row" alignItems="center" justifyContent="space-between">
-      <Text preset="paragraphsLarge" weight="semiBold">
+      <Text
+        preset="paragraphsLarge"
+        weight="semiBold"
+        color={"backgroundConstrast"}
+      >
         {capitalizeFirstLetter(formattedDate)}
       </Text>
       <Box flexDirection="row" columnGap={"s10"}>

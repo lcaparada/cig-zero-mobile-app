@@ -18,7 +18,7 @@ export const TimeCard = ({ time, label, boxProps }: TimeCardProps) => {
         <TimeItem time={firstNumber} />
         <TimeItem time={secondNumber} />
       </Box>
-      <Text preset="paragraphsBig" weight="medium" color="neutralLighest">
+      <Text preset="paragraphsBig" weight="medium" color="buttonConstrast">
         {label}
       </Text>
     </Box>

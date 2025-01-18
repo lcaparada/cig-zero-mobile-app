@@ -19,3 +19,7 @@ export * from "./revenueCat/revenueCatService";
 // SPLASH
 export * from "./splash/useSplash";
 export * from "./splash/splashTypes";
+
+// SETTINGS
+export * from "./settings/useSettings";
+export * from "./settings/settingsType";

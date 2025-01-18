@@ -44,6 +44,8 @@ import {
   Check,
   ArrowDown,
   ArrowUp,
+  Moon,
+  Sun,
 } from "@assets";
 
 import { TouchableOpacityBox } from "../Box/Box";
@@ -104,6 +106,7 @@ export const Icon = ({
 const iconRegistry = {
   x: X,
   zap: Zap,
+  sun: Sun,
   user: User,
   star: Star,
   info: Info,
@@ -112,6 +115,7 @@ const iconRegistry = {
   bell: Bell,
   plus: Plus,
   send: Send,
+  moon: Moon,
   minus: Minus,
   rings: Rings,
   clock: Clock,

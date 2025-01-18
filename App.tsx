@@ -18,7 +18,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Splash, Toast } from "@components";
 import { Route } from "@routes";
 import { NetworkErrorScreen } from "@screens";
-import { theme } from "@theme";
+import { darkTheme, theme } from "@theme";
 
 import { AuthProvider, ToastProvider, useSplash } from "@services";
 
@@ -83,7 +83,7 @@ function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={darkTheme}>
           <ToastProvider>
             <QueryClientProvider client={queryClient}>
               <AuthProvider>

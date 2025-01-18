@@ -6,16 +6,17 @@ import { Text } from "../Text/Text";
 interface ScreenHeaderProps extends BoxProps {
   title: string;
   description: string;
-  titleAndDescriptionColor?: ThemeColors;
-
+  titleColor?: ThemeColors;
   rightComponent?: JSX.Element;
+  descriptionColor?: ThemeColors;
 }
 
 export const ScreenHeader = ({
   title,
+  titleColor,
   description,
   rightComponent,
-  titleAndDescriptionColor = "backgroundConstrast",
+  descriptionColor,
 }: ScreenHeaderProps) => {
   return (
     <Box
@@ -28,14 +29,14 @@ export const ScreenHeader = ({
         <Text
           weight="semiBold"
           preset="titleBig"
-          color={titleAndDescriptionColor}
+          color={titleColor ?? "backgroundConstrast"}
         >
           {title}
         </Text>
         <Text
           weight="medium"
           preset="paragraphsBig"
-          color={titleAndDescriptionColor}
+          color={descriptionColor ?? "backgroundSecondConstrast"}
         >
           {description}
         </Text>

@@ -5,6 +5,8 @@ import { StatusBar } from "expo-status-bar";
 import { useAppSafeAreaContext, useAppTheme } from "@hooks";
 import { ThemeSpacing } from "@theme";
 
+import { useAppColor } from "@services";
+
 import { Box } from "../Box/Box";
 import { Button } from "../Button/Button";
 import { TextVariants } from "../Text/Text";
@@ -68,6 +70,8 @@ export const Screen = ({
   const { colors } = useAppTheme();
   const { top, bottom } = useAppSafeAreaContext();
 
+  const { appTheme } = useAppColor();
+
   const Container = scrollable ? ScrollViewContainer : ViewContainer;
 
   return (
@@ -111,7 +115,7 @@ export const Screen = ({
           overflowVisible={overflowVisible}
           scrollViewPaddingBottom={scrollViewPaddingBottom}
         >
-          <StatusBar />
+          <StatusBar style={appTheme === "dark" ? "light" : "dark"} />
           {children}
         </Container>
         {!!button ? (

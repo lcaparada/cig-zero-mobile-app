@@ -21,7 +21,7 @@ type SectionProps = {
 export const Section = ({ title, items }: SectionProps) => {
   return (
     <Box rowGap="s10">
-      <Text weight="medium" color={"abyssGreen"} preset="paragraphsBig">
+      <Text weight="medium" color={"primary"} preset="paragraphsBig">
         {title}
       </Text>
       <Box rowGap="s4">

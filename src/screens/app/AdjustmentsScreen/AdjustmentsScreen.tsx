@@ -41,6 +41,11 @@ export const AdjustmentsScreen = () => {
       action: () => navigation.navigate("TermsOfServiceScreen"),
     },
     {
+      icon: "moon",
+      label: "Modo Escuro",
+      action: () => navigation.navigate("AppearanceScreen"),
+    },
+    {
       icon: "fileText",
       label: "Política de Privacidade",
       action: () => navigation.navigate("PrivacyPolicyScreen"),

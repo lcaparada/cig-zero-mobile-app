@@ -84,7 +84,7 @@ export const Button = ({
           <Icon
             name="arrowRight"
             size="s20"
-            color="neutralLighest"
+            color="buttonConstrast"
             strokeWidth={2}
           />
         </Box>

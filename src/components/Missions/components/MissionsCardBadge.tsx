@@ -6,7 +6,7 @@ interface MissionsCardBadgeProps {
 
 export const MissionCardBadge = ({ number }: MissionsCardBadgeProps) => {
   return (
-    <Text preset="displayExtra" weight="semiBold" color="background">
+    <Text preset="displayExtra" weight="semiBold" color="buttonConstrast">
       {number}.
     </Text>
   );

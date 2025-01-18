@@ -5,7 +5,7 @@ export const MissionsCardDescription = ({
 }: {
   description: string;
 }) => (
-  <Text preset="paragraphsBig" weight="medium" color="background">
+  <Text preset="paragraphsBig" weight="medium" color="buttonConstrast">
     {description}
   </Text>
 );

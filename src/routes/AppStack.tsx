@@ -7,6 +7,7 @@ import { Popup } from "@components";
 import {
   FaqScreen,
   ChatScreen,
+  AppearanceScreen,
   AdjustmentsScreen,
   ReportAnIssueScreen,
   PrivacyPolicyScreen,
@@ -27,6 +28,7 @@ export type AppStackParamList = {
   FaqScreen: undefined;
   ChatScreen: undefined;
   AppTabNavigator: NavigatorScreenParams<AppTabBottomTabParamList>;
+  AppearanceScreen: undefined;
   AdjustmentsScreen: undefined;
   NotificationsScreen: undefined;
   PrivacyPolicyScreen: undefined;
@@ -71,6 +73,7 @@ export const AppStack = () => {
         initialRouteName={"AppTabNavigator"}
       >
         <Stack.Screen name="AppTabNavigator" component={AppTabNavigator} />
+        <Stack.Screen name="AppearanceScreen" component={AppearanceScreen} />
         <Stack.Screen name="AdjustmentsScreen" component={AdjustmentsScreen} />
         <Stack.Screen
           name="NotificationsScreen"

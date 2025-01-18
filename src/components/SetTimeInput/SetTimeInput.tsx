@@ -15,8 +15,13 @@ type SetTimeInputProps = {
 };
 
 export const SetTimeInput = ({ date, setDate }: SetTimeInputProps) => {
-  const { colors, isDatePickerVisible, hideDatePicker, showDatePicker } =
-    useSetTimeInput();
+  const {
+    colors,
+    appTheme,
+    isDatePickerVisible,
+    hideDatePicker,
+    showDatePicker,
+  } = useSetTimeInput();
 
   return (
     <Fragment>
@@ -35,6 +40,7 @@ export const SetTimeInput = ({ date, setDate }: SetTimeInputProps) => {
           mode="time"
           confirmTextIOS={"Confirmar"}
           cancelTextIOS={"Cancelar"}
+          isDarkModeEnabled={appTheme === "dark"}
           maximumDate={new Date()}
           textColor={colors.backgroundConstrast}
           buttonTextColorIOS={colors.backgroundConstrast}

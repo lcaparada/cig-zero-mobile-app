@@ -43,12 +43,12 @@ export const MissionsProgressBar = ({
         <Box position={"absolute"} right={-5} top={2}>
           <Icon
             name="star"
-            color="background"
-            fill={percentage >= 100 ? "neutralLighest" : "primary"}
+            color="buttonConstrast"
+            fill={percentage >= 100 ? "buttonConstrast" : "primary"}
           />
         </Box>
       </Box>
-      <Text preset="paragraphs" weight="semiBold" color={"background"}>
+      <Text preset="paragraphs" weight="semiBold" color={"buttonConstrast"}>
         {current}/{target}
       </Text>
     </Box>
@@ -62,13 +62,13 @@ const $progressWrapper: BoxProps = {
   borderWidth: 1.5,
   borderTopLeftRadius: "s16",
   borderBottomLeftRadius: "s16",
-  borderColor: "background",
-  backgroundColor: "primary",
+  borderColor: "buttonConstrast",
+  backgroundColor: "button",
 };
 
 const $progressInner: BoxProps = {
   height: "100%",
   borderRadius: "s16",
-  backgroundColor: "background",
+  backgroundColor: "buttonConstrast",
   maxWidth: "100%",
 };

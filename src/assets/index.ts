@@ -1,7 +1,9 @@
 // ICONS
 export * from "./icons/x";
+export * from "./icons/sun";
 export * from "./icons/zap";
 export * from "./icons/user";
+export * from "./icons/moon";
 export * from "./icons/star";
 export * from "./icons/home";
 export * from "./icons/info";
