@@ -20,7 +20,13 @@ import { Route } from "@routes";
 import { NetworkErrorScreen } from "@screens";
 import { darkTheme, theme } from "@theme";
 
-import { AuthProvider, ToastProvider, useAppColor, useSplash } from "@services";
+import {
+  useSplash,
+  useAppColor,
+  AuthProvider,
+  ToastProvider,
+  useRevenueCatStore,
+} from "@services";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -48,6 +54,8 @@ function App() {
   const { getAppColor } = useAppColor();
 
   const appColor = getAppColor();
+
+  const { checkIfUserIsPremium } = useRevenueCatStore();
 
   const netInfo = useNetInfo();
 
@@ -80,7 +88,9 @@ function App() {
   }, []);
 
   useEffect(() => {
+    checkIfUserIsPremium();
     setDefaultOptions({ locale: ptBR });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

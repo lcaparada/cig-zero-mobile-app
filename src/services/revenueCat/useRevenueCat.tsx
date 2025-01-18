@@ -6,6 +6,8 @@ import {
 } from "react-native-purchases";
 import { create } from "zustand";
 
+import { supabase } from "@api";
+
 import { revenueCatService } from "./revenueCatService";
 import {
   RevenueCatOfferingMetadata,
@@ -68,6 +70,18 @@ export const useRevenueCatStore = create<RevenueCatService>((set, get) => ({
       return customerInfo;
     } catch (error) {
       throw error;
+    }
+  },
+
+  checkIfUserIsPremium: async () => {
+    const { getCustomerInfo } = get();
+    try {
+      const customerInfo = await getCustomerInfo();
+      if (!customerInfo.activeSubscriptions.length) {
+        await supabase.auth.signOut();
+      }
+    } catch (error) {
+      console.log(error);
     }
   },
 
@@ -170,6 +184,7 @@ export function useRevenueCatService() {
   const customerInfo = useRevenueCatStore((state) => state.customerInfo);
   const selectedPackage = useRevenueCatStore((state) => state.selectedPackage);
   const purchasePackage = useRevenueCatStore((state) => state.purchasePackage);
+
   const setSelectedPackage = useRevenueCatStore(
     (state) => state.setSelectedPackage
   );
@@ -178,6 +193,9 @@ export function useRevenueCatService() {
   );
   const availableIntroPrice = useRevenueCatStore(
     (state) => state.availableIntroPrice
+  );
+  const checkIfUserIsPremium = useRevenueCatStore(
+    (state) => state.checkIfUserIsPremium
   );
   const currentSubscriptionIsVisibled = useRevenueCatStore(
     (state) => state.currentSubscriptionIsVisibled
@@ -194,6 +212,7 @@ export function useRevenueCatService() {
     restorePurchases,
     setSelectedPackage,
     availableIntroPrice,
+    checkIfUserIsPremium,
     currentSubscriptionIsVisibled,
   };
 }

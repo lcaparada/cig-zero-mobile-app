@@ -8,3 +8,4 @@ export * from "./userTypes";
 export * from "./useCases/useGetProgressData";
 export * from "./useCases/useGetHistoricData";
 export * from "./useCases/useUpdateUserInformation";
+export * from "./useCases/useUpdateNotificationToken";

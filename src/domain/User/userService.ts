@@ -4,6 +4,7 @@ import {
   GetProgressData,
   GetHistoricData,
   UpdateUserInformation,
+  UpdateNotificationToken,
 } from "./userTypes";
 
 const updateUserInformation = async (
@@ -26,6 +27,18 @@ const getProgressData = async (): Promise<GetProgressData.Result> => {
   }
 };
 
+const updateNotificationToken = async (
+  params: UpdateNotificationToken.Params
+): Promise<UpdateNotificationToken.Result> => {
+  try {
+    await supabaseEdgeFunction.post("update-notification-token", {
+      notification_token: params.notificationToken,
+    });
+  } catch (error) {
+    throw error;
+  }
+};
+
 const getHistoricData = async (): Promise<GetHistoricData.Result> => {
   try {
     const { data } = await supabaseEdgeFunction.post("get-historical-data");
@@ -39,4 +52,5 @@ export const userService = {
   getProgressData,
   getHistoricData,
   updateUserInformation,
+  updateNotificationToken,
 };

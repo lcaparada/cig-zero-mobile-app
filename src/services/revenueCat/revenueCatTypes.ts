@@ -33,5 +33,6 @@ export type RevenueCatService = {
   purchasePackage: () => Promise<void>;
   restorePurchases: () => Promise<void>;
   setSelectedPackage: (selectedPackage: string) => void;
+  checkIfUserIsPremium: () => Promise<void>;
   hideCurrentSubscriptionBottomSheet: () => void;
 };

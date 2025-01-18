@@ -17,6 +17,13 @@ export namespace GetHistoricData {
   };
 }
 
+export namespace UpdateNotificationToken {
+  export type Params = {
+    notificationToken: string;
+  };
+  export type Result = void;
+}
+
 export namespace UpdateUserInformation {
   export type Params = {
     name?: string;

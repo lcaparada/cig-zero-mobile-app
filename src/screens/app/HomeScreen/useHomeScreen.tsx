@@ -6,11 +6,13 @@ import { useCopilot } from "react-native-copilot";
 
 import { useAppTheme, useTutorial } from "@hooks";
 
-import { useUpdateUserInformation } from "@domain";
+import { useUpdateNotificationToken, useUpdateUserInformation } from "@domain";
+import { registerForPushNotificationsAsync } from "@helpers";
 import { QueryKeys } from "@infra";
 
 export const useHomeScreen = () => {
   const { handleUpdateUserInformation } = useUpdateUserInformation();
+  const { updateNotificationToken } = useUpdateNotificationToken();
 
   const { start } = useCopilot();
 
@@ -43,11 +45,26 @@ export const useHomeScreen = () => {
     }
   };
 
+  const handleGetNotificationTokenAndUpdate = async () => {
+    try {
+      const notificationToken = await registerForPushNotificationsAsync();
+      await updateNotificationToken({
+        notificationToken: notificationToken ?? "",
+      });
+      console.log(notificationToken ?? "");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useFocusEffect(
     useCallback(() => {
       handleUpdateUserInformation({
         last_activity_at: new Date().toISOString(),
       });
+      if (process.env.EXPO_PUBLIC_NODE_ENV === "PROD") {
+        handleGetNotificationTokenAndUpdate();
+      }
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
   );
