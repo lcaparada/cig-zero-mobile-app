@@ -20,7 +20,7 @@ export const steps: StepProps[] = [
     primaryTitle: "Sistema de Conquistas",
     secondaryTitle: "Incentivo para cada passo",
     description:
-      "Atinga metas e desbloqueie conquistas, como redução de consumo, economia financeira e tempo sem fumar.",
+      "Atinja metas e desbloqueie conquistas, como redução de consumo, economia financeira e tempo sem fumar.",
     imageName: "ACHIEVEMENTS",
   },
   {
