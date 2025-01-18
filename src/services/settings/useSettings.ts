@@ -3,13 +3,18 @@ import { persist } from "zustand/middleware";
 
 import { secureStorage } from "../localStorage/implementations/secureStorage";
 
+import { settingsService } from "./settingsService";
 import { SettingsStore } from "./settingsType";
-
 const useSettingsStore = create<SettingsStore>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       appColor: "default",
-      setAppColor: (appColor) => set({ appColor: appColor }),
+      setAppColor: (appColor) => set({ appColor }),
+      getAppColor: () => {
+        const { appColor } = get();
+        const currentTheme = settingsService.getAppColor(appColor);
+        return currentTheme;
+      },
     }),
     {
       name: "settings",
@@ -21,9 +26,11 @@ const useSettingsStore = create<SettingsStore>()(
 export function useAppColor() {
   const appTheme = useSettingsStore((state) => state.appColor);
   const setAppColor = useSettingsStore((state) => state.setAppColor);
+  const getAppColor = useSettingsStore((state) => state.getAppColor);
 
   return {
     appTheme,
     setAppColor,
+    getAppColor,
   };
 }

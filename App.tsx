@@ -20,7 +20,7 @@ import { Route } from "@routes";
 import { NetworkErrorScreen } from "@screens";
 import { darkTheme, theme } from "@theme";
 
-import { AuthProvider, ToastProvider, useSplash } from "@services";
+import { AuthProvider, ToastProvider, useAppColor, useSplash } from "@services";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -45,6 +45,9 @@ Sentry.init({
 
 function App() {
   const { splashComplete } = useSplash();
+  const { getAppColor } = useAppColor();
+
+  const appColor = getAppColor();
 
   const netInfo = useNetInfo();
 
@@ -83,7 +86,7 @@ function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
-        <ThemeProvider theme={darkTheme}>
+        <ThemeProvider theme={appColor === "dark" ? darkTheme : theme}>
           <ToastProvider>
             <QueryClientProvider client={queryClient}>
               <AuthProvider>
