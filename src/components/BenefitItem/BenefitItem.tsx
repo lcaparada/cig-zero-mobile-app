@@ -1,6 +1,6 @@
-import { Box } from "src/components/Box/Box";
-import { Icon, IconName } from "src/components/Icon/Icon";
-import { Text } from "src/components/Text/Text";
+import { Box } from "../Box/Box";
+import { Icon, IconName } from "../Icon/Icon";
+import { Text } from "../Text/Text";
 
 type BenefitItemProps = {
   text: string;

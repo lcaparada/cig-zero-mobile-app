@@ -88,7 +88,9 @@ function App() {
   }, []);
 
   useEffect(() => {
-    checkIfUserIsPremium();
+    if (process.env.EXPO_PUBLIC_NODE_ENV === "PROD") {
+      checkIfUserIsPremium();
+    }
     setDefaultOptions({ locale: ptBR });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

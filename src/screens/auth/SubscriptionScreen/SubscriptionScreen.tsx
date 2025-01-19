@@ -1,10 +1,16 @@
-import { Box, Text, Screen, Reviews } from "@components";
+import {
+  Box,
+  Text,
+  Screen,
+  Reviews,
+  TrialText,
+  BenefitItem,
+  PackageItem,
+} from "@components";
 import { AuthScreenProps } from "@routes";
 
 import { getBenefits } from "@constraints";
 
-import { BenefitItem, TrialText } from "./components";
-import { PackageItem } from "./components/PackageItem";
 import { useSubscriptionsScreen } from "./useSubscriptionsScreen";
 
 export const SubscriptionScreen = ({

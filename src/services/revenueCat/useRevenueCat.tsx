@@ -6,8 +6,6 @@ import {
 } from "react-native-purchases";
 import { create } from "zustand";
 
-import { supabase } from "@api";
-
 import { revenueCatService } from "./revenueCatService";
 import {
   RevenueCatOfferingMetadata,
@@ -16,15 +14,20 @@ import {
 
 export const useRevenueCatStore = create<RevenueCatService>((set, get) => ({
   packages: [],
+  metadata: {},
   isLoading: true,
   customerInfo: null,
   selectedPackage: "",
+  paywallVisible: false,
   availableIntroPrice: null,
   currentSubscriptionIsVisibled: false,
-  metadata: {},
 
   setSelectedPackage: (spkg) => {
     set({ selectedPackage: spkg });
+  },
+
+  setPaywallVisible: (bool) => {
+    set({ paywallVisible: bool });
   },
 
   purchasePackage: async () => {
@@ -74,11 +77,11 @@ export const useRevenueCatStore = create<RevenueCatService>((set, get) => ({
   },
 
   checkIfUserIsPremium: async () => {
-    const { getCustomerInfo } = get();
+    const { getCustomerInfo, setPaywallVisible } = get();
     try {
       const customerInfo = await getCustomerInfo();
       if (!customerInfo.activeSubscriptions.length) {
-        await supabase.auth.signOut();
+        setPaywallVisible(true);
       }
     } catch (error) {
       console.log(error);
@@ -182,8 +185,12 @@ export function useRevenueCatService() {
   const isLoading = useRevenueCatStore((state) => state.isLoading);
   const loadProducts = useRevenueCatStore((state) => state.loadProducts);
   const customerInfo = useRevenueCatStore((state) => state.customerInfo);
+  const paywallVisible = useRevenueCatStore((state) => state.paywallVisible);
   const selectedPackage = useRevenueCatStore((state) => state.selectedPackage);
   const purchasePackage = useRevenueCatStore((state) => state.purchasePackage);
+  const setPaywallVisible = useRevenueCatStore(
+    (state) => state.setPaywallVisible
+  );
 
   const setSelectedPackage = useRevenueCatStore(
     (state) => state.setSelectedPackage
@@ -207,9 +214,11 @@ export function useRevenueCatService() {
     isLoading,
     customerInfo,
     loadProducts,
+    paywallVisible,
     purchasePackage,
     selectedPackage,
     restorePurchases,
+    setPaywallVisible,
     setSelectedPackage,
     availableIntroPrice,
     checkIfUserIsPremium,

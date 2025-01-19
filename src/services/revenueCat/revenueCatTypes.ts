@@ -21,17 +21,19 @@ export type SetAttributesParams = {
 };
 
 export type RevenueCatService = {
-  isLoading: boolean;
-  selectedPackage: string;
   packages: PurchasesPackage[];
   metadata: RevenueCatOfferingMetadata;
+  isLoading: boolean;
   customerInfo: CustomerInfo | null;
-  currentSubscriptionIsVisibled: boolean;
+  paywallVisible: boolean;
+  selectedPackage: string;
   availableIntroPrice: null | PurchasesIntroPrice;
+  currentSubscriptionIsVisibled: boolean;
   loadProducts: () => Promise<void>;
   getCustomerInfo: () => Promise<CustomerInfo>;
   purchasePackage: () => Promise<void>;
   restorePurchases: () => Promise<void>;
+  setPaywallVisible: (bool: boolean) => void;
   setSelectedPackage: (selectedPackage: string) => void;
   checkIfUserIsPremium: () => Promise<void>;
   hideCurrentSubscriptionBottomSheet: () => void;

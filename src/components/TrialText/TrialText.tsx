@@ -3,9 +3,9 @@ import { Platform } from "react-native";
 
 import { PurchasesPackage } from "react-native-purchases";
 
-import { Text } from "@components";
-
 import { extractUnitFrequency } from "@helpers";
+
+import { Text } from "../Text/Text";
 
 interface ITrialText {
   selectedPackageData: PurchasesPackage | undefined;

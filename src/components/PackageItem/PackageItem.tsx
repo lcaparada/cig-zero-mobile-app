@@ -2,14 +2,15 @@ import { Platform } from "react-native";
 
 import { PurchasesStoreProduct } from "react-native-purchases";
 
-import { Checkbox, DiscountBadge } from "@components";
-
 import {
   RevenueCatOfferingMetadataData,
   useRevenueCatService,
 } from "@services";
-import { Box, TouchableOpacityBox } from "src/components/Box/Box";
-import { Text } from "src/components/Text/Text";
+
+import { Box, BoxProps, TouchableOpacityBox } from "../Box/Box";
+import { Checkbox } from "../Checkbox/Checkbox";
+import { DiscountBadge } from "../DiscountBadge/DiscountBadge";
+import { Text } from "../Text/Text";
 
 type PackageItemProps = PurchasesStoreProduct & {
   packageIdentifier: string;
@@ -40,14 +41,8 @@ export const PackageItem = ({
 
   return (
     <TouchableOpacityBox
-      padding="s16"
-      borderWidth={2}
-      columnGap="s12"
-      borderRadius="s16"
-      flexDirection="row"
-      alignItems="center"
+      {...$touchableWrapper}
       disabled={isLoading}
-      backgroundColor={"background"}
       onPress={() => setSelectedPackage(packageIdentifier)}
       borderColor={isSelected ? "primary" : "lightGray"}
     >
@@ -78,4 +73,14 @@ export const PackageItem = ({
       )}
     </TouchableOpacityBox>
   );
+};
+
+const $touchableWrapper: BoxProps = {
+  padding: "s16",
+  borderWidth: 2,
+  columnGap: "s12",
+  borderRadius: "s16",
+  flexDirection: "row",
+  alignItems: "center",
+  backgroundColor: "background",
 };

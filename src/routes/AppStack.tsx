@@ -3,7 +3,7 @@ import { Fragment, useState } from "react";
 import { NavigatorScreenParams } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { Popup } from "@components";
+import { Paywall, Popup } from "@components";
 import {
   FaqScreen,
   ChatScreen,
@@ -20,7 +20,7 @@ import {
 
 import { Achievement, AchievementOnUser, achievementsService } from "@domain";
 import { useAchievementsListener } from "@infra";
-import { useAuth } from "@services";
+import { useAuth, useRevenueCatStore } from "@services";
 
 import { AppTabBottomTabParamList, AppTabNavigator } from "./AppTabNavigator";
 
@@ -43,6 +43,8 @@ const Stack = createNativeStackNavigator<AppStackParamList>();
 
 export const AppStack = () => {
   const { session } = useAuth();
+
+  const { paywallVisible } = useRevenueCatStore();
 
   const [achievementsPopupData, setAchievementsPopupData] = useState<
     (AchievementOnUser & Pick<Achievement, "title" | "description">) | null
@@ -115,6 +117,7 @@ export const AppStack = () => {
           showTrophy
         />
       )}
+      {paywallVisible && <Paywall />}
     </Fragment>
   );
 };
