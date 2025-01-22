@@ -23,13 +23,6 @@ export const AppearanceScreen = () => {
       isSelected: appTheme === "light",
       description: "A aparência do app ficará no modo claro",
     },
-    {
-      label: "Padrão do Sistema",
-      value: "default",
-      isSelected: appTheme === "default",
-      description:
-        "A aparência será a mesma que você configurou no seu dispositivo",
-    },
   ];
 
   return (

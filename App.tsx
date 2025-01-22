@@ -51,9 +51,7 @@ Sentry.init({
 
 function App() {
   const { splashComplete } = useSplash();
-  const { getAppColor } = useAppColor();
-
-  const appColor = getAppColor();
+  const { appTheme } = useAppColor();
 
   const { checkIfUserIsPremium } = useRevenueCatStore();
 
@@ -98,7 +96,7 @@ function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
-        <ThemeProvider theme={appColor === "dark" ? darkTheme : theme}>
+        <ThemeProvider theme={appTheme === "dark" ? darkTheme : theme}>
           <ToastProvider>
             <QueryClientProvider client={queryClient}>
               <AuthProvider>
