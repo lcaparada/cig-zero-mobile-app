@@ -51,7 +51,6 @@ export const useHomeScreen = () => {
       await updateNotificationToken({
         notificationToken: notificationToken ?? "",
       });
-      console.log(notificationToken ?? "");
     } catch (error) {
       console.error(error);
     }

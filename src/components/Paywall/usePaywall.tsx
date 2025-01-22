@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { useRevenueCatService, useToastService } from "@services";
 
@@ -15,6 +15,8 @@ export const usePaywall = () => {
   } = useRevenueCatService();
 
   const { showToast } = useToastService();
+
+  const [popupVisible, setPopupVisible] = useState(true);
 
   const handlePurchasePackage = async () => {
     try {
@@ -42,8 +44,10 @@ export const usePaywall = () => {
     packages,
     metadata,
     isLoading,
+    popupVisible,
     paywallVisible,
     selectedPackage,
+    setPopupVisible,
     handlePurchasePackage,
   };
 };

@@ -80,7 +80,7 @@ export const useRevenueCatStore = create<RevenueCatService>((set, get) => ({
     const { getCustomerInfo, setPaywallVisible } = get();
     try {
       const customerInfo = await getCustomerInfo();
-      if (!customerInfo.activeSubscriptions.length) {
+      if (!Object.entries(customerInfo.entitlements.active).length) {
         setPaywallVisible(true);
       }
     } catch (error) {

@@ -5,6 +5,7 @@ import { getBenefits } from "@constraints";
 import { BenefitItem } from "../BenefitItem/BenefitItem";
 import { Box } from "../Box/Box";
 import { PackageItem } from "../PackageItem/PackageItem";
+import { Popup } from "../Popup/Popup";
 import { Reviews } from "../Reviews/Reviews";
 import { Screen } from "../Screen/Screen";
 import { Text } from "../Text/Text";
@@ -17,8 +18,10 @@ export const Paywall = () => {
     packages,
     metadata,
     isLoading,
+    popupVisible,
     paywallVisible,
     selectedPackage,
+    setPopupVisible,
     handlePurchasePackage,
   } = usePaywall();
 
@@ -65,6 +68,12 @@ export const Paywall = () => {
           <TrialText selectedPackageData={selectedPackageData} />
         </Box>
       </Screen>
+      <Popup
+        visible={popupVisible}
+        setVisible={setPopupVisible}
+        title="💨 Renove Sua Jornada"
+        description="Sua assinatura expirou. 🔁 Confira nossos planos e continue na luta contra o fumo! 💪"
+      />
     </Modal>
   );
 };
