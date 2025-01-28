@@ -8,7 +8,7 @@ const SRText = createText<Theme>();
 
 type SRTextProps = React.ComponentProps<typeof SRText>;
 
-type TextWeightVariants = "bold" | "medium" | "semiBold" | "regular";
+export type TextWeightVariants = "bold" | "medium" | "semiBold" | "regular";
 
 export type TextVariants =
   | "notes"

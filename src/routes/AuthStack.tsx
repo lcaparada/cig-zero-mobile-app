@@ -2,17 +2,17 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import {
   StartScreen,
+  LoginScreen,
   WelcomeScreen,
-  OnboardingScreen,
-  SubscriptionScreen,
+  RegisterScreen,
   OnboardingScreenSchemaType,
 } from "@screens";
 
 export type AuthStackParamList = {
   StartScreen: OnboardingScreenSchemaType;
+  LoginScreen: undefined;
   WelcomeScreen: undefined;
-  OnboardingScreen: undefined;
-  SubscriptionScreen: OnboardingScreenSchemaType;
+  RegisterScreen: undefined;
 };
 
 const Stack = createNativeStackNavigator<AuthStackParamList>();
@@ -23,10 +23,10 @@ export const AuthStack = () => {
       initialRouteName="WelcomeScreen"
       screenOptions={{ headerShown: false, fullScreenGestureEnabled: true }}
     >
-      <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
-      <Stack.Screen name="OnboardingScreen" component={OnboardingScreen} />
+      <Stack.Screen name="LoginScreen" component={LoginScreen} />
       <Stack.Screen name="StartScreen" component={StartScreen} />
-      <Stack.Screen name="SubscriptionScreen" component={SubscriptionScreen} />
+      <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
+      <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
     </Stack.Navigator>
   );
 };

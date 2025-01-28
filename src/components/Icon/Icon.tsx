@@ -46,6 +46,8 @@ import {
   ArrowUp,
   Moon,
   Sun,
+  Apple,
+  Google,
 } from "@assets";
 
 import { TouchableOpacityBox } from "../Box/Box";
@@ -116,6 +118,7 @@ const iconRegistry = {
   plus: Plus,
   send: Send,
   moon: Moon,
+  apple: Apple,
   minus: Minus,
   rings: Rings,
   clock: Clock,
@@ -123,6 +126,7 @@ const iconRegistry = {
   smile: Smile,
   check: Check,
   shield: Shield,
+  google: Google,
   trash2: Trash2,
   arrowUp: ArrowUp,
   error: ErrorRound,

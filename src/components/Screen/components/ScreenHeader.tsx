@@ -12,6 +12,8 @@ interface ScreenHeaderProps
     | "canGoBack"
     | "titleSize"
     | "titleAlign"
+    | "titleColor"
+    | "titleWeight"
     | "rightComponent"
     | "progressBar"
     | "canGoBackSpecificyScreen"
@@ -24,6 +26,8 @@ export const ScreenHeader = ({
   canGoBack,
   titleAlign,
   progressBar,
+  titleColor,
+  titleWeight,
   rightComponent,
   titleSize = "titleSmall",
   canGoBackSpecificyScreen,
@@ -64,9 +68,9 @@ export const ScreenHeader = ({
       </Box>
       {!!title ? (
         <Text
-          weight="semiBold"
+          weight={titleWeight ?? "semiBold"}
           preset={titleSize}
-          color={"backgroundConstrast"}
+          color={titleColor ?? "backgroundConstrast"}
         >
           {title}
         </Text>

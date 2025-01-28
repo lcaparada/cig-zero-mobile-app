@@ -7,7 +7,7 @@ import {
 import { registerForPushNotificationsAsync } from "@helpers";
 import { useRevenueCatService, useToastService } from "@services";
 
-import { OnboardingScreenSchemaType } from "../OnboardingScreen/schema/onboardingScreenSchema";
+import { OnboardingScreenSchemaType } from "../../app/OnboardingScreen/schema/onboardingScreenSchema";
 
 export const useSubscriptionsScreen = () => {
   const { handleSignInAnonymously, isPending } = useAuthSignInAnonymously();

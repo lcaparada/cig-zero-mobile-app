@@ -3,13 +3,13 @@ import { KeyboardAvoidingView, Platform } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
 import { useAppSafeAreaContext, useAppTheme } from "@hooks";
-import { ThemeSpacing } from "@theme";
+import { ThemeColors, ThemeSpacing } from "@theme";
 
 import { useAppColor } from "@services";
 
 import { Box } from "../Box/Box";
 import { Button } from "../Button/Button";
-import { TextVariants } from "../Text/Text";
+import { TextVariants, TextWeightVariants } from "../Text/Text";
 
 import { ScreenHeader, ScrollViewContainer, ViewContainer } from "./components";
 
@@ -33,6 +33,8 @@ export interface ScreenProps {
   centerItems?: boolean;
   titleAlign?: TitleAlign;
   titleSize?: TextVariants;
+  titleColor?: ThemeColors;
+  titleWeight?: TextWeightVariants;
   rightComponent?: JSX.Element;
   hasPaddingTop?: boolean;
   overflowVisible?: boolean;
@@ -59,6 +61,8 @@ export const Screen = ({
   titleSize = "titleSmall",
   hasPaddingTop = true,
   rightComponent,
+  titleColor,
+  titleWeight,
   progressBar,
   overflowVisible,
   pullToRefresh,
@@ -100,6 +104,8 @@ export const Screen = ({
             <ScreenHeader
               title={screenTitle}
               canGoBack={canGoBack}
+              titleColor={titleColor}
+              titleWeight={titleWeight}
               titleSize={titleSize}
               titleAlign={titleAlign}
               progressBar={progressBar}

@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { usePostHog } from "posthog-react-native";
 
-import { Box, Button, Screen, Text } from "@components";
+import { Box, Button, Screen, Text, TouchableOpacityBox } from "@components";
 
 import { PostHogEventsName } from "@constraints";
 
@@ -25,15 +25,28 @@ export const WelcomeScreen = () => {
           jornada!
         </Text>
       </Box>
-      <Button
-        onPress={() => {
-          posthog.capture(PostHogEventsName.PRESS_TO_START_ONBOARDING);
-          navigate("OnboardingScreen");
-        }}
-        mt={"s40"}
-        text="Começar agora"
-        preset="primary"
-      />
+      <Box rowGap={"s16"} alignItems={"center"}>
+        <Button
+          onPress={() => {
+            posthog.capture(PostHogEventsName.PRESS_TO_START_ONBOARDING);
+            navigate("RegisterScreen");
+          }}
+          mt={"s40"}
+          text="Começar agora"
+          preset="primary"
+        />
+        <TouchableOpacityBox
+          hitSlop={10}
+          onPress={() => navigate("LoginScreen")}
+        >
+          <Text color={"backgroundConstrast"}>
+            Já possui conta?{" "}
+            <Text color={"primary"} weight="bold">
+              Toque aqui!
+            </Text>
+          </Text>
+        </TouchableOpacityBox>
+      </Box>
     </Screen>
   );
 };

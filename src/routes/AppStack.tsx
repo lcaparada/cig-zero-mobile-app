@@ -16,6 +16,9 @@ import {
   HistoricalChartScreen,
   PastSmokingDataScreen,
   PersonalInformationScreen,
+  OnboardingScreenSchemaType,
+  OnboardingScreen,
+  SubscriptionScreen,
 } from "@screens";
 
 import { Achievement, AchievementOnUser, achievementsService } from "@domain";
@@ -29,7 +32,9 @@ export type AppStackParamList = {
   ChatScreen: undefined;
   AppTabNavigator: NavigatorScreenParams<AppTabBottomTabParamList>;
   AppearanceScreen: undefined;
+  OnboardingScreen: undefined;
   AdjustmentsScreen: undefined;
+  SubscriptionScreen: OnboardingScreenSchemaType;
   NotificationsScreen: undefined;
   PrivacyPolicyScreen: undefined;
   ReportAnIssueScreen: undefined;
@@ -96,6 +101,11 @@ export const AppStack = () => {
         <Stack.Screen
           name="PastSmokingDataScreen"
           component={PastSmokingDataScreen}
+        />
+        <Stack.Screen name="OnboardingScreen" component={OnboardingScreen} />
+        <Stack.Screen
+          name="SubscriptionScreen"
+          component={SubscriptionScreen}
         />
         <Stack.Screen
           name="HistoricalChartScreen"
