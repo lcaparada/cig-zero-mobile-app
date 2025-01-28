@@ -7,18 +7,14 @@ const pallete = {
 
   bluePrimaryWith25PercentOpacity: "#7ea2aa40",
 
-  abyssGreen: "#042628",
-
   backgroundModal: "#00000080",
 
   solarGold: "#F6AE2D",
-  amberBrown: "#B58328",
 
   amber: "#F3B700",
 
   errorDark: "#6B0F1A",
   errorMedium: "#530811",
-  errorLight: "#EB9494",
 
   lightGray: "#E5E5E5",
   lightNeutralGray: "#D2D2D2",
@@ -34,10 +30,8 @@ const pallete = {
 
   mediumGray: "#B0B0B0",
   mutedCyan: "#A5BEC4",
-  translucentBlack: "#00000040",
   neutralDarkest: "#333333",
   neutralMedium: "#606060",
-  neutral: "#D6D1CF",
   dark: "#000",
   grayishSilver: "#B9B9B9",
 
@@ -46,7 +40,6 @@ const pallete = {
   lightSilver: "#EEE",
   mediumSilver: "#DDD",
 
-  neutralLight: "#F5F5F5",
   neutralLighest: "#FFFFFF",
 
   shadowBlue: "#233D4D",
