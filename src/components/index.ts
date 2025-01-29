@@ -23,6 +23,7 @@ export * from "./Form/FormTextInput";
 export * from "./TrialText/TrialText";
 export * from "./TextInput/TextInput";
 export * from "./Form/OnboardingInput";
+export * from "./StartModal/StartModal";
 export * from "./ReviewItem/ReviewItem";
 export * from "./PackageItem/PackageItem";
 export * from "./BenefitItem/BenefitItem";

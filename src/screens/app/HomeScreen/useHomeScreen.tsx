@@ -19,6 +19,8 @@ export const useHomeScreen = () => {
   const { colors } = useAppTheme();
 
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const [onboardingModalVisible, setOnboardingModalVisible] = useState(false);
+  const [startModalVisible, setStartModalVisible] = useState(false);
 
   const queryClient = useQueryClient();
 
@@ -72,9 +74,14 @@ export const useHomeScreen = () => {
     colors,
     scrollRef,
     isRefreshing,
+
+    startModalVisible,
+    onboardingModalVisible,
     showStartTutorialPopup,
     setShowStartTutorialPopup,
     start,
     handleRefresh,
+    setStartModalVisible,
+    setOnboardingModalVisible,
   };
 };

@@ -1,8 +1,9 @@
 import { Modal, ScrollView } from "react-native";
 
-import { Box, Button } from "@components";
-
 import { steps } from "@constraints";
+
+import { Box } from "../Box/Box";
+import { Button } from "../Button/Button";
 
 import { DirectionControls, Step } from "./components";
 import { useStartModal } from "./useStartModal";
@@ -12,7 +13,7 @@ interface StartModalProps {
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const StartModal = ({ visible }: StartModalProps) => {
+export const StartModal = ({ visible, setVisible }: StartModalProps) => {
   const {
     bottom,
     scrollRef,
@@ -21,6 +22,7 @@ export const StartModal = ({ visible }: StartModalProps) => {
     handleScroll,
     handleLayout,
     scrollToPage,
+    setPaywallVisible,
   } = useStartModal();
 
   return (
@@ -67,7 +69,8 @@ export const StartModal = ({ visible }: StartModalProps) => {
             <Button
               text="Iniciar jornada"
               onPress={() => {
-                //TODO : OPEN SUBSCRIPTION MODAL
+                setVisible(false);
+                setPaywallVisible(true);
               }}
             />
           </Box>

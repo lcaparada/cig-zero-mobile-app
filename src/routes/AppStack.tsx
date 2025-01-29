@@ -3,12 +3,13 @@ import { Fragment, useState } from "react";
 import { NavigatorScreenParams } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { Paywall, Popup } from "@components";
+import { Popup } from "@components";
 import {
   FaqScreen,
   ChatScreen,
   AppearanceScreen,
   AdjustmentsScreen,
+  SubscriptionScreen,
   ReportAnIssueScreen,
   PrivacyPolicyScreen,
   NotificationsScreen,
@@ -16,14 +17,11 @@ import {
   HistoricalChartScreen,
   PastSmokingDataScreen,
   PersonalInformationScreen,
-  OnboardingScreenSchemaType,
-  OnboardingScreen,
-  SubscriptionScreen,
 } from "@screens";
 
 import { Achievement, AchievementOnUser, achievementsService } from "@domain";
 import { useAchievementsListener } from "@infra";
-import { useAuth, useRevenueCatStore } from "@services";
+import { useAuth } from "@services";
 
 import { AppTabBottomTabParamList, AppTabNavigator } from "./AppTabNavigator";
 
@@ -34,7 +32,7 @@ export type AppStackParamList = {
   AppearanceScreen: undefined;
   OnboardingScreen: undefined;
   AdjustmentsScreen: undefined;
-  SubscriptionScreen: OnboardingScreenSchemaType;
+  SubscriptionScreen: undefined;
   NotificationsScreen: undefined;
   PrivacyPolicyScreen: undefined;
   ReportAnIssueScreen: undefined;
@@ -48,8 +46,6 @@ const Stack = createNativeStackNavigator<AppStackParamList>();
 
 export const AppStack = () => {
   const { session } = useAuth();
-
-  const { paywallVisible } = useRevenueCatStore();
 
   const [achievementsPopupData, setAchievementsPopupData] = useState<
     (AchievementOnUser & Pick<Achievement, "title" | "description">) | null
@@ -102,7 +98,6 @@ export const AppStack = () => {
           name="PastSmokingDataScreen"
           component={PastSmokingDataScreen}
         />
-        <Stack.Screen name="OnboardingScreen" component={OnboardingScreen} />
         <Stack.Screen
           name="SubscriptionScreen"
           component={SubscriptionScreen}
@@ -127,7 +122,6 @@ export const AppStack = () => {
           showTrophy
         />
       )}
-      {paywallVisible && <Paywall />}
     </Fragment>
   );
 };

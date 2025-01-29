@@ -1,23 +1,21 @@
-import { useState } from "react";
-
 import { NavigationContainer } from "@react-navigation/native";
 import { PostHogProvider } from "posthog-react-native";
 import { CopilotProvider } from "react-native-copilot";
 
-import {
-  OnboardingModal,
-  StepNumberCopilot,
-  TooltipCopilot,
-} from "@components";
+import { StepNumberCopilot, TooltipCopilot } from "@components";
 
-import { useAuth } from "@services";
+import { useAuth, useRevenueCatStore } from "@services";
 
 import { AppStack } from "./AppStack";
 import { AuthStack } from "./AuthStack";
 
 export const Route = () => {
-  const [visible, setVisible] = useState(true);
   const { session, loading } = useAuth();
+
+  const { paywallVisible } = useRevenueCatStore();
+
+  console.log(paywallVisible);
+
   if (loading) return null;
 
   return (
@@ -40,7 +38,7 @@ export const Route = () => {
           stepNumberComponent={StepNumberCopilot}
           tooltipComponent={TooltipCopilot}
         >
-          <OnboardingModal visible={visible} setVisible={setVisible} />
+          {session ? <AppStack /> : <AuthStack />}
         </CopilotProvider>
       </PostHogProvider>
     </NavigationContainer>

@@ -9,9 +9,13 @@ import {
 
 import { useAppSafeAreaContext } from "@hooks";
 
+import { useRevenueCatStore } from "@services";
+
 export const useStartModal = () => {
   const [pageHeight, setPageHeight] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
+
+  const { setPaywallVisible } = useRevenueCatStore();
 
   const scrollRef = useRef<ScrollView>(null);
   const { bottom } = useAppSafeAreaContext();
@@ -39,6 +43,7 @@ export const useStartModal = () => {
     scrollRef,
     currentPage,
     WIDTH_SCREEN,
+    setPaywallVisible,
     handleScroll,
     handleLayout,
     scrollToPage,

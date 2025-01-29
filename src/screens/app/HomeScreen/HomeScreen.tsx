@@ -1,6 +1,12 @@
 import { RefreshControl, ScrollView } from "react-native";
 
-import { Missions, Divider, Popup } from "@components";
+import {
+  Missions,
+  Divider,
+  Popup,
+  OnboardingModal,
+  StartModal,
+} from "@components";
 
 import {
   Historic,
@@ -18,7 +24,11 @@ export const HomeScreen = () => {
     scrollRef,
     isRefreshing,
     handleRefresh,
+    startModalVisible,
+    setStartModalVisible,
+    onboardingModalVisible,
     showStartTutorialPopup,
+    setOnboardingModalVisible,
     setShowStartTutorialPopup,
   } = useHomeScreen();
 
@@ -56,6 +66,19 @@ export const HomeScreen = () => {
           }}
           title="Seja bem vindo ao CigZero!"
           description="Aqui começa um breve tutorial que apresentará as principais ferramentas para ajudá-lo a superar o vício do cigarro de forma eficaz."
+        />
+      )}
+      {onboardingModalVisible && (
+        <OnboardingModal
+          visible={onboardingModalVisible}
+          setVisible={setOnboardingModalVisible}
+          setStartModalVisible={setStartModalVisible}
+        />
+      )}
+      {startModalVisible && (
+        <StartModal
+          visible={startModalVisible}
+          setVisible={setStartModalVisible}
         />
       )}
     </ScrollView>

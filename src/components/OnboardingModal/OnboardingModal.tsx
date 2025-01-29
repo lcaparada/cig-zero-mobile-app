@@ -9,11 +9,13 @@ import { useOnboardingModal } from "./useOnboardingModal";
 interface OnboardingModalProps {
   visible: boolean;
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  setStartModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const OnboardingModal = ({
   visible,
   setVisible,
+  setStartModalVisible,
 }: OnboardingModalProps) => {
   const {
     step,
@@ -44,7 +46,8 @@ export const OnboardingModal = ({
                 PostHogEventsName.PRESS_TO_NAVIGATE_TO_START_SCREEN
               );
               handleRequestForNotification();
-              // TO DO : OPEN SUBSCRIPTION MODAL;
+              setVisible(false);
+              setStartModalVisible(true);
             } else {
               posthog.capture(PostHogEventsName.PRESS_TO_NEXT_STEP, { step });
               handleNextStep();
