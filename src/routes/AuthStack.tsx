@@ -1,7 +1,6 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import {
-  StartScreen,
   LoginScreen,
   WelcomeScreen,
   RegisterScreen,
@@ -24,7 +23,6 @@ export const AuthStack = () => {
       screenOptions={{ headerShown: false, fullScreenGestureEnabled: true }}
     >
       <Stack.Screen name="LoginScreen" component={LoginScreen} />
-      <Stack.Screen name="StartScreen" component={StartScreen} />
       <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
       <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
     </Stack.Navigator>

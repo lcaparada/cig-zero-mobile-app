@@ -1,6 +1,5 @@
 // AUTH
 export * from "./auth/LoginScreen/LoginScreen";
-export * from "./auth/StartScreen/StartScreen";
 export * from "./auth/WelcomeScreen/WelcomeScreen";
 export * from "./auth/RegisterScreen/RegisterScreen";
 
