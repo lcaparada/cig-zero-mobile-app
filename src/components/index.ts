@@ -33,6 +33,7 @@ export * from "./ScreenHeader/ScreenHeader";
 export * from "./SocialButtons/SocialButtons";
 export * from "./DiscountBadge/DiscountBadge";
 export * from "./TooltipCopilot/TooltipCopilot";
+export * from "./OnboardingModal/OnboardingModal";
 export * from "./InformationItem/InformationItem";
 export * from "./InformationCard/InformationCard";
 export * from "./OnboardingInput/onboardingTypes";

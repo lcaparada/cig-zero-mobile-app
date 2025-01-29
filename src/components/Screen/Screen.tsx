@@ -100,7 +100,10 @@ export const Screen = ({
           paddingLeft={insets.left === "s0" ? "s24" : undefined}
           paddingRight={insets.right === "s0" ? "s24" : undefined}
         >
-          {canGoBack || !!screenTitle || canGoBackSpecificyScreen ? (
+          {progressBar ||
+          canGoBack ||
+          !!screenTitle ||
+          canGoBackSpecificyScreen ? (
             <ScreenHeader
               title={screenTitle}
               canGoBack={canGoBack}

@@ -30,7 +30,7 @@ export const Paywall = () => {
   );
 
   return (
-    <Modal animationType="slide" visible={paywallVisible}>
+    <Modal animationType="none" visible={paywallVisible}>
       <Screen
         overflowVisible
         scrollable

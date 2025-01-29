@@ -1,8 +1,14 @@
+import { useState } from "react";
+
 import { NavigationContainer } from "@react-navigation/native";
 import { PostHogProvider } from "posthog-react-native";
 import { CopilotProvider } from "react-native-copilot";
 
-import { StepNumberCopilot, TooltipCopilot } from "@components";
+import {
+  OnboardingModal,
+  StepNumberCopilot,
+  TooltipCopilot,
+} from "@components";
 
 import { useAuth } from "@services";
 
@@ -10,8 +16,10 @@ import { AppStack } from "./AppStack";
 import { AuthStack } from "./AuthStack";
 
 export const Route = () => {
+  const [visible, setVisible] = useState(true);
   const { session, loading } = useAuth();
   if (loading) return null;
+
   return (
     <NavigationContainer>
       <PostHogProvider
@@ -32,7 +40,7 @@ export const Route = () => {
           stepNumberComponent={StepNumberCopilot}
           tooltipComponent={TooltipCopilot}
         >
-          {session ? <AppStack /> : <AuthStack />}
+          <OnboardingModal visible={visible} setVisible={setVisible} />
         </CopilotProvider>
       </PostHogProvider>
     </NavigationContainer>

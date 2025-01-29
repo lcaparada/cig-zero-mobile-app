@@ -76,7 +76,7 @@ export const ScreenHeader = ({
         </Text>
       ) : null}
       {!!progressBar && (
-        <Box flex={7} height={16}>
+        <Box flex={7} height={22} justifyContent={"center"}>
           <ProgressBar percentage={progressBar.progress} />
         </Box>
       )}
