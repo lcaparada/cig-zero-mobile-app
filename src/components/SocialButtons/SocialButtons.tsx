@@ -11,12 +11,20 @@ interface SocialButton {
   action: () => void;
 }
 
-export const SocialButtons = () => {
+interface SocialButtonsProps {
+  copyForApple?: string;
+  copyForGoogle?: string;
+}
+
+export const SocialButtons = ({
+  copyForApple,
+  copyForGoogle,
+}: SocialButtonsProps) => {
   const socialButtons: SocialButton[] =
     Platform.OS === "android"
       ? [
           {
-            text: "Entrar com Google",
+            text: copyForGoogle ?? "Entrar com Google",
             iconName: "google",
             isLoading: false,
             action: () => {},
@@ -24,13 +32,13 @@ export const SocialButtons = () => {
         ]
       : [
           {
-            text: "Entrar com Google",
+            text: copyForGoogle ?? "Entrar com Google",
             iconName: "google",
             isLoading: false,
             action: () => {},
           },
           {
-            text: "Entrar com Apple",
+            text: copyForApple ?? "Entrar com Apple",
             iconName: "apple",
             isLoading: false,
             action: () => {},

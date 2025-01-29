@@ -24,7 +24,10 @@ export const RegisterScreen = () => {
         </Text>
       </Box>
 
-      <SocialButtons />
+      <SocialButtons
+        copyForApple="Criar conta com Apple"
+        copyForGoogle="Criar conta com Google"
+      />
     </Screen>
   );
 };
