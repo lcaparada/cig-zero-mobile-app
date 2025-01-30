@@ -15,8 +15,9 @@ export type AuthContextParams = {
   session: Session | null;
   loading: boolean;
   signOut: () => Promise<void>;
-  updateUserShowTutorial: (bool: boolean) => Promise<void>;
+  updateUserShowTutorial: (bool: boolean) => void;
   updateUserInformation: (user: User) => void;
+  createFirstAppLaunch: () => void;
   updateUserFromOnboarding: (
     _session: Session,
     params: OnboardingScreenSchemaType

@@ -1,9 +1,12 @@
 import { Avatar, Box, Text } from "@components";
 
+import { capitalizeFirstLetter } from "@helpers";
 import { useAuth } from "@services";
 
 export const AdjusmentsHeader = () => {
   const { session } = useAuth();
+  console.log(session);
+
   return (
     <Box alignItems={"center"} rowGap={"s12"}>
       <Avatar
@@ -21,7 +24,8 @@ export const AdjusmentsHeader = () => {
           {session?.user?.user_metadata?.name}
         </Text>
         <Text weight="medium" color={"backgroundSecondConstrast"}>
-          acessado anonimamente
+          acessado com{" "}
+          {capitalizeFirstLetter(session?.user?.app_metadata?.provider ?? "")}
         </Text>
       </Box>
     </Box>

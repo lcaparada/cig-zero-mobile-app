@@ -2,11 +2,10 @@ import { format } from "date-fns";
 import { usePostHog } from "posthog-react-native";
 
 import { PostHogEventsName } from "@constraints";
+import { capitalizeFirstLetter } from "@helpers";
 import { Box } from "src/components/Box/Box";
 import { Icon, IconName } from "src/components/Icon/Icon";
 import { Text } from "src/components/Text/Text";
-
-import { capitalizeFirstLetter } from "../utils";
 
 interface CalendarComponentHeaderProps {
   date: Date;

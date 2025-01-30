@@ -14,7 +14,7 @@ type InitSessionProps = Pick<
 export const useSubscriptionsScreen = () => {
   const { updateNotificationSetting } = useUpdateNotificationSetting();
 
-  const { session, updateNewUserStatus } = useAuth();
+  const { session, updateNewUserStatus, createFirstAppLaunch } = useAuth();
 
   const {
     packages,
@@ -38,6 +38,7 @@ export const useSubscriptionsScreen = () => {
         });
       });
     }
+    createFirstAppLaunch();
     updateNewUserStatus(false);
   };
 

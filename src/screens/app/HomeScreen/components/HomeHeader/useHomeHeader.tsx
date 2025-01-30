@@ -23,13 +23,17 @@ export const useHomeHeader = () => {
       const interval = setInterval(() => {
         const date =
           smokingRecord?.date ??
-          session?.user?.created_at ??
+          session?.user?.user_metadata?.firstAppLaunch ??
           new Date().toISOString();
         setTimeSinceLastSmokingRecord(calculateTimeDifferenceFromNow(date));
       }, 1000);
       return () => clearInterval(interval);
     }
-  }, [isFetching, smokingRecord?.date, session?.user?.created_at]);
+  }, [
+    isFetching,
+    smokingRecord?.date,
+    session?.user?.user_metadata?.firstAppLaunch,
+  ]);
 
   return { navigation, timeSinceLastSmokingRecord };
 };

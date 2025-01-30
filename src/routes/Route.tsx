@@ -17,6 +17,10 @@ export const Route = () => {
     ? OnboardingStack
     : AppStack;
 
+  console.log(session);
+
+  console.log(session ? <Route /> : <AuthStack />);
+
   if (loading) return null;
 
   return (

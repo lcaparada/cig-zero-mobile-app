@@ -16,10 +16,11 @@ const AuthContext = createContext<AuthContextParams>({
   session: null,
   loading: true,
   signOut: async () => {},
-  updateUserShowTutorial: async () => {},
-  updateUserFromOnboarding: async () => {},
-  updateUserInformation: () => {},
   updateNewUserStatus: () => {},
+  createFirstAppLaunch: () => {},
+  updateUserInformation: () => {},
+  updateUserShowTutorial: () => {},
+  updateUserFromOnboarding: async () => {},
 });
 
 export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
@@ -55,6 +56,24 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
     }
   };
 
+  const createFirstAppLaunch = () => {
+    const firstAppLaunch = new Date().toISOString();
+
+    if (session) {
+      setSession({
+        ...session,
+        user: {
+          ...session.user,
+          user_metadata: {
+            ...session.user.user_metadata,
+            firstAppLaunch,
+          },
+        },
+      });
+    }
+    supabase.auth.updateUser({ data: { firstAppLaunch } });
+  };
+
   const updateUserShowTutorial = async (bool: boolean) => {
     if (session) {
       setSession({
@@ -68,7 +87,7 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
         },
       });
     }
-    supabase.auth.updateUser({ data: { showTutorial: bool } });
+    await supabase.auth.updateUser({ data: { showTutorial: bool } });
   };
 
   const updateUserFromOnboarding = async (
@@ -85,7 +104,7 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
     setSession(_session);
   };
 
-  const updateNewUserStatus = (status: boolean) => {
+  const updateNewUserStatus = async (status: boolean) => {
     if (session) {
       setSession({
         ...session,
@@ -98,24 +117,50 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
         },
       });
     }
-    supabase.auth.updateUser({ data: { isNewUser: status } });
+    await supabase.auth.updateUser({ data: { isNewUser: status } });
   };
 
   useEffect(() => {
     const { data: authListener } = supabase.auth.onAuthStateChange(
-      (event: AuthChangeEvent, session: Session | null) => {
+      async (event: AuthChangeEvent, session: Session | null) => {
         switch (event) {
           case "SIGNED_IN":
           case "INITIAL_SESSION":
+            if (!session) return;
             setAxiosAuthToken(session?.access_token ?? null);
-            console.log(session?.user?.user_metadata);
-            if (session?.user?.user_metadata?.isNewUser === undefined) {
-              updateNewUserStatus(true);
+            const updatedData: Record<string, boolean> = {};
+
+            if (
+              session &&
+              session.user?.user_metadata?.isNewUser === undefined
+            ) {
+              updatedData.isNewUser = true;
             }
-            if (session?.user?.user_metadata?.showTutorial === undefined) {
-              updateUserShowTutorial(true);
+
+            if (
+              session &&
+              session.user?.user_metadata?.showTutorial === undefined
+            ) {
+              updatedData.showTutorial = true;
             }
-            setSession(session);
+
+            if (Object.keys(updatedData).length > 0) {
+              supabase.auth.updateUser({ data: updatedData });
+
+              setSession({
+                ...session,
+                user: {
+                  ...session.user,
+                  user_metadata: {
+                    ...session.user.user_metadata,
+                    ...updatedData,
+                  },
+                },
+              });
+            } else {
+              setSession(session);
+            }
+
             RevenueCat.setEmail(session?.user?.user_metadata.email);
             RevenueCat.setDisplayName(session?.user?.user_metadata.name);
             break;
@@ -141,14 +186,19 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    console.log("chamouaq");
+  }, [session]);
+
   return (
     <AuthContext.Provider
       value={{
         session,
         loading,
-        updateUserShowTutorial,
         signOut,
+        createFirstAppLaunch,
         updateNewUserStatus,
+        updateUserShowTutorial,
         updateUserInformation,
         updateUserFromOnboarding,
       }}
