@@ -26,7 +26,7 @@ export const useHomeHeader = () => {
           session?.user?.user_metadata?.firstAppLaunch ??
           new Date().toISOString();
         setTimeSinceLastSmokingRecord(calculateTimeDifferenceFromNow(date));
-      }, 1000);
+      }, 60_000);
       return () => clearInterval(interval);
     }
   }, [

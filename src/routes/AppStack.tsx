@@ -1,7 +1,8 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 import { NavigatorScreenParams } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import * as StoreReview from "expo-store-review";
 
 import { Popup } from "@components";
 import {
@@ -19,6 +20,7 @@ import {
 } from "@screens";
 
 import { Achievement, AchievementOnUser, achievementsService } from "@domain";
+import { calculateDiffInDays } from "@helpers";
 import { useAchievementsListener } from "@infra";
 import { useAuth } from "@services";
 
@@ -65,6 +67,22 @@ export const AppStack = () => {
       }
     },
   });
+
+  const requestReview = async () => {
+    if (await StoreReview.hasAction()) {
+      StoreReview.requestReview();
+    }
+  };
+
+  useEffect(() => {
+    const diffInDays = calculateDiffInDays(
+      session?.user?.user_metadata?.firstAppLaunch,
+      new Date()
+    );
+    if (diffInDays > 0 && diffInDays % 3 === 0) {
+      requestReview();
+    }
+  }, [session?.user?.user_metadata?.firstAppLaunch]);
 
   return (
     <Fragment>
