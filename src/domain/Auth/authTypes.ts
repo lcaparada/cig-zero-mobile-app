@@ -1,10 +1,20 @@
-import { AuthResponse } from "@supabase/supabase-js";
+import { Session, User } from "@supabase/supabase-js";
 
-import { OnboardingScreenSchemaType } from "@screens";
-
-export namespace SignInAnonymously {
-  export type Params = OnboardingScreenSchemaType & {
-    isNewUser: boolean;
+export namespace SignInWithProvider {
+  export type Params = {
+    idToken: string;
+    provider: "google" | "apple";
   };
-  export type Result = AuthResponse["data"];
+  export type Result = {
+    user: User;
+    session: Session;
+  };
+}
+
+export namespace CheckUserAccount {
+  export type Params = {
+    email: string;
+  };
+
+  export type Result = boolean;
 }

@@ -2,16 +2,45 @@ import { supabase, supabaseEdgeFunction } from "@api";
 
 import { secureStorage } from "../../services/localStorage/implementations/secureStorage";
 
-import { SignInAnonymously } from "./authTypes";
+import { CheckUserAccount, SignInWithProvider } from "./authTypes";
 
-const signInAnonymously = async (
-  params: SignInAnonymously.Params
-): Promise<SignInAnonymously.Result> => {
-  const { error, data } = await supabase.auth.signInAnonymously({
-    options: { data: params },
-  });
-  if (error) throw error;
-  return data;
+const signInWithProvider = async ({
+  idToken,
+  provider,
+}: SignInWithProvider.Params): Promise<SignInWithProvider.Result> => {
+  try {
+    const { error, data } = await supabase.auth.signInWithIdToken({
+      provider,
+      token: idToken,
+    });
+    if (error) throw error;
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const checkUserAccount = async (
+  params: CheckUserAccount.Params
+): Promise<CheckUserAccount.Result> => {
+  try {
+    const { error, data: existingUser } = await supabase
+      .from("users")
+      .select("*")
+      .eq("email", params.email)
+      .single();
+    if (error && error.code !== "PGRST116") {
+      throw error;
+    }
+
+    if (existingUser) {
+      return true;
+    }
+
+    return false;
+  } catch (error) {
+    throw error;
+  }
 };
 
 const signOut = async () => {
@@ -35,5 +64,6 @@ const deleteAccount = async () => {
 export const authService = {
   signOut,
   deleteAccount,
-  signInAnonymously,
+  checkUserAccount,
+  signInWithProvider,
 };

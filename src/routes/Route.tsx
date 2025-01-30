@@ -4,17 +4,18 @@ import { CopilotProvider } from "react-native-copilot";
 
 import { StepNumberCopilot, TooltipCopilot } from "@components";
 
-import { useAuth, useRevenueCatStore } from "@services";
+import { useAuth } from "@services";
 
 import { AppStack } from "./AppStack";
 import { AuthStack } from "./AuthStack";
+import { OnboardingStack } from "./OnboardingStack";
 
 export const Route = () => {
   const { session, loading } = useAuth();
 
-  const { paywallVisible } = useRevenueCatStore();
-
-  console.log(paywallVisible);
+  const Route = session?.user?.user_metadata.isNewUser
+    ? OnboardingStack
+    : AppStack;
 
   if (loading) return null;
 
@@ -38,7 +39,7 @@ export const Route = () => {
           stepNumberComponent={StepNumberCopilot}
           tooltipComponent={TooltipCopilot}
         >
-          {session ? <AppStack /> : <AuthStack />}
+          {session ? <Route /> : <AuthStack />}
         </CopilotProvider>
       </PostHogProvider>
     </NavigationContainer>

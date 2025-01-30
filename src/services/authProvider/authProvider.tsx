@@ -1,12 +1,14 @@
-import React, { createContext, useState, useEffect, useContext } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
 
 import * as Sentry from "@sentry/react-native";
 import { AuthChangeEvent, Session, User } from "@supabase/supabase-js";
+import RevenueCat from "react-native-purchases";
+
+import { OnboardingScreenSchemaType } from "@screens";
 
 import { supabase, supabaseEdgeFunction } from "@api";
 
 import { authService } from "../../domain/Auth/authService";
-import { revenueCatService } from "../revenueCat/revenueCatService";
 
 import { AuthContextParams, AuthProviderProps } from "./authProviderTypes";
 
@@ -14,6 +16,8 @@ const AuthContext = createContext<AuthContextParams>({
   session: null,
   loading: true,
   signOut: async () => {},
+  updateUserShowTutorial: async () => {},
+  updateUserFromOnboarding: async () => {},
   updateUserInformation: () => {},
   updateNewUserStatus: () => {},
 });
@@ -51,6 +55,36 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
     }
   };
 
+  const updateUserShowTutorial = async (bool: boolean) => {
+    if (session) {
+      setSession({
+        ...session,
+        user: {
+          ...session.user,
+          user_metadata: {
+            ...session.user.user_metadata,
+            showTutorial: bool,
+          },
+        },
+      });
+    }
+    supabase.auth.updateUser({ data: { showTutorial: bool } });
+  };
+
+  const updateUserFromOnboarding = async (
+    _session: Session,
+    params: OnboardingScreenSchemaType
+  ) => {
+    const result = await supabase.auth.updateUser({
+      data: params,
+    });
+
+    if (result?.data?.user?.user_metadata) {
+      _session.user.user_metadata = result.data.user?.user_metadata;
+    }
+    setSession(_session);
+  };
+
   const updateNewUserStatus = (status: boolean) => {
     if (session) {
       setSession({
@@ -74,11 +108,16 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
           case "SIGNED_IN":
           case "INITIAL_SESSION":
             setAxiosAuthToken(session?.access_token ?? null);
+            console.log(session?.user?.user_metadata);
+            if (session?.user?.user_metadata?.isNewUser === undefined) {
+              updateNewUserStatus(true);
+            }
+            if (session?.user?.user_metadata?.showTutorial === undefined) {
+              updateUserShowTutorial(true);
+            }
             setSession(session);
-            revenueCatService.setAttributes({
-              user_id: session?.user.id ?? "",
-              user_name: session?.user?.user_metadata?.name ?? "",
-            });
+            RevenueCat.setEmail(session?.user?.user_metadata.email);
+            RevenueCat.setDisplayName(session?.user?.user_metadata.name);
             break;
           case "TOKEN_REFRESHED":
             if (session?.access_token) {
@@ -99,6 +138,7 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
     return () => {
       authListener.subscription.unsubscribe();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -106,9 +146,11 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
       value={{
         session,
         loading,
+        updateUserShowTutorial,
         signOut,
-        updateUserInformation,
         updateNewUserStatus,
+        updateUserInformation,
+        updateUserFromOnboarding,
       }}
     >
       {children}

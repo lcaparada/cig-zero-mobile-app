@@ -9,12 +9,18 @@ import {
   SmokeYears,
   YesNoOption,
 } from "@components";
+import { OnboardingScreenSchemaType } from "@screens";
 
 export type AuthContextParams = {
   session: Session | null;
   loading: boolean;
   signOut: () => Promise<void>;
+  updateUserShowTutorial: (bool: boolean) => Promise<void>;
   updateUserInformation: (user: User) => void;
+  updateUserFromOnboarding: (
+    _session: Session,
+    params: OnboardingScreenSchemaType
+  ) => Promise<void>;
   updateNewUserStatus: (status: boolean) => void;
 };
 

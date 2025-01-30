@@ -8,12 +8,11 @@ export const OnboardingScreen = () => {
   const {
     step,
     posthog,
-    navigation,
     handleNextStep,
     handleRenderSteps,
     handleCanGoNextPage,
     handleToPreviousStep,
-    handleNavigateToStartScreen,
+    handleNavigateToFeaturesScreen,
   } = useOnboardingScreen();
 
   const MAX_STEPS = 8;
@@ -23,8 +22,8 @@ export const OnboardingScreen = () => {
   return (
     <Screen
       scrollable
-      canGoBackSpecificyScreen={() =>
-        step === 1 ? navigation.goBack() : handleToPreviousStep()
+      canGoBackSpecificyScreen={
+        step === 1 ? undefined : () => handleToPreviousStep()
       }
       insets={{ bottom: "s35", left: "s24", right: "s24", top: "s24" }}
       button={{
@@ -34,7 +33,7 @@ export const OnboardingScreen = () => {
             posthog.capture(
               PostHogEventsName.PRESS_TO_NAVIGATE_TO_START_SCREEN
             );
-            handleNavigateToStartScreen();
+            handleNavigateToFeaturesScreen();
           } else {
             posthog.capture(PostHogEventsName.PRESS_TO_NEXT_STEP, { step });
             handleNextStep();

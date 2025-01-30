@@ -5,12 +5,19 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { AppStackParamList } from "./AppStack";
 import { AppTabBottomTabParamList } from "./AppTabNavigator";
 import { AuthStackParamList } from "./AuthStack";
+import { OnboardingStackParamList } from "./OnboardingStack";
 
 declare global {
   namespace ReactNavigation {
-    interface RootParamList extends AuthStackParamList, AppStackParamList {}
+    interface RootParamList
+      extends AuthStackParamList,
+        AppStackParamList,
+        OnboardingStackParamList {}
   }
 }
+
+export type OnboardingScreenProps<T extends keyof OnboardingStackParamList> =
+  NativeStackScreenProps<OnboardingStackParamList, T>;
 
 export type AuthScreenProps<T extends keyof AuthStackParamList> =
   NativeStackScreenProps<AuthStackParamList, T>;

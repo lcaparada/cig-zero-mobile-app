@@ -39,7 +39,6 @@ export const Button = ({
     <TouchableOpacityBox
       height={55}
       borderRadius={"s16"}
-      width={"100%"}
       paddingHorizontal={"s20"}
       justifyContent={"center"}
       alignItems={"center"}

@@ -7,19 +7,18 @@ import {
   useWindowDimensions,
 } from "react-native";
 
+import { useNavigation } from "@react-navigation/native";
+
 import { useAppSafeAreaContext } from "@hooks";
 
-import { useRevenueCatStore } from "@services";
-
-export const useStartModal = () => {
+export const useFeaturesScreen = () => {
   const [pageHeight, setPageHeight] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
-
-  const { setPaywallVisible } = useRevenueCatStore();
 
   const scrollRef = useRef<ScrollView>(null);
   const { bottom } = useAppSafeAreaContext();
   const { width: WIDTH_SCREEN } = useWindowDimensions();
+  const navigation = useNavigation();
 
   const handleLayout = (event: LayoutChangeEvent) => {
     const height = event.nativeEvent.layout.height;
@@ -42,8 +41,8 @@ export const useStartModal = () => {
     bottom,
     scrollRef,
     currentPage,
+    navigation,
     WIDTH_SCREEN,
-    setPaywallVisible,
     handleScroll,
     handleLayout,
     scrollToPage,

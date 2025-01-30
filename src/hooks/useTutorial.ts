@@ -4,7 +4,7 @@ import { ScrollView } from "react-native";
 import { useAuth, useSplash } from "@services";
 
 export const useTutorial = () => {
-  const { session, updateNewUserStatus } = useAuth();
+  const { session, updateUserShowTutorial } = useAuth();
 
   const { splashComplete } = useSplash();
 
@@ -14,12 +14,11 @@ export const useTutorial = () => {
 
   useEffect(() => {
     const checkFirstTime = async () => {
-      if (!session?.user.user_metadata?.isNewUser) {
+      if (!session?.user.user_metadata?.showTutorial) {
         return;
       } else if (splashComplete) {
         setShowStartTutorialPopup(true);
-
-        updateNewUserStatus(false);
+        updateUserShowTutorial(false);
       }
     };
 

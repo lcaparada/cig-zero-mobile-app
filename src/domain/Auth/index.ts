@@ -5,4 +5,6 @@ export * from "./authService";
 export * from "./authTypes";
 
 // USE CASES
-export * from "./useCases/useAuthSignInAnonymously";
+export * from "./useCases/useAuthAppleSignIn";
+export * from "./useCases/useAuthGoogleSignIn";
+export * from "./useCases/useCheckUserAccount";

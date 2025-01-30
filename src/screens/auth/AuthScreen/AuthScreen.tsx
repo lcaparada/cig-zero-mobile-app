@@ -1,6 +1,6 @@
 import { Box, Screen, SocialButtons, Text } from "@components";
 
-export const LoginScreen = () => {
+export const AuthScreen = () => {
   return (
     <Screen
       centerItems
@@ -19,11 +19,12 @@ export const LoginScreen = () => {
           preset="paragraphsLarge"
           color={"backgroundSecondConstrast"}
         >
-          Que bom tê-lo de volta. Estamos com você nessa jornada para superar o
-          vício em cigarro!
+          Precisamos de uma conta para salvar seus dados e garantir a melhor
+          experiência no app. Caso já tenha uma conta, continue com um dos
+          provedores abaixo. 🚀
         </Text>
       </Box>
-      <SocialButtons />
+      <SocialButtons boxProps={{ mt: "s20" }} />
     </Screen>
   );
 };

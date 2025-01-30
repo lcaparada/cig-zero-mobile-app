@@ -9,18 +9,21 @@ import { useAppTheme, useTutorial } from "@hooks";
 import { useUpdateNotificationToken, useUpdateUserInformation } from "@domain";
 import { registerForPushNotificationsAsync } from "@helpers";
 import { QueryKeys } from "@infra";
+import { useAuth } from "@services";
 
 export const useHomeScreen = () => {
+  const { session } = useAuth();
+
   const { handleUpdateUserInformation } = useUpdateUserInformation();
   const { updateNotificationToken } = useUpdateNotificationToken();
+
+  console.log(session);
 
   const { start } = useCopilot();
 
   const { colors } = useAppTheme();
 
   const [isRefreshing, setIsRefreshing] = useState(false);
-  const [onboardingModalVisible, setOnboardingModalVisible] = useState(false);
-  const [startModalVisible, setStartModalVisible] = useState(false);
 
   const queryClient = useQueryClient();
 
@@ -74,14 +77,9 @@ export const useHomeScreen = () => {
     colors,
     scrollRef,
     isRefreshing,
-
-    startModalVisible,
-    onboardingModalVisible,
     showStartTutorialPopup,
     setShowStartTutorialPopup,
     start,
     handleRefresh,
-    setStartModalVisible,
-    setOnboardingModalVisible,
   };
 };

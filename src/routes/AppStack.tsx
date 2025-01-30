@@ -9,7 +9,6 @@ import {
   ChatScreen,
   AppearanceScreen,
   AdjustmentsScreen,
-  SubscriptionScreen,
   ReportAnIssueScreen,
   PrivacyPolicyScreen,
   NotificationsScreen,
@@ -30,9 +29,7 @@ export type AppStackParamList = {
   ChatScreen: undefined;
   AppTabNavigator: NavigatorScreenParams<AppTabBottomTabParamList>;
   AppearanceScreen: undefined;
-  OnboardingScreen: undefined;
   AdjustmentsScreen: undefined;
-  SubscriptionScreen: undefined;
   NotificationsScreen: undefined;
   PrivacyPolicyScreen: undefined;
   ReportAnIssueScreen: undefined;
@@ -98,10 +95,7 @@ export const AppStack = () => {
           name="PastSmokingDataScreen"
           component={PastSmokingDataScreen}
         />
-        <Stack.Screen
-          name="SubscriptionScreen"
-          component={SubscriptionScreen}
-        />
+
         <Stack.Screen
           name="HistoricalChartScreen"
           component={HistoricalChartScreen}

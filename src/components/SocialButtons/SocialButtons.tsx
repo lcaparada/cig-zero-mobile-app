@@ -1,6 +1,11 @@
 import { Platform } from "react-native";
 
-import { Box } from "../Box/Box";
+import { usePostHog } from "posthog-react-native";
+
+import { PostHogEventsName } from "@constraints";
+import { useAuthAppleSignIn, useAuthGoogleSignIn } from "@domain";
+
+import { Box, BoxProps } from "../Box/Box";
 import { Button } from "../Button/Button";
 import { IconName } from "../Icon/Icon";
 
@@ -12,53 +17,62 @@ interface SocialButton {
 }
 
 interface SocialButtonsProps {
-  copyForApple?: string;
-  copyForGoogle?: string;
+  boxProps?: BoxProps;
 }
 
-export const SocialButtons = ({
-  copyForApple,
-  copyForGoogle,
-}: SocialButtonsProps) => {
+export const SocialButtons = ({ boxProps }: SocialButtonsProps) => {
+  const { handleSignInWithGoogle, isGoogleSignInPending } =
+    useAuthGoogleSignIn();
+  const { handleSignInWithApple, isAppleSignInPending } = useAuthAppleSignIn();
+
+  const posthog = usePostHog();
+
   const socialButtons: SocialButton[] =
     Platform.OS === "android"
       ? [
           {
-            text: copyForGoogle ?? "Entrar com Google",
+            text: "Entrar com Google",
             iconName: "google",
-            isLoading: false,
-            action: () => {},
+            isLoading: isGoogleSignInPending,
+            action: () => {
+              posthog.capture(PostHogEventsName.PRESS_IN_GOOGLE_LOGIN_BUTTON);
+              handleSignInWithGoogle();
+            },
           },
         ]
       : [
           {
-            text: copyForGoogle ?? "Entrar com Google",
+            text: "Continuar com Google",
             iconName: "google",
-            isLoading: false,
-            action: () => {},
+            isLoading: isGoogleSignInPending,
+            action: () => {
+              posthog.capture(PostHogEventsName.PRESS_IN_GOOGLE_LOGIN_BUTTON);
+              handleSignInWithGoogle();
+            },
           },
           {
-            text: copyForApple ?? "Entrar com Apple",
+            text: "Continuar com Apple",
             iconName: "apple",
-            isLoading: false,
-            action: () => {},
+            isLoading: isAppleSignInPending,
+            action: () => {
+              posthog.capture(PostHogEventsName.PRESS_IN_APPLE_LOGIN_BUTTON);
+              handleSignInWithApple();
+            },
           },
         ];
 
   return (
-    <Box>
-      <Box rowGap={"s16"} mt="s20">
-        {socialButtons.map((button, index) => (
-          <Button
-            key={index}
-            preset="outline"
-            text={button.text}
-            onPress={button.action}
-            iconName={button.iconName}
-            isLoading={button.isLoading}
-          />
-        ))}
-      </Box>
+    <Box rowGap={"s16"} {...boxProps}>
+      {socialButtons.map((button, index) => (
+        <Button
+          key={index}
+          preset="outline"
+          text={button.text}
+          onPress={button.action}
+          iconName={button.iconName}
+          isLoading={button.isLoading}
+        />
+      ))}
     </Box>
   );
 };

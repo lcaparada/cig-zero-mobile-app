@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 
 import { PostHogEventsName } from "@constraints";
 import { registerForPushNotificationsAsync } from "@helpers";
+import { useAuth } from "@services";
 
 import {
   SixthStepOnboarding,
@@ -29,6 +30,8 @@ export const useOnboardingScreen = () => {
   const navigation = useNavigation();
 
   const posthog = usePostHog();
+
+  const { updateUserFromOnboarding, session } = useAuth();
 
   const { control, watch, setValue } = useForm<OnboardingScreenSchemaType>({
     resolver: zodResolver(onboardingScreenSchema),
@@ -83,7 +86,7 @@ export const useOnboardingScreen = () => {
     setStep((prevStep) => prevStep - 1);
   };
 
-  const handleNavigateToStartScreen = () => {
+  const handleNavigateToFeaturesScreen = () => {
     if (watch().likeToReceiveDailyReminders === "YES") {
       registerForPushNotificationsAsync().then((token) => {
         if (!token) {
@@ -91,17 +94,21 @@ export const useOnboardingScreen = () => {
         }
       });
     }
-    navigation.navigate("StartScreen", watch());
+    if (session) {
+      updateUserFromOnboarding(session, watch());
+    }
+    navigation.navigate("FeaturesScreen", {
+      likeToReceiveDailyReminders: watch().likeToReceiveDailyReminders,
+    });
   };
 
   return {
     step,
     posthog,
-    navigation,
     handleNextStep,
     handleRenderSteps,
     handleCanGoNextPage,
     handleToPreviousStep,
-    handleNavigateToStartScreen,
+    handleNavigateToFeaturesScreen,
   };
 };

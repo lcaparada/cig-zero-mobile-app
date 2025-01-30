@@ -7,7 +7,7 @@ import {
   BenefitItem,
   PackageItem,
 } from "@components";
-import { AuthScreenProps } from "@routes";
+import { OnboardingScreenProps } from "@routes";
 
 import { getBenefits } from "@constraints";
 
@@ -15,12 +15,11 @@ import { useSubscriptionsScreen } from "./useSubscriptionsScreen";
 
 export const SubscriptionScreen = ({
   route,
-}: AuthScreenProps<"SubscriptionScreen">) => {
+}: OnboardingScreenProps<"SubscriptionScreen">) => {
   const {
     packages,
     metadata,
     isLoading,
-    isPending,
     selectedPackage,
     handlePurchasePackage,
   } = useSubscriptionsScreen();
@@ -37,8 +36,8 @@ export const SubscriptionScreen = ({
           ? "Iniciar teste gratuito"
           : "Continuar",
         action: () => handlePurchasePackage(route.params),
-        disabled: isPending || isLoading,
-        loading: isPending || isLoading,
+        disabled: isLoading,
+        loading: isLoading,
       }}
     >
       <Box rowGap={"s26"} paddingVertical={"s18"}>

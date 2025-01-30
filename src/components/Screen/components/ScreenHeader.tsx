@@ -80,7 +80,8 @@ export const ScreenHeader = ({
           <ProgressBar percentage={progressBar.progress} />
         </Box>
       )}
-      <Box flex={!!progressBar ? 1 : undefined}>
+      {!!progressBar && <Box flex={1} />}
+      <Box flex={!!progressBar ? 1 : undefined} position={"absolute"} right={0}>
         {rightComponent && rightComponent}
       </Box>
     </Box>

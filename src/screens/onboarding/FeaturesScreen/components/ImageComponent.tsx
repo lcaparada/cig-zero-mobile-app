@@ -13,11 +13,11 @@ interface ImageComponentProps {
 }
 
 const imageMap: Record<ImageNameProps, ImageSourcePropType> = {
-  OMS: require("../../../assets/startImages/OMS.png"),
-  SUPPORT: require("../../../assets/startImages/SUPPORT.png"),
-  CALENDAR: require("../../../assets/startImages/CALENDAR.png"),
-  ACHIEVEMENTS: require("../../../assets/startImages/ACHIEVEMENTS.png"),
-  NOTIFICATION: require("../../../assets/startImages/NOTIFICATION.png"),
+  OMS: require("../../../../assets/startImages/OMS.png"),
+  SUPPORT: require("../../../../assets/startImages/SUPPORT.png"),
+  CALENDAR: require("../../../../assets/startImages/CALENDAR.png"),
+  ACHIEVEMENTS: require("../../../../assets/startImages/ACHIEVEMENTS.png"),
+  NOTIFICATION: require("../../../../assets/startImages/NOTIFICATION.png"),
 };
 
 export const ImageComponent = ({ width, imageName }: ImageComponentProps) => {

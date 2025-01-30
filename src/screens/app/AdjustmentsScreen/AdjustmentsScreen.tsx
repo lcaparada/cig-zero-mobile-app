@@ -5,7 +5,12 @@ import { Box, Popup, Screen } from "@components";
 
 import { PostHogEventsName } from "@constraints";
 
-import { AdjusmentsHeader, Section, SectionItemData } from "./components";
+import {
+  AdjusmentsHeader,
+  LogOutButton,
+  Section,
+  SectionItemData,
+} from "./components";
 import { useAdjustmentsScreen } from "./useAdjustmentsScreen";
 
 export const AdjustmentsScreen = () => {
@@ -76,7 +81,13 @@ export const AdjustmentsScreen = () => {
   ];
 
   return (
-    <Screen canGoBack titleAlign="center" screenTitle="Ajustes" scrollable>
+    <Screen
+      canGoBack
+      titleAlign="center"
+      screenTitle="Ajustes"
+      scrollable
+      rightComponent={<LogOutButton />}
+    >
       <AdjusmentsHeader />
       <Box mt={"s30"} rowGap={"s30"}>
         <Section title={"GERAL"} items={generalItems} />
