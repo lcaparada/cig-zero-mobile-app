@@ -5,7 +5,6 @@ import { useAuth } from "@services";
 
 export const AdjusmentsHeader = () => {
   const { session } = useAuth();
-  console.log(session);
 
   return (
     <Box alignItems={"center"} rowGap={"s12"}>

@@ -186,10 +186,6 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    console.log("chamouaq");
-  }, [session]);
-
   return (
     <AuthContext.Provider
       value={{
