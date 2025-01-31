@@ -1,4 +1,4 @@
-import { StepProps } from "src/screens/auth/StartScreen/components";
+import { StepProps } from "src/screens/onboarding/FeaturesScreen/components";
 
 export const steps: StepProps[] = [
   {
