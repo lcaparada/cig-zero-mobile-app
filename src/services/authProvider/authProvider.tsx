@@ -126,43 +126,44 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
         switch (event) {
           case "SIGNED_IN":
           case "INITIAL_SESSION":
-            if (!session) return;
-            setAxiosAuthToken(session?.access_token ?? null);
-            const updatedData: Record<string, boolean> = {};
+            if (session) {
+              setAxiosAuthToken(session?.access_token ?? null);
+              const updatedData: Record<string, boolean> = {};
 
-            if (
-              session &&
-              session.user?.user_metadata?.isNewUser === undefined
-            ) {
-              updatedData.isNewUser = true;
-            }
+              if (
+                session &&
+                session.user?.user_metadata?.isNewUser === undefined
+              ) {
+                updatedData.isNewUser = true;
+              }
 
-            if (
-              session &&
-              session.user?.user_metadata?.showTutorial === undefined
-            ) {
-              updatedData.showTutorial = true;
-            }
+              if (
+                session &&
+                session.user?.user_metadata?.showTutorial === undefined
+              ) {
+                updatedData.showTutorial = true;
+              }
 
-            if (Object.keys(updatedData).length > 0) {
-              supabase.auth.updateUser({ data: updatedData });
+              if (Object.keys(updatedData).length > 0) {
+                supabase.auth.updateUser({ data: updatedData });
 
-              setSession({
-                ...session,
-                user: {
-                  ...session.user,
-                  user_metadata: {
-                    ...session.user.user_metadata,
-                    ...updatedData,
+                setSession({
+                  ...session,
+                  user: {
+                    ...session.user,
+                    user_metadata: {
+                      ...session.user.user_metadata,
+                      ...updatedData,
+                    },
                   },
-                },
-              });
-            } else {
-              setSession(session);
+                });
+              } else {
+                setSession(session);
+              }
+              RevenueCat.setEmail(session?.user?.user_metadata.email);
+              RevenueCat.setDisplayName(session?.user?.user_metadata.name);
             }
 
-            RevenueCat.setEmail(session?.user?.user_metadata.email);
-            RevenueCat.setDisplayName(session?.user?.user_metadata.name);
             break;
           case "TOKEN_REFRESHED":
             if (session?.access_token) {
@@ -176,6 +177,7 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
             Sentry.setUser(null);
             break;
         }
+        console.log("nao chegou aqui");
         setLoading(false);
       }
     );
