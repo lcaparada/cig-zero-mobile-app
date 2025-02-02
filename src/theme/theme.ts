@@ -84,6 +84,10 @@ export const theme = createTheme({
 
     lightSilver: pallete.lightSilver,
     mediumSilver: pallete.mediumSilver,
+
+    chatMessageBackground: pallete.lightSilver,
+    chatMessageText: pallete.neutralDarkest,
+    chatMessageShadow: pallete.mediumSilver,
   },
   spacing: {
     s0: 0,
@@ -164,6 +168,10 @@ export const darkTheme: Theme = {
 
     lightSilver: pallete.lightSilver,
     mediumSilver: pallete.mediumSilver,
+
+    chatMessageBackground: pallete.neutralDarkest,
+    chatMessageText: pallete.neutralLighest,
+    chatMessageShadow: pallete.neutralMedium,
   },
 };
 

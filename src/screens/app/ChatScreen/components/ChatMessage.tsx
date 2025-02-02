@@ -22,12 +22,12 @@ export const ChatMessage = ({
         borderRadius={"s8"}
         paddingVertical={"s8"}
         paddingHorizontal={"s12"}
-        backgroundColor={isMine ? "primary" : "lightSilver"}
-        shadowColor={isMine ? "buttonShadow" : "mediumSilver"}
+        backgroundColor={isMine ? "primary" : "chatMessageBackground"}
+        shadowColor={isMine ? "buttonShadow" : "chatMessageShadow"}
         {...$shadow}
       >
         <Box>
-          <Text color={isMine ? "neutralLighest" : "neutralDarkest"}>
+          <Text color={isMine ? "neutralLighest" : "chatMessageText"}>
             {text}
           </Text>
         </Box>
@@ -35,7 +35,7 @@ export const ChatMessage = ({
           <Text
             preset="notes"
             weight="medium"
-            color={isMine ? "neutralLighest" : "neutralDarkest"}
+            color={isMine ? "neutralLighest" : "chatMessageText"}
           >
             {format(createdAt, "hh:mm")}
           </Text>

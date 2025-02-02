@@ -34,7 +34,7 @@ export const ChatBody = (props: ChatBodyProps) => {
       flex={1}
       rowGap={"s24"}
       padding={"s24"}
-      backgroundColor={"neutralLighest"}
+      backgroundColor={"background"}
       {...props}
     >
       <Box flex={1}>
