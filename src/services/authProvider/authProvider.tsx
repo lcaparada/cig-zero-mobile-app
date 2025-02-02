@@ -177,7 +177,6 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
             Sentry.setUser(null);
             break;
         }
-        console.log("nao chegou aqui");
         setLoading(false);
       }
     );

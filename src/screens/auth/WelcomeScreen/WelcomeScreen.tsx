@@ -12,7 +12,7 @@ export const WelcomeScreen = () => {
   return (
     <Screen centerItems>
       <Box alignItems={"center"} justifyContent={"center"} rowGap={"s20"}>
-        <Text preset="titleBig" weight="bold">
+        <Text preset="titleBig" color={"backgroundConstrast"} weight="bold">
           Bem-vindo ao CigZero!
         </Text>
         <Text
