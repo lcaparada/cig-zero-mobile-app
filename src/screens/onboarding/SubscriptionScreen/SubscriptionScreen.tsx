@@ -1,11 +1,11 @@
 import {
   Box,
-  Text,
   Screen,
   Reviews,
   TrialText,
   BenefitItem,
   PackageItem,
+  LogOutButton,
 } from "@components";
 import { OnboardingScreenProps } from "@routes";
 
@@ -31,6 +31,7 @@ export const SubscriptionScreen = ({
     <Screen
       overflowVisible
       scrollable
+      rightComponent={<LogOutButton />}
       button={{
         text: selectedPackageData?.product.introPrice
           ? "Iniciar teste gratuito"
@@ -39,13 +40,13 @@ export const SubscriptionScreen = ({
         disabled: isLoading,
         loading: isLoading,
       }}
+      canGoBack
+      screenTitle="CigZero Plus"
+      titleWeight="bold"
+      titleSize="display"
+      titleColor="primary"
     >
       <Box rowGap={"s26"} paddingVertical={"s18"}>
-        <Box alignItems={"center"} justifyContent={"center"}>
-          <Text color={"primary"} weight="bold" preset="display">
-            CigZero Plus
-          </Text>
-        </Box>
         <Box rowGap={"s8"} overflow={"hidden"}>
           {getBenefits().map((item, index) => (
             <BenefitItem key={index} {...item} />

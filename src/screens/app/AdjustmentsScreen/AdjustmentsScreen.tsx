@@ -1,16 +1,11 @@
 import { useNavigation } from "@react-navigation/native";
 import { usePostHog } from "posthog-react-native";
 
-import { Box, Popup, Screen } from "@components";
+import { Box, LogOutButton, Popup, Screen } from "@components";
 
 import { PostHogEventsName } from "@constraints";
 
-import {
-  AdjusmentsHeader,
-  LogOutButton,
-  Section,
-  SectionItemData,
-} from "./components";
+import { Section, SectionItemData, AdjusmentsHeader } from "./components";
 import { useAdjustmentsScreen } from "./useAdjustmentsScreen";
 
 export const AdjustmentsScreen = () => {

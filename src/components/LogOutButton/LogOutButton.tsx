@@ -1,6 +1,7 @@
-import { Text, TouchableOpacityBox } from "@components";
-
 import { useAuth } from "@services";
+
+import { TouchableOpacityBox } from "../Box/Box";
+import { Text } from "../Text/Text";
 
 export const LogOutButton = () => {
   const { signOut } = useAuth();

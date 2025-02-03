@@ -1,4 +1,4 @@
-import { Screen } from "@components";
+import { LogOutButton, Screen } from "@components";
 
 import { PostHogEventsName } from "@constraints";
 
@@ -26,6 +26,7 @@ export const OnboardingScreen = () => {
         step === 1 ? undefined : () => handleToPreviousStep()
       }
       insets={{ bottom: "s35", left: "s24", right: "s24", top: "s24" }}
+      rightComponent={<LogOutButton />}
       button={{
         text: "Próximo",
         action: () => {
