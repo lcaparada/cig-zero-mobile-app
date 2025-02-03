@@ -20,7 +20,7 @@ export const DirectionControls = ({
   currentPage,
 }: DirectionControlsProps) => {
   return (
-    <Box alignItems={"center"} rowGap={"s20"}>
+    <Box alignItems={"center"} rowGap={"s20"} backgroundColor={"background"}>
       <DirectionIndicator length={length} currentPage={currentPage} />
       <Box rowGap={"s16"}>
         <DirectionButton

@@ -36,11 +36,19 @@ const pallete = {
   grayishSilver: "#B9B9B9",
 
   deepCharcoal: "#1C1C1C",
+  shadowGray: "#1c1c1c01",
+  softCharcoal: "#1c1c1c80",
+  charcoalMist: "#1c1c1cFF",
 
   lightSilver: "#EEE",
   mediumSilver: "#DDD",
 
+  softWhite: "#f5f5f5",
+  softWhiteTransparent: "#f5f5f500",
+
   neutralLighest: "#FFFFFF",
+  transparentWhite: "#FFFFFF01",
+  translucentWhite: "#FFFFFF80",
 
   shadowBlue: "#233D4D",
 };
@@ -84,6 +92,10 @@ export const theme = createTheme({
 
     lightSilver: pallete.lightSilver,
     mediumSilver: pallete.mediumSilver,
+
+    firstLinearGradientColor: pallete.transparentWhite,
+    secondLinearGradientColor: pallete.translucentWhite,
+    thirdLinearGradientColor: pallete.neutralLighest,
 
     chatMessageBackground: pallete.lightSilver,
     chatMessageText: pallete.neutralDarkest,
@@ -168,6 +180,10 @@ export const darkTheme: Theme = {
 
     lightSilver: pallete.lightSilver,
     mediumSilver: pallete.mediumSilver,
+
+    firstLinearGradientColor: pallete.shadowGray,
+    secondLinearGradientColor: pallete.softCharcoal,
+    thirdLinearGradientColor: pallete.charcoalMist,
 
     chatMessageBackground: pallete.neutralDarkest,
     chatMessageText: pallete.neutralLighest,

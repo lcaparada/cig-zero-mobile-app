@@ -28,6 +28,7 @@ export const FeaturesScreen = ({
       flexDirection={"row"}
       alignItems={"center"}
       paddingRight={"s24"}
+      backgroundColor={"background"}
     >
       <ScrollView
         ref={scrollRef}
@@ -37,7 +38,10 @@ export const FeaturesScreen = ({
         scrollEventThrottle={16}
         onLayout={handleLayout}
         showsVerticalScrollIndicator={false}
-        style={{ flex: 1, paddingHorizontal: 24 }}
+        style={{
+          flex: 1,
+          paddingHorizontal: 24,
+        }}
       >
         {steps.map((step, index) => (
           <Step

@@ -86,7 +86,7 @@ export const OnboardingInput = ({
 
             <Text
               weight="medium"
-              color={isSelected ? "primary" : "backgroundSecondConstrast"}
+              color={isSelected ? "primary" : "backgroundConstrast"}
             >
               {text}
             </Text>
@@ -103,7 +103,12 @@ export const OnboardingInput = ({
         .easing(Easing.inOut(Easing.ease))}
     >
       <Box rowGap={"s30"}>
-        <Text weight="semiBold" preset="titleSmall" textAlign={"center"}>
+        <Text
+          weight="semiBold"
+          preset="titleSmall"
+          color={"backgroundConstrast"}
+          textAlign={"center"}
+        >
           {title}
         </Text>
         {renderItems()}

@@ -1,4 +1,9 @@
-import { Image, ImageSourcePropType } from "react-native";
+import { Image, ImageSourcePropType, StyleSheet } from "react-native";
+
+import { LinearGradient } from "expo-linear-gradient";
+
+import { Box } from "@components";
+import { useAppTheme } from "@hooks";
 
 export type ImageNameProps =
   | "OMS"
@@ -26,13 +31,36 @@ export const ImageComponent = ({ width, imageName }: ImageComponentProps) => {
 
   const aspectRatio = originalHeight / originalWidth;
 
+  const { colors } = useAppTheme();
+
   return (
-    <Image
-      style={{
-        width: width,
-        height: width * aspectRatio,
-      }}
-      source={imageMap[imageName]}
-    />
+    <Box>
+      <Image
+        style={{
+          width: width,
+          height: width * aspectRatio,
+        }}
+        source={imageMap[imageName]}
+      />
+      <LinearGradient
+        pointerEvents="none"
+        colors={[
+          colors.firstLinearGradientColor,
+          colors.secondLinearGradientColor,
+          colors.thirdLinearGradientColor,
+        ]}
+        style={styles.background}
+      />
+    </Box>
   );
 };
+
+const styles = StyleSheet.create({
+  background: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    bottom: -12,
+    height: 150,
+  },
+});

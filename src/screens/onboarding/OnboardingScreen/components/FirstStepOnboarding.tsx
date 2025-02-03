@@ -13,7 +13,12 @@ export const FirstStepOnboarding = ({
         .duration(500)
         .easing(Easing.inOut(Easing.ease))}
     >
-      <Text weight="semiBold" textAlign={"center"} preset="titleSmall">
+      <Text
+        weight="semiBold"
+        color={"backgroundConstrast"}
+        textAlign={"center"}
+        preset="titleSmall"
+      >
         Qual é o seu nome?
       </Text>
       <FormTextInput
