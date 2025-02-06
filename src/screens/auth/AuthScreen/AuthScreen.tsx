@@ -11,12 +11,13 @@ export const AuthScreen = () => {
       titleSize="titleBig"
     >
       <Box alignItems={"center"} rowGap={"s20"}>
-        <Text preset="titleBig" weight="bold" color={"primary"}>
+        <Text preset="titleBig" weight="semiBold" color={"primary"}>
           Olá!
         </Text>
         <Text
           textAlign={"center"}
           preset="paragraphsLarge"
+          weight="medium"
           color={"backgroundSecondConstrast"}
         >
           Precisamos de uma conta para salvar seus dados e garantir a melhor
