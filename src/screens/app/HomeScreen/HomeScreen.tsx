@@ -28,6 +28,7 @@ export const HomeScreen = () => {
       contentContainerStyle={{
         backgroundColor: colors.background,
       }}
+      style={{ backgroundColor: colors.background }}
       refreshControl={
         <RefreshControl refreshing={isRefreshing} onRefresh={handleRefresh} />
       }
