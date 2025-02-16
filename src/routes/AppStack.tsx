@@ -7,8 +7,10 @@ import * as StoreReview from "expo-store-review";
 import { Popup } from "@components";
 import {
   FaqScreen,
-  ChatScreen,
+  ProfileScreen,
+  CommunityScreen,
   AppearanceScreen,
+  EditProfileScreen,
   AdjustmentsScreen,
   ReportAnIssueScreen,
   PrivacyPolicyScreen,
@@ -16,7 +18,7 @@ import {
   TermsOfServiceScreen,
   HistoricalChartScreen,
   PastSmokingDataScreen,
-  PersonalInformationScreen,
+  AccountDetailsScreen,
 } from "@screens";
 
 import { Achievement, AchievementOnUser, achievementsService } from "@domain";
@@ -28,17 +30,19 @@ import { AppTabBottomTabParamList, AppTabNavigator } from "./AppTabNavigator";
 
 export type AppStackParamList = {
   FaqScreen: undefined;
-  ChatScreen: undefined;
+  ProfileScreen: undefined;
   AppTabNavigator: NavigatorScreenParams<AppTabBottomTabParamList>;
+  CommunityScreen: undefined;
   AppearanceScreen: undefined;
   AdjustmentsScreen: undefined;
+  EditProfileScreen: undefined;
   NotificationsScreen: undefined;
   PrivacyPolicyScreen: undefined;
   ReportAnIssueScreen: undefined;
   TermsOfServiceScreen: undefined;
+  AccountDetailsScreen: undefined;
   HistoricalChartScreen: undefined;
   PastSmokingDataScreen: undefined;
-  PersonalInformationScreen: undefined;
 };
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
@@ -97,18 +101,20 @@ export const AppStack = () => {
           name="NotificationsScreen"
           component={NotificationsScreen}
         />
+        <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} />
         <Stack.Screen
           name="PrivacyPolicyScreen"
           component={PrivacyPolicyScreen}
         />
         <Stack.Screen
+          name="AccountDetailsScreen"
+          component={AccountDetailsScreen}
+        />
+        <Stack.Screen
           name="TermsOfServiceScreen"
           component={TermsOfServiceScreen}
         />
-        <Stack.Screen
-          name="PersonalInformationScreen"
-          component={PersonalInformationScreen}
-        />
+        <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
         <Stack.Screen
           name="PastSmokingDataScreen"
           component={PastSmokingDataScreen}
@@ -122,7 +128,7 @@ export const AppStack = () => {
           name="ReportAnIssueScreen"
           component={ReportAnIssueScreen}
         />
-        <Stack.Screen name="ChatScreen" component={ChatScreen} />
+        <Stack.Screen name="CommunityScreen" component={CommunityScreen} />
         <Stack.Screen name="FaqScreen" component={FaqScreen} />
       </Stack.Navigator>
       {achievementsPopupData && (

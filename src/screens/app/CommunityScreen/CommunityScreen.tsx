@@ -5,7 +5,7 @@ import { useAppSafeAreaContext } from "@hooks";
 
 import { ChatHeader, ChatBody } from "./components";
 
-export const ChatScreen = () => {
+export const CommunityScreen = () => {
   const { top, bottom } = useAppSafeAreaContext();
   return (
     <Box

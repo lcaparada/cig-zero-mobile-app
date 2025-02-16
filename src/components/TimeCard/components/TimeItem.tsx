@@ -10,12 +10,16 @@ export const TimeItem = ({ time }: TimeItemProps) => {
   return (
     <Box>
       <Box {...$boxWrapper} {...$boxShadow}>
-        <Text preset="displayXL" weight="semiBold" color={"neutralDarkest"}>
+        <Text
+          preset="displayXL"
+          weight="semiBold"
+          color={"backgroundConstrast"}
+        >
           {time}
         </Text>
       </Box>
       <Box position={"absolute"} bottom={-3}>
-        <Icon name="rings" />
+        <Icon name="rings" color="background" />
       </Box>
     </Box>
   );
@@ -27,11 +31,11 @@ const $boxWrapper: BoxProps = {
   borderRadius: "s16",
   alignItems: "center",
   justifyContent: "center",
-  backgroundColor: "neutralLighest",
+  backgroundColor: "background",
 };
 
 const $boxShadow: BoxProps = {
-  shadowColor: "lightNeutralGray",
+  shadowColor: "timeCardShadow",
   shadowOffset: {
     width: 0,
     height: 2.5,

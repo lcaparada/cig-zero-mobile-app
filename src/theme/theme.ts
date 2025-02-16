@@ -40,6 +40,8 @@ const pallete = {
   softCharcoal: "#1c1c1c80",
   charcoalMist: "#1c1c1cFF",
 
+  darkGraphite: "#464646",
+
   lightSilver: "#EEE",
   mediumSilver: "#DDD",
 
@@ -84,11 +86,16 @@ export const theme = createTheme({
     buttonShadow: pallete.mutedSlate,
     buttonConstrast: pallete.neutralLighest,
 
+    timeCardShadow: pallete.lightNeutralGray,
+
     background: pallete.neutralLighest,
     backgroundConstrast: pallete.neutralDarkest,
     backgroundSecondConstrast: pallete.neutralMedium,
 
     switchBackground: pallete.neutralMedium,
+
+    cardProfileBackground: pallete.lightSilver,
+    cardProfileShadow: pallete.neutralMedium,
 
     lightSilver: pallete.lightSilver,
     mediumSilver: pallete.mediumSilver,
@@ -178,8 +185,13 @@ export const darkTheme: Theme = {
 
     switchBackground: pallete.neutralMedium,
 
+    cardProfileBackground: pallete.neutralDarkest,
+    cardProfileShadow: pallete.neutralMedium,
+
     lightSilver: pallete.lightSilver,
     mediumSilver: pallete.mediumSilver,
+
+    timeCardShadow: pallete.darkGraphite,
 
     firstLinearGradientColor: pallete.shadowGray,
     secondLinearGradientColor: pallete.softCharcoal,

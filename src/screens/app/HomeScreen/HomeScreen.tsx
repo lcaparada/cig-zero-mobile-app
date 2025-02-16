@@ -5,6 +5,7 @@ import { Missions, Divider, Popup } from "@components";
 import {
   Historic,
   Shortcut,
+  Community,
   HomeHeader,
   ActionsButtons,
   GeneralProgress,
@@ -37,6 +38,8 @@ export const HomeScreen = () => {
       <HomeHeader />
       <Shortcut />
       <GeneralProgress />
+      <Divider />
+      <Community />
       <Divider />
       <Missions />
       <Divider />
