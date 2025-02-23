@@ -1,63 +1,112 @@
-import { Image } from "react-native";
+import { useRef } from "react";
+import { Image, TouchableOpacity } from "react-native";
 
 import { format } from "date-fns";
 
 import { Box, BoxProps, Icon, Text, TouchableOpacityBox } from "@components";
 
-import { useAuth } from "@services";
+import { useAuth, useChat } from "@services";
 import { Message } from "src/domain/Conversation";
 
-type ChatMessageProps = Message;
+import { ChatRepliedMessage } from "./ChatRepliedMessage";
+
+type ChatMessageProps = Message & { showAvatar?: boolean };
 
 export const ChatMessage = ({
-  authorId,
+  id,
   text,
+  author,
   createdAt,
+  showAvatar = true,
+  repliedMessage,
 }: ChatMessageProps) => {
   const { session } = useAuth();
-  const isMine = authorId === session?.user?.id;
+
+  const { setShowOptionsMessage } = useChat();
+
+  const { setRepliedMessage, setSelectedMessagePosition, setMessageToOptions } =
+    useChat();
+
+  const isMine = author?.id === session?.user?.id;
+
+  const messageRef = useRef<TouchableOpacity>(null);
+
+  const handleLongPress = () => {
+    if (messageRef.current) {
+      messageRef.current.measureInWindow((x, y, width, height) => {
+        setSelectedMessagePosition({
+          top: y,
+          left: isMine ? null : x,
+          right: isMine ? x : null,
+          width: width,
+          height: height,
+        });
+        setMessageToOptions({ author, createdAt, id, text, repliedMessage });
+        setShowOptionsMessage(true);
+      });
+    }
+  };
 
   return (
-    <Box
+    <TouchableOpacityBox
+      ref={messageRef}
       justifyContent={isMine ? "flex-end" : "flex-start"}
-      flexDirection="row"
-      columnGap="s12"
+      flexDirection={"row"}
+      columnGap={"s12"}
+      onLongPress={isMine ? handleLongPress : undefined}
+      delayLongPress={500}
     >
-      {!isMine && <UserAvatar />}
+      {!isMine && showAvatar && <UserAvatar />}
       <Box
         maxWidth="85%"
+        minWidth={isMine ? undefined : "60%"}
         borderRadius="s8"
-        paddingVertical="s8"
-        paddingHorizontal="s12"
         backgroundColor={isMine ? "primary" : "chatMessageBackground"}
         shadowColor={isMine ? "buttonShadow" : "chatMessageShadow"}
         {...$shadow}
       >
-        <Text color={isMine ? "neutralLighest" : "chatMessageText"}>
-          {text}
-        </Text>
-        <Box alignItems="flex-end">
-          {!isMine && (
-            <TouchableOpacityBox hitSlop={10}>
-              <Text weight="semiBold" preset="paragraphsBig">
-                Responder
-              </Text>
-            </TouchableOpacityBox>
+        {repliedMessage && <ChatRepliedMessage isMine={isMine} />}
+        <Box paddingVertical="s8" paddingHorizontal="s12">
+          {!isMine && author?.name && (
+            <Text
+              marginBottom={"s12"}
+              color={"chatMessageText"}
+              weight="semiBold"
+            >
+              {author?.name}
+            </Text>
           )}
-          <Text
-            preset="notes"
-            weight="medium"
-            color={isMine ? "neutralLighest" : "chatMessageText"}
-          >
-            {format(createdAt, "HH:mm")}
+          <Text color={isMine ? "neutralLighest" : "chatMessageText"}>
+            {text}
           </Text>
+          <Box alignItems="flex-end">
+            {!isMine && (
+              <TouchableOpacityBox
+                hitSlop={10}
+                onPress={() => setRepliedMessage({ author, id, text })}
+              >
+                <Text
+                  weight="semiBold"
+                  color={"backgroundConstrast"}
+                  preset="paragraphsBig"
+                >
+                  Responder
+                </Text>
+              </TouchableOpacityBox>
+            )}
+            <Text
+              preset="notes"
+              weight="medium"
+              color={isMine ? "neutralLighest" : "chatMessageText"}
+            >
+              {format(createdAt ?? new Date(), "HH:mm")}
+            </Text>
+          </Box>
         </Box>
       </Box>
 
-      {isMine && (
-        <UserAvatar photo={session?.user?.user_metadata?.avatar_url} />
-      )}
-    </Box>
+      {isMine && showAvatar && <UserAvatar photo={author?.photo ?? ""} />}
+    </TouchableOpacityBox>
   );
 };
 
@@ -81,11 +130,11 @@ const UserAvatar = ({ photo }: { photo?: string }) => (
 const $userAvatarBox: BoxProps = {
   width: 40,
   height: 40,
-  borderRadius: "full",
-  backgroundColor: "lightSilver",
-  alignItems: "center",
-  justifyContent: "center",
   overflow: "hidden",
+  alignItems: "center",
+  borderRadius: "full",
+  justifyContent: "center",
+  backgroundColor: "lightSilver",
 };
 
 const $shadow: BoxProps = {

@@ -5,6 +5,7 @@ export enum QueryKeys {
   GetHistoricData,
   GetAchievements,
   GetLatestSmokingRecord,
+  GetConversationMessages,
   GetNotificationSettings,
   GetAllSmokingRecordsByMonth,
   GetMessagesFromPrivateConversation,

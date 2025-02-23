@@ -29,6 +29,7 @@ export * from "./icons/trophy";
 export * from "./icons/shield";
 export * from "./icons/resume";
 export * from "./icons/clock2";
+export * from "./icons/xCircle";
 export * from "./icons/google2";
 export * from "./icons/arrowUp";
 export * from "./icons/barChart";

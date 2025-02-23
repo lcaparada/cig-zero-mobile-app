@@ -1,28 +1,29 @@
-import { FlatList, ViewProps } from "react-native";
+import { FlatList, ListRenderItemInfo, ViewProps } from "react-native";
 
 import { usePostHog } from "posthog-react-native";
 
 import { Box, Button } from "@components";
 
 import { PostHogEventsName } from "@constraints";
+import { Message } from "@domain";
 
 import { ChatGroupedMessages } from "../ChatGroupedMessages";
 import { ChatInput } from "../ChatInput";
 import { ChatSkeleton } from "../ChatSkeleton";
-import { ChatWritingIndicator } from "../ChatWritingIndicator/ChatWritingIndicator";
 
 import { useChatBody } from "./useChatBody";
 
 type ChatBodyProps = ViewProps;
+type GroupedMessagesItem = [string, Message[]];
 
 export const ChatBody = (props: ChatBodyProps) => {
   const {
     data,
-    isFetching,
+    isLoading,
     showButton,
     flatListRef,
-    isAddMessageToPrivateConversationPending,
     handleScroll,
+    fetchNextPage,
     handleAddNewMessage,
     handleScrollToBottom,
   } = useChatBody();
@@ -30,40 +31,41 @@ export const ChatBody = (props: ChatBodyProps) => {
   const posthog = usePostHog();
 
   return (
-    <Box
-      flex={1}
-      rowGap={"s24"}
-      padding={"s24"}
-      backgroundColor={"background"}
-      {...props}
-    >
-      <Box flex={1}>
-        {!isFetching ? (
+    <Box flex={1} backgroundColor={"background"} {...props}>
+      <Box
+        flex={1}
+        paddingHorizontal={"s24"}
+        rowGap={"s24"}
+        backgroundColor={"background"}
+      >
+        {!isLoading ? (
           <FlatList
             inverted
             ref={flatListRef}
             scrollEnabled={true}
             onScroll={handleScroll}
             data={Object.entries(data)}
+            onEndReached={() => {
+              fetchNextPage();
+            }}
+            onEndReachedThreshold={0.5}
             showsVerticalScrollIndicator={false}
-            keyExtractor={(_, index) => index.toString()}
+            initialNumToRender={10}
+            keyExtractor={([key], index) => `${key}-${index}`}
             contentContainerStyle={{
               rowGap: 24,
-              flexGrow: 1,
+              paddingBottom: 40,
+              paddingTop: 40,
             }}
-            renderItem={({ item, index }) => {
-              const [key, value] = item;
+            renderItem={({
+              item,
+              index,
+            }: ListRenderItemInfo<GroupedMessagesItem>) => {
+              const [date, messages] = item;
               return (
-                <ChatGroupedMessages key={index} date={key} value={value} />
+                <ChatGroupedMessages key={index} date={date} value={messages} />
               );
             }}
-            ListHeaderComponent={() =>
-              isAddMessageToPrivateConversationPending ? (
-                <Box marginBottom={"s6"}>
-                  <ChatWritingIndicator />
-                </Box>
-              ) : null
-            }
           />
         ) : (
           <ChatSkeleton />
@@ -84,12 +86,7 @@ export const ChatBody = (props: ChatBodyProps) => {
           </Box>
         )}
       </Box>
-      {!isFetching ? (
-        <ChatInput
-          disabled={isAddMessageToPrivateConversationPending}
-          onSubmit={handleAddNewMessage}
-        />
-      ) : null}
+      {!isLoading ? <ChatInput onSubmit={handleAddNewMessage} /> : null}
     </Box>
   );
 };

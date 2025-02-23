@@ -14,7 +14,6 @@ export interface TextInputProps extends RNTextInputProps {
   label?: string;
   icon?: IconName;
   height?: number;
-
   onPress?: () => void;
   alignItems?: BoxProps["alignItems"];
   boxProps?: BoxProps;

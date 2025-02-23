@@ -23,3 +23,7 @@ export * from "./splash/splashTypes";
 // SETTINGS
 export * from "./settings/useSettings";
 export * from "./settings/settingsType";
+
+// CHAT
+export * from "./chat/useChat";
+export * from "./chat/chatTypes";

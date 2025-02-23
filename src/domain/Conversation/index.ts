@@ -8,5 +8,7 @@ export * from "./conversationsTypes";
 export * from "./conversationsAdapter";
 
 // USE CASES
-export * from "./useCases/useAddMessageToPrivateConversation";
-export * from "./useCases/useGetMessagesFromPrivateConversation";
+export * from "./useCases/useUpdateMessage";
+export * from "./useCases/useDeleteMessage";
+export * from "./useCases/usePublishMessage";
+export * from "./useCases/useGetConversationMessages";

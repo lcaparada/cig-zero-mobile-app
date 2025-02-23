@@ -2,42 +2,77 @@ import { supabaseEdgeFunction } from "@api";
 
 import { conversationsAdapter } from "./conversationsAdapter";
 import {
-  AddMessageToPrivateConversation,
-  GetMessagesFromPrivateConversation,
+  DeleteMessage,
+  GetConversationMessage,
+  PublishMessage,
+  UpdateMessage,
 } from "./conversationsTypes";
 
-const getMessagesFromPrivateConversation =
-  async (): Promise<GetMessagesFromPrivateConversation.Result> => {
-    try {
-      const { data } = await supabaseEdgeFunction.post(
-        "get-private-conversation"
-      );
-      return conversationsAdapter.getMessagesFromPrivateConversationAdapter(
-        data
-      );
-    } catch (error) {
-      throw error;
-    }
-  };
-
-const addMessageToPrivateConversation = async (
-  params: AddMessageToPrivateConversation.Params
-): Promise<AddMessageToPrivateConversation.Result> => {
+async function getConversationMessages(params: GetConversationMessage.Params) {
   try {
     const { data } = await supabaseEdgeFunction.post(
-      "add-new-message-to-private-conversation",
+      "get-conversation-messages",
+      {
+        user_id: params.userId ?? null,
+        limit: params.limit,
+        offset: params.offset,
+        conversation_type: params.conversationType,
+      }
+    );
+
+    return conversationsAdapter.getConversationMessagesAdapter(data.data);
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function deleteMessage(
+  params: DeleteMessage.Params
+): Promise<DeleteMessage.Result> {
+  try {
+    await supabaseEdgeFunction.post("delete-conversation-message", {
+      conversation_message_id: params.conversationMessageId,
+    });
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function updateMessage(
+  params: UpdateMessage.Params
+): Promise<UpdateMessage.Result> {
+  try {
+    await supabaseEdgeFunction.post("update-conversation-message", {
+      conversation_message_id: params.conversationMessageId,
+      new_text: params.newText,
+    });
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function publishMessage(
+  params: PublishMessage.Params
+): Promise<PublishMessage.Result> {
+  try {
+    const { data } = await supabaseEdgeFunction.post(
+      "publish-new-message-to-conversation",
       {
         text: params.text,
-        conversation_id: params.conversationId,
+        target_user_id: params.targetUserId ?? null,
+        replied_conversation_message_id:
+          params.repliedConversationMessageId ?? null,
       }
     );
     return data;
   } catch (error) {
     throw error;
   }
-};
+}
 
 export const conversationsService = {
-  addMessageToPrivateConversation,
-  getMessagesFromPrivateConversation,
+  deleteMessage,
+  updateMessage,
+  publishMessage,
+  getConversationMessages,
 };

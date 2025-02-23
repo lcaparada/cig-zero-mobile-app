@@ -3,10 +3,15 @@ import { KeyboardAvoidingView, Platform } from "react-native";
 import { Box } from "@components";
 import { useAppSafeAreaContext } from "@hooks";
 
-import { ChatHeader, ChatBody } from "./components";
+import { useChat } from "@services";
+
+import { ChatHeader, ChatBody, MessageOptions } from "./components";
 
 export const CommunityScreen = () => {
   const { top, bottom } = useAppSafeAreaContext();
+
+  const { showOptionsMessage } = useChat();
+
   return (
     <Box
       flex={1}
@@ -21,6 +26,7 @@ export const CommunityScreen = () => {
       >
         <ChatBody style={{ paddingBottom: bottom }} />
       </KeyboardAvoidingView>
+      {showOptionsMessage && <MessageOptions />}
     </Box>
   );
 };

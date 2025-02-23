@@ -12,7 +12,11 @@ export const AccountDetailsScreen = () => {
         <TextInput label="Email" editable={false} value="lcaparada@gmail.com" />
       </Box>
       <Box {...$card} {...shadow}>
-        <Text weight="semiBold" preset="paragraphsBig">
+        <Text
+          weight="semiBold"
+          color={"backgroundConstrast"}
+          preset="paragraphsBig"
+        >
           Acessado com
         </Text>
         <Icon name="google2" size="s22" />
@@ -23,7 +27,7 @@ export const AccountDetailsScreen = () => {
 
 const $card: BoxProps = {
   mt: "s20",
-  backgroundColor: "lightSilver",
+  backgroundColor: "cardProfileBackground",
   borderRadius: "s8",
   paddingHorizontal: "s12",
   paddingVertical: "s10",
@@ -33,7 +37,7 @@ const $card: BoxProps = {
 };
 
 const shadow: BoxProps = {
-  shadowColor: "mediumSilver",
+  shadowColor: "cardProfileShadow",
   shadowOffset: {
     width: 0,
     height: 5,

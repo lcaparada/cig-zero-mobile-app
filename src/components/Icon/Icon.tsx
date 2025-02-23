@@ -58,6 +58,7 @@ import {
   Clock2,
   Resume,
   Google2,
+  XCircle,
 } from "@assets";
 
 import { TouchableOpacityBox } from "../Box/Box";
@@ -145,6 +146,7 @@ const iconRegistry = {
   trash2: Trash2,
   clock2: Clock2,
   resume: Resume,
+  xCircle: XCircle,
   arrowUp: ArrowUp,
   google2: Google2,
   error: ErrorRound,

@@ -3,19 +3,21 @@ import {
   ConversationMessageAPI,
 } from "./conversationsTypes";
 
-const getMessagesFromPrivateConversationAdapter = (
-  messagesAPI: ConversationMessageAPI
+const getConversationMessagesAdapter = (
+  conversationMessageAPI: ConversationMessageAPI
 ): ConversationMessage => {
   return {
-    conversationId: messagesAPI.conversation_id,
-    messages: messagesAPI.messages.map((message) => ({
-      text: message.text,
-      createdAt: message.created_at,
-      authorId: message.author_id,
+    conversationId: conversationMessageAPI.conversation_id,
+    messages: conversationMessageAPI.messages.map((item) => ({
+      id: item.id,
+      text: item.text,
+      author: item.author,
+      createdAt: item.created_at,
+      repliedMessage: item.replied_message,
     })),
   };
 };
 
 export const conversationsAdapter = {
-  getMessagesFromPrivateConversationAdapter,
+  getConversationMessagesAdapter,
 };

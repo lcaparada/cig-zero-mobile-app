@@ -24,7 +24,11 @@ export const Toast = () => {
     >
       <Box {...$boxStyle} maxWidth={MAX_WIDTH * 0.95}>
         <Icon name={mapTypeToIcon[toast?.type ?? "success"]} size="s40" />
-        <Text weight="bold" style={{ flexShrink: 1 }}>
+        <Text
+          weight="bold"
+          color={"backgroundConstrast"}
+          style={{ flexShrink: 1 }}
+        >
           {toast?.message ?? ""}
         </Text>
       </Box>
