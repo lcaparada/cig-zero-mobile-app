@@ -72,10 +72,16 @@ export const useChatBody = () => {
   const updateInUI = (payload: Message) => {
     const dateString = payload.createdAt.split("T")[0];
 
-    setGroupedAndSortedMessages({
+    const updatedMessages = {
       ...groupedAndSortedMessages,
-      [dateString]: [...groupedAndSortedMessages[dateString], payload],
-    });
+      [dateString]: [...(groupedAndSortedMessages[dateString] || []), payload],
+    };
+    const sortedEntries = Object.entries(updatedMessages).sort(([a], [b]) =>
+      a > b ? -1 : 1
+    );
+    const sortedMessages = Object.fromEntries(sortedEntries);
+
+    setGroupedAndSortedMessages(sortedMessages);
   };
 
   const handleScrollToBottom = () => {

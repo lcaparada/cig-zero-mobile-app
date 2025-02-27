@@ -12,40 +12,26 @@ export const ChatHeader = () => {
 
   return (
     <Box backgroundColor={"primary"} {...$shadow}>
-      <Box
-        mt={"s12"}
-        mb={"s24"}
-        paddingLeft={"s24"}
-        paddingRight={"s24"}
-        flexDirection={"row"}
-        alignItems={"center"}
-        justifyContent={"center"}
-      >
+      <Box {...$boxWrapper}>
         <Box position={"absolute"} left={24}>
           <Icon
             size="s22"
             strokeWidth={2}
             name="arrowLeft"
             color="neutralLighest"
-            onPress={() => navigation.goBack()}
+            onPress={navigation.goBack}
           />
         </Box>
         <Text weight="semiBold" preset="titleSmall" color={"neutralLighest"}>
           Comunidade
         </Text>
-        <Box
-          flexDirection={"row"}
-          columnGap={"s16"}
-          position={"absolute"}
-          right={24}
-          alignItems={"center"}
-        >
+        <Box {...$iconBox}>
           <Icon
             size="s22"
             strokeWidth={2}
             name="users"
             color="neutralLighest"
-            onPress={() => {}}
+            onPress={() => navigation.navigate("FriendsScreen")}
           />
           <ProfileButton photo={session?.user?.user_metadata?.avatar_url} />
         </Box>
@@ -76,6 +62,24 @@ const ProfileButton = ({ photo }: { photo?: string }) => {
       )}
     </TouchableOpacityBox>
   );
+};
+
+const $iconBox: BoxProps = {
+  right: 24,
+  position: "absolute",
+  columnGap: "s16",
+  alignItems: "center",
+  flexDirection: "row",
+};
+
+const $boxWrapper: BoxProps = {
+  mt: "s12",
+  mb: "s24",
+  paddingLeft: "s24",
+  paddingRight: "s24",
+  flexDirection: "row",
+  alignItems: "center",
+  justifyContent: "center",
 };
 
 const $profileButtonBox: BoxProps = {

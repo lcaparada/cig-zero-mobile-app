@@ -19,6 +19,7 @@ import {
   HistoricalChartScreen,
   PastSmokingDataScreen,
   AccountDetailsScreen,
+  FriendsScreen,
 } from "@screens";
 
 import { Achievement, AchievementOnUser, achievementsService } from "@domain";
@@ -31,6 +32,7 @@ import { AppTabBottomTabParamList, AppTabNavigator } from "./AppTabNavigator";
 export type AppStackParamList = {
   FaqScreen: undefined;
   ProfileScreen: undefined;
+  FriendsScreen: undefined;
   AppTabNavigator: NavigatorScreenParams<AppTabBottomTabParamList>;
   CommunityScreen: undefined;
   AppearanceScreen: undefined;
@@ -110,6 +112,7 @@ export const AppStack = () => {
           name="AccountDetailsScreen"
           component={AccountDetailsScreen}
         />
+        <Stack.Screen name="FriendsScreen" component={FriendsScreen} />
         <Stack.Screen
           name="TermsOfServiceScreen"
           component={TermsOfServiceScreen}

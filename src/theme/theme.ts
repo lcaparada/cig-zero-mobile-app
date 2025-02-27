@@ -54,6 +54,9 @@ const pallete = {
   translucentWhite: "#FFFFFF80",
 
   shadowBlue: "#233D4D",
+
+  forestGreen: "#058E3F",
+  dartMouthGreen: "#036016",
 };
 
 export const shadow: BoxProps = {
@@ -86,6 +89,8 @@ export const theme = createTheme({
     button: pallete.bluePrimary,
     buttonShadow: pallete.mutedSlate,
     buttonConstrast: pallete.neutralLighest,
+
+    success: pallete.dartMouthGreen,
 
     timeCardShadow: pallete.lightNeutralGray,
 
@@ -185,6 +190,8 @@ export const darkTheme: Theme = {
     background: pallete.deepCharcoal,
     backgroundConstrast: pallete.softGray,
     backgroundSecondConstrast: pallete.mediumGray,
+
+    success: pallete.forestGreen,
 
     switchBackground: pallete.neutralMedium,
 
