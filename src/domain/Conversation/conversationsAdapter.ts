@@ -12,6 +12,7 @@ const getConversationMessagesAdapter = (
       id: item.id,
       text: item.text,
       author: item.author,
+      wasEdited: item.was_edited,
       createdAt: item.created_at,
       repliedMessage: item.replied_message,
     })),

@@ -2,6 +2,7 @@ export enum QueryKeys {
   GetFriends,
   GetMissions,
   GetChartData,
+  GetAuthorInfo,
   GetProgressData,
   GetHistoricData,
   GetAchievements,

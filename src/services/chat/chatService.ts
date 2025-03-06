@@ -11,7 +11,25 @@ function editMessageFromUI(id: string, messages: Message[], newText: string) {
   );
 }
 
+function updateMessageOnUI(
+  msg: Message,
+  groupedAndSortedMessages: Record<string, Message[]>
+) {
+  const dateString = msg.createdAt.split("T")[0];
+
+  const updatedMessages = {
+    ...groupedAndSortedMessages,
+    [dateString]: [...(groupedAndSortedMessages[dateString] || []), msg],
+  };
+  const sortedEntries = Object.entries(updatedMessages).sort(([a], [b]) =>
+    a > b ? -1 : 1
+  );
+  const sortedMessages = Object.fromEntries(sortedEntries);
+  return sortedMessages;
+}
+
 export const chatService = {
   editMessageFromUI,
+  updateMessageOnUI,
   removeMessageFromUI,
 };

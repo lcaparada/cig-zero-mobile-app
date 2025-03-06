@@ -9,12 +9,8 @@ import { useFocusEffect } from "@react-navigation/native";
 import { useQueryClient } from "@tanstack/react-query";
 import * as Crypto from "expo-crypto";
 
-import {
-  usePublishMessage,
-  useGetConversationMessages,
-  Message,
-} from "@domain";
-import { QueryKeys } from "@infra";
+import { usePublishMessage, useGetConversationMessages } from "@domain";
+import { QueryKeys, useGlobalChatListener } from "@infra";
 import { useAuth, useChat, useToastService } from "@services";
 
 export const useChatBody = () => {
@@ -23,8 +19,8 @@ export const useChatBody = () => {
   const {
     repliedMessage,
     setRepliedMessage,
+    updateMessageOnUI,
     groupedAndSortedMessages,
-    setGroupedAndSortedMessages,
   } = useChat();
   const { showToast } = useToastService();
 
@@ -46,7 +42,7 @@ export const useChatBody = () => {
         repliedConversationMessageId: repliedMessage?.id,
         targetUserId: repliedMessage?.author?.id,
       });
-      updateInUI({
+      updateMessageOnUI({
         id: Crypto.randomUUID(),
         text,
         author: {
@@ -54,6 +50,7 @@ export const useChatBody = () => {
           name: userMetadata?.name ?? "",
           photo: userMetadata?.avatar_url ?? "",
         },
+        wasEdited: false,
         repliedMessage: null,
         createdAt: new Date().toISOString(),
       });
@@ -69,27 +66,14 @@ export const useChatBody = () => {
     setShowButton(scrollY >= 100);
   };
 
-  const updateInUI = (payload: Message) => {
-    const dateString = payload.createdAt.split("T")[0];
-
-    const updatedMessages = {
-      ...groupedAndSortedMessages,
-      [dateString]: [...(groupedAndSortedMessages[dateString] || []), payload],
-    };
-    const sortedEntries = Object.entries(updatedMessages).sort(([a], [b]) =>
-      a > b ? -1 : 1
-    );
-    const sortedMessages = Object.fromEntries(sortedEntries);
-
-    setGroupedAndSortedMessages(sortedMessages);
-  };
-
   const handleScrollToBottom = () => {
     setTimeout(
       () => flatListRef?.current?.scrollToOffset({ offset: 0, animated: true }),
       50
     );
   };
+
+  useGlobalChatListener();
 
   useFocusEffect(
     useCallback(() => {

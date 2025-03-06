@@ -22,9 +22,10 @@ export type ChatStore = {
   showOptionsMessage: boolean;
   selectedMessagePosition: MessagePosition | null;
   groupedAndSortedMessages: Record<string, Message[]>;
+  updateMessageOnUI: (params: Message) => void;
   editMessageFromUI: (params: EditMessageFromUI) => void;
   setRepliedMessage: (args: RepliedMessage) => void;
-  removeMessageFromUI: (messageId: string, messageDate: string) => void;
+  removeMessageFromUI: (messageId: string) => void;
   setMessageToOptions: (args: Message | null) => void;
   setShowOptionsMessage: (args: boolean) => void;
   setSelectedMessagePosition: (position: MessagePosition) => void;

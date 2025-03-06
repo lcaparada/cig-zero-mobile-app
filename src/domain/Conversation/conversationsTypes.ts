@@ -1,16 +1,29 @@
+export type ConversationTypes = "GLOBAL" | "PRIVATE";
+
+export type Author = {
+  id: string;
+  name: string;
+  photo: string;
+};
+
+export type ConversationMessageRealtime = {
+  author_id: string;
+  conversation_id: string | null;
+  created_at: string;
+  id: string;
+  replied_conversation_message_id: string | null;
+  text: string;
+  was_edited: boolean;
+};
+
 export type MessageAPI = {
   id: string;
   text: string;
   created_at: string;
   replied_message: string;
-  author: {
-    id: string;
-    name: string;
-    photo: string;
-  } | null;
+  author: Author | null;
+  was_edited: boolean;
 };
-
-export type ConversationTypes = "GLOBAL" | "PRIVATE";
 
 export type ConversationMessageAPI = {
   conversation_id: string;
@@ -27,6 +40,7 @@ export type Message = {
     name: string;
     photo: string;
   } | null;
+  wasEdited: boolean;
 };
 
 export type ConversationMessage = {
@@ -42,6 +56,13 @@ export namespace GetConversationMessage {
   };
 
   export type Result = ConversationMessage[];
+}
+
+export namespace GetAuthorInfo {
+  export type Params = {
+    authorId: string;
+  };
+  export type Result = Author;
 }
 
 export namespace PublishMessage {

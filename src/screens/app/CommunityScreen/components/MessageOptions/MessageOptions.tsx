@@ -86,10 +86,7 @@ export const MessageOptions = () => {
         });
         handleClose();
         setTimeout(() => {
-          removeMessageFromUI(
-            messageToOptions?.id ?? "",
-            messageToOptions?.createdAt.split("T")[0] ?? ""
-          );
+          removeMessageFromUI(messageToOptions?.id ?? "");
         }, 400);
       },
     },

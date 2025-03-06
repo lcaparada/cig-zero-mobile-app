@@ -3,9 +3,10 @@ import { supabaseEdgeFunction } from "@api";
 import { conversationsAdapter } from "./conversationsAdapter";
 import {
   DeleteMessage,
-  GetConversationMessage,
-  PublishMessage,
+  GetAuthorInfo,
   UpdateMessage,
+  PublishMessage,
+  GetConversationMessage,
 } from "./conversationsTypes";
 
 async function getConversationMessages(params: GetConversationMessage.Params) {
@@ -21,6 +22,19 @@ async function getConversationMessages(params: GetConversationMessage.Params) {
     );
 
     return conversationsAdapter.getConversationMessagesAdapter(data.data);
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function getAuthorInfo(
+  params: GetAuthorInfo.Params
+): Promise<GetAuthorInfo.Result> {
+  try {
+    const result = await supabaseEdgeFunction.post("get-author-info", {
+      author_id: params.authorId,
+    });
+    return result.data;
   } catch (error) {
     throw error;
   }
@@ -71,6 +85,7 @@ async function publishMessage(
 }
 
 export const conversationsService = {
+  getAuthorInfo,
   deleteMessage,
   updateMessage,
   publishMessage,

@@ -1,5 +1,7 @@
 import { create } from "zustand";
 
+import { Message } from "@domain";
+
 import { chatService } from "./chatService";
 import { ChatStore } from "./chatTypes";
 
@@ -11,6 +13,7 @@ const useChatStore = create<ChatStore>((set, get) => ({
         text: "",
         createdAt: new Date().toISOString(),
         id: "",
+        wasEdited: false,
       },
     ],
   },
@@ -34,20 +37,31 @@ const useChatStore = create<ChatStore>((set, get) => ({
       [params.date]: updatedConversationMessages,
     });
   },
-  removeMessageFromUI(id, date) {
+  updateMessageOnUI(msg) {
+    const { groupedAndSortedMessages, setGroupedAndSortedMessages } = get();
+    const sortedMessage = chatService.updateMessageOnUI(
+      msg,
+      groupedAndSortedMessages
+    );
+    setGroupedAndSortedMessages(sortedMessage);
+  },
+  removeMessageFromUI(id) {
     const { groupedAndSortedMessages, setGroupedAndSortedMessages } = get();
 
-    const updatedConversationMessages =
-      groupedAndSortedMessages[date]?.filter((message) => message.id !== id) ??
-      [];
+    const updatedGroupedMessages = Object.keys(groupedAndSortedMessages).reduce(
+      (acc, date) => {
+        const updatedConversationMessages = groupedAndSortedMessages[
+          date
+        ]?.filter((message) => message.id !== id);
 
-    const updatedGroupedMessages = { ...groupedAndSortedMessages };
+        if (updatedConversationMessages?.length > 0) {
+          acc[date] = updatedConversationMessages;
+        }
 
-    if (updatedConversationMessages.length === 0) {
-      delete updatedGroupedMessages[date];
-    } else {
-      updatedGroupedMessages[date] = updatedConversationMessages;
-    }
+        return acc;
+      },
+      {} as Record<string, Message[]>
+    );
 
     setGroupedAndSortedMessages(updatedGroupedMessages);
   },
@@ -71,6 +85,7 @@ export function useChat() {
   const setRepliedMessage = useChatStore((state) => state.setRepliedMessage);
   const showOptionsMessage = useChatStore((state) => state.showOptionsMessage);
   const editMessageFromUI = useChatStore((state) => state.editMessageFromUI);
+  const updateMessageOnUI = useChatStore((state) => state.updateMessageOnUI);
   const removeMessageFromUI = useChatStore(
     (state) => state.removeMessageFromUI
   );
@@ -83,7 +98,6 @@ export function useChat() {
   const setMessageToOptions = useChatStore(
     (state) => state.setMessageToOptions
   );
-
   const selectedMessagePosition = useChatStore(
     (state) => state.selectedMessagePosition
   );
@@ -99,6 +113,7 @@ export function useChat() {
     messageToOptions,
     setRepliedMessage,
     editMessageFromUI,
+    updateMessageOnUI,
     showOptionsMessage,
     setMessageToOptions,
     removeMessageFromUI,

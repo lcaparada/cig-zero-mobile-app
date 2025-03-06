@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { Image, TouchableOpacity } from "react-native";
 
-import { format } from "date-fns";
+import { differenceInMinutes, format } from "date-fns";
 
 import { Box, BoxProps, Icon, Text, TouchableOpacityBox } from "@components";
 
@@ -32,18 +32,27 @@ export const ChatMessage = ({
   const messageRef = useRef<TouchableOpacity>(null);
 
   const handleLongPress = () => {
-    if (messageRef.current) {
-      messageRef.current.measureInWindow((x, y, width, height) => {
-        setSelectedMessagePosition({
-          top: y,
-          left: isMine ? null : x,
-          right: isMine ? x : null,
-          width: width,
-          height: height,
+    if (differenceInMinutes(new Date(), createdAt) < 10) {
+      if (messageRef.current) {
+        messageRef.current.measureInWindow((x, y, width, height) => {
+          setSelectedMessagePosition({
+            top: y,
+            left: isMine ? null : x,
+            right: isMine ? x : null,
+            width: width,
+            height: height,
+          });
+          setMessageToOptions({
+            author,
+            createdAt,
+            id,
+            text,
+            repliedMessage,
+            wasEdited: false,
+          });
+          setShowOptionsMessage(true);
         });
-        setMessageToOptions({ author, createdAt, id, text, repliedMessage });
-        setShowOptionsMessage(true);
-      });
+      }
     }
   };
 
@@ -56,7 +65,7 @@ export const ChatMessage = ({
       onLongPress={isMine ? handleLongPress : undefined}
       delayLongPress={500}
     >
-      {!isMine && showAvatar && <UserAvatar />}
+      {!isMine && showAvatar && <UserAvatar photo={author?.photo ?? ""} />}
       <Box
         maxWidth="85%"
         minWidth={isMine ? undefined : "60%"}

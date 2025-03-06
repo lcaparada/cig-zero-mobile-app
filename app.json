@@ -17,7 +17,8 @@
       "usesAppleSignIn": true,
       "bundleIdentifier": "com.elevanteholdings.cig-zero",
       "infoPlist": {
-        "NSUserTrackingUsageDescription": "This identifier will be used to deliver personalized ads to you."
+        "NSUserTrackingUsageDescription": "This identifier will be used to deliver personalized ads to you.",
+        "ITSAppUsesNonExemptEncryption": ""
       }
     },
     "android": {
