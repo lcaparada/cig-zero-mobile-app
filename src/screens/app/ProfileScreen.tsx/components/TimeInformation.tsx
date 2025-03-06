@@ -1,7 +1,7 @@
 import { Box, Text } from "@components";
 
 interface TimeInformationProps {
-  value: string;
+  value: number;
   label: string;
 }
 

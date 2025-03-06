@@ -1,7 +1,10 @@
 import { useNavigation } from "@react-navigation/native";
+import { format } from "date-fns";
 
 import { Avatar, Box, BoxProps, Icon, Screen, Text } from "@components";
+import { useTimeSinceLastSmokingRecord } from "@hooks";
 
+import { useGetProfile } from "@domain";
 import { useAuth, UserMetaData } from "@services";
 
 import { AboutSection, TimeInformation } from "./components";
@@ -11,7 +14,12 @@ export const ProfileScreen = () => {
 
   const userMetaData = session?.user.user_metadata as UserMetaData;
 
+  const { timeSinceLastSmokingRecord, latestSmokingRecord } =
+    useTimeSinceLastSmokingRecord();
+
   const navigation = useNavigation();
+
+  const { profile } = useGetProfile();
 
   return (
     <Screen
@@ -43,7 +51,10 @@ export const ProfileScreen = () => {
           {userMetaData.name}
         </Text>
       </Box>
-      <AboutSection />
+      <AboutSection
+        bio={profile?.bio ?? ""}
+        location={profile?.location ?? ""}
+      />
       <Box {...$card} {...shadow}>
         <Box flexDirection={"row"} alignItems={"center"} columnGap={"s8"}>
           <Icon name="clock2" />
@@ -55,19 +66,26 @@ export const ProfileScreen = () => {
             Tempo sem fumar
           </Text>
         </Box>
-
         <Box
           flexDirection={"row"}
           alignItems={"center"}
           columnGap={"s12"}
           justifyContent={"center"}
         >
-          <TimeInformation label="dias" value="14" />
-          <TimeInformation label="horas" value="13" />
-          <TimeInformation label="minutos" value="32" />
+          <TimeInformation
+            label="dias"
+            value={timeSinceLastSmokingRecord.days}
+          />
+          <TimeInformation
+            label="horas"
+            value={timeSinceLastSmokingRecord.hours}
+          />
+          <TimeInformation
+            label="minutos"
+            value={timeSinceLastSmokingRecord.minutes}
+          />
         </Box>
       </Box>
-
       <Box
         {...{ ...$card }}
         {...shadow}
@@ -86,29 +104,7 @@ export const ProfileScreen = () => {
           </Text>
         </Box>
         <Text weight="bold" color={"backgroundConstrast"}>
-          25
-        </Text>
-      </Box>
-
-      <Box
-        {...$card}
-        {...shadow}
-        flexDirection={"row"}
-        alignItems={"center"}
-        justifyContent={"space-between"}
-      >
-        <Box flexDirection={"row"} alignItems={"center"} columnGap={"s8"}>
-          <Icon name="healtcare" />
-          <Text
-            weight="medium"
-            color={"backgroundConstrast"}
-            preset="paragraphsBig"
-          >
-            OMS
-          </Text>
-        </Box>
-        <Text weight="bold" color={"backgroundConstrast"}>
-          4
+          {profile?.totalAchievements ?? 0}
         </Text>
       </Box>
       <Box {...$card} rowGap={"s12"} {...shadow}>
@@ -130,7 +126,7 @@ export const ProfileScreen = () => {
           justifyContent={"center"}
         >
           <Text weight="medium" color={"backgroundConstrast"}>
-            1 de feveiro de 2025 às 13:41
+            {format(latestSmokingRecord, "d 'de' MMMM 'de' yyyy 'às' HH:mm")}
           </Text>
         </Box>
       </Box>

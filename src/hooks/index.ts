@@ -8,3 +8,4 @@ export * from "./useAppTabNavigator";
 export * from "./useAppSafeAreaContext";
 export * from "./useNotificationSettings";
 export * from "./useGroupedMessagesByDate";
+export * from "./useTimeSinceLastSmokingRecord";

@@ -1,6 +1,7 @@
 export * from "./User";
 export * from "./Auth";
 export * from "./Issues";
+export * from "./Profile";
 export * from "./Friends";
 export * from "./Missions";
 export * from "./SmokeLog";

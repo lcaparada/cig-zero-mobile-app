@@ -1,50 +1,68 @@
 import {
-  Avatar,
   Box,
-  RadioButton,
-  Screen,
   Text,
-  TextInput,
+  Screen,
+  Avatar,
+  RadioButton,
+  FormTextInput,
   TouchableOpacityBox,
 } from "@components";
 
-import { useAuth, UserMetaData } from "@services";
+import { VisibilityStatus } from "@domain";
+
+import { useEditProfileScreen } from "./useEditProfileScreen";
 
 interface OptionButtonProps {
-  value: string;
+  value: VisibilityStatus;
   label: string;
   description: string;
   isSelected: boolean;
+  onPress: () => void;
 }
 
-const optionButtons: OptionButtonProps[] = [
+const optionButtons: Pick<
+  OptionButtonProps,
+  "value" | "label" | "description"
+>[] = [
   {
     value: "ONLY_ME",
     label: "Somente eu",
     description: "Visível apenas para você",
-    isSelected: true,
   },
   {
     value: "ONLY_FRIENDS",
     label: "Meus amigos",
     description: "Visível apenas para você e seus amigos",
-    isSelected: false,
   },
   {
     value: "ALL",
     label: "Todos",
     description: "Visível ao público",
-    isSelected: false,
   },
 ];
 
 export const EditProfileScreen = () => {
-  const { session } = useAuth();
-
-  const userMetaData = session?.user.user_metadata as UserMetaData;
+  const {
+    control,
+    canSave,
+    isUpdating,
+    userMetaData,
+    updateProfile,
+    profileVisibility,
+    setProfileVisibility,
+  } = useEditProfileScreen();
 
   return (
-    <Screen screenTitle="Editar Perfil" canGoBack scrollable>
+    <Screen
+      screenTitle="Editar Perfil"
+      canGoBack
+      scrollable
+      button={{
+        text: "Salvar",
+        action: updateProfile,
+        disabled: !canSave || isUpdating,
+      }}
+    >
       <Box alignItems={"center"} rowGap={"s12"}>
         <Avatar
           name={userMetaData.full_name}
@@ -61,10 +79,17 @@ export const EditProfileScreen = () => {
         </Text>
       </Box>
       <Box marginTop={"s20"} rowGap={"s20"}>
-        <TextInput label="Local" value="" placeholder="Sua cidade" />
-        <TextInput
+        <FormTextInput
+          control={control}
+          name="location"
+          label="Local"
+          placeholder="Sua cidade"
+        />
+        <FormTextInput
           label="Sobre mim"
           height={120}
+          control={control}
+          name="bio"
           multiline
           placeholder="Conte um pouco sobre você"
         />
@@ -82,7 +107,12 @@ export const EditProfileScreen = () => {
         </Text>
         <Box marginTop={"s12"} rowGap={"s12"}>
           {optionButtons.map((opt, ind) => (
-            <OptionButton key={ind} {...opt} />
+            <OptionButton
+              key={ind}
+              {...opt}
+              onPress={() => setProfileVisibility(opt.value)}
+              isSelected={profileVisibility === opt.value}
+            />
           ))}
         </Box>
       </Box>
@@ -94,12 +124,14 @@ const OptionButton = ({
   label,
   description,
   isSelected,
+  onPress,
 }: OptionButtonProps) => {
   return (
     <TouchableOpacityBox
       flexDirection={"row"}
       alignItems={"center"}
       columnGap={"s12"}
+      onPress={onPress}
     >
       <RadioButton isSelected={isSelected} />
       <Box>

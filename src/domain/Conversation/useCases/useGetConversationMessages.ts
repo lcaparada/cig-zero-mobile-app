@@ -2,11 +2,10 @@ import { useEffect } from "react";
 
 import { useInfiniteQuery } from "@tanstack/react-query";
 
-import { useGroupedMessagesByDate } from "@hooks";
-
 import { QueryKeys } from "@infra";
 import { useChat } from "@services";
 
+import { useGroupedMessagesByDate } from "../../../hooks/useGroupedMessagesByDate";
 import { conversationsService } from "../conversationsService";
 import { ConversationMessage } from "../conversationsTypes";
 

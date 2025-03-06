@@ -1,32 +1,42 @@
 import { Box, Icon, Text } from "@components";
 
-export const AboutSection = () => {
+interface AboutSectionProps {
+  bio: string;
+  location: string;
+}
+
+export const AboutSection = ({ bio, location }: AboutSectionProps) => {
+  if (!bio && !location) return null;
   return (
     <Box marginTop={"s12"}>
-      <Text
-        textAlign={"center"}
-        color={"backgroundSecondConstrast"}
-        preset="paragraphsBig"
-        weight="medium"
-      >
-        Ola, Sou de nova holanda e estou no app com o intuito de parar de fumar
-      </Text>
-      <Box
-        flexDirection={"row"}
-        columnGap={"s8"}
-        alignItems={"center"}
-        mt={"s12"}
-        justifyContent={"center"}
-      >
-        <Icon color="backgroundSecondConstrast" name="mapPin" />
+      {!!bio && (
         <Text
-          weight="medium"
+          textAlign={"center"}
           color={"backgroundSecondConstrast"}
           preset="paragraphsBig"
+          weight="medium"
         >
-          Rio de Janeiro
+          {bio}
         </Text>
-      </Box>
+      )}
+      {!!location && (
+        <Box
+          flexDirection={"row"}
+          columnGap={"s8"}
+          alignItems={"center"}
+          mt={"s12"}
+          justifyContent={"center"}
+        >
+          <Icon color="backgroundSecondConstrast" name="mapPin" />
+          <Text
+            weight="medium"
+            color={"backgroundSecondConstrast"}
+            preset="paragraphsBig"
+          >
+            {location}
+          </Text>
+        </Box>
+      )}
     </Box>
   );
 };
