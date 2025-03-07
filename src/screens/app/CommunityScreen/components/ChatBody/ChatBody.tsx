@@ -71,7 +71,7 @@ export const ChatBody = (props: ChatBodyProps) => {
           <ChatSkeleton />
         )}
         {showButton && (
-          <Box position={"absolute"} right={0} bottom={0}>
+          <Box position={"absolute"} right={24} bottom={24}>
             <Button
               width={45}
               height={45}
