@@ -56,6 +56,7 @@ export const EditProfileScreen = () => {
     <Screen
       screenTitle="Editar Perfil"
       canGoBack
+      scrollViewPaddingBottom={160}
       scrollable
       button={{
         text: "Salvar",
