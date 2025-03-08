@@ -5,13 +5,14 @@
     "version": "1.2.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "cover",
       "backgroundColor": "#7EA2AA"
     },
     "ios": {
+      "userInterfaceStyle": "automatic",
       "supportsTablet": true,
       "buildNumber": "29",
       "usesAppleSignIn": true,
@@ -22,6 +23,7 @@
       }
     },
     "android": {
+      "userInterfaceStyle": "automatic",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#7EA2AA"
