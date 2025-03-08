@@ -7,6 +7,7 @@ import * as StoreReview from "expo-store-review";
 import { Popup } from "@components";
 import {
   FaqScreen,
+  FriendsScreen,
   ProfileScreen,
   CommunityScreen,
   AppearanceScreen,
@@ -16,10 +17,8 @@ import {
   PrivacyPolicyScreen,
   NotificationsScreen,
   TermsOfServiceScreen,
-  HistoricalChartScreen,
   PastSmokingDataScreen,
   AccountDetailsScreen,
-  FriendsScreen,
 } from "@screens";
 
 import { Achievement, AchievementOnUser, achievementsService } from "@domain";
@@ -45,7 +44,6 @@ export type AppStackParamList = {
   ReportAnIssueScreen: undefined;
   TermsOfServiceScreen: undefined;
   AccountDetailsScreen: undefined;
-  HistoricalChartScreen: undefined;
   PastSmokingDataScreen: undefined;
 };
 
@@ -123,11 +121,6 @@ export const AppStack = () => {
         <Stack.Screen
           name="PastSmokingDataScreen"
           component={PastSmokingDataScreen}
-        />
-
-        <Stack.Screen
-          name="HistoricalChartScreen"
-          component={HistoricalChartScreen}
         />
         <Stack.Screen
           name="ReportAnIssueScreen"

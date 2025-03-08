@@ -1,4 +1,3 @@
-import { useNavigation } from "@react-navigation/native";
 import { CopilotStep, walkthroughable } from "react-native-copilot";
 
 import {
@@ -21,8 +20,6 @@ const WalkthroughableTouchableOpacityBox = walkthroughable(TouchableOpacityBox);
 
 export const Historic = () => {
   const { historicData } = useGetHistoricData();
-
-  const navigation = useNavigation();
 
   const historicItems: HistoricItemData[] = [
     {
@@ -49,15 +46,10 @@ export const Historic = () => {
         paddingHorizontal={"s24"}
         paddingVertical={"s30"}
         activeOpacity={1}
-        onPress={() => navigation.navigate("HistoricalChartScreen")}
       >
         <HeadingWithDescription
           title="Histórico"
           description="Seu histórico de fumo"
-          button={{
-            iconName: "barChart",
-            onPress: () => navigation.navigate("HistoricalChartScreen"),
-          }}
         />
         <Box mt={"s20"} rowGap={"s10"}>
           {historicItems.map((item, index) => (

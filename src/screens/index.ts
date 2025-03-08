@@ -20,7 +20,6 @@ export * from "./app/PrivacyPolicyScreen/PrivacyPolicyScreen";
 export * from "./app/AccountDetailsScreen/AccountDetailsScreen";
 export * from "./app/TermsOfServiceScreen/TermsOfServiceScreen";
 export * from "./app/PastSmokingDataScreen/PastSmokingDataScreen";
-export * from "./app/HistoricalChartScreen/HistoricalChartScreen";
 
 // NETWORK
 export * from "./network/NetworkErrorScreen";
