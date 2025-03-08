@@ -1,5 +1,3 @@
-import { useColorScheme } from "react-native";
-
 import { Screen } from "@components";
 
 import { useAppColor } from "@services";
@@ -8,9 +6,6 @@ import { IOptionButton, OptionButton } from "./components";
 
 export const AppearanceScreen = () => {
   const { appearancePreference, setAppColor } = useAppColor();
-
-  const theme = useColorScheme();
-  console.log(theme);
 
   const options: Pick<
     IOptionButton,

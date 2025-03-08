@@ -10,6 +10,7 @@ export * from "./app/FriendsScreen/FriendsScreen";
 export * from "./app/CalendarScreen/CalendarScreen";
 export * from "./app/CommunityScreen/CommunityScreen";
 export * from "./app/ProfileScreen.tsx/ProfileScreen";
+export * from "./app/ProvisionsScreen/ProvisionsScreen";
 export * from "./app/AppearanceScreen/AppearanceScreen";
 export * from "./app/EditProfileScreen/EditProfileScreen";
 export * from "./app/AdjustmentsScreen/AdjustmentsScreen";

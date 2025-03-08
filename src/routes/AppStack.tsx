@@ -17,8 +17,9 @@ import {
   PrivacyPolicyScreen,
   NotificationsScreen,
   TermsOfServiceScreen,
-  PastSmokingDataScreen,
   AccountDetailsScreen,
+  PastSmokingDataScreen,
+  ProvisionsScreen,
 } from "@screens";
 
 import { Achievement, AchievementOnUser, achievementsService } from "@domain";
@@ -36,6 +37,7 @@ export type AppStackParamList = {
   FriendsScreen: undefined;
   AppTabNavigator: NavigatorScreenParams<AppTabBottomTabParamList>;
   CommunityScreen: undefined;
+  ProvisionsScreen: undefined;
   AppearanceScreen: undefined;
   AdjustmentsScreen: undefined;
   EditProfileScreen: undefined;
@@ -112,6 +114,7 @@ export const AppStack = () => {
           name="AccountDetailsScreen"
           component={AccountDetailsScreen}
         />
+        <Stack.Screen name="ProvisionsScreen" component={ProvisionsScreen} />
         <Stack.Screen name="FriendsScreen" component={FriendsScreen} />
         <Stack.Screen
           name="TermsOfServiceScreen"

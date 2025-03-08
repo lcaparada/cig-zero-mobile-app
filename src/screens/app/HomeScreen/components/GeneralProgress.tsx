@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import { CopilotStep, walkthroughable } from "react-native-copilot";
 
 import {
@@ -5,15 +6,18 @@ import {
   InformationCard,
   InformationCardProps,
   HeadingWithDescription,
+  TouchableOpacityBox,
 } from "@components";
 
 import { useGetProgressData } from "@domain";
 import { formatToCurrency } from "@helpers";
 
-const WalkthroughableBox = walkthroughable(Box);
+const WalkthroughableTouchableOpacityBox = walkthroughable(TouchableOpacityBox);
 
 export const GeneralProgress = () => {
   const { progressData } = useGetProgressData();
+
+  const navigation = useNavigation();
 
   const items: InformationCardProps[] = [
     {
@@ -44,7 +48,12 @@ export const GeneralProgress = () => {
       order={3}
       name="generalProgress"
     >
-      <WalkthroughableBox paddingHorizontal={"s24"} paddingVertical={"s30"}>
+      <WalkthroughableTouchableOpacityBox
+        paddingHorizontal={"s24"}
+        paddingVertical={"s30"}
+        activeOpacity={1}
+        onPress={() => navigation.navigate("ProvisionsScreen")}
+      >
         <HeadingWithDescription
           title="Progresso Geral"
           description="Sua evolução desde o início"
@@ -60,7 +69,7 @@ export const GeneralProgress = () => {
             <InformationCard key={index} {...item} />
           ))}
         </Box>
-      </WalkthroughableBox>
+      </WalkthroughableTouchableOpacityBox>
     </CopilotStep>
   );
 };
