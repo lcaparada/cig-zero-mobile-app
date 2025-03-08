@@ -26,13 +26,13 @@ export const ChatHeader = () => {
           Comunidade
         </Text>
         <Box {...$iconBox}>
-          <Icon
+          {/* <Icon
             size="s22"
             strokeWidth={2}
             name="users"
             color="neutralLighest"
             onPress={() => navigation.navigate("FriendsScreen")}
-          />
+          /> */}
           <ProfileButton photo={session?.user?.user_metadata?.avatar_url} />
         </Box>
       </Box>
@@ -43,9 +43,15 @@ export const ChatHeader = () => {
 const ProfileButton = ({ photo }: { photo?: string }) => {
   const navigation = useNavigation();
 
+  const { session } = useAuth();
+
   return (
     <TouchableOpacityBox
-      onPress={() => navigation.navigate("ProfileScreen")}
+      onPress={() =>
+        navigation.navigate("ProfileScreen", {
+          userId: session?.user?.id ?? "",
+        })
+      }
       {...$profileButtonBox}
     >
       {photo ? (

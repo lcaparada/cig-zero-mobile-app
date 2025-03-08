@@ -1,12 +1,17 @@
 export type ProfileAPI = {
   bio: string;
+  name: string;
+  photo: string;
   location: string;
+  first_app_launch: string;
   visibility_status: VisibilityStatus;
   total_achievements: number;
 };
 
 export type Profile = {
   bio: string;
+  name: string;
+  photo: string;
   location: string;
   visibilityStatus: VisibilityStatus;
   totalAchievements: number;
@@ -15,7 +20,9 @@ export type Profile = {
 export type VisibilityStatus = "ONLY_ME" | "ONLY_FRIENDS" | "ALL";
 
 export namespace GetProfile {
-  export type Params = void;
+  export type Params = {
+    userId: string;
+  };
   export type Result = Profile;
 }
 

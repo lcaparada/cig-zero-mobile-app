@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { Image, TouchableOpacity } from "react-native";
 
+import { useNavigation } from "@react-navigation/native";
 import { differenceInMinutes, format } from "date-fns";
 
 import { Box, BoxProps, Icon, Text, TouchableOpacityBox } from "@components";
@@ -22,6 +23,8 @@ export const ChatMessage = ({
 }: ChatMessageProps) => {
   const { session } = useAuth();
 
+  const navigation = useNavigation();
+
   const { setShowOptionsMessage } = useChat();
 
   const { setRepliedMessage, setSelectedMessagePosition, setMessageToOptions } =
@@ -31,7 +34,7 @@ export const ChatMessage = ({
 
   const messageRef = useRef<TouchableOpacity>(null);
 
-  const handleLongPress = () => {
+  const onLongPress = () => {
     if (differenceInMinutes(new Date(), createdAt) < 10) {
       if (messageRef.current) {
         messageRef.current.measureInWindow((x, y, width, height) => {
@@ -56,13 +59,18 @@ export const ChatMessage = ({
     }
   };
 
+  const navigateToProfile = () => {
+    navigation.navigate("ProfileScreen", { userId: author?.id ?? "" });
+  };
+
   return (
     <TouchableOpacityBox
       ref={messageRef}
       justifyContent={isMine ? "flex-end" : "flex-start"}
       flexDirection={"row"}
       columnGap={"s12"}
-      onLongPress={isMine ? handleLongPress : undefined}
+      onPress={navigateToProfile}
+      onLongPress={isMine ? onLongPress : undefined}
       delayLongPress={500}
     >
       {!isMine && showAvatar && <UserAvatar photo={author?.photo ?? ""} />}

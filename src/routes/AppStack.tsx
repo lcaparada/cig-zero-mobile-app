@@ -31,7 +31,9 @@ import { AppTabBottomTabParamList, AppTabNavigator } from "./AppTabNavigator";
 
 export type AppStackParamList = {
   FaqScreen: undefined;
-  ProfileScreen: undefined;
+  ProfileScreen: {
+    userId: string;
+  };
   FriendsScreen: undefined;
   AppTabNavigator: NavigatorScreenParams<AppTabBottomTabParamList>;
   CommunityScreen: undefined;

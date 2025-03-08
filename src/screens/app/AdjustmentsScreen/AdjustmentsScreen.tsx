@@ -4,6 +4,7 @@ import { usePostHog } from "posthog-react-native";
 import { Box, LogOutButton, Popup, Screen } from "@components";
 
 import { PostHogEventsName } from "@constraints";
+import { useAuth } from "@services";
 
 import { Section, SectionItemData } from "./components";
 import { useAdjustmentsScreen } from "./useAdjustmentsScreen";
@@ -11,6 +12,8 @@ import { useAdjustmentsScreen } from "./useAdjustmentsScreen";
 export const AdjustmentsScreen = () => {
   const navigation = useNavigation();
   const posthog = usePostHog();
+
+  const { session } = useAuth();
 
   const {
     handleDeleteAccount,
@@ -23,7 +26,10 @@ export const AdjustmentsScreen = () => {
     {
       icon: "user",
       label: "Perfil",
-      action: () => navigation.navigate("ProfileScreen"),
+      action: () =>
+        navigation.navigate("ProfileScreen", {
+          userId: session?.user?.id ?? "",
+        }),
     },
     {
       icon: "resume",

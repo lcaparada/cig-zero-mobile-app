@@ -35,6 +35,13 @@ export namespace AddSmokingRecord {
   export type Result = void;
 }
 
+export namespace GetUserLastSmoke {
+  export type Params = {
+    userId: string;
+  };
+  export type Result = string;
+}
+
 export namespace DeleteSmokingRecord {
   export type Params = Pick<SmokeLog, "id" | "user_id">;
   export type Result = void;

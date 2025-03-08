@@ -6,21 +6,19 @@ import { QueryKeys } from "@infra";
 import { useToastService } from "@services";
 
 import { smokeLogService } from "../smokeLogService";
-import { GetLatestSmokingRecord } from "../smokeLogTypes";
+import { GetUserLastSmoke } from "../smokeLogTypes";
 
-export const useGetLatestSmokingRecord = (userId: string) => {
+export const useGetUserLastSmoke = (userId: string) => {
   const { showToast } = useToastService();
 
   const {
     data: smokingRecord,
-    isFetching,
     error,
-    isRefetching,
-    refetch,
-  } = useQuery<unknown, Error, GetLatestSmokingRecord.Result>({
-    queryKey: [QueryKeys.GetLatestSmokingRecord, userId],
+    isFetching,
+  } = useQuery<unknown, Error, GetUserLastSmoke.Result>({
+    queryKey: [QueryKeys.GetUserLastSmoke, userId],
     queryFn: () =>
-      smokeLogService.getLatestSmokingRecord({
+      smokeLogService.getUserLastSmoke({
         userId,
       }),
   });
@@ -34,8 +32,6 @@ export const useGetLatestSmokingRecord = (userId: string) => {
 
   return {
     isFetching,
-    isRefetching,
     smokingRecord,
-    refetch,
   };
 };

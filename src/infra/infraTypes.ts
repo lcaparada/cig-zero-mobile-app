@@ -7,6 +7,7 @@ export enum QueryKeys {
   GetProgressData,
   GetHistoricData,
   GetAchievements,
+  GetUserLastSmoke,
   GetFriendRequests,
   GetLatestSmokingRecord,
   GetConversationMessages,

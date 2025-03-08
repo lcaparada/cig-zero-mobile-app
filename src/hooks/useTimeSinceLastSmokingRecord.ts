@@ -1,23 +1,24 @@
 import { useEffect, useState } from "react";
 
-import { useGetLatestSmokingRecord } from "@domain";
+import { useGetUserLastSmoke } from "@domain";
 import { calculateTimeDifferenceFromNow } from "@helpers";
 import { useAuth } from "@services";
 
-export function useTimeSinceLastSmokingRecord() {
+export function useTimeSinceLastSmokingRecord(userId: string) {
   const { session } = useAuth();
 
-  const { smokingRecord, isFetching } = useGetLatestSmokingRecord();
+  const { smokingRecord, isFetching } = useGetUserLastSmoke(userId);
+
+  // const { smokingRecord, isFetching } = useGetLatestSmokingRecord(userId);
   const [timeSinceLastSmokingRecord, setTimeSinceLastSmokingRecord] = useState({
     days: 0,
     hours: 0,
     minutes: 0,
   });
 
-  const latestSmokingRecord =
-    smokingRecord?.date ??
-    session?.user?.user_metadata?.firstAppLaunch ??
-    new Date().toISOString();
+  const isMineProfile = session?.user?.id === userId;
+
+  const latestSmokingRecord = smokingRecord ?? new Date().toISOString();
 
   useEffect(() => {
     if (isFetching) return;
@@ -33,5 +34,5 @@ export function useTimeSinceLastSmokingRecord() {
     return () => clearInterval(interval);
   }, [isFetching, latestSmokingRecord]);
 
-  return { timeSinceLastSmokingRecord, latestSmokingRecord };
+  return { timeSinceLastSmokingRecord, latestSmokingRecord, isMineProfile };
 }

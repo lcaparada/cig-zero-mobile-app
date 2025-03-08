@@ -3,23 +3,19 @@ import { format } from "date-fns";
 
 import { Avatar, Box, BoxProps, Icon, Screen, Text } from "@components";
 import { useTimeSinceLastSmokingRecord } from "@hooks";
+import { AppScreenProps } from "@routes";
 
 import { useGetProfile } from "@domain";
-import { useAuth, UserMetaData } from "@services";
 
 import { AboutSection, TimeInformation } from "./components";
 
-export const ProfileScreen = () => {
-  const { session } = useAuth();
-
-  const userMetaData = session?.user.user_metadata as UserMetaData;
-
-  const { timeSinceLastSmokingRecord, latestSmokingRecord } =
-    useTimeSinceLastSmokingRecord();
+export const ProfileScreen = ({ route }: AppScreenProps<"ProfileScreen">) => {
+  const { timeSinceLastSmokingRecord, isMineProfile, latestSmokingRecord } =
+    useTimeSinceLastSmokingRecord(route.params.userId);
 
   const navigation = useNavigation();
 
-  const { profile } = useGetProfile();
+  const { profile } = useGetProfile(route.params.userId);
 
   return (
     <Screen
@@ -27,28 +23,30 @@ export const ProfileScreen = () => {
       screenTitle="Perfil"
       scrollable
       rightComponent={
-        <Icon
-          name="edit2"
-          size="s22"
-          color="backgroundConstrast"
-          onPress={() => navigation.navigate("EditProfileScreen")}
-        />
+        isMineProfile ? (
+          <Icon
+            name="edit2"
+            size="s22"
+            color="backgroundConstrast"
+            onPress={() => navigation.navigate("EditProfileScreen")}
+          />
+        ) : undefined
       }
     >
       <Box alignItems={"center"} rowGap={"s12"}>
         <Avatar
           size={80}
           borderRadius="full"
-          name={userMetaData.name}
+          name={profile?.name ?? ""}
           textSize="titleBig"
-          photo={userMetaData.avatar_url}
+          photo={profile?.photo ?? ""}
         />
         <Text
           weight="medium"
           color={"backgroundConstrast"}
           preset="paragraphsXL"
         >
-          {userMetaData.name}
+          {profile?.name ?? ""}
         </Text>
       </Box>
       <AboutSection
