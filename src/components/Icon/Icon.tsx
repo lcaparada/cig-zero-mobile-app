@@ -59,6 +59,7 @@ import {
   Resume,
   Google2,
   XCircle,
+  Lock,
 } from "@assets";
 
 import { TouchableOpacityBox } from "../Box/Box";
@@ -129,6 +130,7 @@ const iconRegistry = {
   plus: Plus,
   send: Send,
   moon: Moon,
+  lock: Lock,
   apple: Apple,
   users: Users,
   minus: Minus,

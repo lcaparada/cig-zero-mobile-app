@@ -17,7 +17,7 @@ export type Profile = {
   totalAchievements: number;
 };
 
-export type VisibilityStatus = "ONLY_ME" | "ONLY_FRIENDS" | "ALL";
+export type VisibilityStatus = "ONLY_ME" | "ALL";
 
 export namespace GetProfile {
   export type Params = {

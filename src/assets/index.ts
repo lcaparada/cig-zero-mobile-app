@@ -6,6 +6,7 @@ export * from "./icons/user";
 export * from "./icons/moon";
 export * from "./icons/star";
 export * from "./icons/home";
+export * from "./icons/lock";
 export * from "./icons/info";
 export * from "./icons/bell";
 export * from "./icons/wind";

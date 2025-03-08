@@ -17,7 +17,7 @@ export const useEditProfileScreen = () => {
   const userMetaData = session?.user.user_metadata as UserMetaData;
   const { showToast } = useToastService();
 
-  const { profile, isLoading } = useGetProfile();
+  const { profile, isLoading } = useGetProfile(session?.user?.id ?? "");
 
   const { isUpdating, handleUpdateProfile } = useUpdateProfile();
 

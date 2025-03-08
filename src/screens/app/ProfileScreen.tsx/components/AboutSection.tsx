@@ -3,9 +3,17 @@ import { Box, Icon, Text } from "@components";
 interface AboutSectionProps {
   bio: string;
   location: string;
+
+  isMineProfile: boolean;
+  showProfileForOtherPeople: boolean;
 }
 
-export const AboutSection = ({ bio, location }: AboutSectionProps) => {
+export const AboutSection = ({
+  bio,
+  isMineProfile,
+  showProfileForOtherPeople,
+  location,
+}: AboutSectionProps) => {
   if (!bio && !location) return null;
   return (
     <Box marginTop={"s12"}>
@@ -19,7 +27,7 @@ export const AboutSection = ({ bio, location }: AboutSectionProps) => {
           {bio}
         </Text>
       )}
-      {!!location && (
+      {(showProfileForOtherPeople || isMineProfile) && !!location && (
         <Box
           flexDirection={"row"}
           columnGap={"s8"}

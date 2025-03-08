@@ -30,11 +30,6 @@ const optionButtons: Pick<
     description: "Visível apenas para você",
   },
   {
-    value: "ONLY_FRIENDS",
-    label: "Meus amigos",
-    description: "Visível apenas para você e seus amigos",
-  },
-  {
     value: "ALL",
     label: "Todos",
     description: "Visível ao público",

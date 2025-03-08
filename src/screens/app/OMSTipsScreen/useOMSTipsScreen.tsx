@@ -10,7 +10,9 @@ export const useOMSTipsScreen = () => {
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   const { session } = useAuth();
-  const { smokingRecord, refetch } = useGetLatestSmokingRecord();
+  const { smokingRecord, refetch } = useGetLatestSmokingRecord(
+    session?.user?.id ?? ""
+  );
 
   const firstRenderRef = useRef(true);
   const isFocused = useIsFocused();

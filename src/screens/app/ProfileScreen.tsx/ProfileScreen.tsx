@@ -17,6 +17,8 @@ export const ProfileScreen = ({ route }: AppScreenProps<"ProfileScreen">) => {
 
   const { profile } = useGetProfile(route.params.userId);
 
+  const showProfileForOtherPeople = profile?.visibilityStatus === "ALL";
+
   return (
     <Screen
       canGoBack
@@ -51,83 +53,109 @@ export const ProfileScreen = ({ route }: AppScreenProps<"ProfileScreen">) => {
       </Box>
       <AboutSection
         bio={profile?.bio ?? ""}
+        isMineProfile={isMineProfile}
         location={profile?.location ?? ""}
+        showProfileForOtherPeople={showProfileForOtherPeople}
       />
-      <Box {...$card} {...shadow}>
-        <Box flexDirection={"row"} alignItems={"center"} columnGap={"s8"}>
-          <Icon name="clock2" />
-          <Text
-            weight="medium"
-            color={"backgroundConstrast"}
-            preset="paragraphsBig"
+      {showProfileForOtherPeople || isMineProfile ? (
+        <>
+          <Box {...$card} {...shadow}>
+            <Box flexDirection={"row"} alignItems={"center"} columnGap={"s8"}>
+              <Icon name="clock2" />
+              <Text
+                weight="medium"
+                color={"backgroundConstrast"}
+                preset="paragraphsBig"
+              >
+                Tempo sem fumar
+              </Text>
+            </Box>
+            <Box
+              flexDirection={"row"}
+              alignItems={"center"}
+              columnGap={"s12"}
+              justifyContent={"center"}
+            >
+              <TimeInformation
+                label="dias"
+                value={timeSinceLastSmokingRecord.days}
+              />
+              <TimeInformation
+                label="horas"
+                value={timeSinceLastSmokingRecord.hours}
+              />
+              <TimeInformation
+                label="minutos"
+                value={timeSinceLastSmokingRecord.minutes}
+              />
+            </Box>
+          </Box>
+          <Box
+            {...{ ...$card }}
+            {...shadow}
+            flexDirection={"row"}
+            alignItems={"center"}
+            justifyContent={"space-between"}
           >
-            Tempo sem fumar
-          </Text>
-        </Box>
-        <Box
-          flexDirection={"row"}
-          alignItems={"center"}
-          columnGap={"s12"}
-          justifyContent={"center"}
-        >
-          <TimeInformation
-            label="dias"
-            value={timeSinceLastSmokingRecord.days}
-          />
-          <TimeInformation
-            label="horas"
-            value={timeSinceLastSmokingRecord.hours}
-          />
-          <TimeInformation
-            label="minutos"
-            value={timeSinceLastSmokingRecord.minutes}
-          />
-        </Box>
-      </Box>
-      <Box
-        {...{ ...$card }}
-        {...shadow}
-        flexDirection={"row"}
-        alignItems={"center"}
-        justifyContent={"space-between"}
-      >
-        <Box flexDirection={"row"} alignItems={"center"} columnGap={"s8"}>
-          <Icon name="trophy" strokeWidth={2} />
-          <Text
-            weight="medium"
-            color={"backgroundConstrast"}
-            preset="paragraphsBig"
-          >
-            Conquistas
-          </Text>
-        </Box>
-        <Text weight="bold" color={"backgroundConstrast"}>
-          {profile?.totalAchievements ?? 0}
-        </Text>
-      </Box>
-      <Box {...$card} rowGap={"s12"} {...shadow}>
-        <Box flexDirection={"row"} alignItems={"center"} columnGap={"s8"}>
-          <Icon name="calendar2" strokeWidth={2} />
-          <Text
-            weight="medium"
-            color={"backgroundConstrast"}
-            preset="paragraphsBig"
-          >
-            Último dia de fumo
-          </Text>
-        </Box>
+            <Box flexDirection={"row"} alignItems={"center"} columnGap={"s8"}>
+              <Icon name="trophy" strokeWidth={2} />
+              <Text
+                weight="medium"
+                color={"backgroundConstrast"}
+                preset="paragraphsBig"
+              >
+                Conquistas
+              </Text>
+            </Box>
+            <Text weight="bold" color={"backgroundConstrast"}>
+              {profile?.totalAchievements ?? 0}
+            </Text>
+          </Box>
+          <Box {...$card} rowGap={"s12"} {...shadow}>
+            <Box flexDirection={"row"} alignItems={"center"} columnGap={"s8"}>
+              <Icon name="calendar2" strokeWidth={2} />
+              <Text
+                weight="medium"
+                color={"backgroundConstrast"}
+                preset="paragraphsBig"
+              >
+                Último dia de fumo
+              </Text>
+            </Box>
 
+            <Box
+              flexDirection={"row"}
+              alignItems={"center"}
+              columnGap={"s12"}
+              justifyContent={"center"}
+            >
+              <Text weight="medium" color={"backgroundConstrast"}>
+                {format(
+                  latestSmokingRecord,
+                  "d 'de' MMMM 'de' yyyy 'às' HH:mm"
+                )}
+              </Text>
+            </Box>
+          </Box>
+        </>
+      ) : (
         <Box
-          flexDirection={"row"}
+          height={"100%"}
+          rowGap={"s8"}
           alignItems={"center"}
-          columnGap={"s12"}
           justifyContent={"center"}
         >
-          <Text weight="medium" color={"backgroundConstrast"}>
-            {format(latestSmokingRecord, "d 'de' MMMM 'de' yyyy 'às' HH:mm")}
+          <Text
+            weight="semiBold"
+            preset="paragraphsXL"
+            textAlign={"center"}
+            color={"backgroundConstrast"}
+          >
+            O perfil desse usuario é privado!
           </Text>
+          <Icon name="lock" size="s32" />
         </Box>
-      </Box>
+      )}
     </Screen>
   );
 };
