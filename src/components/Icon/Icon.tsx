@@ -60,6 +60,7 @@ import {
   Google2,
   XCircle,
   Lock,
+  Goals,
 } from "@assets";
 
 import { TouchableOpacityBox } from "../Box/Box";
@@ -131,6 +132,7 @@ const iconRegistry = {
   send: Send,
   moon: Moon,
   lock: Lock,
+  goals: Goals,
   apple: Apple,
   users: Users,
   minus: Minus,

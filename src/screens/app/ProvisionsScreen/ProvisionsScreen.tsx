@@ -1,4 +1,4 @@
-import { Box, Screen } from "@components";
+import { Box, Icon, Screen } from "@components";
 
 import { calculateAverage } from "@helpers";
 import { useAuth } from "@services";
@@ -29,6 +29,9 @@ export const ProvisionsScreen = () => {
           isMinutes
           value={cigarettesPerDays * MINUTES_PER_CIGARETTE}
         />
+        <Box alignItems={"center"}>
+          <Icon name="goals" size="s200" />
+        </Box>
       </Box>
     </Screen>
   );
