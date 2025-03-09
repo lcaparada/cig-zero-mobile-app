@@ -16,6 +16,7 @@ const pallete = {
   errorDark: "#6B0F1A",
   errorMedium: "#530811",
   roseTerracotta: "#C87A7A",
+  softCoral: "#D68686",
 
   lightGray: "#E5E5E5",
   lightNeutralGray: "#D2D2D2",
@@ -107,6 +108,7 @@ export const theme = createTheme({
     mediumSilver: pallete.mediumSilver,
 
     deleteButton: pallete.errorDark,
+    deleteButtonShadow: pallete.errorMedium,
 
     firstLinearGradientColor: pallete.transparentWhite,
     secondLinearGradientColor: pallete.translucentWhite,
@@ -200,6 +202,7 @@ export const darkTheme: Theme = {
     switchBackground: pallete.neutralMedium,
 
     deleteButton: pallete.roseTerracotta,
+    deleteButtonShadow: pallete.softCoral,
 
     cardProfileBackground: pallete.neutralDarkest,
     cardProfileShadow: pallete.neutralMedium,

@@ -3,18 +3,20 @@ import { FormOnboardingInput, OnboardingInputItemData } from "@components";
 import { OnboardingControlBase } from "../types/onboardingScreenTypes";
 
 const items: OnboardingInputItemData[] = [
-  { text: "Parar imediatamente", value: "STOP_NOW" },
-  { text: "Reduzir gradualmente", value: "REDUCE_GRADUALLY" },
+  { emoji: "🫁", text: "Saúde", value: "HEALTHY" },
+  { emoji: "💰", text: "Economia", value: "SAVINGS" },
+  { emoji: "👪", text: "Família", value: "FAMILY" },
+  { emoji: "✨", text: "Outros", value: "OTHER" },
 ];
 
-export const EighthStepOnboarding = ({
+export const NinthStepOnboarding = ({
   control,
 }: Pick<OnboardingControlBase, "control">) => {
   return (
     <FormOnboardingInput
       control={control}
-      name="quitImmediatelyOrReduceGradually"
-      title="Você quer parar imediatamente ou reduzir gradualmente?"
+      name="mainReasonForQuitting"
+      title="Qual é seu principal motivo para parar?"
       items={items}
     />
   );

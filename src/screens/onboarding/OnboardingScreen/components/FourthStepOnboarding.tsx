@@ -1,23 +1,16 @@
-import { FormOnboardingInput, OnboardingInputItemData } from "@components";
+import { FormNumericInput } from "@components";
 
 import { OnboardingControlBase } from "../types/onboardingScreenTypes";
-
-const items: OnboardingInputItemData[] = [
-  { text: "1 ano", value: "1" },
-  { text: "2-5 anos", value: "2_5" },
-  { text: "6-10 anos", value: "6_10" },
-  { text: "10+ anos", value: "10" },
-];
 
 export const FourthStepOnboarding = ({
   control,
 }: Pick<OnboardingControlBase, "control">) => {
   return (
-    <FormOnboardingInput
+    <FormNumericInput
       control={control}
       name="howManyYearsSmoke"
       title="Quantos anos você fuma?"
-      items={items}
+      valueDescription="Anos"
     />
   );
 };

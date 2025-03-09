@@ -3,18 +3,18 @@ import { FormOnboardingInput, OnboardingInputItemData } from "@components";
 import { OnboardingControlBase } from "../types/onboardingScreenTypes";
 
 const items: OnboardingInputItemData[] = [
-  { text: "Parar imediatamente", value: "STOP_NOW" },
-  { text: "Reduzir gradualmente", value: "REDUCE_GRADUALLY" },
+  { text: "Sim", value: "YES" },
+  { text: "Não", value: "NO" },
 ];
 
-export const EighthStepOnboarding = ({
+export const TenthStepOnboarding = ({
   control,
 }: Pick<OnboardingControlBase, "control">) => {
   return (
     <FormOnboardingInput
       control={control}
-      name="quitImmediatelyOrReduceGradually"
-      title="Você quer parar imediatamente ou reduzir gradualmente?"
+      name="likeToReceiveDailyReminders"
+      title="Você gostaria de receber lembretes diários?"
       items={items}
     />
   );

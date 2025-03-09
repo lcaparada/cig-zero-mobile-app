@@ -15,7 +15,7 @@ export const OnboardingScreen = () => {
     handleNavigateToFeaturesScreen,
   } = useOnboardingScreen();
 
-  const MAX_STEPS = 8;
+  const MAX_STEPS = 10;
 
   const isLastStep = step === MAX_STEPS;
 

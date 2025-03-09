@@ -19,6 +19,8 @@ import {
   SecondStepOnboarding,
   SeventhStepOnboarding,
 } from "./components";
+import { NinthStepOnboarding } from "./components/NinthStepOnboarding";
+import { TenthStepOnboarding } from "./components/TenthStepOnboarding";
 import {
   onboardingScreenSchema,
   OnboardingScreenSchemaType,
@@ -41,6 +43,8 @@ export const useOnboardingScreen = () => {
       gender: "",
       howManyCigarettesPerDay: "",
       howManyYearsSmoke: "",
+      pricePackCigarrete: "",
+      lastSmoking: "",
       likeToReceiveDailyReminders: "",
       mainReasonForQuitting: "",
       quitImmediatelyOrReduceGradually: "",
@@ -54,12 +58,31 @@ export const useOnboardingScreen = () => {
       3: "age",
       4: "howManyYearsSmoke",
       5: "howManyCigarettesPerDay",
-      6: "quitImmediatelyOrReduceGradually",
-      7: "mainReasonForQuitting",
-      8: "likeToReceiveDailyReminders",
+      6: "pricePackCigarrete",
+      7: "lastSmoking",
+      8: "quitImmediatelyOrReduceGradually",
+      9: "mainReasonForQuitting",
+      10: "likeToReceiveDailyReminders",
     };
 
-    return step in fieldMap ? watch(fieldMap[step]) !== "" : false;
+    const currentField = fieldMap[step];
+    const value = watch(currentField);
+
+    const isInvalidValue = (value: string | undefined) =>
+      value === "0" || value === "00" || value === "" || value === "0000";
+
+    if (
+      currentField === "howManyCigarettesPerDay" ||
+      currentField === "howManyYearsSmoke"
+    ) {
+      return !isInvalidValue(value);
+    }
+
+    if (currentField === "pricePackCigarrete") {
+      return value?.length === 4 && !isInvalidValue(value);
+    }
+
+    return currentField && !isInvalidValue(value);
   };
 
   const handleRenderSteps = () => {
@@ -72,6 +95,8 @@ export const useOnboardingScreen = () => {
       6: <SixthStepOnboarding control={control} />,
       7: <SeventhStepOnboarding control={control} />,
       8: <EighthStepOnboarding control={control} />,
+      9: <NinthStepOnboarding control={control} />,
+      10: <TenthStepOnboarding control={control} />,
     };
 
     return stepComponents[step] || null;
@@ -95,7 +120,10 @@ export const useOnboardingScreen = () => {
       });
     }
     if (session) {
-      updateUserFromOnboarding(session, watch());
+      updateUserFromOnboarding(session, {
+        ...watch(),
+        pricePackCigarrete: `${watch("pricePackCigarrete").slice(0, 2)}.${watch("pricePackCigarrete").slice(2, 4)}`,
+      });
     }
     navigation.navigate("FeaturesScreen", {
       likeToReceiveDailyReminders: watch().likeToReceiveDailyReminders,
