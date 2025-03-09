@@ -1,30 +1,39 @@
 import { Box, Icon, Screen } from "@components";
 
 import { calculateAverage } from "@helpers";
-import { useAuth } from "@services";
+import { useAuth, UserMetaData } from "@services";
 
 import { Card } from "./components";
 
-export const AVERAGE_CIGARETTE_PRICE_IN_BRAZIL = 0.28;
 export const MINUTES_PER_CIGARETTE = 11;
 
 export const ProvisionsScreen = () => {
   const { session } = useAuth();
 
+  const userMetadata = session?.user?.user_metadata as UserMetaData;
+
   const cigarettesPerDays = calculateAverage(
-    session?.user?.user_metadata?.howManyCigarettesPerDay
+    userMetadata.howManyCigarettesPerDay
   );
+
+  const priceOfCigarrete = Number(userMetadata?.pricePackCigarrete) / 20;
 
   return (
     <Screen canGoBack scrollable screenTitle="Progresso Geral">
       <Box rowGap={"s16"}>
-        <Card title="Cigarros evitados" value={cigarettesPerDays} />
         <Card
-          title="Dinheiro economizado"
-          isMoney
-          value={cigarettesPerDays * AVERAGE_CIGARETTE_PRICE_IN_BRAZIL}
+          iconName="avoidCigarette"
+          title="Cigarros evitados"
+          value={cigarettesPerDays}
         />
         <Card
+          iconName="money"
+          title="Dinheiro economizado"
+          isMoney
+          value={Number((cigarettesPerDays * priceOfCigarrete).toFixed(2))}
+        />
+        <Card
+          iconName="clock2"
           title="Tempo recuperado"
           isMinutes
           value={cigarettesPerDays * MINUTES_PER_CIGARETTE}

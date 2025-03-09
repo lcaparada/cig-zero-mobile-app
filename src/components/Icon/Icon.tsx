@@ -61,6 +61,8 @@ import {
   XCircle,
   Lock,
   Goals,
+  Money,
+  AvoidCigarette,
 } from "@assets";
 
 import { TouchableOpacityBox } from "../Box/Box";
@@ -143,6 +145,7 @@ const iconRegistry = {
   userX: UserX,
   smile: Smile,
   check: Check,
+  money: Money,
   shield: Shield,
   google: Google,
   mapPin: MapPin,
@@ -176,4 +179,5 @@ const iconRegistry = {
   trendingDown: TrendingDown,
   messageCircle: MessageCircle,
   alertTriangle: AlertTriangle,
+  avoidCigarette: AvoidCigarette,
 };

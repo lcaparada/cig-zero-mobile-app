@@ -1,10 +1,11 @@
-import { Box, Text } from "@components";
+import { Box, Icon, IconName, Text } from "@components";
 
 import { formatMinutes } from "@helpers";
 
 interface CardProps {
   title: string;
   value: number;
+  iconName: IconName;
   isMoney?: boolean;
   isMinutes?: boolean;
 }
@@ -14,7 +15,13 @@ interface Items {
   value: number;
 }
 
-export const Card = ({ value, title, isMoney, isMinutes }: CardProps) => {
+export const Card = ({
+  value,
+  title,
+  iconName,
+  isMoney,
+  isMinutes,
+}: CardProps) => {
   const itemsData: Items[] = [
     { text: "Por dia", value: value },
     { text: "Por semana", value: value * 7 },
@@ -23,9 +30,17 @@ export const Card = ({ value, title, isMoney, isMinutes }: CardProps) => {
   ];
   return (
     <Box>
-      <Text color={"backgroundConstrast"} preset="paragraphsXL" weight="medium">
-        {title}
-      </Text>
+      <Box flexDirection={"row"} alignItems={"center"} columnGap={"s8"}>
+        <Icon name={iconName} size="s26" />
+        <Text
+          color={"backgroundConstrast"}
+          preset="paragraphsXL"
+          weight="medium"
+        >
+          {title}
+        </Text>
+      </Box>
+
       {itemsData.map((item, index) => (
         <Box
           mt={"s16"}
