@@ -80,6 +80,7 @@ export const SeventhStepOnboarding = ({
               cancelTextIOS={"Cancelar"}
               isDarkModeEnabled={appTheme === "dark"}
               textColor={colors.backgroundConstrast}
+              maximumDate={new Date()}
               buttonTextColorIOS={colors.backgroundConstrast}
               onConfirm={(date) => {
                 field.onChange(date.toISOString());
