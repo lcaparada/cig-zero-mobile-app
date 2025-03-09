@@ -35,6 +35,8 @@ export type UserMetaData = {
   gender: Gender;
   howManyCigarettesPerDay: CigarettesPerDays;
   howManyYearsSmoke: SmokeYears;
+  lastSmoking: string;
+  pricePackCigarrete: string;
   isNewUser: boolean;
   iss: string;
   last_activity_at: string;

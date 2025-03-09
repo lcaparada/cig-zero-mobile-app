@@ -6,14 +6,19 @@ import { useTimeSinceLastSmokingRecord } from "@hooks";
 import { AppScreenProps } from "@routes";
 
 import { useGetProfile } from "@domain";
+import { useAuth } from "@services";
 
 import { AboutSection, TimeInformation } from "./components";
 
 export const ProfileScreen = ({ route }: AppScreenProps<"ProfileScreen">) => {
-  const { timeSinceLastSmokingRecord, isMineProfile, latestSmokingRecord } =
+  const { session } = useAuth();
+
+  const { timeSinceLastSmokingRecord, latestSmokingRecord } =
     useTimeSinceLastSmokingRecord(route.params.userId);
 
   const navigation = useNavigation();
+
+  const isMineProfile = route.params.userId === session?.user.id;
 
   const { profile } = useGetProfile(route.params.userId);
 
