@@ -1,4 +1,4 @@
-import { Box, Icon, Screen } from "@components";
+import { Box, Screen } from "@components";
 
 import { calculateAverage } from "@helpers";
 import { useAuth, UserMetaData } from "@services";
@@ -30,7 +30,7 @@ export const ProvisionsScreen = () => {
           iconName="money"
           title="Dinheiro economizado"
           isMoney
-          value={Number((cigarettesPerDays * priceOfCigarrete).toFixed(2))}
+          value={cigarettesPerDays * priceOfCigarrete}
         />
         <Card
           iconName="clock2"
@@ -38,9 +38,6 @@ export const ProvisionsScreen = () => {
           isMinutes
           value={cigarettesPerDays * MINUTES_PER_CIGARETTE}
         />
-        <Box alignItems={"center"}>
-          <Icon name="goals" size="s200" />
-        </Box>
       </Box>
     </Screen>
   );

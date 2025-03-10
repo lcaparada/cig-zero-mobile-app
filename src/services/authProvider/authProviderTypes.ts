@@ -2,11 +2,9 @@ import { Session, User } from "@supabase/supabase-js";
 
 import {
   AgeRange,
-  CigarettesPerDays,
   Gender,
   MainReasonForQuitting,
   QuitMethod,
-  SmokeYears,
   YesNoOption,
 } from "@components";
 import { OnboardingScreenSchemaType } from "@screens";
@@ -16,6 +14,7 @@ export type AuthContextParams = {
   loading: boolean;
   signOut: () => Promise<void>;
   updateUserShowTutorial: (bool: boolean) => void;
+  updateUserMetadata: (userMetadata: UserMetaData) => void;
   updateUserInformation: (user: User) => void;
   createFirstAppLaunch: () => void;
   updateUserFromOnboarding: (
@@ -33,8 +32,8 @@ export type UserMetaData = {
   firstAppLaunch: string;
   full_name: string;
   gender: Gender;
-  howManyCigarettesPerDay: CigarettesPerDays;
-  howManyYearsSmoke: SmokeYears;
+  howManyCigarettesPerDay: string;
+  howManyYearsSmoke: string;
   lastSmoking: string;
   pricePackCigarrete: string;
   isNewUser: boolean;

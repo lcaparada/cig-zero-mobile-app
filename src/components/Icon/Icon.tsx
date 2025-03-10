@@ -53,7 +53,6 @@ import {
   Edit2,
   MapPin,
   Trophy,
-  Healthcare,
   Calendar2,
   Clock2,
   Resume,
@@ -63,6 +62,8 @@ import {
   Goals,
   Money,
   AvoidCigarette,
+  Cigarette,
+  PackOfCigarette,
 } from "@assets";
 
 import { TouchableOpacityBox } from "../Box/Box";
@@ -167,7 +168,7 @@ const iconRegistry = {
   arrowDown: ArrowDown,
   arrowLeft: ArrowLeft,
   calendar2: Calendar2,
-  healtcare: Healthcare,
+  cigarette: Cigarette,
   infoCircle: InfoCircle,
   helpCircle: HelpCircle,
   arrowRight: ArrowRight,
@@ -180,4 +181,5 @@ const iconRegistry = {
   messageCircle: MessageCircle,
   alertTriangle: AlertTriangle,
   avoidCigarette: AvoidCigarette,
+  packOfCigarette: PackOfCigarette,
 };

@@ -53,7 +53,15 @@ export const Card = ({
             {isMoney && "R$"}{" "}
             {isMinutes
               ? formatMinutes(item.value)
-              : item.value.toLocaleString("pt-BR")}
+              : item.value.toLocaleString(
+                  "pt-BR",
+                  isMoney
+                    ? {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      }
+                    : undefined
+                )}
           </Text>
         </Box>
       ))}
