@@ -27,7 +27,7 @@ export const SetTimeInput = ({ date, setDate }: SetTimeInputProps) => {
     <Fragment>
       <Box rowGap={"s8"}>
         <TouchableOpacityBox {...$boxWrapper} onPress={showDatePicker}>
-          <Icon name="clock" color="backgroundConstrast" strokeWidth={2} />
+          <Icon name="clock2" color="backgroundConstrast" strokeWidth={2} />
           <Text weight="medium" color={"backgroundSecondConstrast"}>
             {date !== null ? format(date, "HH:mm") : "Insira o horário"}
           </Text>
