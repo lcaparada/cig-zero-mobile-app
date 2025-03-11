@@ -24,11 +24,11 @@ export const Route = () => {
 
   useEffect(() => {
     if (appearancePreference === "system") {
-      Appearance.addChangeListener((event) =>
+      Appearance.addChangeListener((event) => {
         setAppColorOnChange(
           event.colorScheme as Exclude<ThemePreference, "system">
-        )
-      );
+        );
+      });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
