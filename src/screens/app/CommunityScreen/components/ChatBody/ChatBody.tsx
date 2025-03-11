@@ -38,7 +38,9 @@ export const ChatBody = (props: ChatBodyProps) => {
         rowGap={"s24"}
         backgroundColor={"background"}
       >
-        {Object.keys(data).length === 0 ? (
+        {isLoading ? (
+          <ChatSkeleton />
+        ) : Object.keys(data).length === 0 ? (
           <Box
             flex={1}
             alignItems={"center"}
@@ -50,7 +52,7 @@ export const ChatBody = (props: ChatBodyProps) => {
             </Text>
             <Icon name="chat" size="s48" />
           </Box>
-        ) : !isLoading ? (
+        ) : (
           <FlatList
             inverted
             ref={flatListRef}
@@ -79,8 +81,6 @@ export const ChatBody = (props: ChatBodyProps) => {
               );
             }}
           />
-        ) : (
-          <ChatSkeleton />
         )}
 
         {showButton && (
