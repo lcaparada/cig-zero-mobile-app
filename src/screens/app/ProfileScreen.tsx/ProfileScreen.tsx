@@ -1,7 +1,15 @@
 import { useNavigation } from "@react-navigation/native";
 import { format } from "date-fns";
 
-import { Avatar, Box, BoxProps, Icon, Screen, Text } from "@components";
+import {
+  Avatar,
+  Box,
+  BoxProps,
+  Icon,
+  Screen,
+  Skeleton,
+  Text,
+} from "@components";
 import { useTimeSinceLastSmokingRecord } from "@hooks";
 import { AppScreenProps } from "@routes";
 
@@ -20,7 +28,7 @@ export const ProfileScreen = ({ route }: AppScreenProps<"ProfileScreen">) => {
 
   const isMineProfile = route.params.userId === session?.user.id;
 
-  const { profile } = useGetProfile(route.params.userId);
+  const { profile, isLoading } = useGetProfile(route.params.userId);
 
   const showProfileForOtherPeople = profile?.visibilityStatus === "ALL";
 
@@ -41,13 +49,18 @@ export const ProfileScreen = ({ route }: AppScreenProps<"ProfileScreen">) => {
       }
     >
       <Box alignItems={"center"} rowGap={"s12"}>
-        <Avatar
-          size={80}
-          borderRadius="full"
-          name={profile?.name ?? ""}
-          textSize="titleBig"
-          photo={profile?.photo ?? ""}
-        />
+        {isLoading ? (
+          <Skeleton width={80} height={80} borderRadius={"full"} />
+        ) : (
+          <Avatar
+            size={80}
+            borderRadius="full"
+            name={profile?.name ?? ""}
+            textSize="titleBig"
+            photo={profile?.photo ?? ""}
+          />
+        )}
+
         <Text
           weight="medium"
           color={"backgroundConstrast"}
