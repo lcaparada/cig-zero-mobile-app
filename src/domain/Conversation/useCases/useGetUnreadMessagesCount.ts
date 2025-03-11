@@ -1,5 +1,6 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
+import { useFocusEffect } from "@react-navigation/native";
 import { useQuery } from "@tanstack/react-query";
 
 import { QueryKeys } from "@infra";
@@ -11,7 +12,7 @@ import { GetUnreadMessagesCount } from "../conversationsTypes";
 export const useGetUnreadMessagesCount = (lastTimeOpenedChat: string) => {
   const { showToast } = useToastService();
 
-  const { data, isLoading, error } = useQuery<
+  const { data, isLoading, error, refetch } = useQuery<
     unknown,
     Error,
     GetUnreadMessagesCount.Result
@@ -20,6 +21,13 @@ export const useGetUnreadMessagesCount = (lastTimeOpenedChat: string) => {
     queryFn: () =>
       conversationsService.getUnreadMessagesCount({ lastTimeOpenedChat }),
   });
+
+  useFocusEffect(
+    useCallback(() => {
+      refetch();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+  );
 
   useEffect(() => {
     if (error) {
