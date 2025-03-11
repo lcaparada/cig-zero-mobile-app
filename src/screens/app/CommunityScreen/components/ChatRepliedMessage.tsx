@@ -1,10 +1,16 @@
 import { Box, BoxProps, Text } from "@components";
 
 interface ChatRepliedMessageProps {
+  text: string;
   isMine: boolean;
+  authorName: string;
 }
 
-export const ChatRepliedMessage = ({ isMine }: ChatRepliedMessageProps) => {
+export const ChatRepliedMessage = ({
+  isMine,
+  authorName,
+  text,
+}: ChatRepliedMessageProps) => {
   return (
     <Box height={60} paddingHorizontal={"s8"} paddingTop={"s6"}>
       <Box
@@ -17,11 +23,15 @@ export const ChatRepliedMessage = ({ isMine }: ChatRepliedMessageProps) => {
           height={"100%"}
         />
         <Box>
-          <Text color={"backgroundConstrast"} weight="semiBold">
-            Lucas
+          <Text
+            color={"backgroundConstrast"}
+            preset="paragraphsBig"
+            weight="semiBold"
+          >
+            {authorName}
           </Text>
-          <Text color={"backgroundConstrast"} preset="paragraphsBig">
-            OI,tudo bem ?
+          <Text color={"backgroundConstrast"} preset="paragraphs">
+            {text}
           </Text>
         </Box>
       </Box>

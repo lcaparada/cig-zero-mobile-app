@@ -31,7 +31,8 @@ export const useGlobalChatListener = () => {
             id: typedPayload.id,
             text: typedPayload.text,
             wasEdited: typedPayload.was_edited,
-            repliedMessage: typedPayload.replied_conversation_message_id,
+            repliedConversationMessageId:
+              typedPayload.replied_conversation_message_id,
           });
         }
       )

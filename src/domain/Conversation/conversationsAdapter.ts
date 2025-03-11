@@ -1,6 +1,8 @@
 import {
   ConversationMessage,
   ConversationMessageAPI,
+  RepliedMessage,
+  RepliedMessageAPI,
 } from "./conversationsTypes";
 
 const getConversationMessagesAdapter = (
@@ -14,11 +16,21 @@ const getConversationMessagesAdapter = (
       author: item.author,
       wasEdited: item.was_edited,
       createdAt: item.created_at,
-      repliedMessage: item.replied_message,
+      repliedConversationMessageId: item.replied_conversation_message_id,
     })),
   };
 };
 
+const getRepliedMessageAdapter = (
+  repliedMessageAPI: RepliedMessageAPI
+): RepliedMessage => {
+  return {
+    text: repliedMessageAPI.text,
+    authorName: repliedMessageAPI.author_name,
+  };
+};
+
 export const conversationsAdapter = {
+  getRepliedMessageAdapter,
   getConversationMessagesAdapter,
 };

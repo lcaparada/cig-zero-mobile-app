@@ -51,7 +51,7 @@ export const useChatBody = () => {
           photo: userMetadata?.avatar_url ?? "",
         },
         wasEdited: false,
-        repliedMessage: null,
+        repliedConversationMessageId: repliedMessage?.id ?? null,
         createdAt: new Date().toISOString(),
       });
       setRepliedMessage(null);

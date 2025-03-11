@@ -8,6 +8,7 @@ import {
   PublishMessage,
   GetConversationMessage,
   GetUnreadMessagesCount,
+  GetRepliedMessage,
 } from "./conversationsTypes";
 
 async function getConversationMessages(params: GetConversationMessage.Params) {
@@ -69,6 +70,19 @@ async function deleteMessage(
   }
 }
 
+async function getRepliedMessage(
+  params: GetRepliedMessage.Params
+): Promise<GetRepliedMessage.Result> {
+  try {
+    const { data } = await supabaseEdgeFunction.post("get-replied-message", {
+      replied_message_id: params.repliedMessageId,
+    });
+    return conversationsAdapter.getRepliedMessageAdapter(data);
+  } catch (error) {
+    throw error;
+  }
+}
+
 async function updateMessage(
   params: UpdateMessage.Params
 ): Promise<UpdateMessage.Result> {
@@ -106,6 +120,7 @@ export const conversationsService = {
   deleteMessage,
   updateMessage,
   publishMessage,
+  getRepliedMessage,
   getUnreadMessagesCount,
   getConversationMessages,
 };

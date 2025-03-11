@@ -20,10 +20,14 @@ export type MessageAPI = {
   id: string;
   text: string;
   created_at: string;
-  replied_message: string;
+  replied_conversation_message_id: string;
   author: Author | null;
   was_edited: boolean;
 };
+
+export type RepliedMessageAPI = { text: string; author_name: string };
+
+export type RepliedMessage = { text: string; authorName: string };
 
 export type ConversationMessageAPI = {
   conversation_id: string;
@@ -34,7 +38,7 @@ export type Message = {
   id: string;
   text: string;
   createdAt: string;
-  repliedMessage?: string | null;
+  repliedConversationMessageId: string | null;
   author: {
     id: string;
     name: string;
@@ -98,4 +102,12 @@ export namespace GetUnreadMessagesCount {
   export type Result = {
     unread_messages_count: number;
   };
+}
+
+export namespace GetRepliedMessage {
+  export type Params = {
+    repliedMessageId: string;
+  };
+
+  export type Result = RepliedMessage;
 }

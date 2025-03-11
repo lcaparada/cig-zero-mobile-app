@@ -7,7 +7,7 @@ import { differenceInMinutes, format } from "date-fns";
 import { Box, BoxProps, Icon, Text, TouchableOpacityBox } from "@components";
 
 import { useAuth, useChat } from "@services";
-import { Message } from "src/domain/Conversation";
+import { Message, useGetRepliedMessage } from "src/domain/Conversation";
 
 import { ChatRepliedMessage } from "./ChatRepliedMessage";
 
@@ -19,7 +19,7 @@ export const ChatMessage = ({
   author,
   createdAt,
   showAvatar = true,
-  repliedMessage,
+  repliedConversationMessageId,
 }: ChatMessageProps) => {
   const { session } = useAuth();
 
@@ -33,6 +33,10 @@ export const ChatMessage = ({
   const isMine = author?.id === session?.user?.id;
 
   const messageRef = useRef<TouchableOpacity>(null);
+
+  const { data: repliedMessage } = useGetRepliedMessage(
+    repliedConversationMessageId ?? ""
+  );
 
   const onLongPress = () => {
     if (differenceInMinutes(new Date(), createdAt) < 10) {
@@ -50,7 +54,7 @@ export const ChatMessage = ({
             createdAt,
             id,
             text,
-            repliedMessage,
+            repliedConversationMessageId,
             wasEdited: false,
           });
           setShowOptionsMessage(true);
@@ -82,7 +86,9 @@ export const ChatMessage = ({
         shadowColor={isMine ? "buttonShadow" : "chatMessageShadow"}
         {...$shadow}
       >
-        {repliedMessage && <ChatRepliedMessage isMine={isMine} />}
+        {!!repliedMessage && (
+          <ChatRepliedMessage {...repliedMessage} isMine={isMine} />
+        )}
         <Box paddingVertical="s8" paddingHorizontal="s12">
           {!isMine && author?.name && (
             <Text
