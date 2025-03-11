@@ -24,6 +24,8 @@ import {
 } from "@components";
 import { ThemeColors } from "@theme";
 
+import { PostHogEventsName } from "@constraints";
+
 import { ChatEditMessage } from "../ChatEditMessage";
 import { ChatMessage } from "../ChatMessage";
 
@@ -45,6 +47,7 @@ export const MessageOptions = () => {
   const {
     width,
     opacity,
+    posthog,
     appTheme,
     scaleValue,
     handleClose,
@@ -68,6 +71,7 @@ export const MessageOptions = () => {
         color: "backgroundConstrast",
       },
       onPress: () => {
+        posthog.capture(PostHogEventsName.PRESS_TO_EDIT_A_MESSAGE);
         setShowEditMessage(true);
       },
     },
@@ -81,6 +85,7 @@ export const MessageOptions = () => {
         color: "roseTerracotta",
       },
       onPress: () => {
+        posthog.capture(PostHogEventsName.PRESS_TO_EDIT_A_MESSAGE);
         handleDeleteMessage({
           conversationMessageId: messageToOptions?.id ?? "",
         });

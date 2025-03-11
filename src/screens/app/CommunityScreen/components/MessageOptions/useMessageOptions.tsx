@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useWindowDimensions } from "react-native";
 
+import { usePostHog } from "posthog-react-native";
 import {
   withDelay,
   withSpring,
@@ -16,6 +17,8 @@ import { useAppColor, useChat } from "@services";
 export const useMessageOptions = () => {
   const { width } = useWindowDimensions();
   const { appTheme } = useAppColor();
+
+  const posthog = usePostHog();
 
   const [showEditMessage, setShowEditMessage] = useState(false);
 
@@ -66,6 +69,7 @@ export const useMessageOptions = () => {
   return {
     width,
     opacity,
+    posthog,
     appTheme,
     scaleValue,
     handleClose,

@@ -3,9 +3,11 @@ import { Image, TouchableOpacity } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
 import { differenceInMinutes, format } from "date-fns";
+import { usePostHog } from "posthog-react-native";
 
 import { Box, BoxProps, Icon, Text, TouchableOpacityBox } from "@components";
 
+import { PostHogEventsName } from "@constraints";
 import { useAuth, useChat } from "@services";
 import { Message, useGetRepliedMessage } from "src/domain/Conversation";
 
@@ -26,6 +28,8 @@ export const ChatMessage = ({
 
   const navigation = useNavigation();
 
+  const posthog = usePostHog();
+
   const { setShowOptionsMessage } = useChat();
 
   const { setRepliedMessage, setSelectedMessagePosition, setMessageToOptions } =
@@ -40,6 +44,7 @@ export const ChatMessage = ({
   );
 
   const onLongPress = () => {
+    posthog.capture(PostHogEventsName.PRESS_TO_OPEN_MESSAGE_OPTIONS);
     if (differenceInMinutes(new Date(), createdAt) < 10) {
       if (messageRef.current) {
         messageRef.current.measureInWindow((x, y, width, height) => {
@@ -125,7 +130,12 @@ export const ChatMessage = ({
               {!isMine && (
                 <TouchableOpacityBox
                   hitSlop={10}
-                  onPress={() => setRepliedMessage({ author, id, text })}
+                  onPress={() => {
+                    posthog.capture(
+                      PostHogEventsName.PRESS_TO_RESPOND_A_MESSAGE
+                    );
+                    setRepliedMessage({ author, id, text });
+                  }}
                 >
                   <Text
                     weight="semiBold"
