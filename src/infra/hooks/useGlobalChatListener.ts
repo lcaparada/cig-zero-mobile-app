@@ -48,6 +48,7 @@ export const useGlobalChatListener = () => {
             date: typedPayload.created_at.split("T")[0] ?? "",
             id: typedPayload.id,
             newText: typedPayload.text,
+            wasEdited: typedPayload.was_edited,
           });
         }
       )

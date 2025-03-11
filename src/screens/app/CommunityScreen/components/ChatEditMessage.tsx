@@ -16,6 +16,7 @@ import { useChat, useToastService } from "@services";
 interface ChatActionButtonProps {
   iconName: IconName;
   action: () => void;
+  disabled: boolean;
 }
 
 interface ChatEditMessageProps {
@@ -36,7 +37,7 @@ export const ChatEditMessage = ({
 
   const [newText, setNewText] = useState(messageToOptions?.text ?? "");
 
-  const { updateMessage } = useUpdateMessage();
+  const { updateMessage, isUpdatingMessage } = useUpdateMessage();
 
   async function handleUpdateMessage() {
     try {
@@ -44,6 +45,7 @@ export const ChatEditMessage = ({
         date: messageToOptions?.createdAt.split("T")[0] ?? "",
         id: messageToOptions?.id ?? "",
         newText,
+        wasEdited: true,
       });
       await updateMessage({
         conversationMessageId: messageToOptions?.id ?? "",
@@ -60,14 +62,22 @@ export const ChatEditMessage = ({
 
   return (
     <Box bottom={keyboardHeight + 40} {...$chatEditMessageWrapper}>
-      <ChatActionButton iconName="x" action={cancel} />
+      <ChatActionButton
+        disabled={isUpdatingMessage}
+        iconName="x"
+        action={cancel}
+      />
       <TextInput
         value={newText}
         onChangeText={setNewText}
         autoFocus
         boxProps={{ flex: 1 }}
       />
-      <ChatActionButton iconName="check" action={handleUpdateMessage} />
+      <ChatActionButton
+        disabled={isUpdatingMessage}
+        iconName="check"
+        action={handleUpdateMessage}
+      />
     </Box>
   );
 };
@@ -75,9 +85,14 @@ export const ChatEditMessage = ({
 export const ChatActionButton = ({
   iconName,
   action,
+  disabled,
 }: ChatActionButtonProps) => {
   return (
-    <TouchableOpacityBox {...$actionButtonWrapper} onPress={action}>
+    <TouchableOpacityBox
+      disabled={disabled}
+      {...$actionButtonWrapper}
+      onPress={action}
+    >
       <Icon name={iconName} size="s24" color="backgroundConstrast" />
     </TouchableOpacityBox>
   );

@@ -14,6 +14,7 @@ interface EditMessageFromUI {
   id: string;
   date: string;
   newText: string;
+  wasEdited: boolean;
 }
 
 export type ChatStore = {

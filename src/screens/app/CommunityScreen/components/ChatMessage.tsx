@@ -17,6 +17,7 @@ export const ChatMessage = ({
   id,
   text,
   author,
+  wasEdited,
   createdAt,
   showAvatar = true,
   repliedConversationMessageId,
@@ -102,28 +103,47 @@ export const ChatMessage = ({
           <Text color={isMine ? "neutralLighest" : "chatMessageText"}>
             {text}
           </Text>
-          <Box alignItems="flex-end">
-            {!isMine && (
-              <TouchableOpacityBox
-                hitSlop={10}
-                onPress={() => setRepliedMessage({ author, id, text })}
-              >
+          <Box
+            flexDirection={"row"}
+            alignItems={"flex-start"}
+            justifyContent={wasEdited ? "space-between" : "flex-end"}
+          >
+            {wasEdited && (
+              <Box mr={isMine ? "s20" : undefined}>
                 <Text
-                  weight="semiBold"
-                  color={"backgroundConstrast"}
-                  preset="paragraphsBig"
+                  preset="notes"
+                  color={
+                    isMine ? "neutralLighest" : "backgroundSecondConstrast"
+                  }
                 >
-                  Responder
+                  Editada
                 </Text>
-              </TouchableOpacityBox>
+              </Box>
             )}
-            <Text
-              preset="notes"
-              weight="medium"
-              color={isMine ? "neutralLighest" : "chatMessageText"}
-            >
-              {format(createdAt ?? new Date(), "HH:mm")}
-            </Text>
+
+            <Box>
+              {!isMine && (
+                <TouchableOpacityBox
+                  hitSlop={10}
+                  onPress={() => setRepliedMessage({ author, id, text })}
+                >
+                  <Text
+                    weight="semiBold"
+                    color={"backgroundConstrast"}
+                    preset="paragraphsBig"
+                  >
+                    Responder
+                  </Text>
+                </TouchableOpacityBox>
+              )}
+              <Text
+                preset="notes"
+                weight="medium"
+                color={isMine ? "neutralLighest" : "chatMessageText"}
+              >
+                {format(createdAt ?? new Date(), "HH:mm")}
+              </Text>
+            </Box>
           </Box>
         </Box>
       </Box>

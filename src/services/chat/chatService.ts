@@ -7,7 +7,7 @@ function removeMessageFromUI(id: string, messages: Message[]) {
 
 function editMessageFromUI(id: string, messages: Message[], newText: string) {
   return messages.map((msg) =>
-    msg.id === id ? { ...msg, text: newText } : msg
+    msg.id === id ? { ...msg, text: newText, wasEdited: true } : msg
   );
 }
 
