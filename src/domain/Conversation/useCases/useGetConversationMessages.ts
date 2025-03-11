@@ -38,6 +38,7 @@ export const useGetConversationMessages = ({ userId }: { userId?: string }) => {
     });
 
   const loadNextPage = () => {
+    if (data?.pages.length === undefined || data?.pages.length === 0) return;
     if (!isFetchingNextPage) {
       fetchNextPage();
     }

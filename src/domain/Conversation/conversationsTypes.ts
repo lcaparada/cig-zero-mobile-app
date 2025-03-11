@@ -90,3 +90,12 @@ export namespace UpdateMessage {
   };
   export type Result = void;
 }
+
+export namespace GetUnreadMessagesCount {
+  export type Params = {
+    lastTimeOpenedChat: string;
+  };
+  export type Result = {
+    unread_messages_count: number;
+  };
+}

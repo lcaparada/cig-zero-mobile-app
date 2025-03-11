@@ -9,6 +9,7 @@ export enum QueryKeys {
   GetAchievements,
   GetUserLastSmoke,
   GetFriendRequests,
+  GetUnreadMessagesCount,
   GetLatestSmokingRecord,
   GetConversationMessages,
   GetNotificationSettings,

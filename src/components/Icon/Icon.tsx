@@ -64,6 +64,7 @@ import {
   AvoidCigarette,
   Cigarette,
   PackOfCigarette,
+  Chat,
 } from "@assets";
 
 import { TouchableOpacityBox } from "../Box/Box";
@@ -135,6 +136,7 @@ const iconRegistry = {
   send: Send,
   moon: Moon,
   lock: Lock,
+  chat: Chat,
   goals: Goals,
   apple: Apple,
   users: Users,

@@ -45,6 +45,7 @@ export type UserMetaData = {
   phone_verified: boolean;
   picture: string;
   provider_id: string;
+  lastTimeOpenedChat?: string;
   quitImmediatelyOrReduceGradually: QuitMethod;
   showTutorial: boolean;
   sub: string;

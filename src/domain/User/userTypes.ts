@@ -19,6 +19,10 @@ export namespace GetHistoricData {
   };
 }
 
+export namespace UpdateLastTimeOpenedChat {
+  export type Result = UserMetaData;
+}
+
 export namespace UpdateUserMetadata {
   export type Params = {
     yearsSmoking: string;

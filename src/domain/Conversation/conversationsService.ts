@@ -7,6 +7,7 @@ import {
   UpdateMessage,
   PublishMessage,
   GetConversationMessage,
+  GetUnreadMessagesCount,
 } from "./conversationsTypes";
 
 async function getConversationMessages(params: GetConversationMessage.Params) {
@@ -22,6 +23,22 @@ async function getConversationMessages(params: GetConversationMessage.Params) {
     );
 
     return conversationsAdapter.getConversationMessagesAdapter(data.data);
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function getUnreadMessagesCount(
+  params: GetUnreadMessagesCount.Params
+): Promise<GetUnreadMessagesCount.Result> {
+  try {
+    const result = await supabaseEdgeFunction.post(
+      "get-unread-messages-count",
+      {
+        last_time_opened_chat: params.lastTimeOpenedChat,
+      }
+    );
+    return result.data;
   } catch (error) {
     throw error;
   }
@@ -89,5 +106,6 @@ export const conversationsService = {
   deleteMessage,
   updateMessage,
   publishMessage,
+  getUnreadMessagesCount,
   getConversationMessages,
 };

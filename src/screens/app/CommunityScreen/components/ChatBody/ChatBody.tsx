@@ -2,7 +2,7 @@ import { FlatList, ListRenderItemInfo, ViewProps } from "react-native";
 
 import { usePostHog } from "posthog-react-native";
 
-import { Box, Button } from "@components";
+import { Box, Button, Icon, Text } from "@components";
 
 import { PostHogEventsName } from "@constraints";
 import { Message } from "@domain";
@@ -38,7 +38,19 @@ export const ChatBody = (props: ChatBodyProps) => {
         rowGap={"s24"}
         backgroundColor={"background"}
       >
-        {!isLoading ? (
+        {Object.keys(data).length === 0 ? (
+          <Box
+            flex={1}
+            alignItems={"center"}
+            rowGap={"s8"}
+            justifyContent={"center"}
+          >
+            <Text color={"backgroundConstrast"} textAlign={"center"}>
+              Parece que não há nenhuma mensagem no momento.
+            </Text>
+            <Icon name="chat" size="s48" />
+          </Box>
+        ) : !isLoading ? (
           <FlatList
             inverted
             ref={flatListRef}
@@ -70,6 +82,7 @@ export const ChatBody = (props: ChatBodyProps) => {
         ) : (
           <ChatSkeleton />
         )}
+
         {showButton && (
           <Box position={"absolute"} right={24} bottom={24}>
             <Button

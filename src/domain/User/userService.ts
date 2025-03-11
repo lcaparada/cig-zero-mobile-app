@@ -6,6 +6,7 @@ import {
   UpdateUserInformation,
   UpdateNotificationToken,
   UpdateUserMetadata,
+  UpdateLastTimeOpenedChat,
 } from "./userTypes";
 
 const updateUserInformation = async (
@@ -27,6 +28,18 @@ const getProgressData = async (): Promise<GetProgressData.Result> => {
     throw error;
   }
 };
+
+const updateLastTimeOpenedChat =
+  async (): Promise<UpdateLastTimeOpenedChat.Result> => {
+    try {
+      const { data } = await supabaseEdgeFunction.post(
+        "update-last-time-opened-chat"
+      );
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  };
 
 const updateUserMetadata = async (params: UpdateUserMetadata.Params) => {
   try {
@@ -68,4 +81,5 @@ export const userService = {
   updateUserMetadata,
   updateUserInformation,
   updateNotificationToken,
+  updateLastTimeOpenedChat,
 };

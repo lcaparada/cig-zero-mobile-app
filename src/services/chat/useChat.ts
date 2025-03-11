@@ -6,17 +6,7 @@ import { chatService } from "./chatService";
 import { ChatStore } from "./chatTypes";
 
 const useChatStore = create<ChatStore>((set, get) => ({
-  groupedAndSortedMessages: {
-    "2099-12-12": [
-      {
-        author: { id: "", name: "", photo: "" },
-        text: "",
-        createdAt: new Date().toISOString(),
-        id: "",
-        wasEdited: false,
-      },
-    ],
-  },
+  groupedAndSortedMessages: {},
   repliedMessage: null,
   messageToOptions: null,
   showOptionsMessage: false,
