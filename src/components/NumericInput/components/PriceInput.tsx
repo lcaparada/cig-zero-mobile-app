@@ -10,8 +10,6 @@ interface PriceInputProps {
 }
 
 export const PriceInput = ({ fieldValue, erase }: PriceInputProps) => {
-  console.log(fieldValue);
-
   return (
     <Box
       flexDirection="row"

@@ -10,9 +10,13 @@ const useSettingsStore = create<SettingsStore>()(
     (set) => ({
       appColor: "light",
       appearancePreference: "system",
-      setAppColor: (appColor) => {
-        const appeareance = settingsService.getAppAppearance(appColor);
-        set({ appColor: appeareance, appearancePreference: appColor });
+      setAppColor(appearancePreference) {
+        const appeareance =
+          settingsService.getAppAppearance(appearancePreference);
+        set({ appColor: appeareance, appearancePreference });
+      },
+      setAppColorOnChange(appColor) {
+        set({ appColor });
       },
     }),
     {
@@ -25,6 +29,9 @@ const useSettingsStore = create<SettingsStore>()(
 export function useAppColor() {
   const appTheme = useSettingsStore((state) => state.appColor);
   const setAppColor = useSettingsStore((state) => state.setAppColor);
+  const setAppColorOnChange = useSettingsStore(
+    (state) => state.setAppColorOnChange
+  );
   const appearancePreference = useSettingsStore(
     (state) => state.appearancePreference
   );
@@ -32,6 +39,7 @@ export function useAppColor() {
   return {
     appTheme,
     setAppColor,
+    setAppColorOnChange,
     appearancePreference,
   };
 }
