@@ -2,6 +2,7 @@ export * from "./useAppTheme";
 export * from "./useTutorial";
 export * from "./useKeyboard";
 export * from "./usePickImage";
+export * from "./useFirstTime";
 export * from "./useAnimationModal";
 export * from "./useKeyboardStatus";
 export * from "./useAppTabNavigator";
