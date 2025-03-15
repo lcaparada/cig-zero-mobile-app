@@ -1,39 +1,37 @@
 import { IconName } from "@components";
 
-export type AchievementOnUser = {
-  achievement_id: string;
-  user_id: string;
-  id: string;
-};
-
 export type Achievement = {
   id: string;
   title: string;
   description: string;
-  is_completed: boolean;
-  percentage: number;
-  data: {
-    target: number;
-    current: number;
-    type?: "hours" | "weeks" | "months" | "years";
-  }[];
+  icon_url: string;
+  unlocked: boolean;
 };
 
 export type AchievementCategory = {
   id: string;
   title: string;
+  icon: string;
+  description: string;
+};
+
+export type AchievementWithCategory = Pick<
+  Achievement,
+  "id" | "title" | "description" | "icon_url"
+> & {
+  category: Pick<AchievementCategory, "id" | "title" | "description" | "icon">;
+};
+
+export type GroupedCategory = {
+  id: string;
   icon: IconName;
+  title: string;
   description: string;
   achievements: Achievement[];
 };
-
-export namespace GetAll {
-  export type Result = AchievementCategory[];
-}
-
-export namespace GetAchievement {
+export namespace GetAchievements {
   export type Params = {
     id: string;
   };
-  export type Result = Achievement | null;
+  export type Result = GroupedCategory[];
 }

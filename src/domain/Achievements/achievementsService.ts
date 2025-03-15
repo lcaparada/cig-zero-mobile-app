@@ -1,32 +1,16 @@
-import { supabase, supabaseEdgeFunction } from "@api";
+import { supabaseEdgeFunction } from "@api";
 
-import { GetAchievement, GetAll } from "./achievementsTypes";
+import { GetAchievements } from "./achievementsTypes";
 
-const getAll = async (): Promise<GetAll.Result> => {
+const getAchievements = async (): Promise<GetAchievements.Result> => {
   try {
-    const { data } = await supabaseEdgeFunction.post(
-      "get-achievements-progress"
-    );
-    return data as GetAll.Result;
+    const result = await supabaseEdgeFunction.post("get-achievements");
+    return result.data;
   } catch (error) {
     throw error;
   }
 };
 
-const getAchievement = async (
-  params: GetAchievement.Params
-): Promise<GetAchievement.Result> => {
-  const { data, error } = await supabase
-    .from("achievements")
-    .select("*")
-    .eq("id", params.id)
-    .single();
-  if (error && error.code === "PGRST116") return null;
-  if (error) throw error;
-  return data;
-};
-
 export const achievementsService = {
-  getAll,
-  getAchievement,
+  getAchievements,
 };

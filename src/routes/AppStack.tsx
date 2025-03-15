@@ -1,16 +1,16 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect } from "react";
 
 import { NavigatorScreenParams } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as StoreReview from "expo-store-review";
 
-import { Popup } from "@components";
 import {
   FaqScreen,
   FriendsScreen,
   ProfileScreen,
   CommunityScreen,
   AppearanceScreen,
+  ProvisionsScreen,
   EditProfileScreen,
   AdjustmentsScreen,
   ReportAnIssueScreen,
@@ -19,12 +19,9 @@ import {
   TermsOfServiceScreen,
   AccountDetailsScreen,
   PastSmokingDataScreen,
-  ProvisionsScreen,
 } from "@screens";
 
-import { Achievement, AchievementOnUser, achievementsService } from "@domain";
 import { calculateDiffInDays } from "@helpers";
-import { useAchievementsListener } from "@infra";
 import { useAuth } from "@services";
 
 import { AppTabBottomTabParamList, AppTabNavigator } from "./AppTabNavigator";
@@ -53,28 +50,6 @@ const Stack = createNativeStackNavigator<AppStackParamList>();
 
 export const AppStack = () => {
   const { session } = useAuth();
-
-  const [achievementsPopupData, setAchievementsPopupData] = useState<
-    (AchievementOnUser & Pick<Achievement, "title" | "description">) | null
-  >(null);
-
-  useAchievementsListener<AchievementOnUser>({
-    userId: session?.user.id,
-    onInsert: async (data) => {
-      if (data.achievement_id) {
-        const achievement = await achievementsService.getAchievement({
-          id: data.achievement_id,
-        });
-        if (achievement) {
-          setAchievementsPopupData({
-            ...data,
-            title: achievement.title,
-            description: achievement.description,
-          });
-        }
-      }
-    },
-  });
 
   const requestReview = async () => {
     if (await StoreReview.hasAction()) {
@@ -132,15 +107,6 @@ export const AppStack = () => {
         <Stack.Screen name="CommunityScreen" component={CommunityScreen} />
         <Stack.Screen name="FaqScreen" component={FaqScreen} />
       </Stack.Navigator>
-      {achievementsPopupData && (
-        <Popup
-          visible={!!achievementsPopupData}
-          title="Parabéns, Conquista Alcançada!"
-          description={achievementsPopupData.description}
-          setVisible={() => setAchievementsPopupData(null)}
-          showTrophy
-        />
-      )}
     </Fragment>
   );
 };

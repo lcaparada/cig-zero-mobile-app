@@ -65,6 +65,8 @@ import {
   Cigarette,
   PackOfCigarette,
   Chat,
+  CheckAchievement,
+  FirstVitory,
 } from "@assets";
 
 import { TouchableOpacityBox } from "../Box/Box";
@@ -177,6 +179,7 @@ const iconRegistry = {
   dollarSign: DollarSign,
   trendingUp: TrendingUp,
   chevronLeft: ChevronLeft,
+  firstVitory: FirstVitory,
   chevronDown: ChevronDown,
   chevronRight: ChevronRight,
   trendingDown: TrendingDown,
@@ -184,4 +187,5 @@ const iconRegistry = {
   alertTriangle: AlertTriangle,
   avoidCigarette: AvoidCigarette,
   packOfCigarette: PackOfCigarette,
+  checkAchievement: CheckAchievement,
 };

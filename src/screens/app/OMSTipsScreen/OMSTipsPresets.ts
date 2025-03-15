@@ -1,9 +1,11 @@
-import { Achievement } from "@domain";
-
-export const omsTips: (Pick<Achievement, "title" | "description"> & {
+interface IOmsTips {
+  title: string;
   target: number;
+  description: string;
   type: "hours" | "weeks" | "months" | "years";
-})[] = [
+}
+
+export const omsTips: IOmsTips[] = [
   {
     title: "Primeiras 24 horas",
     description:
