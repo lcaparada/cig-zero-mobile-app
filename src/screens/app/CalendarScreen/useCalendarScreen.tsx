@@ -9,7 +9,7 @@ import {
   SmokeLogWithDateAndCreatedAt,
   useGetAllSmokingRecordsByMonth,
 } from "@domain";
-import { useAuth } from "@services";
+import { useAuth, UserMetaData } from "@services";
 
 export type IndexedSmokingRecordsState = Record<
   string,
@@ -50,15 +50,20 @@ export const useCalendarScreen = ({
 
   const userCreatedAt = session?.user?.created_at;
 
+  const userMetaData = session?.user?.user_metadata as UserMetaData;
+
+  const userStart = userMetaData.lastSmoking
+    ? userMetaData.lastSmoking
+    : userCreatedAt;
+
   const handleAddSmokeRecord = (record: SmokeLogWithDateAndCreatedAt) => {
     setSmokingRecordDetails(record);
     setShowSmokingDetailsModal(true);
   };
 
   const showAddSmokingRecordButton =
-    userCreatedAt &&
-    (isBefore(startOfDay(userCreatedAt), date) ||
-      isSameDay(userCreatedAt, date)) &&
+    userStart &&
+    (isBefore(startOfDay(userStart), date) || isSameDay(userStart, date)) &&
     isBefore(date, new Date());
 
   useEffect(() => {
