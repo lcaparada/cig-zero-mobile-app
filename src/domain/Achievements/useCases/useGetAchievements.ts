@@ -1,5 +1,6 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
+import { useFocusEffect } from "@react-navigation/native";
 import { useQuery } from "@tanstack/react-query";
 
 import { QueryKeys } from "@infra";
@@ -15,6 +16,7 @@ export const useGetAchievements = () => {
     data: achievements,
     isLoading,
     error,
+    refetch,
   } = useQuery<unknown, Error, GetAchievements.Result>({
     queryKey: [QueryKeys.GetAchievements],
     queryFn: () => achievementsService.getAchievements(),
@@ -26,6 +28,13 @@ export const useGetAchievements = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error]);
+
+  useFocusEffect(
+    useCallback(() => {
+      refetch();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+  );
 
   return { achievements, isLoading };
 };
