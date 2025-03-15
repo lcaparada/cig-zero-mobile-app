@@ -1,6 +1,6 @@
 import { RefreshControl, ScrollView } from "react-native";
 
-import { Missions, Divider, Popup } from "@components";
+import { Divider, Popup } from "@components";
 
 import {
   Historic,
@@ -40,8 +40,7 @@ export const HomeScreen = () => {
       <GeneralProgress />
       <Divider />
       <Community />
-      <Divider />
-      <Missions />
+
       <Divider />
       <Historic />
       <Divider />
