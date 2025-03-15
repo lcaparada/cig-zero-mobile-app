@@ -1,24 +1,13 @@
-import {
-  Box,
-  Text,
-  Icon,
-  Count,
-  Divider,
-  BoxProps,
-  IconName,
-} from "@components";
+import { Box, Text, Icon, Count, Divider, BoxProps } from "@components";
 
-import { Achievement } from "@domain";
+import { GroupedAchievementCategory } from "@domain";
 
 import { AchievementCard } from "./AchievementCard";
 
-export type AchievementHeadingProps = BoxProps & {
-  icon: IconName;
-  title: string;
-  isLastItem: boolean;
-  description: string;
-  achievements: Achievement[];
-};
+export type AchievementHeadingProps = BoxProps &
+  GroupedAchievementCategory & {
+    isLastItem: boolean;
+  };
 
 export const AchievementHeading = ({
   icon,
@@ -26,6 +15,8 @@ export const AchievementHeading = ({
   isLastItem,
   description,
   achievements,
+  totalAchievements,
+  totalUnlockedAchievements,
   ...boxProps
 }: AchievementHeadingProps) => {
   return (
@@ -57,7 +48,7 @@ export const AchievementHeading = ({
             {description}
           </Text>
         </Box>
-        <Count target={8} current={0} />
+        <Count target={totalAchievements} current={totalUnlockedAchievements} />
       </Box>
 
       <Box {...$achievementsCardWrapper}>

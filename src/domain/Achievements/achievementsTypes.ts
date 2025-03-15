@@ -22,16 +22,18 @@ export type AchievementWithCategory = Pick<
   category: Pick<AchievementCategory, "id" | "title" | "description" | "icon">;
 };
 
-export type GroupedCategory = {
+export type GroupedAchievementCategory = {
   id: string;
   icon: IconName;
   title: string;
   description: string;
   achievements: Achievement[];
+  totalAchievements: number;
+  totalUnlockedAchievements: number;
 };
 export namespace GetAchievements {
   export type Params = {
     id: string;
   };
-  export type Result = GroupedCategory[];
+  export type Result = GroupedAchievementCategory[];
 }

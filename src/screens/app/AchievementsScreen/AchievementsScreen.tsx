@@ -17,11 +17,8 @@ export const AchievementsScreen = () => {
         achievements.map((achievement, index) => (
           <AchievementHeading
             isLastItem={achievements.length - 1 === index}
-            title={achievement.title}
+            {...achievement}
             key={achievement.id}
-            achievements={achievement.achievements}
-            icon={achievement.icon}
-            description={achievement.description}
           />
         ))}
     </Screen>
