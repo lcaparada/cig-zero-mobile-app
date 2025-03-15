@@ -31,10 +31,10 @@ export const steps: StepProps[] = [
     imageName: "NOTIFICATION",
   },
   {
-    primaryTitle: "Assistência 24 hrs",
-    secondaryTitle: "Conte com um suporte inteligente",
+    primaryTitle: "Forúm",
+    secondaryTitle: "Compartilhe sua experiência e ajude outros",
     description:
-      "Converse com uma IA sempre disponível para te dar dicas e ajudar a parar de fumar.",
+      "Conecte-se com quem enfrenta o mesmo desafio e encontre mais motivação.",
     imageName: "SUPPORT",
   },
 ];
