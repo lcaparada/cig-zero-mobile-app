@@ -67,6 +67,7 @@ import {
   Chat,
   CheckAchievement,
   FirstVitory,
+  LightBulb,
 } from "@assets";
 
 import { TouchableOpacityBox } from "../Box/Box";
@@ -173,6 +174,7 @@ const iconRegistry = {
   arrowLeft: ArrowLeft,
   calendar2: Calendar2,
   cigarette: Cigarette,
+  lightBulb: LightBulb,
   infoCircle: InfoCircle,
   helpCircle: HelpCircle,
   arrowRight: ArrowRight,

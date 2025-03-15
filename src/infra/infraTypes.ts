@@ -4,6 +4,7 @@ export enum QueryKeys {
   GetMissions,
   GetChartData,
   GetAuthorInfo,
+  GetPhraseOfDay,
   GetProgressData,
   GetHistoricData,
   GetAchievements,

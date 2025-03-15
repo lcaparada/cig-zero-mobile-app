@@ -10,11 +10,13 @@ import {
   ActionsButtons,
   GeneralProgress,
 } from "./components";
+import { PhraseOfDay } from "./components/PhraseOfDay";
 import { useHomeScreen } from "./useHomeScreen";
 
 export const HomeScreen = () => {
   const {
     start,
+    phrase,
     colors,
     scrollRef,
     isRefreshing,
@@ -40,7 +42,8 @@ export const HomeScreen = () => {
       <GeneralProgress />
       <Divider />
       <Community />
-
+      <Divider />
+      <PhraseOfDay phrase={phrase?.phrase ?? ""} />
       <Divider />
       <Historic />
       <Divider />

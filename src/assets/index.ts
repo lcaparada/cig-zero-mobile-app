@@ -45,6 +45,7 @@ export * from "./icons/calendar2";
 export * from "./icons/arrowLeft";
 export * from "./icons/arrowDown";
 export * from "./icons/cigarette";
+export * from "./icons/lightBulb";
 export * from "./icons/trendingUp";
 export * from "./icons/infoCircle";
 export * from "./icons/checkRound";
