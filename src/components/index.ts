@@ -14,7 +14,6 @@ export * from "./Switch/Switch";
 export * from "./Paywall/Paywall";
 export * from "./Reviews/Reviews";
 export * from "./Divider/Divider";
-export * from "./Missions/Missions";
 export * from "./Calendar/Calendar";
 export * from "./Checkbox/Checkbox";
 export * from "./Skeleton/Skeleton";
