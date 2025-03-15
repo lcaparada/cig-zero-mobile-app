@@ -10,6 +10,7 @@ async function getProfile(
     const { data } = await supabaseEdgeFunction.post("get-profile", {
       user_id: params.userId,
     });
+
     return profileAdapter.getProfile(data);
   } catch (error) {
     throw error;

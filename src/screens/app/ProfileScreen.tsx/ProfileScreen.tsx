@@ -42,7 +42,7 @@ export const ProfileScreen = ({ route }: AppScreenProps<"ProfileScreen">) => {
           <Icon
             name="edit2"
             size="s22"
-            color="backgroundConstrast"
+            color="primary"
             onPress={() => navigation.navigate("EditProfileScreen")}
           />
         ) : undefined
@@ -61,11 +61,7 @@ export const ProfileScreen = ({ route }: AppScreenProps<"ProfileScreen">) => {
           />
         )}
 
-        <Text
-          weight="medium"
-          color={"backgroundConstrast"}
-          preset="paragraphsXL"
-        >
+        <Text weight="medium" color={"primary"} preset="paragraphsXL">
           {profile?.name ?? ""}
         </Text>
       </Box>
@@ -80,11 +76,7 @@ export const ProfileScreen = ({ route }: AppScreenProps<"ProfileScreen">) => {
           <Box {...$card} {...shadow}>
             <Box flexDirection={"row"} alignItems={"center"} columnGap={"s8"}>
               <Icon name="clock2" />
-              <Text
-                weight="medium"
-                color={"backgroundConstrast"}
-                preset="paragraphsBig"
-              >
+              <Text weight="medium" color={"primary"} preset="paragraphsBig">
                 Tempo sem fumar
               </Text>
             </Box>
@@ -117,26 +109,18 @@ export const ProfileScreen = ({ route }: AppScreenProps<"ProfileScreen">) => {
           >
             <Box flexDirection={"row"} alignItems={"center"} columnGap={"s8"}>
               <Icon name="trophy" strokeWidth={2} />
-              <Text
-                weight="medium"
-                color={"backgroundConstrast"}
-                preset="paragraphsBig"
-              >
+              <Text weight="medium" color={"primary"} preset="paragraphsBig">
                 Conquistas
               </Text>
             </Box>
-            <Text weight="bold" color={"backgroundConstrast"}>
+            <Text weight="bold" color={"primary"}>
               {profile?.totalAchievements ?? 0}
             </Text>
           </Box>
           <Box {...$card} rowGap={"s12"} {...shadow}>
             <Box flexDirection={"row"} alignItems={"center"} columnGap={"s8"}>
               <Icon name="calendar2" strokeWidth={2} />
-              <Text
-                weight="medium"
-                color={"backgroundConstrast"}
-                preset="paragraphsBig"
-              >
+              <Text weight="medium" color={"primary"} preset="paragraphsBig">
                 Último dia de fumo
               </Text>
             </Box>
@@ -147,7 +131,7 @@ export const ProfileScreen = ({ route }: AppScreenProps<"ProfileScreen">) => {
               columnGap={"s12"}
               justifyContent={"center"}
             >
-              <Text weight="medium" color={"backgroundConstrast"}>
+              <Text weight="semiBold" color={"primary"}>
                 {format(
                   latestSmokingRecord,
                   "d 'de' MMMM 'de' yyyy 'às' HH:mm"
@@ -167,7 +151,7 @@ export const ProfileScreen = ({ route }: AppScreenProps<"ProfileScreen">) => {
             weight="semiBold"
             preset="paragraphsXL"
             textAlign={"center"}
-            color={"backgroundConstrast"}
+            color={"primary"}
           >
             O perfil desse usuario é privado!
           </Text>
@@ -180,14 +164,16 @@ export const ProfileScreen = ({ route }: AppScreenProps<"ProfileScreen">) => {
 
 export const $card: BoxProps = {
   mt: "s18",
-  backgroundColor: "cardProfileBackground",
+  backgroundColor: "background",
   borderRadius: "s8",
   paddingHorizontal: "s12",
+  borderWidth: 1,
+  borderColor: "primary",
   paddingVertical: "s10",
 };
 
 export const shadow: BoxProps = {
-  shadowColor: "cardProfileShadow",
+  shadowColor: "primary",
   shadowOffset: {
     width: 0,
     height: 5,

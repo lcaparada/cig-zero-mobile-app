@@ -8,14 +8,10 @@ interface TimeInformationProps {
 export const TimeInformation = ({ label, value }: TimeInformationProps) => {
   return (
     <Box alignItems={"center"}>
-      <Text weight="bold" color={"backgroundConstrast"} preset="titleBig">
+      <Text weight="bold" color={"primary"} preset="titleBig">
         {value}
       </Text>
-      <Text
-        weight="medium"
-        color={"backgroundConstrast"}
-        preset="paragraphsBig"
-      >
+      <Text weight="medium" color={"primary"} preset="paragraphsBig">
         {label}
       </Text>
     </Box>
