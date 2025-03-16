@@ -30,6 +30,7 @@ export const usePastSmokingDataScreen = () => {
         pricePackCigarrete: pastSmokingDataState.pricePackCigarrete,
         yearsSmoking: pastSmokingDataState.howManyYearsSmoke,
       });
+      queryClient.refetchQueries({ queryKey: [QueryKeys.GetProgressData] });
       queryClient.refetchQueries({ queryKey: [QueryKeys.GetHistoricData] });
       navigation.goBack();
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
