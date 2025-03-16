@@ -1,5 +1,8 @@
 {
   "expo": {
+    "config": {
+      "usesNonExemptEncryption": false
+    },
     "name": "CigZero",
     "slug": "cig-zero-app",
     "version": "1.3.0",
@@ -17,12 +20,11 @@
       },
       "userInterfaceStyle": "automatic",
       "supportsTablet": true,
-      "buildNumber": "30",
+      "buildNumber": "31",
       "usesAppleSignIn": true,
       "bundleIdentifier": "com.elevanteholdings.cig-zero",
       "infoPlist": {
-        "NSUserTrackingUsageDescription": "This identifier will be used to deliver personalized ads to you.",
-        "ITSAppUsesNonExemptEncryption": ""
+        "NSUserTrackingUsageDescription": "This identifier will be used to deliver personalized ads to you."
       }
     },
     "android": {
