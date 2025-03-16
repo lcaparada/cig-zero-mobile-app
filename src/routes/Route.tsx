@@ -6,7 +6,6 @@ import { PostHogProvider } from "posthog-react-native";
 import { CopilotProvider } from "react-native-copilot";
 
 import { StepNumberCopilot, TooltipCopilot } from "@components";
-import { FeaturesScreen } from "@screens";
 
 import { ThemePreference, useAppColor, useAuth } from "@services";
 
@@ -56,7 +55,7 @@ export const Route = () => {
           stepNumberComponent={StepNumberCopilot}
           tooltipComponent={TooltipCopilot}
         >
-          <FeaturesScreen />
+          {session ? <Route /> : <AuthStack />}
         </CopilotProvider>
       </PostHogProvider>
     </NavigationContainer>
