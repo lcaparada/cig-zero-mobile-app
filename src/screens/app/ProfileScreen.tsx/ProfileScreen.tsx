@@ -30,8 +30,6 @@ export const ProfileScreen = ({ route }: AppScreenProps<"ProfileScreen">) => {
 
   const { profile, isLoading } = useGetProfile(route.params.userId);
 
-  console.log(latestSmokingRecord);
-
   const showProfileForOtherPeople = profile?.visibilityStatus === "ALL";
 
   return (

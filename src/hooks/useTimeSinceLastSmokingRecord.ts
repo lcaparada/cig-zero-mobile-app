@@ -23,7 +23,7 @@ export function useTimeSinceLastSmokingRecord(userId: string) {
   useEffect(() => {
     if (isLoading) return;
     updateTimer();
-    const interval = setInterval(updateTimer, 60_000);
+    const interval = setInterval(updateTimer, 1000);
     return () => clearInterval(interval);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading, latestSmokingRecord]);
