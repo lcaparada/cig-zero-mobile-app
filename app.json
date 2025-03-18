@@ -20,7 +20,7 @@
       },
       "userInterfaceStyle": "automatic",
       "supportsTablet": true,
-      "buildNumber": "31",
+      "buildNumber": "32",
       "usesAppleSignIn": true,
       "bundleIdentifier": "com.elevanteholdings.cig-zero",
       "infoPlist": {
