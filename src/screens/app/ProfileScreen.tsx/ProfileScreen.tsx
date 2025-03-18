@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import { format } from "date-fns";
+import { format, parseISO } from "date-fns";
 
 import {
   Avatar,
@@ -29,6 +29,8 @@ export const ProfileScreen = ({ route }: AppScreenProps<"ProfileScreen">) => {
   const isMineProfile = route.params.userId === session?.user.id;
 
   const { profile, isLoading } = useGetProfile(route.params.userId);
+
+  console.log(latestSmokingRecord);
 
   const showProfileForOtherPeople = profile?.visibilityStatus === "ALL";
 
@@ -133,7 +135,7 @@ export const ProfileScreen = ({ route }: AppScreenProps<"ProfileScreen">) => {
             >
               <Text weight="semiBold" color={"primary"}>
                 {format(
-                  latestSmokingRecord,
+                  parseISO(latestSmokingRecord),
                   "d 'de' MMMM 'de' yyyy 'às' HH:mm"
                 )}
               </Text>

@@ -4,7 +4,7 @@ import { useGetUserLastSmoke } from "@domain";
 import { calculateTimeDifferenceFromNow } from "@helpers";
 
 export function useTimeSinceLastSmokingRecord(userId: string) {
-  const { smokingRecord, isFetching } = useGetUserLastSmoke(userId);
+  const { smokingRecord, isLoading } = useGetUserLastSmoke(userId);
 
   const [timeSinceLastSmokingRecord, setTimeSinceLastSmokingRecord] = useState({
     days: 0,
@@ -14,19 +14,19 @@ export function useTimeSinceLastSmokingRecord(userId: string) {
 
   const latestSmokingRecord = smokingRecord ?? new Date().toISOString();
 
+  function updateTimer() {
+    const date = latestSmokingRecord;
+    calculateTimeDifferenceFromNow(date);
+    setTimeSinceLastSmokingRecord(calculateTimeDifferenceFromNow(date));
+  }
+
   useEffect(() => {
-    if (isFetching) return;
-
-    const updateTimer = () => {
-      const date = latestSmokingRecord;
-      setTimeSinceLastSmokingRecord(calculateTimeDifferenceFromNow(date));
-    };
-
+    if (isLoading) return;
     updateTimer();
-    const interval = setInterval(updateTimer, 1000);
-
+    const interval = setInterval(updateTimer, 60_000);
     return () => clearInterval(interval);
-  }, [isFetching, latestSmokingRecord]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoading, latestSmokingRecord]);
 
   return { timeSinceLastSmokingRecord, latestSmokingRecord };
 }

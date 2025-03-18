@@ -23,21 +23,16 @@ export const useDeleteSmokingRecord = () => {
         user_id: session?.user?.id ?? "",
       }),
     onSuccess: () => {
-      queryClient.invalidateQueries({
+      queryClient.refetchQueries({
         queryKey: [QueryKeys.GetAllSmokingRecordsByMonth],
       });
-      queryClient.invalidateQueries({
+      queryClient.refetchQueries({
         queryKey: [QueryKeys.GetLatestSmokingRecord],
       });
-      queryClient.invalidateQueries({
-        queryKey: [QueryKeys.GetHistoricData],
-      });
-      queryClient.invalidateQueries({
+      queryClient.refetchQueries({
         queryKey: [QueryKeys.GetProgressData],
       });
-      queryClient.invalidateQueries({
-        queryKey: [QueryKeys.GetAchievements],
-      });
+      queryClient.refetchQueries({ queryKey: [QueryKeys.GetUserLastSmoke] });
     },
   });
 

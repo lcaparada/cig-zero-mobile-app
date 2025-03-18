@@ -14,7 +14,7 @@ export const useGetUserLastSmoke = (userId: string) => {
   const {
     data: smokingRecord,
     error,
-    isFetching,
+    isLoading,
     refetch,
   } = useQuery<unknown, Error, GetUserLastSmoke.Result>({
     queryKey: [QueryKeys.GetUserLastSmoke, userId],
@@ -33,7 +33,7 @@ export const useGetUserLastSmoke = (userId: string) => {
 
   return {
     refetch,
-    isFetching,
+    isLoading,
     smokingRecord,
   };
 };
