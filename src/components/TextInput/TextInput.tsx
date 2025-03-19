@@ -25,6 +25,7 @@ export const TextInput = ({
   label,
   icon,
   style,
+  multiline,
   height = 55,
   boxProps,
   alignItems = "center",
@@ -64,6 +65,7 @@ export const TextInput = ({
             ref={textInputRef}
             placeholderTextColor={colors.backgroundSecondConstrast}
             autoCapitalize="none"
+            multiline={multiline}
             selectionColor={colors.primary}
             style={[
               $fontFamily.medium,
@@ -73,6 +75,7 @@ export const TextInput = ({
                 flex: 1,
                 textAlign: "auto",
                 lineHeight: undefined,
+                paddingTop: multiline ? 16 : 0,
                 color: colors.backgroundConstrast,
               },
               style,

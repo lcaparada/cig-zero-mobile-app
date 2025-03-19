@@ -5,7 +5,7 @@ import { useAppColor } from "@services";
 import { IOptionButton, OptionButton } from "./components";
 
 export const AppearanceScreen = () => {
-  const { appTheme, setAppColor } = useAppColor();
+  const { appearancePreference, setAppColor } = useAppColor();
 
   const options: Pick<
     IOptionButton,
@@ -14,14 +14,21 @@ export const AppearanceScreen = () => {
     {
       label: "Ativado",
       value: "dark",
-      isSelected: appTheme === "dark",
+      isSelected: appearancePreference === "dark",
       description: "A aparência do app ficará no modo escuro",
     },
     {
       label: "Desativado",
       value: "light",
-      isSelected: appTheme === "light",
+      isSelected: appearancePreference === "light",
       description: "A aparência do app ficará no modo claro",
+    },
+    {
+      label: "Padrão do sistema",
+      value: "system",
+      isSelected: appearancePreference === "system",
+      description:
+        "A aparência será a mesma que você configurou no seu dispostivo",
     },
   ];
 

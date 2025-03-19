@@ -2,7 +2,7 @@ import { format, isSameMonth } from "date-fns";
 import { usePostHog } from "posthog-react-native";
 
 import { PostHogEventsName } from "@constraints";
-import { useAuth } from "@services";
+import { useAuth, UserMetaData } from "@services";
 import { Box, BoxProps, TouchableOpacityBox } from "src/components/Box/Box";
 import { Text } from "src/components/Text/Text";
 import { IndexedSmokingRecordsState } from "src/screens/app/CalendarScreen/useCalendarScreen";
@@ -25,9 +25,12 @@ export const CalendarDays = ({
   selectDate,
 }: CalendarDaysProps) => {
   const { session } = useAuth();
-  const userCreatedAt = session?.user?.created_at
-    ? new Date(session.user.created_at).toISOString()
-    : new Date().toISOString();
+
+  const userMetaData = session?.user.user_metadata as UserMetaData;
+
+  const userStart = userMetaData.lastSmoking
+    ? new Date(userMetaData.lastSmoking).toISOString()
+    : new Date(session?.user.created_at ?? "").toISOString();
 
   const posthog = usePostHog();
 
@@ -37,12 +40,7 @@ export const CalendarDays = ({
         const dateString = new Date(d)?.toISOString()?.split("T")[0];
         const hasSmokeRecord =
           indexedSmokingRecords?.hasOwnProperty(dateString);
-        const circleStyle = getCircleStyle(
-          d,
-          date,
-          userCreatedAt,
-          hasSmokeRecord
-        );
+        const circleStyle = getCircleStyle(d, date, userStart, hasSmokeRecord);
         return (
           <TouchableOpacityBox
             key={i}

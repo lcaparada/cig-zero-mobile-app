@@ -1,6 +1,8 @@
-export type ThemePreference = "light" | "dark";
+export type ThemePreference = "light" | "dark" | "system";
 
 export type SettingsStore = {
-  appColor: ThemePreference;
+  appColor: Exclude<ThemePreference, "system">;
+  appearancePreference: ThemePreference;
   setAppColor: (appTheme: ThemePreference) => void;
+  setAppColorOnChange: (appColor: Exclude<ThemePreference, "system">) => void;
 };

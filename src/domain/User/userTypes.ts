@@ -1,5 +1,7 @@
 import { User } from "@supabase/supabase-js";
 
+import { UserMetaData } from "@services";
+
 export namespace GetProgressData {
   export type Result = {
     timeSaved: number;
@@ -15,6 +17,20 @@ export namespace GetHistoricData {
     moneySpent: number;
     smokedCigarettes: number;
   };
+}
+
+export namespace UpdateLastTimeOpenedChat {
+  export type Result = UserMetaData;
+}
+
+export namespace UpdateUserMetadata {
+  export type Params = {
+    yearsSmoking: string;
+    cigarettesPerDay: string;
+    pricePackCigarrete: string;
+  };
+
+  export type Result = UserMetaData;
 }
 
 export namespace UpdateNotificationToken {

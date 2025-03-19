@@ -6,13 +6,18 @@ import { useCopilot } from "react-native-copilot";
 
 import { useAppTheme, useTutorial } from "@hooks";
 
-import { useUpdateNotificationToken, useUpdateUserInformation } from "@domain";
+import {
+  useGetPhraseOfDay,
+  useUpdateNotificationToken,
+  useUpdateUserInformation,
+} from "@domain";
 import { registerForPushNotificationsAsync } from "@helpers";
 import { QueryKeys } from "@infra";
 
 export const useHomeScreen = () => {
   const { handleUpdateUserInformation } = useUpdateUserInformation();
   const { updateNotificationToken } = useUpdateNotificationToken();
+  const { phrase } = useGetPhraseOfDay();
 
   const { start } = useCopilot();
 
@@ -70,6 +75,7 @@ export const useHomeScreen = () => {
 
   return {
     colors,
+    phrase,
     scrollRef,
     isRefreshing,
     showStartTutorialPopup,

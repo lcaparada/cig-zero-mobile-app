@@ -1,15 +1,20 @@
-import { Achievement } from "@domain";
-
 import { Box, BoxProps } from "../Box/Box";
 import { Divider } from "../Divider/Divider";
 import { HeadingWithDescription } from "../HeadingWithDescription/HeadingWithDescription";
 import { ProgressBar } from "../ProgressBar/ProgressBar";
 
-export type AchievementProgressCardProps = BoxProps &
-  Pick<Achievement, "description" | "title" | "is_completed" | "data"> & {
-    lastItem: boolean;
-    percentage: number;
-  };
+export type AchievementProgressCardProps = BoxProps & {
+  title: string;
+  lastItem: boolean;
+  is_completed: boolean;
+  data: {
+    target: number;
+    current: number;
+    type?: "hours" | "weeks" | "months" | "years";
+  }[];
+  description: string;
+  percentage: number;
+};
 
 export const AchievementProgressCard = ({
   data,

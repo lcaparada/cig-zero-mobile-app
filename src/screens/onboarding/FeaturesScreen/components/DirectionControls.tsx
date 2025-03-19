@@ -49,7 +49,7 @@ const DirectionButton = ({
     disabled={disabled}
     backgroundColor={disabled ? "lightNeutralGray" : "primary"}
   >
-    <Icon name={iconName} color="background" strokeWidth={2} size="s24" />
+    <Icon name={iconName} color="neutralLighest" strokeWidth={2} size="s24" />
   </TouchableOpacityBox>
 );
 

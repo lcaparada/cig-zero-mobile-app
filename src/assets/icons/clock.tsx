@@ -17,7 +17,7 @@ export const Clock = ({ color, size, strokeWidth }: IconBase) => {
       <Path
         d="M12 6v6l4 2"
         stroke={color}
-        strokeWidth={1.5}
+        strokeWidth={strokeWidth}
         strokeLinecap="round"
         strokeLinejoin="round"
       />

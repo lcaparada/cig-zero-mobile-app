@@ -7,12 +7,20 @@ interface RadioButtonProps {
 export const RadioButton = ({ isSelected }: RadioButtonProps) => {
   return (
     <Box
-      width={16}
-      height={16}
-      borderRadius={"s16"}
-      borderColor={isSelected ? "primary" : "radioButtonBorder"}
-      backgroundColor={isSelected ? "radioButtonBackground" : "background"}
+      width={18}
+      height={18}
+      borderRadius={"full"}
+      borderColor={"primary"}
       borderWidth={2}
-    />
+      alignItems={"center"}
+      justifyContent={"center"}
+    >
+      <Box
+        width={10}
+        height={10}
+        borderRadius={"full"}
+        backgroundColor={isSelected ? "radioButtonBackground" : "background"}
+      />
+    </Box>
   );
 };

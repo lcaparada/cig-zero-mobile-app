@@ -34,7 +34,7 @@ export const Avatar = ({
       backgroundColor={"primary"}
       activeOpacity={onPress ? 0 : 1}
       borderRadius={borderRadius}
-      borderWidth={4}
+      borderWidth={photo ? 0 : borderWidth}
       borderColor={"mutedAqua"}
       onPress={onPress}
       {...$touchableWrapper}

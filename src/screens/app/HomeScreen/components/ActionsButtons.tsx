@@ -1,4 +1,3 @@
-import { useNavigation } from "@react-navigation/native";
 import { CopilotStep, walkthroughable } from "react-native-copilot";
 
 import { Box, Button, IconName } from "@components";
@@ -14,14 +13,8 @@ const WalkthroughableBox = walkthroughable(Box);
 
 export const ActionsButtons = () => {
   const { navigate } = useAppTabNavigator();
-  const navigation = useNavigation();
 
   const actionsButtons: ActionsButtonsData[] = [
-    {
-      text: "Assistente CigZero",
-      icon: "messageCircle",
-      action: () => navigation.navigate("ChatScreen"),
-    },
     {
       text: "Acesse as dicas da OMS",
       icon: "activity",
@@ -37,7 +30,7 @@ export const ActionsButtons = () => {
   return (
     <CopilotStep
       text="Esta seção apresenta o assistente do CigZero, onde você pode enviar dúvidas. Também há um atalho para as telas de dicas da OMS e conquistas."
-      order={6}
+      order={7}
       name="shortcuts"
     >
       <WalkthroughableBox

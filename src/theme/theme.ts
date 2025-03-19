@@ -15,6 +15,8 @@ const pallete = {
 
   errorDark: "#6B0F1A",
   errorMedium: "#530811",
+  roseTerracotta: "#C87A7A",
+  softCoral: "#D68686",
 
   lightGray: "#E5E5E5",
   lightNeutralGray: "#D2D2D2",
@@ -40,6 +42,8 @@ const pallete = {
   softCharcoal: "#1c1c1c80",
   charcoalMist: "#1c1c1cFF",
 
+  darkGraphite: "#464646",
+
   lightSilver: "#EEE",
   mediumSilver: "#DDD",
 
@@ -51,6 +55,9 @@ const pallete = {
   translucentWhite: "#FFFFFF80",
 
   shadowBlue: "#233D4D",
+
+  forestGreen: "#058E3F",
+  dartMouthGreen: "#036016",
 };
 
 export const shadow: BoxProps = {
@@ -84,14 +91,24 @@ export const theme = createTheme({
     buttonShadow: pallete.mutedSlate,
     buttonConstrast: pallete.neutralLighest,
 
+    success: pallete.dartMouthGreen,
+
+    timeCardShadow: pallete.lightNeutralGray,
+
     background: pallete.neutralLighest,
     backgroundConstrast: pallete.neutralDarkest,
     backgroundSecondConstrast: pallete.neutralMedium,
 
     switchBackground: pallete.neutralMedium,
 
+    cardProfileBackground: pallete.lightSilver,
+    cardProfileShadow: pallete.mediumSilver,
+
     lightSilver: pallete.lightSilver,
     mediumSilver: pallete.mediumSilver,
+
+    deleteButton: pallete.errorDark,
+    deleteButtonShadow: pallete.errorMedium,
 
     firstLinearGradientColor: pallete.transparentWhite,
     secondLinearGradientColor: pallete.translucentWhite,
@@ -128,6 +145,10 @@ export const theme = createTheme({
     s40: 40,
     s48: 48,
     s56: 56,
+    s100: 100,
+    s200: 200,
+    s300: 300,
+    s400: 400,
   },
   borderRadii: {
     s0: 0,
@@ -176,10 +197,20 @@ export const darkTheme: Theme = {
     backgroundConstrast: pallete.softGray,
     backgroundSecondConstrast: pallete.mediumGray,
 
+    success: pallete.forestGreen,
+
     switchBackground: pallete.neutralMedium,
+
+    deleteButton: pallete.roseTerracotta,
+    deleteButtonShadow: pallete.softCoral,
+
+    cardProfileBackground: pallete.neutralDarkest,
+    cardProfileShadow: pallete.neutralMedium,
 
     lightSilver: pallete.lightSilver,
     mediumSilver: pallete.mediumSilver,
+
+    timeCardShadow: pallete.darkGraphite,
 
     firstLinearGradientColor: pallete.shadowGray,
     secondLinearGradientColor: pallete.softCharcoal,

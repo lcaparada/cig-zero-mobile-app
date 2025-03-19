@@ -1,6 +1,8 @@
 import Svg, { G, Path } from "react-native-svg";
 
-export const Rings = () => {
+import { IconBase } from "@components";
+
+export const Rings = ({ color }: IconBase) => {
   return (
     <Svg width={46} height={76} viewBox="0 0 46 76" fill="none">
       <G filter="url(#filter0_d_3_5197)">
@@ -19,8 +21,8 @@ export const Rings = () => {
           stroke="#333"
           strokeWidth={4}
         />
-        <Path fill="#fff" d="M16 8H22V16H16z" />
-        <Path d="M30 8h1c8.284 0 15 6.716 15 15H30V8z" fill="#fff" />
+        <Path fill={color} d="M16 8H22V16H16z" />
+        <Path d="M30 8h1c8.284 0 15 6.716 15 15H30V8z" fill={color} />
       </G>
     </Svg>
   );

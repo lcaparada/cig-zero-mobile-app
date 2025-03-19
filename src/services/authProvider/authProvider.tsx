@@ -10,12 +10,17 @@ import { supabase, supabaseEdgeFunction } from "@api";
 
 import { authService } from "../../domain/Auth/authService";
 
-import { AuthContextParams, AuthProviderProps } from "./authProviderTypes";
+import {
+  AuthContextParams,
+  AuthProviderProps,
+  UserMetaData,
+} from "./authProviderTypes";
 
 const AuthContext = createContext<AuthContextParams>({
   session: null,
   loading: true,
   signOut: async () => {},
+  updateUserMetadata: () => {},
   updateNewUserStatus: () => {},
   createFirstAppLaunch: () => {},
   updateUserInformation: () => {},
@@ -43,6 +48,15 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
         `Bearer ${token}`;
     } else {
       delete supabaseEdgeFunction.defaults.headers.common["Authorization"];
+    }
+  };
+
+  const updateUserMetadata = (userMetadata: UserMetaData) => {
+    if (session) {
+      setSession({
+        ...session,
+        user: { ...session.user, user_metadata: userMetadata },
+      });
     }
   };
 
@@ -193,6 +207,7 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
         session,
         loading,
         signOut,
+        updateUserMetadata,
         createFirstAppLaunch,
         updateNewUserStatus,
         updateUserShowTutorial,

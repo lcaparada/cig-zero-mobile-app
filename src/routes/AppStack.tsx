@@ -1,72 +1,55 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect } from "react";
 
 import { NavigatorScreenParams } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as StoreReview from "expo-store-review";
 
-import { Popup } from "@components";
 import {
   FaqScreen,
-  ChatScreen,
+  FriendsScreen,
+  ProfileScreen,
+  CommunityScreen,
   AppearanceScreen,
+  ProvisionsScreen,
+  EditProfileScreen,
   AdjustmentsScreen,
   ReportAnIssueScreen,
   PrivacyPolicyScreen,
   NotificationsScreen,
   TermsOfServiceScreen,
-  HistoricalChartScreen,
+  AccountDetailsScreen,
   PastSmokingDataScreen,
-  PersonalInformationScreen,
 } from "@screens";
 
-import { Achievement, AchievementOnUser, achievementsService } from "@domain";
 import { calculateDiffInDays } from "@helpers";
-import { useAchievementsListener } from "@infra";
 import { useAuth } from "@services";
 
 import { AppTabBottomTabParamList, AppTabNavigator } from "./AppTabNavigator";
 
 export type AppStackParamList = {
   FaqScreen: undefined;
-  ChatScreen: undefined;
+  ProfileScreen: {
+    userId: string;
+  };
+  FriendsScreen: undefined;
   AppTabNavigator: NavigatorScreenParams<AppTabBottomTabParamList>;
+  CommunityScreen: undefined;
+  ProvisionsScreen: undefined;
   AppearanceScreen: undefined;
   AdjustmentsScreen: undefined;
+  EditProfileScreen: undefined;
   NotificationsScreen: undefined;
   PrivacyPolicyScreen: undefined;
   ReportAnIssueScreen: undefined;
   TermsOfServiceScreen: undefined;
-  HistoricalChartScreen: undefined;
+  AccountDetailsScreen: undefined;
   PastSmokingDataScreen: undefined;
-  PersonalInformationScreen: undefined;
 };
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
 
 export const AppStack = () => {
   const { session } = useAuth();
-
-  const [achievementsPopupData, setAchievementsPopupData] = useState<
-    (AchievementOnUser & Pick<Achievement, "title" | "description">) | null
-  >(null);
-
-  useAchievementsListener<AchievementOnUser>({
-    userId: session?.user.id,
-    onInsert: async (data) => {
-      if (data.achievement_id) {
-        const achievement = await achievementsService.getAchievement({
-          id: data.achievement_id,
-        });
-        if (achievement) {
-          setAchievementsPopupData({
-            ...data,
-            title: achievement.title,
-            description: achievement.description,
-          });
-        }
-      }
-    },
-  });
 
   const requestReview = async () => {
     if (await StoreReview.hasAction()) {
@@ -97,43 +80,33 @@ export const AppStack = () => {
           name="NotificationsScreen"
           component={NotificationsScreen}
         />
+        <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} />
         <Stack.Screen
           name="PrivacyPolicyScreen"
           component={PrivacyPolicyScreen}
         />
         <Stack.Screen
+          name="AccountDetailsScreen"
+          component={AccountDetailsScreen}
+        />
+        <Stack.Screen name="ProvisionsScreen" component={ProvisionsScreen} />
+        <Stack.Screen name="FriendsScreen" component={FriendsScreen} />
+        <Stack.Screen
           name="TermsOfServiceScreen"
           component={TermsOfServiceScreen}
         />
-        <Stack.Screen
-          name="PersonalInformationScreen"
-          component={PersonalInformationScreen}
-        />
+        <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
         <Stack.Screen
           name="PastSmokingDataScreen"
           component={PastSmokingDataScreen}
-        />
-
-        <Stack.Screen
-          name="HistoricalChartScreen"
-          component={HistoricalChartScreen}
         />
         <Stack.Screen
           name="ReportAnIssueScreen"
           component={ReportAnIssueScreen}
         />
-        <Stack.Screen name="ChatScreen" component={ChatScreen} />
+        <Stack.Screen name="CommunityScreen" component={CommunityScreen} />
         <Stack.Screen name="FaqScreen" component={FaqScreen} />
       </Stack.Navigator>
-      {achievementsPopupData && (
-        <Popup
-          visible={!!achievementsPopupData}
-          title="Parabéns, Conquista Alcançada!"
-          description={achievementsPopupData.description}
-          setVisible={() => setAchievementsPopupData(null)}
-          showTrophy
-        />
-      )}
     </Fragment>
   );
 };

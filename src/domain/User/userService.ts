@@ -5,6 +5,8 @@ import {
   GetHistoricData,
   UpdateUserInformation,
   UpdateNotificationToken,
+  UpdateUserMetadata,
+  UpdateLastTimeOpenedChat,
 } from "./userTypes";
 
 const updateUserInformation = async (
@@ -22,6 +24,31 @@ const getProgressData = async (): Promise<GetProgressData.Result> => {
   try {
     const { data } = await supabaseEdgeFunction.post("get-progress-data");
     return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const updateLastTimeOpenedChat =
+  async (): Promise<UpdateLastTimeOpenedChat.Result> => {
+    try {
+      const { data } = await supabaseEdgeFunction.post(
+        "update-last-time-opened-chat"
+      );
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+const updateUserMetadata = async (params: UpdateUserMetadata.Params) => {
+  try {
+    const data = await supabaseEdgeFunction.post("update-user-metadata", {
+      cigarettes_per_day: params.cigarettesPerDay,
+      price_pack_cigarrete: params.pricePackCigarrete,
+      years_smoking: params.yearsSmoking,
+    });
+    return data.data;
   } catch (error) {
     throw error;
   }
@@ -51,6 +78,8 @@ const getHistoricData = async (): Promise<GetHistoricData.Result> => {
 export const userService = {
   getProgressData,
   getHistoricData,
+  updateUserMetadata,
   updateUserInformation,
   updateNotificationToken,
+  updateLastTimeOpenedChat,
 };

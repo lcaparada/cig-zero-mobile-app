@@ -1,4 +1,3 @@
-import { useNavigation } from "@react-navigation/native";
 import { CopilotStep, walkthroughable } from "react-native-copilot";
 
 import {
@@ -22,8 +21,6 @@ const WalkthroughableTouchableOpacityBox = walkthroughable(TouchableOpacityBox);
 export const Historic = () => {
   const { historicData } = useGetHistoricData();
 
-  const navigation = useNavigation();
-
   const historicItems: HistoricItemData[] = [
     {
       icon: "wind",
@@ -42,22 +39,17 @@ export const Historic = () => {
   return (
     <CopilotStep
       text="Esta seção exibe seu histórico de fumo com base nos dados coletados: número de cigarros fumados, dinheiro gasto e dias de vida perdidos. Os valores são estimativas e podem não ser exatos."
-      order={5}
+      order={6}
       name="historic"
     >
       <WalkthroughableTouchableOpacityBox
         paddingHorizontal={"s24"}
         paddingVertical={"s30"}
         activeOpacity={1}
-        onPress={() => navigation.navigate("HistoricalChartScreen")}
       >
         <HeadingWithDescription
           title="Histórico"
           description="Seu histórico de fumo"
-          button={{
-            iconName: "barChart",
-            onPress: () => navigation.navigate("HistoricalChartScreen"),
-          }}
         />
         <Box mt={"s20"} rowGap={"s10"}>
           {historicItems.map((item, index) => (

@@ -1,12 +1,26 @@
 import { supabase, supabaseEdgeFunction } from "@api";
 
 import {
+  GetChartData,
   AddSmokingRecord,
   DeleteSmokingRecord,
-  GetAllSmokingRecordsByMonth,
-  GetChartData,
   GetLatestSmokingRecord,
+  GetAllSmokingRecordsByMonth,
+  GetUserLastSmoke,
 } from "./smokeLogTypes";
+
+const getUserLastSmoke = async (
+  params: GetUserLastSmoke.Params
+): Promise<GetUserLastSmoke.Result> => {
+  try {
+    const { data } = await supabaseEdgeFunction.post("get-user-last-smoke", {
+      user_id: params.userId,
+    });
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
 
 const getLatestSmokingRecord = async (
   params: GetLatestSmokingRecord.Params
@@ -64,6 +78,7 @@ const getChartData = async (): Promise<GetChartData.Result> => {
 
 export const smokeLogService = {
   getChartData,
+  getUserLastSmoke,
   addSmokingRecord,
   deleteSmokingRecord,
   getLatestSmokingRecord,

@@ -1,4 +1,6 @@
+export * from "./formatMinutes";
 export * from "./formatToCurrency";
+export * from "./calculateAverage";
 export * from "./calculateDiffInDays";
 export * from "./extractUnitFrequency";
 export * from "./capitalizeFirstLetter";

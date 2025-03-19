@@ -3,14 +3,16 @@ import { useEffect, useRef, useState } from "react";
 import { useIsFocused } from "@react-navigation/native";
 import { differenceInHours } from "date-fns";
 
-import { useGetLatestSmokingRecord } from "@domain";
+import { useGetUserLastSmoke } from "@domain";
 import { useAuth } from "@services";
 
 export const useOMSTipsScreen = () => {
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   const { session } = useAuth();
-  const { smokingRecord, refetch } = useGetLatestSmokingRecord();
+  const { smokingRecord, refetch } = useGetUserLastSmoke(
+    session?.user?.id ?? ""
+  );
 
   const firstRenderRef = useRef(true);
   const isFocused = useIsFocused();
@@ -33,7 +35,7 @@ export const useOMSTipsScreen = () => {
   return {
     hoursBetweenLastestSmokingRecord: differenceInHours(
       new Date(),
-      smokingRecord?.date ?? session?.user?.created_at ?? new Date()
+      smokingRecord ?? ""
     ),
 
     isRefreshing,

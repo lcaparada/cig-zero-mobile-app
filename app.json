@@ -1,19 +1,26 @@
 {
   "expo": {
+    "config": {
+      "usesNonExemptEncryption": false
+    },
     "name": "CigZero",
     "slug": "cig-zero-app",
-    "version": "1.2.1",
+    "version": "1.3.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "cover",
       "backgroundColor": "#7EA2AA"
     },
     "ios": {
+      "config": {
+        "usesNonExemptEncryption": false
+      },
+      "userInterfaceStyle": "automatic",
       "supportsTablet": true,
-      "buildNumber": "29",
+      "buildNumber": "33",
       "usesAppleSignIn": true,
       "bundleIdentifier": "com.elevanteholdings.cig-zero",
       "infoPlist": {
@@ -21,6 +28,10 @@
       }
     },
     "android": {
+      "config": {
+        "usesNonExemptEncryption": false
+      },
+      "userInterfaceStyle": "automatic",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#7EA2AA"

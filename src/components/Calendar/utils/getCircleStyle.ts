@@ -20,7 +20,7 @@ import {
 export const getCircleStyle = (
   d: Date,
   date: Date,
-  userCreatedAt: string,
+  userStart: string,
   hasSmokeRecord: boolean
 ) => {
   switch (true) {
@@ -28,7 +28,7 @@ export const getCircleStyle = (
       return $selectedDayStyle;
     case !isSameMonth(d, date):
       return $otherMonthStyle;
-    case isBefore(d, startOfDay(userCreatedAt)):
+    case isBefore(d, startOfDay(userStart)):
       return $daysBeforeStartStyle;
     case isAfter(d, new Date()):
       return $futureDaysAndNotAnswerStyle;

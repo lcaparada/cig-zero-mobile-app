@@ -1,54 +1,69 @@
-import {
-  Box,
-  InformationItem,
-  InformationItemProps,
-  Screen,
-} from "@components";
+import { Box, Screen, Text, TextInput } from "@components";
 
-import {
-  averageCigarettesPerDay,
-  goal,
-  mainReasonForQuitting,
-  yearsSmoking,
-} from "./pastSmokingDataPreset";
+import { PastSmokingData } from "./types";
 import { usePastSmokingDataScreen } from "./usePastSmokingDataScreen";
+import { swapDotComma } from "./utils";
 
 export const PastSmokingDataScreen = () => {
   const {
-    userGoal,
-    userYearsSmoking,
-    userMainReasonForQuitting,
-    userAverageCigarettesPerDay,
+    canSave,
+    pastSmokingDataState,
+    updateUserMetadata,
+    isUpdatingUserMetada,
+    updateState,
   } = usePastSmokingDataScreen();
 
-  const informationsData: InformationItemProps[] = [
+  const pastSmokingData: PastSmokingData[] = [
     {
-      icon: "clock",
-      text: "Anos fumando",
-      rightText: yearsSmoking[userYearsSmoking],
+      icon: "clock2",
+      label: "Anos fumando",
+      value: pastSmokingDataState.howManyYearsSmoke,
+      keyboardTypeOptions: "number-pad",
+      onChange: (text) => updateState("howManyYearsSmoke", text),
     },
     {
-      icon: "wind",
-      text: "Média de cigarros por dia",
-      rightText: averageCigarettesPerDay[userAverageCigarettesPerDay],
+      icon: "cigarette",
+      label: "Cigarros por dia",
+      value: pastSmokingDataState.howManyCigarettesPerDay,
+      keyboardTypeOptions: "number-pad",
+      onChange: (text) => updateState("howManyCigarettesPerDay", text),
     },
     {
-      icon: "user",
-      text: "Principal motivo para parar",
-      rightText: mainReasonForQuitting[userMainReasonForQuitting],
-    },
-    {
-      icon: "star",
-      text: "Objetivo",
-      rightText: goal[userGoal],
+      icon: "packOfCigarette",
+      label: "Preço do maço",
+      value: swapDotComma(pastSmokingDataState.pricePackCigarrete),
+      rightComponent: (
+        <Text weight="medium" color={"backgroundConstrast"}>
+          Reais
+        </Text>
+      ),
+      keyboardTypeOptions: "numeric",
+      onChange: (text) => updateState("pricePackCigarrete", swapDotComma(text)),
     },
   ];
 
   return (
-    <Screen canGoBack scrollable screenTitle="Dados de Fumo Passado">
+    <Screen
+      canGoBack
+      scrollable
+      button={{
+        text: "Salvar",
+        action: updateUserMetadata,
+        disabled: !canSave || isUpdatingUserMetada,
+      }}
+      screenTitle="Dados de Fumo Passado"
+    >
       <Box rowGap={"s10"}>
-        {informationsData.map((info, index) => (
-          <InformationItem {...info} key={index} />
+        {pastSmokingData.map((data, index) => (
+          <TextInput
+            keyboardType={data.keyboardTypeOptions}
+            key={index}
+            label={data.label}
+            onChangeText={data.onChange}
+            icon={data.icon}
+            value={data.value}
+            rightComponent={data.rightComponent}
+          />
         ))}
       </Box>
     </Screen>

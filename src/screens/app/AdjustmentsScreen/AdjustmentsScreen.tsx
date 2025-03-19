@@ -4,13 +4,16 @@ import { usePostHog } from "posthog-react-native";
 import { Box, LogOutButton, Popup, Screen } from "@components";
 
 import { PostHogEventsName } from "@constraints";
+import { useAuth } from "@services";
 
-import { Section, SectionItemData, AdjusmentsHeader } from "./components";
+import { Section, SectionItemData } from "./components";
 import { useAdjustmentsScreen } from "./useAdjustmentsScreen";
 
 export const AdjustmentsScreen = () => {
   const navigation = useNavigation();
   const posthog = usePostHog();
+
+  const { session } = useAuth();
 
   const {
     handleDeleteAccount,
@@ -22,8 +25,16 @@ export const AdjustmentsScreen = () => {
   const generalItems: SectionItemData[] = [
     {
       icon: "user",
-      label: "Informações Pessoais",
-      action: () => navigation.navigate("PersonalInformationScreen"),
+      label: "Perfil",
+      action: () =>
+        navigation.navigate("ProfileScreen", {
+          userId: session?.user?.id ?? "",
+        }),
+    },
+    {
+      icon: "resume",
+      label: "Detalhes da conta",
+      action: () => navigation.navigate("AccountDetailsScreen"),
     },
     {
       icon: "fileText",
@@ -83,8 +94,7 @@ export const AdjustmentsScreen = () => {
       scrollable
       rightComponent={<LogOutButton />}
     >
-      <AdjusmentsHeader />
-      <Box mt={"s30"} rowGap={"s30"}>
+      <Box rowGap={"s30"}>
         <Section title={"GERAL"} items={generalItems} />
         <Section title={"SUPORTE"} items={supportItems} />
       </Box>
