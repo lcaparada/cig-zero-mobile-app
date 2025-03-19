@@ -20,11 +20,11 @@ export const ActionsButtons = () => {
       icon: "activity",
       action: () => navigate("OMSTipsScreen"),
     },
-    {
-      text: "Explorar suas conquistas",
-      icon: "star",
-      action: () => navigate("AchievementsScreen"),
-    },
+    // {
+    //   text: "Explorar suas conquistas",
+    //   icon: "star",
+    //   action: () => navigate("AchievementsScreen"),
+    // },
   ];
 
   return (
