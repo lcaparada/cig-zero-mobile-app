@@ -45,11 +45,11 @@ export const AppTabNavigator = () => {
         component={OMSTipsScreen}
         options={{ tabBarLabel: "OMS" }}
       />
-      {/* <Tab.Screen
+      <Tab.Screen
         name="AchievementsScreen"
         component={AchievementsScreen}
         options={{ tabBarLabel: "Conquistas" }}
-      /> */}
+      />
     </Tab.Navigator>
   );
 };
