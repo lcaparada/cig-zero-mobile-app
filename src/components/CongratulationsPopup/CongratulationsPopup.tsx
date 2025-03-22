@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { StyleSheet } from "react-native";
 import { Vibration } from "react-native";
 
+import { useNavigation } from "@react-navigation/native";
 import LottieView from "lottie-react-native";
 
 import { useAnimatedVisibility } from "@hooks";
@@ -27,6 +28,15 @@ export const CongratulationsPopup = ({
       setVisibility,
     });
 
+  const navigation = useNavigation();
+
+  function onPress() {
+    handleClose();
+    setTimeout(() => {
+      navigation.goBack();
+    }, 400);
+  }
+
   useEffect(() => {
     const timer = setTimeout(() => {
       Vibration.vibrate([100, 100, 100]);
@@ -40,7 +50,7 @@ export const CongratulationsPopup = ({
   return (
     <AnimatedPressableBox
       {...$backdrop}
-      onPress={handleClose}
+      onPress={onPress}
       style={[StyleSheet.absoluteFillObject, animatedPressableStyle]}
     >
       <AnimatedBoxRNR {...shadow} {...$card} style={[animatedBoxStyle]}>
