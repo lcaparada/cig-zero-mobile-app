@@ -5,7 +5,6 @@ import { AppTabBottomTabParamList } from "@routes";
 
 import { Box, BoxProps, TouchableOpacityBox } from "../Box/Box";
 import { Icon } from "../Icon/Icon";
-import { Text } from "../Text/Text";
 
 import { mapScreenToProps } from "./mapScreenToProps";
 
@@ -15,12 +14,12 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
     <Box {...$boxStyle} style={[{ paddingBottom: bottom }]}>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
-        const label =
-          options.tabBarLabel !== undefined
-            ? options.tabBarLabel
-            : options.title !== undefined
-              ? options.title
-              : route.name;
+        // const label =
+        //   options.tabBarLabel !== undefined
+        //     ? options.tabBarLabel
+        //     : options.title !== undefined
+        //       ? options.title
+        //       : route.name;
 
         const isFocused = state.index === index;
 
@@ -66,13 +65,6 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
               size="s28"
               strokeWidth={2}
             />
-            <Text
-              color={isFocused ? "primary" : "backgroundSecondConstrast"}
-              preset="paragraphsBig"
-              weight="medium"
-            >
-              {label as string}
-            </Text>
           </TouchableOpacityBox>
         );
       })}

@@ -145,6 +145,8 @@ export const theme = createTheme({
     s40: 40,
     s48: 48,
     s56: 56,
+    s85: 85,
+    s90: 90,
     s100: 100,
     s200: 200,
     s300: 300,

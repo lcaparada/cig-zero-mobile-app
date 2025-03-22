@@ -1,4 +1,9 @@
-import { RefreshControl, View } from "react-native";
+import {
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+  RefreshControl,
+  View,
+} from "react-native";
 
 import { ScrollView } from "react-native-gesture-handler";
 
@@ -8,6 +13,7 @@ interface ScreenContainerProps {
   centerItems?: boolean;
   scrollViewPaddingBottom: number;
   overflowVisible?: boolean;
+  onScroll?: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
   pullToRefresh?: {
     refreshing: boolean;
     onRefresh: () => void;
@@ -20,6 +26,7 @@ export const ScrollViewContainer = ({
   pullToRefresh,
   backgroundColor,
   overflowVisible,
+  onScroll,
   scrollViewPaddingBottom,
 }: ScreenContainerProps) => {
   return (
@@ -33,6 +40,7 @@ export const ScrollViewContainer = ({
           />
         ) : undefined
       }
+      onScroll={onScroll}
       style={{
         flex: 1,
         backgroundColor,

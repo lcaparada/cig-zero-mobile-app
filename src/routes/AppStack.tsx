@@ -4,6 +4,7 @@ import { NavigatorScreenParams } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as StoreReview from "expo-store-review";
 
+import { IconName } from "@components";
 import {
   FaqScreen,
   FriendsScreen,
@@ -19,6 +20,7 @@ import {
   TermsOfServiceScreen,
   AccountDetailsScreen,
   PastSmokingDataScreen,
+  DailyChallengeScreen,
 } from "@screens";
 
 import { calculateDiffInDays } from "@helpers";
@@ -42,6 +44,12 @@ export type AppStackParamList = {
   PrivacyPolicyScreen: undefined;
   ReportAnIssueScreen: undefined;
   TermsOfServiceScreen: undefined;
+  DailyChallengeScreen: {
+    xp: number;
+    icon: IconName;
+    text: string;
+    description: string;
+  };
   AccountDetailsScreen: undefined;
   PastSmokingDataScreen: undefined;
 };
@@ -76,6 +84,10 @@ export const AppStack = () => {
         <Stack.Screen name="AppTabNavigator" component={AppTabNavigator} />
         <Stack.Screen name="AppearanceScreen" component={AppearanceScreen} />
         <Stack.Screen name="AdjustmentsScreen" component={AdjustmentsScreen} />
+        <Stack.Screen
+          name="DailyChallengeScreen"
+          component={DailyChallengeScreen}
+        />
         <Stack.Screen
           name="NotificationsScreen"
           component={NotificationsScreen}

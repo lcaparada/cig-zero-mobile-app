@@ -18,6 +18,7 @@ export * from "./app/AchievementsScreen/AchievementsScreen";
 export * from "./app/ReportAnIssueScreen/ReportAnIssueScreen";
 export * from "./app/NotificationsScreen/NotificationsScreen";
 export * from "./app/PrivacyPolicyScreen/PrivacyPolicyScreen";
+export * from "./app/DailyChallengeScreen/DailyChallengeScreen";
 export * from "./app/AccountDetailsScreen/AccountDetailsScreen";
 export * from "./app/TermsOfServiceScreen/TermsOfServiceScreen";
 export * from "./app/PastSmokingDataScreen/PastSmokingDataScreen";

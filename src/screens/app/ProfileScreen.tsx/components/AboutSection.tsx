@@ -16,11 +16,11 @@ export const AboutSection = ({
 }: AboutSectionProps) => {
   if (!bio && !location) return null;
   return (
-    <Box marginTop={"s12"}>
+    <Box mt={"s6"}>
       {!!bio && (
         <Text
           textAlign={"center"}
-          color={"backgroundSecondConstrast"}
+          color={"primary"}
           preset="paragraphsBig"
           weight="medium"
         >
@@ -32,15 +32,11 @@ export const AboutSection = ({
           flexDirection={"row"}
           columnGap={"s8"}
           alignItems={"center"}
-          mt={"s12"}
+          mt={"s8"}
           justifyContent={"center"}
         >
-          <Icon color="backgroundSecondConstrast" name="mapPin" />
-          <Text
-            weight="medium"
-            color={"backgroundSecondConstrast"}
-            preset="paragraphsBig"
-          >
+          <Icon color="primary" name="mapPin" />
+          <Text weight="medium" color={"primary"} preset="paragraphsBig">
             {location}
           </Text>
         </Box>

@@ -21,22 +21,22 @@ export const GeneralProgress = () => {
 
   const items: InformationCardProps[] = [
     {
-      icon: "calendar",
+      icon: "calendar2",
       number: progressData?.daysWithoutSmoking ?? 0,
       label: "dias sem fumar",
     },
     {
-      icon: "wind",
+      icon: "avoidCigarette",
       number: progressData?.avoidedCigarettes ?? 0,
       label: "cigarros evitados",
     },
     {
-      icon: "dollarSign",
+      icon: "money",
       number: formatToCurrency(progressData?.moneySaved ?? 0),
       label: "reais poupados",
     },
     {
-      icon: "clock",
+      icon: "clock2",
       number: progressData?.timeSaved ?? 0,
       label: "dias recuperados",
     },

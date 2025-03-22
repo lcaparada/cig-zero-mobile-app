@@ -9,6 +9,7 @@ import {
   HomeHeader,
   ActionsButtons,
   GeneralProgress,
+  DailyChallenge,
 } from "./components";
 import { PhraseOfDay } from "./components/PhraseOfDay";
 import { useHomeScreen } from "./useHomeScreen";
@@ -40,6 +41,8 @@ export const HomeScreen = () => {
       <HomeHeader />
       <Shortcut />
       <GeneralProgress />
+      <Divider />
+      <DailyChallenge />
       <Divider />
       <Community />
       <Divider />

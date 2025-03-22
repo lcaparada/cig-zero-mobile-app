@@ -23,15 +23,15 @@ export const Historic = () => {
 
   const historicItems: HistoricItemData[] = [
     {
-      icon: "wind",
+      icon: "cigarette",
       label: `${historicData?.smokedCigarettes ?? 0} cigarros fumados`,
     },
     {
-      icon: "dollarSign",
+      icon: "money",
       label: `${formatToCurrency(historicData?.moneySpent ?? 0)} reais gastos`,
     },
     {
-      icon: "clock",
+      icon: "clock2",
       label: `${historicData?.lostTimeInDays ?? 0} ${(historicData?.lostTimeInDays ?? 0 > 1) ? "dias perdidos" : "dia perdido"} `,
     },
   ];
