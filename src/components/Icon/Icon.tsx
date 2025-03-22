@@ -1,5 +1,7 @@
 import { TouchableOpacityProps } from "react-native";
 
+import * as Haptics from "expo-haptics";
+
 import { useAppTheme } from "@hooks";
 import { ThemeColors, ThemeSpacing } from "@theme";
 
@@ -114,7 +116,10 @@ export const Icon = ({
 
   return onPress ? (
     <TouchableOpacityBox
-      onPress={onPress}
+      onPress={async () => {
+        await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+        onPress();
+      }}
       hitSlop={10}
       {...touchableOpacityProps}
     >

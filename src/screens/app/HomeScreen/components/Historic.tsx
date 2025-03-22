@@ -5,7 +5,6 @@ import {
   IconName,
   InformationItem,
   HeadingWithDescription,
-  TouchableOpacityBox,
 } from "@components";
 
 import { useGetHistoricData } from "@domain";
@@ -16,7 +15,7 @@ interface HistoricItemData {
   label: string;
 }
 
-const WalkthroughableTouchableOpacityBox = walkthroughable(TouchableOpacityBox);
+const WalkthroughableBox = walkthroughable(Box);
 
 export const Historic = () => {
   const { historicData } = useGetHistoricData();
@@ -42,11 +41,7 @@ export const Historic = () => {
       order={6}
       name="historic"
     >
-      <WalkthroughableTouchableOpacityBox
-        paddingHorizontal={"s24"}
-        paddingVertical={"s30"}
-        activeOpacity={1}
-      >
+      <WalkthroughableBox paddingHorizontal={"s24"} paddingVertical={"s30"}>
         <HeadingWithDescription
           title="Histórico"
           description="Seu histórico de fumo"
@@ -56,7 +51,7 @@ export const Historic = () => {
             <InformationItem key={index} text={item.label} icon={item.icon} />
           ))}
         </Box>
-      </WalkthroughableTouchableOpacityBox>
+      </WalkthroughableBox>
     </CopilotStep>
   );
 };

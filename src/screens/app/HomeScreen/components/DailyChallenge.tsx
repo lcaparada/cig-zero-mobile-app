@@ -1,4 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
+import * as Haptics from "expo-haptics";
 
 import {
   Box,
@@ -61,9 +62,14 @@ export const DailyChallenge = () => {
 export const DailyChallengeCard = (params: DailyChallengesData) => {
   const navigation = useNavigation();
 
+  async function onPress() {
+    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    navigation.navigate("DailyChallengeScreen", params);
+  }
+
   return (
     <TouchableOpacityBox
-      onPress={() => navigation.navigate("DailyChallengeScreen", params)}
+      onPress={onPress}
       {...shadow}
       {...$dailyChallengeCardBox}
     >

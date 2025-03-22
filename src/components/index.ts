@@ -41,6 +41,7 @@ export * from "./OnboardingInput/OnboardingInput";
 export * from "./NumericKeyboard/NumericKeyboard";
 export * from "./StepNumberCopilot/StepNumberCopilot";
 export * from "./ActivityIndicator/ActivityIndicator";
+export * from "./CongratulationsPopup/CongratulationsPopup";
 export * from "./HeadingWithDescription/HeadingWithDescription";
 export * from "./AchievementProgressCard/AchievementProgressCard";
 export * from "./SmokingDetailsBottomSheet/SmokingDetailsBottomSheet";

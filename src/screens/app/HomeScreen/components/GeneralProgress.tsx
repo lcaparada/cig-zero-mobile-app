@@ -1,4 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
+import * as Haptics from "expo-haptics";
 import { CopilotStep, walkthroughable } from "react-native-copilot";
 
 import {
@@ -42,6 +43,11 @@ export const GeneralProgress = () => {
     },
   ];
 
+  async function onPress() {
+    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    navigation.navigate("ProvisionsScreen");
+  }
+
   return (
     <CopilotStep
       text="Esta seção exibe seu progresso geral: dias sem fumar, cigarros evitados, dinheiro economizado e dias de vida recuperados."
@@ -52,7 +58,7 @@ export const GeneralProgress = () => {
         paddingHorizontal={"s24"}
         paddingVertical={"s30"}
         activeOpacity={1}
-        onPress={() => navigation.navigate("ProvisionsScreen")}
+        onPress={onPress}
       >
         <HeadingWithDescription
           title="Progresso Geral"

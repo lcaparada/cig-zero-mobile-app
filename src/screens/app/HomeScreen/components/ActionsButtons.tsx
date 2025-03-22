@@ -1,3 +1,4 @@
+import * as Haptics from "expo-haptics";
 import { CopilotStep, walkthroughable } from "react-native-copilot";
 
 import { Box, Button, IconName } from "@components";
@@ -43,7 +44,10 @@ export const ActionsButtons = () => {
             key={index}
             iconName={item.icon}
             text={item.text}
-            onPress={item.action}
+            onPress={async () => {
+              await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+              item.action();
+            }}
             hasArrowRight
             justifyContent={"flex-start"}
           />

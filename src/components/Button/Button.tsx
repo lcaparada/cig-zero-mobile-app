@@ -1,3 +1,7 @@
+import { GestureResponderEvent } from "react-native";
+
+import * as Haptics from "expo-haptics";
+
 import { ActivityIndicator } from "../ActivityIndicator/ActivityIndicator";
 import {
   Box,
@@ -35,6 +39,13 @@ export const Button = ({
 }: ButtonProps) => {
   const buttonPreset = buttonPresets[preset][disabled ? "disabled" : "default"];
 
+  async function handleOnPress(event: GestureResponderEvent) {
+    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    if (onPress) {
+      onPress(event);
+    }
+  }
+
   return (
     <TouchableOpacityBox
       height={55}
@@ -45,7 +56,7 @@ export const Button = ({
       flexDirection={"row"}
       disabled={disabled || disabledWithPrimaryPreset}
       columnGap={"s8"}
-      onPress={onPress}
+      onPress={handleOnPress}
       {...$buttonShadow}
       {...buttonPreset.container}
       {...touchableOpacityBoxProps}

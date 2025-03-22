@@ -1,4 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
+import * as Haptics from "expo-haptics";
 import { CopilotStep, walkthroughable } from "react-native-copilot";
 
 import { Box, BoxProps, Icon, Text, TouchableOpacityBox } from "@components";
@@ -24,6 +25,11 @@ export const Community = () => {
     userMetaData.lastTimeOpenedChat ?? new Date().toISOString()
   );
 
+  async function onPress() {
+    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    navigation.navigate("CommunityScreen");
+  }
+
   return (
     <CopilotStep
       text="Esta seção é a comunidade – um espaço para compartilhar experiências, trocar aprendizados e se apoiar na jornada para parar de fumar."
@@ -34,7 +40,7 @@ export const Community = () => {
         <TouchableOpacityBox
           {...$touchableBoxWrapper}
           {...shadow}
-          onPress={() => navigation.navigate("CommunityScreen")}
+          onPress={onPress}
         >
           {data && data.unread_messages_count > 0 && (
             <Badget value={data.unread_messages_count} />
