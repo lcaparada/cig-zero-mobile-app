@@ -4,6 +4,7 @@ import { NavigatorScreenParams } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as StoreReview from "expo-store-review";
 
+import { Paywall } from "@components";
 import {
   FaqScreen,
   FriendsScreen,
@@ -22,7 +23,7 @@ import {
 } from "@screens";
 
 import { calculateDiffInDays } from "@helpers";
-import { useAuth } from "@services";
+import { useAuth, useRevenueCatService } from "@services";
 
 import { AppTabBottomTabParamList, AppTabNavigator } from "./AppTabNavigator";
 
@@ -51,6 +52,8 @@ const Stack = createNativeStackNavigator<AppStackParamList>();
 export const AppStack = () => {
   const { session } = useAuth();
 
+  const { checkIfUserIsPremium, paywallVisible } = useRevenueCatService();
+
   const requestReview = async () => {
     if (await StoreReview.hasAction()) {
       StoreReview.requestReview();
@@ -59,12 +62,19 @@ export const AppStack = () => {
 
   useEffect(() => {
     const diffInDays = calculateDiffInDays(
-      session?.user?.user_metadata?.firstAppLaunch,
-      new Date()
+      new Date(),
+      session?.user?.user_metadata?.firstAppLaunch
     );
+
     if (diffInDays > 0 && diffInDays % 3 === 0) {
       requestReview();
     }
+
+    if (diffInDays < 3) {
+      checkIfUserIsPremium();
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session?.user?.user_metadata?.firstAppLaunch]);
 
   return (
@@ -107,6 +117,7 @@ export const AppStack = () => {
         <Stack.Screen name="CommunityScreen" component={CommunityScreen} />
         <Stack.Screen name="FaqScreen" component={FaqScreen} />
       </Stack.Navigator>
+      {paywallVisible && <Paywall />}
     </Fragment>
   );
 };

@@ -4,7 +4,6 @@ import {
   FeaturesScreen,
   OnboardingScreen,
   OnboardingScreenSchemaType,
-  SubscriptionScreen,
 } from "@screens";
 
 type OnboardingProps = Pick<
@@ -15,7 +14,6 @@ type OnboardingProps = Pick<
 export type OnboardingStackParamList = {
   FeaturesScreen: OnboardingProps;
   OnboardingScreen: undefined;
-  SubscriptionScreen: OnboardingProps;
 };
 
 const Stack = createNativeStackNavigator<OnboardingStackParamList>();
@@ -28,7 +26,6 @@ export const OnboardingStack = () => {
     >
       <Stack.Screen name="FeaturesScreen" component={FeaturesScreen} />
       <Stack.Screen name="OnboardingScreen" component={OnboardingScreen} />
-      <Stack.Screen name="SubscriptionScreen" component={SubscriptionScreen} />
     </Stack.Navigator>
   );
 };

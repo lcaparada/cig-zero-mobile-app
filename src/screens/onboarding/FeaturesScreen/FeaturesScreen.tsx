@@ -15,7 +15,7 @@ export const FeaturesScreen = ({
     bottom,
     scrollRef,
     currentPage,
-    navigation,
+    initSession,
     WIDTH_SCREEN,
     handleScroll,
     handleLayout,
@@ -60,7 +60,6 @@ export const FeaturesScreen = ({
         onUpPress={() => scrollToPage(currentPage - 1)}
         currentPage={currentPage}
       />
-
       <Box
         left={24}
         bottom={bottom}
@@ -69,12 +68,7 @@ export const FeaturesScreen = ({
       >
         <Button
           text="Iniciar jornada"
-          onPress={() =>
-            navigation.navigate("SubscriptionScreen", {
-              likeToReceiveDailyReminders:
-                route.params.likeToReceiveDailyReminders,
-            })
-          }
+          onPress={() => initSession(route.params)}
         />
       </Box>
     </Box>

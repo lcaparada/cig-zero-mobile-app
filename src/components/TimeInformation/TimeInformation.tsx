@@ -1,4 +1,5 @@
-import { Box, Text } from "@components";
+import { Box } from "../Box/Box";
+import { Text } from "../Text/Text";
 
 interface TimeInformationProps {
   value: number;

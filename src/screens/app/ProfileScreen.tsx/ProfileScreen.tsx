@@ -9,6 +9,7 @@ import {
   Screen,
   Skeleton,
   Text,
+  TimeInformation,
 } from "@components";
 import { useTimeSinceLastSmokingRecord } from "@hooks";
 import { AppScreenProps } from "@routes";
@@ -16,7 +17,7 @@ import { AppScreenProps } from "@routes";
 import { useGetProfile } from "@domain";
 import { useAuth } from "@services";
 
-import { AboutSection, TimeInformation } from "./components";
+import { AboutSection } from "./components";
 
 export const ProfileScreen = ({ route }: AppScreenProps<"ProfileScreen">) => {
   const { session } = useAuth();

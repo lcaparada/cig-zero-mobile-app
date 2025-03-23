@@ -16,6 +16,7 @@ import { QueryKeys } from "@infra";
 
 export const useHomeScreen = () => {
   const { handleUpdateUserInformation } = useUpdateUserInformation();
+
   const { updateNotificationToken } = useUpdateNotificationToken();
   const { phrase } = useGetPhraseOfDay();
 

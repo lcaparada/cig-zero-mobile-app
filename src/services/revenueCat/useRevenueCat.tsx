@@ -17,6 +17,7 @@ export const useRevenueCatStore = create<RevenueCatService>((set, get) => ({
   metadata: {},
   isLoading: true,
   customerInfo: null,
+  isUserPremium: false,
   selectedPackage: "",
   paywallVisible: false,
   availableIntroPrice: null,
@@ -77,12 +78,14 @@ export const useRevenueCatStore = create<RevenueCatService>((set, get) => ({
   },
 
   checkIfUserIsPremium: async () => {
-    const { getCustomerInfo, setPaywallVisible } = get();
+    const { getCustomerInfo } = get();
     try {
       const customerInfo = await getCustomerInfo();
-      if (!Object.entries(customerInfo.entitlements.active).length) {
-        setPaywallVisible(true);
+      if (Object.entries(customerInfo.entitlements.active).length === 0) {
+        set({ isUserPremium: false, paywallVisible: true });
+        return;
       }
+      set({ isUserPremium: true, paywallVisible: false });
     } catch (error) {
       console.log(error);
     }
@@ -185,6 +188,7 @@ export function useRevenueCatService() {
   const isLoading = useRevenueCatStore((state) => state.isLoading);
   const loadProducts = useRevenueCatStore((state) => state.loadProducts);
   const customerInfo = useRevenueCatStore((state) => state.customerInfo);
+  const isUserPremium = useRevenueCatStore((state) => state.isUserPremium);
   const paywallVisible = useRevenueCatStore((state) => state.paywallVisible);
   const selectedPackage = useRevenueCatStore((state) => state.selectedPackage);
   const purchasePackage = useRevenueCatStore((state) => state.purchasePackage);
@@ -214,6 +218,7 @@ export function useRevenueCatService() {
     isLoading,
     customerInfo,
     loadProducts,
+    isUserPremium,
     paywallVisible,
     purchasePackage,
     selectedPackage,

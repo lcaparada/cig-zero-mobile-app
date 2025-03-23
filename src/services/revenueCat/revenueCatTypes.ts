@@ -25,6 +25,7 @@ export type RevenueCatService = {
   metadata: RevenueCatOfferingMetadata;
   isLoading: boolean;
   customerInfo: CustomerInfo | null;
+  isUserPremium: boolean;
   paywallVisible: boolean;
   selectedPackage: string;
   availableIntroPrice: null | PurchasesIntroPrice;

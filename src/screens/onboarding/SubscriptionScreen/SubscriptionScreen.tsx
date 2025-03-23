@@ -7,21 +7,18 @@ import {
   PackageItem,
   LogOutButton,
 } from "@components";
-import { OnboardingScreenProps } from "@routes";
 
 import { getBenefits } from "@constraints";
 
 import { useSubscriptionsScreen } from "./useSubscriptionsScreen";
 
-export const SubscriptionScreen = ({
-  route,
-}: OnboardingScreenProps<"SubscriptionScreen">) => {
+export const SubscriptionScreen = () => {
   const {
     packages,
     metadata,
     isLoading,
     selectedPackage,
-    handlePurchasePackage,
+    // handlePurchasePackage,
   } = useSubscriptionsScreen();
   const selectedPackageData = packages.find(
     (pkg) => pkg.identifier === selectedPackage
@@ -36,7 +33,8 @@ export const SubscriptionScreen = ({
         text: selectedPackageData?.product.introPrice
           ? "Iniciar teste gratuito"
           : "Continuar",
-        action: () => handlePurchasePackage(route.params),
+        action: () => {},
+        // action: () => handlePurchasePackage(route.params),
         disabled: isLoading,
         loading: isLoading,
       }}

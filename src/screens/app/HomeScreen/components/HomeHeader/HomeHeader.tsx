@@ -1,6 +1,14 @@
+import LottieView from "lottie-react-native";
 import { CopilotStep, walkthroughable } from "react-native-copilot";
 
-import { Box, Icon, ScreenHeader, TimeCard } from "@components";
+import {
+  Box,
+  Icon,
+  TimeCard,
+  ScreenHeader,
+  TouchableOpacityBox,
+  PopupCounter,
+} from "@components";
 import { shadow } from "@theme";
 
 import { useHomeHeader } from "./useHomeHeader";
@@ -8,7 +16,13 @@ import { useHomeHeader } from "./useHomeHeader";
 const WalkthroughableBox = walkthroughable(Box);
 
 export const HomeHeader = () => {
-  const { navigation, timeSinceLastSmokingRecord } = useHomeHeader();
+  const {
+    navigation,
+    isUserPremium,
+    isCounterPopupVisible,
+    timeSinceLastSmokingRecord,
+    setIsCounterPopupVisibility,
+  } = useHomeHeader();
 
   return (
     <CopilotStep
@@ -29,16 +43,30 @@ export const HomeHeader = () => {
           titleColor="neutralLighest"
           descriptionColor="neutralLighest"
           rightComponent={
-            <Icon
-              name="settings"
-              color="buttonConstrast"
-              size="s24"
-              strokeWidth={2}
-              onPress={() => navigation.navigate("AdjustmentsScreen")}
-            />
+            <Box flexDirection={"row"} alignItems={"center"} columnGap={"s8"}>
+              {!isUserPremium && (
+                <TouchableOpacityBox
+                  onPress={() => setIsCounterPopupVisibility(true)}
+                >
+                  <LottieView
+                    source={require("../../../../../assets/animations/stopwatch.json")}
+                    autoPlay
+                    loop
+                    style={{ width: 40, height: 40 }}
+                  />
+                </TouchableOpacityBox>
+              )}
+
+              <Icon
+                name="settings"
+                color="buttonConstrast"
+                size="s24"
+                strokeWidth={2}
+                onPress={() => navigation.navigate("AdjustmentsScreen")}
+              />
+            </Box>
           }
         />
-
         <Box
           flexDirection={"row"}
           columnGap={"s10"}
@@ -59,6 +87,12 @@ export const HomeHeader = () => {
             time={timeSinceLastSmokingRecord.minutes.toString()}
           />
         </Box>
+        {isCounterPopupVisible && (
+          <PopupCounter
+            visible={isCounterPopupVisible}
+            setVisible={setIsCounterPopupVisibility}
+          />
+        )}
       </WalkthroughableBox>
     </CopilotStep>
   );

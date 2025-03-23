@@ -4,6 +4,7 @@ import { getBenefits } from "@constraints";
 
 import { BenefitItem } from "../BenefitItem/BenefitItem";
 import { Box } from "../Box/Box";
+import { LogOutButton } from "../LogOutButton/LogOutButton";
 import { PackageItem } from "../PackageItem/PackageItem";
 import { Popup } from "../Popup/Popup";
 import { Reviews } from "../Reviews/Reviews";
@@ -48,6 +49,9 @@ export const Paywall = () => {
             <Text color={"primary"} weight="bold" preset="display">
               CigZero Plus
             </Text>
+            <Box position={"absolute"} right={0}>
+              <LogOutButton />
+            </Box>
           </Box>
           <Box rowGap={"s8"} overflow={"hidden"}>
             {getBenefits().map((item, index) => (
