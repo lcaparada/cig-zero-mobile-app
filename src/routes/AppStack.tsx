@@ -52,7 +52,8 @@ const Stack = createNativeStackNavigator<AppStackParamList>();
 export const AppStack = () => {
   const { session } = useAuth();
 
-  const { checkIfUserIsPremium, paywallVisible } = useRevenueCatService();
+  const { checkIfUserIsPremium, paywallVisible, setPaywallVisible } =
+    useRevenueCatService();
 
   const requestReview = async () => {
     if (await StoreReview.hasAction()) {
@@ -72,6 +73,8 @@ export const AppStack = () => {
 
     if (diffInDays >= 3) {
       checkIfUserIsPremium();
+    } else {
+      setPaywallVisible(false);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
