@@ -70,7 +70,7 @@ export const AppStack = () => {
       requestReview();
     }
 
-    if (diffInDays < 3) {
+    if (diffInDays >= 3) {
       checkIfUserIsPremium();
     }
 
