@@ -10,7 +10,6 @@ import { Popup } from "../Popup/Popup";
 import { Reviews } from "../Reviews/Reviews";
 import { Screen } from "../Screen/Screen";
 import { Text } from "../Text/Text";
-import { TrialText } from "../TrialText/TrialText";
 
 import { usePaywall } from "./usePaywall";
 
@@ -21,14 +20,9 @@ export const Paywall = () => {
     isLoading,
     popupVisible,
     paywallVisible,
-    selectedPackage,
     setPopupVisible,
     handlePurchasePackage,
   } = usePaywall();
-
-  const selectedPackageData = packages.find(
-    (pkg) => pkg.identifier === selectedPackage
-  );
 
   return (
     <Modal animationType="none" visible={paywallVisible}>
@@ -36,9 +30,7 @@ export const Paywall = () => {
         overflowVisible
         scrollable
         button={{
-          text: selectedPackageData?.product.introPrice
-            ? "Iniciar teste gratuito"
-            : "Continuar",
+          text: "Continuar",
           action: () => handlePurchasePackage(),
           disabled: isLoading,
           loading: isLoading,
@@ -69,7 +61,6 @@ export const Paywall = () => {
               />
             ))}
           </Box>
-          <TrialText selectedPackageData={selectedPackageData} />
         </Box>
       </Screen>
       <Popup

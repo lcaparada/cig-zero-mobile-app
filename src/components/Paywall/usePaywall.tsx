@@ -9,7 +9,6 @@ export const usePaywall = () => {
     isLoading,
     loadProducts,
     paywallVisible,
-    selectedPackage,
     purchasePackage,
     setPaywallVisible,
   } = useRevenueCatService();
@@ -46,7 +45,6 @@ export const usePaywall = () => {
     isLoading,
     popupVisible,
     paywallVisible,
-    selectedPackage,
     setPopupVisible,
     handlePurchasePackage,
   };
