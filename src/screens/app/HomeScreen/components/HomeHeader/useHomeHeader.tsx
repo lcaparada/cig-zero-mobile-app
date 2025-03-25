@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { useNavigation } from "@react-navigation/native";
 
 import { useTimeSinceLastSmokingRecord } from "@hooks";
@@ -11,9 +9,7 @@ export const useHomeHeader = () => {
 
   const navigation = useNavigation();
 
-  const { isUserPremium } = useRevenueCatService();
-
-  const [isCounterPopupVisible, setIsCounterPopupVisibility] = useState(false);
+  const { isUserPremium, setPaywallVisible } = useRevenueCatService();
 
   const { timeSinceLastSmokingRecord } = useTimeSinceLastSmokingRecord(
     session?.user.id ?? ""
@@ -22,8 +18,7 @@ export const useHomeHeader = () => {
   return {
     navigation,
     isUserPremium,
-    isCounterPopupVisible,
+    setPaywallVisible,
     timeSinceLastSmokingRecord,
-    setIsCounterPopupVisibility,
   };
 };

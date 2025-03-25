@@ -7,7 +7,6 @@ import {
   TimeCard,
   ScreenHeader,
   TouchableOpacityBox,
-  PopupCounter,
 } from "@components";
 import { shadow } from "@theme";
 
@@ -19,9 +18,8 @@ export const HomeHeader = () => {
   const {
     navigation,
     isUserPremium,
-    isCounterPopupVisible,
+    setPaywallVisible,
     timeSinceLastSmokingRecord,
-    setIsCounterPopupVisibility,
   } = useHomeHeader();
 
   return (
@@ -45,9 +43,7 @@ export const HomeHeader = () => {
           rightComponent={
             <Box flexDirection={"row"} alignItems={"center"} columnGap={"s8"}>
               {!isUserPremium && (
-                <TouchableOpacityBox
-                  onPress={() => setIsCounterPopupVisibility(true)}
-                >
+                <TouchableOpacityBox onPress={() => setPaywallVisible(true)}>
                   <LottieView
                     source={require("../../../../../assets/animations/stopwatch.json")}
                     autoPlay
@@ -87,12 +83,6 @@ export const HomeHeader = () => {
             time={timeSinceLastSmokingRecord.minutes.toString()}
           />
         </Box>
-        {isCounterPopupVisible && (
-          <PopupCounter
-            visible={isCounterPopupVisible}
-            setVisible={setIsCounterPopupVisibility}
-          />
-        )}
       </WalkthroughableBox>
     </CopilotStep>
   );

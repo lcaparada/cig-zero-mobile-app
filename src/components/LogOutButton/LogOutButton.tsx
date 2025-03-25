@@ -1,14 +1,20 @@
+import { ThemeColors } from "@theme";
+
 import { useAuth } from "@services";
 
 import { TouchableOpacityBox } from "../Box/Box";
 import { Text } from "../Text/Text";
 
-export const LogOutButton = () => {
+interface LogOutButtonProps {
+  color?: ThemeColors;
+}
+
+export const LogOutButton = ({ color = "primary" }: LogOutButtonProps) => {
   const { signOut } = useAuth();
 
   return (
     <TouchableOpacityBox onPress={signOut} disabled={false}>
-      <Text color={"primary"} weight="medium">
+      <Text color={color} weight="medium">
         Sair
       </Text>
     </TouchableOpacityBox>

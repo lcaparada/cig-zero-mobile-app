@@ -1,74 +1,74 @@
-import { Modal } from "react-native";
+import { Modal, ScrollView } from "react-native";
 
 import { getBenefits } from "@constraints";
 
 import { BenefitItem } from "../BenefitItem/BenefitItem";
 import { Box } from "../Box/Box";
-import { LogOutButton } from "../LogOutButton/LogOutButton";
+import { Button } from "../Button/Button";
 import { PackageItem } from "../PackageItem/PackageItem";
-import { Popup } from "../Popup/Popup";
 import { Reviews } from "../Reviews/Reviews";
-import { Screen } from "../Screen/Screen";
-import { Text } from "../Text/Text";
 
+import { PaywallHeader } from "./components";
 import { usePaywall } from "./usePaywall";
 
 export const Paywall = () => {
   const {
+    bottom,
     packages,
+    timeLeft,
     metadata,
     isLoading,
-    popupVisible,
+    closePaywall,
     paywallVisible,
-    setPopupVisible,
     handlePurchasePackage,
   } = usePaywall();
 
   return (
-    <Modal animationType="none" visible={paywallVisible}>
-      <Screen
-        overflowVisible
-        scrollable
-        button={{
-          text: "Continuar",
-          action: () => handlePurchasePackage(),
-          disabled: isLoading,
-          loading: isLoading,
+    <Modal animationType="slide" visible={paywallVisible}>
+      <PaywallHeader
+        closePaywall={closePaywall}
+        hasTimer={timeLeft.minutes > 0}
+        timeLeft={timeLeft}
+      />
+      <ScrollView
+        contentContainerStyle={{
+          rowGap: 26,
+          paddingTop: 26,
+          paddingBottom: 140,
         }}
       >
-        <Box rowGap={"s26"} paddingVertical={"s18"}>
-          <Box alignItems={"center"} justifyContent={"center"}>
-            <Text color={"primary"} weight="bold" preset="display">
-              CigZero Plus
-            </Text>
-            <Box position={"absolute"} right={0}>
-              <LogOutButton />
-            </Box>
-          </Box>
-          <Box rowGap={"s8"} overflow={"hidden"}>
-            {getBenefits().map((item, index) => (
-              <BenefitItem key={index} {...item} />
-            ))}
-          </Box>
-          <Reviews />
-          <Box rowGap={"s16"}>
-            {packages.map(({ product, identifier }) => (
-              <PackageItem
-                key={product.identifier}
-                {...product}
-                metadata={metadata[identifier]}
-                packageIdentifier={identifier}
-              />
-            ))}
-          </Box>
+        <Box paddingHorizontal={"s24"} rowGap={"s8"} overflow={"hidden"}>
+          {getBenefits().map((item, index) => (
+            <BenefitItem key={index} {...item} />
+          ))}
         </Box>
-      </Screen>
-      <Popup
-        visible={popupVisible}
-        setVisible={setPopupVisible}
-        title="💨 Renove Sua Jornada"
-        description="Sua assinatura expirou. 🔁 Confira nossos planos e continue na luta contra o fumo! 💪"
-      />
+        <Box paddingHorizontal={"s24"}>
+          <Reviews />
+        </Box>
+        <Box paddingHorizontal={"s24"} rowGap={"s16"}>
+          {packages.map(({ product, identifier }) => (
+            <PackageItem
+              key={product.identifier}
+              {...product}
+              metadata={metadata[identifier]}
+              packageIdentifier={identifier}
+            />
+          ))}
+        </Box>
+      </ScrollView>
+      <Box
+        position={"absolute"}
+        bottom={bottom}
+        width={"100%"}
+        paddingHorizontal={"s24"}
+      >
+        <Button
+          text="Continuar"
+          isLoading={isLoading}
+          disabled={isLoading}
+          onPress={handlePurchasePackage}
+        />
+      </Box>
     </Modal>
   );
 };
