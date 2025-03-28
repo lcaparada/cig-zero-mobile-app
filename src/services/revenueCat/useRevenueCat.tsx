@@ -32,7 +32,7 @@ export const useRevenueCatStore = create<RevenueCatService>((set, get) => ({
   },
 
   purchasePackage: async () => {
-    const { packages, selectedPackage } = get();
+    const { packages, selectedPackage, checkIfUserIsPremium, setPaywallVisible } = get();
     if (!selectedPackage) return;
     const selectedPackageData = packages.find(
       (pkg) => pkg.identifier === selectedPackage
@@ -60,6 +60,8 @@ export const useRevenueCatStore = create<RevenueCatService>((set, get) => ({
         selectedPackageData,
         promotionalOffer
       );
+      await checkIfUserIsPremium();
+      setPaywallVisible(false);
     } catch (error: any) {
       throw error;
     } finally {
