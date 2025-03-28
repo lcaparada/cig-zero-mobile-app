@@ -37,7 +37,7 @@ export const useHomeScreen = () => {
     const queryKeys = [
       QueryKeys.GetProgressData,
       QueryKeys.GetHistoricData,
-      QueryKeys.GetMissions,
+      QueryKeys.GetDailyChallenges,
       QueryKeys.GetLatestSmokingRecord,
     ];
     try {

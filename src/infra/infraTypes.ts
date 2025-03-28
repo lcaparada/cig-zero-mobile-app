@@ -1,7 +1,6 @@
 export enum QueryKeys {
   GetFriends,
   GetProfile,
-  GetMissions,
   GetChartData,
   GetAuthorInfo,
   GetPhraseOfDay,
@@ -11,6 +10,7 @@ export enum QueryKeys {
   GetUserLastSmoke,
   GetFriendRequests,
   GetRepliedMessage,
+  GetDailyChallenges,
   GetUnreadMessagesCount,
   GetLatestSmokingRecord,
   GetConversationMessages,
