@@ -14,8 +14,8 @@ import { usePaywall } from "./usePaywall";
 export const Paywall = () => {
   const {
     bottom,
+    colors,
     packages,
-    timeLeft,
     metadata,
     isLoading,
     closePaywall,
@@ -25,16 +25,15 @@ export const Paywall = () => {
 
   return (
     <Modal animationType="slide" visible={paywallVisible}>
-      <PaywallHeader
-        closePaywall={closePaywall}
-        hasTimer={timeLeft.minutes > 0}
-        timeLeft={timeLeft}
-      />
+      <PaywallHeader closePaywall={closePaywall} />
       <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={{ backgroundColor: colors.background }}
         contentContainerStyle={{
           rowGap: 26,
           paddingTop: 26,
           paddingBottom: 140,
+          backgroundColor: colors.background,
         }}
       >
         <Box paddingHorizontal={"s24"} rowGap={"s8"} overflow={"hidden"}>
