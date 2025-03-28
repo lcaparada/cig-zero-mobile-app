@@ -97,7 +97,17 @@ export const DailyChallenge = () => {
           rowGap={"s12"}
           mt={"s20"}
         >
-          {!isFetching && dailyChallenges && dailyChallenges.length
+          {dailyChallenges && !dailyChallenges.length ? (
+            <Text
+              preset="paragraphs"
+              color={"backgroundSecondConstrast"}
+              weight="semiBold"
+              opacity={0.75}
+            >
+              🎉 Parabéns! Você completou todos os desafios! 🚀
+            </Text>
+          ) : null}
+          {!isFetching && dailyChallenges
             ? dailyChallenges.map((challenge, index) => (
                 <DailyChallengeCard key={index} {...challenge} />
               ))

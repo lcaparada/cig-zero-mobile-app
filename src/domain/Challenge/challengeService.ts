@@ -1,18 +1,19 @@
-import { supabase } from "@api";
+import { supabase, supabaseEdgeFunction } from "@api";
 
 import { CompleteDailyChallenge, GetDailyChallenges } from "./challengeTypes";
 
 const getDailyChallenges = async (
   params: GetDailyChallenges.Params
 ): Promise<GetDailyChallenges.Result> => {
-  const { data, error } = await supabase.rpc("get_daily_missions", {
-    p_user_id: params.user_id,
-  });
-  if (error) {
-    console.error("getDailyChallengesError", error);
+  try {
+    const { data } = await supabaseEdgeFunction.post("get-daily-missions", {
+      p_user_id: params.user_id,
+    });
+    console.log(data);
+    return data;
+  } catch (error) {
     throw error;
   }
-  return data;
 };
 
 const createMissionOnUser = async (
