@@ -40,9 +40,9 @@ export const HomeScreen = () => {
       <HomeHeader />
       <Shortcut />
       <GeneralProgress />
-      <Divider />
+      {/* <Divider />
       <Community />
-      <Divider />
+      <Divider /> */}
       <PhraseOfDay phrase={phrase?.phrase ?? ""} />
       <Divider />
       <Historic />
