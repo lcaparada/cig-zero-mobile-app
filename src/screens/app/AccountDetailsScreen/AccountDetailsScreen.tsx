@@ -1,6 +1,10 @@
 import { Box, BoxProps, Icon, Screen, Text, TextInput } from "@components";
 
+import { useAuth } from "@services";
+
 export const AccountDetailsScreen = () => {
+  const { session } = useAuth();
+
   return (
     <Screen canGoBack scrollable screenTitle="Detalhes da conta">
       <Box rowGap={"s20"}>
@@ -9,7 +13,7 @@ export const AccountDetailsScreen = () => {
           editable={false}
           value="LucasParada123"
         />
-        <TextInput label="Email" editable={false} value="lcaparada@gmail.com" />
+        <TextInput label="Email" editable={false} value={session?.user.email} />
       </Box>
       <Box {...$card} {...shadow}>
         <Text
