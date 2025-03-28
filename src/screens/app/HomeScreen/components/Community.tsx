@@ -27,7 +27,7 @@ export const Community = () => {
   return (
     <CopilotStep
       text="Esta seção é a comunidade – um espaço para compartilhar experiências, trocar aprendizados e se apoiar na jornada para parar de fumar."
-      order={4}
+      order={5}
       name="community"
     >
       <WalkthroughableBox paddingHorizontal={"s25"} paddingVertical={"s30"}>

@@ -81,9 +81,9 @@ export const DailyChallenge = () => {
   const { dailyChallenges, isFetching } = useDailyChallenge();
   return (
     <CopilotStep
-      text="Esta seção exibe seu progresso geral: dias sem fumar, cigarros evitados, dinheiro economizado e dias de vida recuperados."
-      order={3}
-      name="generalProgress"
+      text="Esta seção traz desafios diários: complete-os marcando o check e ganhe XP para subir de nível!"
+      order={4}
+      name="dailyMissions"
     >
       <WalkthroughableBox paddingHorizontal={"s24"} paddingVertical={"s30"}>
         <HeadingWithDescription
