@@ -1,8 +1,25 @@
+export type LevelAPI = {
+  avatar_icon: null | string;
+  number: number;
+  description: string;
+  icon: string;
+  title: string;
+}
+
+export type Level = {
+  avatarIcon: null | string;
+  number: number;
+  description: string;
+  icon: string;
+  title: string;
+}
+
 export type ProfileAPI = {
   bio: string;
   name: string;
   photo: string;
   location: string;
+  level: LevelAPI;
   first_app_launch: string;
   visibility_status: VisibilityStatus;
   total_achievements: number;
@@ -13,6 +30,7 @@ export type Profile = {
   name: string;
   photo: string;
   location: string;
+  level: Level;
   visibilityStatus: VisibilityStatus;
   totalAchievements: number;
 };
