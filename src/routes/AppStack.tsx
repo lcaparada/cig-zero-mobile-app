@@ -52,7 +52,7 @@ const Stack = createNativeStackNavigator<AppStackParamList>();
 export const AppStack = () => {
   const { session } = useAuth();
 
-  const { checkIfUserIsPremium, paywallVisible, setPaywallVisible } =
+  const { checkIfUserIsPremium, paywallVisible, setPaywallVisible, isUserPremium } =
     useRevenueCatService();
 
   const requestReview = async () => {
@@ -67,7 +67,7 @@ export const AppStack = () => {
       session?.user?.user_metadata?.firstAppLaunch
     );
 
-    if (diffInDays > 0 && diffInDays % 3 === 0) {
+    if ((diffInDays > 0 && diffInDays % 3 === 0) && isUserPremium) {
       requestReview();
     }
 
