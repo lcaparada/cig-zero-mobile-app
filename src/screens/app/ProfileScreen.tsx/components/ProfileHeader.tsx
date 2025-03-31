@@ -6,20 +6,44 @@ import { Box, Avatar, Text } from "@components";
 
 import { Profile } from "@domain";
 
-export const ProfileHeader = ({ profile }: { profile: Profile }) => (
-  <Box alignItems="center" rowGap="s12">
-    <AvatarWithBadge
-      avatarIcon={profile.level.avatarIcon}
-      name={profile.name}
-      photo={profile.photo}
-    />
-    <ProfileInfo
-      name={profile.name}
-      levelIcon={profile.level.icon}
-      levelTitle={profile.level.title}
-    />
-  </Box>
-);
+import { AboutSection } from "./AboutSection";
+
+export const ProfileHeader = ({
+  profile,
+  isMineProfile,
+}: {
+  profile: Profile;
+  isMineProfile: boolean;
+}) => {
+  const showProfileForOtherPeople = profile?.visibilityStatus === "ALL";
+
+  return (
+    <Box alignItems="center" rowGap="s12">
+      <AvatarWithBadge
+        avatarIcon={profile.level.avatarIcon}
+        name={profile.name}
+        photo={profile.photo}
+      />
+      <Text weight="semiBold" color="primary" preset="paragraphsXL">
+        {profile.name}
+      </Text>
+      <AboutSection
+        bio={profile?.bio ?? ""}
+        location={profile?.location ?? ""}
+        isMineProfile={isMineProfile}
+        showProfileForOtherPeople={showProfileForOtherPeople}
+      />
+      {profile.level.title && (
+        <Text weight="bold" color="primary" preset="paragraphsXL">
+          {profile.level.title}
+        </Text>
+      )}
+      {profile.level.icon && (
+        <SvgUri uri={profile.level.icon} width={60} height={60} />
+      )}
+    </Box>
+  );
+};
 
 type AvatarWithBadgeProps = {
   name: string;
@@ -41,25 +65,5 @@ const AvatarWithBadge = ({ avatarIcon, name, photo }: AvatarWithBadgeProps) => (
       textSize="titleBig"
       photo={photo}
     />
-  </Box>
-);
-
-type ProfileInfoProps = {
-  name: string;
-  levelTitle: string;
-  levelIcon: string;
-};
-
-const ProfileInfo = ({ name, levelTitle, levelIcon }: ProfileInfoProps) => (
-  <Box alignItems="center" justifyContent="center" rowGap="s6">
-    <Text weight="semiBold" color="primary" preset="paragraphsXL">
-      {name}
-    </Text>
-    {levelTitle && (
-      <Text weight="bold" color="primary" preset="paragraphsXL">
-        {levelTitle}
-      </Text>
-    )}
-    {levelIcon && <SvgUri uri={levelIcon} width={60} height={60} />}
   </Box>
 );

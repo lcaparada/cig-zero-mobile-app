@@ -1,8 +1,6 @@
-import { Box, Icon, Text, TimeInformation } from "@components";
+import { Box, BoxProps, Icon, Text, TimeInformation } from "@components";
 import { useTimeSinceLastSmokingRecord } from "@hooks";
 import { shadow } from "@theme";
-
-import { $card } from "../ProfileScreen";
 
 type TimerContainerProps = {
   userId: string;
@@ -38,4 +36,14 @@ export const TimerContainer = (props: TimerContainerProps) => {
       </Box>
     </Box>
   );
+};
+
+const $card: BoxProps = {
+  mt: "s18",
+  backgroundColor: "background",
+  borderRadius: "s8",
+  paddingHorizontal: "s12",
+  borderWidth: 1,
+  borderColor: "primary",
+  paddingVertical: "s10",
 };

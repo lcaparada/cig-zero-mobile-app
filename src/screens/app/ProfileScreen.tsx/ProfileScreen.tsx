@@ -6,12 +6,7 @@ import { AppScreenProps } from "@routes";
 import { useGetProfile, useGetUserLastSmoke } from "@domain";
 import { useAuth } from "@services";
 
-import {
-  AboutSection,
-  LoadingSkeleton,
-  ProfileDetails,
-  ProfileHeader,
-} from "./components";
+import { LoadingSkeleton, ProfileDetails, ProfileHeader } from "./components";
 import { PrivateProfileMessage } from "./components/PrivateProfileMessage";
 
 export const ProfileScreen = ({ route }: AppScreenProps<"ProfileScreen">) => {
@@ -26,10 +21,6 @@ export const ProfileScreen = ({ route }: AppScreenProps<"ProfileScreen">) => {
   const isMineProfile = route.params.userId === session?.user.id;
   const showProfileForOtherPeople = profile?.visibilityStatus === "ALL";
 
-  const handleEditProfile = () => {
-    navigation.navigate("EditProfileScreen");
-  };
-
   return (
     <Screen
       canGoBack
@@ -41,20 +32,14 @@ export const ProfileScreen = ({ route }: AppScreenProps<"ProfileScreen">) => {
             name="edit2"
             size="s22"
             color="primary"
-            onPress={handleEditProfile}
+            onPress={() => navigation.navigate("EditProfileScreen")}
           />
         ) : undefined
       }
     >
       {profile && !isLoading ? (
         <>
-          <ProfileHeader profile={profile} />
-          <AboutSection
-            bio={profile?.bio ?? ""}
-            isMineProfile={isMineProfile}
-            location={profile?.location ?? ""}
-            showProfileForOtherPeople={showProfileForOtherPeople}
-          />
+          <ProfileHeader isMineProfile={isMineProfile} profile={profile} />
           {showProfileForOtherPeople || isMineProfile ? (
             <ProfileDetails
               userId={route.params.userId}
