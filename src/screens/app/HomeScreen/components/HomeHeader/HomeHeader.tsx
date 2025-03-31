@@ -72,14 +72,17 @@ export const HomeHeader = () => {
         >
           <TimeCard
             label="dias"
+            thirdNumberInDays={timeSinceLastSmokingRecord.days >= 100}
             time={timeSinceLastSmokingRecord.days.toString()}
           />
           <TimeCard
             label="horas"
+            thirdNumberInDays={timeSinceLastSmokingRecord.days >= 100}
             time={timeSinceLastSmokingRecord.hours.toString()}
           />
           <TimeCard
             label="minutos"
+            thirdNumberInDays={timeSinceLastSmokingRecord.days >= 100}
             time={timeSinceLastSmokingRecord.minutes.toString()}
           />
         </Box>

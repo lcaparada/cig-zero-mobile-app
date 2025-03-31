@@ -71,6 +71,7 @@ import {
   LevelUp,
   LevelBadge,
   Goal,
+  Rings2,
 } from "@assets";
 
 import { TouchableOpacityBox } from "../Box/Box";
@@ -156,6 +157,7 @@ const iconRegistry = {
   smile: Smile,
   check: Check,
   money: Money,
+  rings2: Rings2,
   shield: Shield,
   google: Google,
   mapPin: MapPin,

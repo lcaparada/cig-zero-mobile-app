@@ -4,30 +4,40 @@ import { Text } from "src/components/Text/Text";
 
 interface TimeItemProps {
   time: string;
+  hasThreeNumber: boolean;
 }
 
-export const TimeItem = ({ time }: TimeItemProps) => {
+export const TimeItem = ({ time, hasThreeNumber }: TimeItemProps) => {
   return (
     <Box>
-      <Box {...$boxWrapper} {...$boxShadow}>
+      <Box
+        width={hasThreeNumber ? 40 : 46}
+        height={hasThreeNumber ? 56 : 65}
+        {...$boxWrapper}
+        {...$boxShadow}
+      >
         <Text
-          preset="displayXL"
+          preset={hasThreeNumber ? "displayExtra" : "displayXL"}
           weight="semiBold"
           color={"backgroundConstrast"}
         >
           {time}
         </Text>
       </Box>
-      <Box position={"absolute"} bottom={-3}>
-        <Icon name="rings" color="background" />
+      <Box
+        position={"absolute"}
+        top={hasThreeNumber ? -8.5 : -8}
+        right={hasThreeNumber ? 4 : 6}
+      >
+        <Icon name={hasThreeNumber ? "rings" : "rings2"} color="background" />
       </Box>
     </Box>
   );
 };
 
+// -8
+
 const $boxWrapper: BoxProps = {
-  width: 46,
-  height: 65,
   borderRadius: "s16",
   alignItems: "center",
   justifyContent: "center",

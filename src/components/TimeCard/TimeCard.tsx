@@ -7,16 +7,26 @@ interface TimeCardProps {
   time: string;
   label: string;
   boxProps?: BoxProps;
+  thirdNumberInDays: boolean;
 }
 
-export const TimeCard = ({ time, label, boxProps }: TimeCardProps) => {
+export const TimeCard = ({
+  time,
+  label,
+  boxProps,
+  thirdNumberInDays,
+}: TimeCardProps) => {
   const paddedTime = time.padStart(2, "0");
-  const [firstNumber, secondNumber] = paddedTime;
+  const [firstNumber, secondNumber, thirdNumber] = paddedTime;
+
   return (
     <Box rowGap="s8" alignItems="center" {...boxProps}>
       <Box flexDirection="row" columnGap="s4" alignItems="center">
-        <TimeItem time={firstNumber} />
-        <TimeItem time={secondNumber} />
+        <TimeItem hasThreeNumber={thirdNumberInDays} time={firstNumber} />
+        <TimeItem hasThreeNumber={thirdNumberInDays} time={secondNumber} />
+        {thirdNumber && (
+          <TimeItem hasThreeNumber={thirdNumberInDays} time={thirdNumber} />
+        )}
       </Box>
       <Text preset="paragraphsBig" weight="medium" color="buttonConstrast">
         {label}

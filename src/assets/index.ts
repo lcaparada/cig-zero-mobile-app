@@ -26,6 +26,7 @@ export * from "./icons/clock";
 export * from "./icons/minus";
 export * from "./icons/userX";
 export * from "./icons/goals";
+export * from "./icons/rings2";
 export * from "./icons/trash2";
 export * from "./icons/camera";
 export * from "./icons/mapPin";
