@@ -26,6 +26,7 @@ export const ProfileScreen = ({ route }: AppScreenProps<"ProfileScreen">) => {
       canGoBack
       screenTitle="Perfil"
       scrollable
+      scrollViewPaddingBottom={120}
       rightComponent={
         isMineProfile ? (
           <Icon

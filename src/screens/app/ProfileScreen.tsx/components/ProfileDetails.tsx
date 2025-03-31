@@ -1,6 +1,7 @@
 import { format, parseISO } from "date-fns";
 
-import { Box, BoxProps, Icon, Text } from "@components";
+import { Box, BoxProps, Icon, IconName, Text } from "@components";
+import { shadow } from "@theme";
 
 import { Profile } from "@domain";
 
@@ -16,19 +17,44 @@ export const ProfileDetails = ({
   userId,
   profile,
   latestSmokingRecord,
-}: ProfileDetailsProps) => (
-  <>
-    <TimerContainer userId={userId} />
-    <AchievementsCard totalAchievements={profile?.totalAchievements ?? 0} />
-    <LastSmokeCard latestSmokingRecord={latestSmokingRecord} />
-  </>
-);
-
-type AchievementsCardProps = {
-  totalAchievements: number;
+}: ProfileDetailsProps) => {
+  return (
+    <>
+      <TimerContainer userId={userId} />
+      <Card
+        title="Nível atual"
+        icon="levelBadge"
+        current={profile?.level?.number ?? 1}
+      />
+      <Card
+        title="Próximo nível"
+        icon="levelUp"
+        current={profile.level.totalAccXp}
+        target={profile.level.nextLevelXp}
+      />
+      <Card
+        title="Missões concluídas"
+        icon="goal"
+        current={profile?.totalMissionsConcluded ?? 0}
+      />
+      <Card
+        title="Conquistas"
+        icon="trophy"
+        current={profile?.totalAchievements ?? 0}
+      />
+      <LastSmokeCard latestSmokingRecord={latestSmokingRecord} />
+    </>
+  );
 };
 
-const AchievementsCard = ({ totalAchievements }: AchievementsCardProps) => (
+type CardProps = {
+  title: string;
+  icon: IconName;
+  current: number;
+  target?: number;
+};
+
+const Card = ({ icon, current, title, target }: CardProps) => (
   <Box
     {...$card}
     {...shadow}
@@ -37,13 +63,13 @@ const AchievementsCard = ({ totalAchievements }: AchievementsCardProps) => (
     justifyContent="space-between"
   >
     <Box flexDirection="row" alignItems="center" columnGap="s8">
-      <Icon name="trophy" strokeWidth={2} />
+      <Icon name={icon} />
       <Text weight="medium" color="primary" preset="paragraphsBig">
-        Conquistas
+        {title}
       </Text>
     </Box>
     <Text weight="bold" color="primary">
-      {totalAchievements}
+      {target ? `${current}/${target}` : current}
     </Text>
   </Box>
 );
@@ -84,15 +110,4 @@ const $card: BoxProps = {
   borderWidth: 1,
   borderColor: "primary",
   paddingVertical: "s10",
-};
-
-const shadow: BoxProps = {
-  shadowColor: "primary",
-  shadowOffset: {
-    width: 0,
-    height: 5,
-  },
-  shadowOpacity: 1,
-  shadowRadius: 0,
-  elevation: 5,
 };

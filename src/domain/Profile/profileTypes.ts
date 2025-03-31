@@ -3,16 +3,20 @@ export type LevelAPI = {
   number: number;
   description: string;
   icon: string;
+  total_acc_xp: number;
+  next_level_xp: number;
   title: string;
-}
+};
 
 export type Level = {
-  avatarIcon: null | string;
-  number: number;
-  description: string;
-  icon: string;
   title: string;
-}
+  icon: string;
+  number: number;
+  totalAccXp: number;
+  avatarIcon: null | string;
+  description: string;
+  nextLevelXp: number;
+};
 
 export type ProfileAPI = {
   bio: string;
@@ -23,6 +27,7 @@ export type ProfileAPI = {
   first_app_launch: string;
   visibility_status: VisibilityStatus;
   total_achievements: number;
+  total_missions_concluded: number;
 };
 
 export type Profile = {
@@ -33,6 +38,7 @@ export type Profile = {
   level: Level;
   visibilityStatus: VisibilityStatus;
   totalAchievements: number;
+  totalMissionsConcluded: number;
 };
 
 export type VisibilityStatus = "ONLY_ME" | "ALL";

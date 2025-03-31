@@ -12,9 +12,12 @@ function getProfile(profileAPI: ProfileAPI): Profile {
       number: profileAPI.level.number,
       avatarIcon: profileAPI.level.avatar_icon,
       description: profileAPI.level.description,
+      totalAccXp: profileAPI.level.total_acc_xp,
+      nextLevelXp: profileAPI.level.next_level_xp,
     },
-    totalAchievements: profileAPI.total_achievements,
     visibilityStatus: profileAPI.visibility_status,
+    totalAchievements: profileAPI.total_achievements,
+    totalMissionsConcluded: profileAPI.total_missions_concluded,
   };
 }
 
