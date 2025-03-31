@@ -38,7 +38,6 @@ export const usePaywall = () => {
   const handlePurchasePackage = async () => {
     try {
       await purchasePackage();
-      setPaywallVisible(false);
     } catch (error: any) {
       if (error.code === "1") {
         console.log(error);
