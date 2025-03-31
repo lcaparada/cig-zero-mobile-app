@@ -72,6 +72,18 @@ export const shadow: BoxProps = {
   elevation: 5,
 };
 
+export const whiteShadow: BoxProps = {
+  shadowColor: "timeCardShadow",
+  shadowOffset: {
+    width: 0,
+    height: 3,
+  },
+  shadowOpacity: 1,
+  shadowRadius: 0,
+
+  elevation: 5,
+};
+
 export const theme = createTheme({
   colors: {
     ...pallete,

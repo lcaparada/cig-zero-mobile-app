@@ -5,10 +5,11 @@ import { Divider, Popup } from "@components";
 import {
   Historic,
   Shortcut,
-  Community,
   HomeHeader,
   ActionsButtons,
   GeneralProgress,
+  DailyChallenge,
+  Community,
 } from "./components";
 import { PhraseOfDay } from "./components/PhraseOfDay";
 import { useHomeScreen } from "./useHomeScreen";
@@ -40,9 +41,11 @@ export const HomeScreen = () => {
       <HomeHeader />
       <Shortcut />
       <GeneralProgress />
-      {/* <Divider />
+      <Divider />
+      <DailyChallenge />
+      <Divider />
       <Community />
-      <Divider /> */}
+      <Divider />
       <PhraseOfDay phrase={phrase?.phrase ?? ""} />
       <Divider />
       <Historic />

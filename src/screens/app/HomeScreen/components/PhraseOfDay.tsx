@@ -13,7 +13,7 @@ export const PhraseOfDay = ({ phrase }: PhraseOfDayProps) => {
   return (
     <CopilotStep
       text="Esta seção traz uma reflexão diária, baseada na sua principal razão para parar de fumar, para te motivar a não ceder ao vício."
-      order={5}
+      order={6}
       name="phraseOfDay"
     >
       <WalkthroughableBox paddingHorizontal={"s25"} paddingVertical={"s30"}>
