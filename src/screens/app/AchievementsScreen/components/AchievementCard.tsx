@@ -11,13 +11,13 @@ export const AchievementCard = ({
   unlocked,
 }: Achievement) => {
   return (
-    <Box {...boxWrapper} {...shadow}>
+    <Box {...boxWrapper} opacity={unlocked ? 1 : 0.6} {...shadow}>
       <SvgUri uri={icon_url} />
       <Box mt={"s8"} paddingHorizontal={"s24"}>
         <Text
           textAlign={"center"}
           weight="bold"
-          color={"primary"}
+          color={"neutralLighest"}
           preset="paragraphsBig"
         >
           {title}
@@ -25,7 +25,7 @@ export const AchievementCard = ({
         <Text
           textAlign={"center"}
           weight="medium"
-          color={"primary"}
+          color={"neutralLighest"}
           preset="notes"
         >
           {description}
@@ -42,7 +42,7 @@ export const AchievementCard = ({
 };
 
 const shadow: BoxProps = {
-  shadowColor: "primary",
+  shadowColor: "buttonShadow",
   shadowOffset: {
     width: 0,
     height: 5,
@@ -56,10 +56,10 @@ const shadow: BoxProps = {
 const boxWrapper: BoxProps = {
   width: 164,
   height: 164,
-  borderWidth: 1,
+
   borderRadius: "s12",
-  borderColor: "primary",
+
   alignItems: "center",
   justifyContent: "center",
-  backgroundColor: "background",
+  backgroundColor: "primary",
 };

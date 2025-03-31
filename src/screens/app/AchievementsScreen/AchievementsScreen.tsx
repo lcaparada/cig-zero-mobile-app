@@ -1,10 +1,14 @@
 import { Screen } from "@components";
 
-import { AchievementHeading, AchievementsHeader } from "./components";
+import {
+  AchievementHeading,
+  AchievementsHeader,
+  AchievementsSkeleton,
+} from "./components";
 import { useAchievementsScreen } from "./useAchievementsScreen";
 
 export const AchievementsScreen = () => {
-  const { achievements } = useAchievementsScreen();
+  const { achievements, isGettingAchievements } = useAchievementsScreen();
 
   return (
     <Screen
@@ -13,14 +17,18 @@ export const AchievementsScreen = () => {
       insets={{ left: "s0", right: "s0", top: "s0", bottom: "s0" }}
     >
       <AchievementsHeader />
-      {achievements &&
+      {isGettingAchievements ? (
+        <AchievementsSkeleton />
+      ) : (
+        achievements &&
         achievements.map((achievement, index) => (
           <AchievementHeading
             isLastItem={achievements.length - 1 === index}
             {...achievement}
             key={achievement.id}
           />
-        ))}
+        ))
+      )}
     </Screen>
   );
 };
