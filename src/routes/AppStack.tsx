@@ -120,7 +120,7 @@ export const AppStack = () => {
         <Stack.Screen name="CommunityScreen" component={CommunityScreen} />
         <Stack.Screen name="FaqScreen" component={FaqScreen} />
       </Stack.Navigator>
-      {paywallVisible && <Paywall />}
+      {/* {paywallVisible && <Paywall />} */}
     </Fragment>
   );
 };

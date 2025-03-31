@@ -68,6 +68,9 @@ import {
   CheckAchievement,
   FirstVitory,
   LightBulb,
+  LevelUp,
+  LevelBadge,
+  Goal,
 } from "@assets";
 
 import { TouchableOpacityBox } from "../Box/Box";
@@ -140,6 +143,7 @@ const iconRegistry = {
   moon: Moon,
   lock: Lock,
   chat: Chat,
+  goal: Goal,
   goals: Goals,
   apple: Apple,
   users: Users,
@@ -162,6 +166,7 @@ const iconRegistry = {
   xCircle: XCircle,
   arrowUp: ArrowUp,
   google2: Google2,
+  levelUp: LevelUp,
   error: ErrorRound,
   camera: CameraIcon,
   barChart: BarChart,
@@ -175,6 +180,7 @@ const iconRegistry = {
   calendar2: Calendar2,
   cigarette: Cigarette,
   lightBulb: LightBulb,
+  levelBadge: LevelBadge,
   infoCircle: InfoCircle,
   helpCircle: HelpCircle,
   arrowRight: ArrowRight,

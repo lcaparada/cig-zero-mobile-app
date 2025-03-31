@@ -16,7 +16,7 @@ export const AboutSection = ({
 }: AboutSectionProps) => {
   if (!bio && !location) return null;
   return (
-    <Box marginTop={"s12"}>
+    <Box>
       {!!bio && (
         <Text
           textAlign={"center"}
