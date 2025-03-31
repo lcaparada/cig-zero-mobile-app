@@ -1,6 +1,6 @@
 export namespace GetDailyChallenges {
   export type Params = {
-    user_id: string;
+    userId: string;
   };
 
   export type Result = {
@@ -12,8 +12,8 @@ export namespace GetDailyChallenges {
 
 export namespace CompleteDailyChallenge {
   export type Params = {
-    mission_id: string;
-    user_id: string;
+    missionId: string;
+    userId: string;
   };
 
   export type Result = void;

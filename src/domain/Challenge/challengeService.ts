@@ -7,7 +7,7 @@ const getDailyChallenges = async (
 ): Promise<GetDailyChallenges.Result> => {
   try {
     const { data } = await supabaseEdgeFunction.post("get-daily-missions", {
-      p_user_id: params.user_id,
+      p_user_id: params.userId,
     });
     return data;
   } catch (error) {
@@ -18,7 +18,9 @@ const getDailyChallenges = async (
 const createMissionOnUser = async (
   params: CompleteDailyChallenge.Params
 ): Promise<void> => {
-  const { error } = await supabase.from("missions_on_users").insert(params);
+  const { error } = await supabase
+    .from("missions_on_users")
+    .insert({ mission_id: params.missionId, user_id: params.userId });
   if (error) {
     console.error("createMissionOnUserError", error);
     throw error;

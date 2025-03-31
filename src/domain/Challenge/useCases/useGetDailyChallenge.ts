@@ -20,7 +20,7 @@ export const useGetDailyChallenges = () => {
     queryKey: [QueryKeys.GetDailyChallenges, session?.user?.id],
     queryFn: () =>
       challengeService.getDailyChallenges({
-        user_id: session?.user?.id ?? "",
+        userId: session?.user?.id ?? "",
       }),
   });
 

@@ -41,9 +41,7 @@ const DailyChallengeCard = (params: DailyChallengeCardProps) => {
           alignItems={"center"}
           justifyContent={"center"}
           disabled={isPending}
-          onPress={() =>
-            handleCompleteDailyChallenge({ mission_id: params.id })
-          }
+          onPress={() => handleCompleteDailyChallenge({ missionId: params.id })}
         >
           <Box
             width={36}

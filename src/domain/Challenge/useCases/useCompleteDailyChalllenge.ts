@@ -15,12 +15,12 @@ export const useCompleteDailyChallenge = () => {
   const { isPending, mutateAsync } = useMutation<
     unknown,
     Error,
-    Pick<CompleteDailyChallenge.Params, "mission_id">
+    Pick<CompleteDailyChallenge.Params, "missionId">
   >({
     mutationFn: (params) =>
       challengeService.createMissionOnUser({
-        ...params,
-        user_id: session?.user?.id ?? "",
+        missionId: params.missionId,
+        userId: session?.user?.id ?? "",
       }),
     onSuccess: () => {
       queryClient.refetchQueries({
@@ -33,7 +33,7 @@ export const useCompleteDailyChallenge = () => {
   });
 
   const handleCompleteDailyChallenge = async (
-    params: Pick<CompleteDailyChallenge.Params, "mission_id">
+    params: Pick<CompleteDailyChallenge.Params, "missionId">
   ) => {
     try {
       await mutateAsync(params);
