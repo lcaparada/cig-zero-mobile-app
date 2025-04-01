@@ -1,4 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
+import * as Haptics from "expo-haptics";
 import { CopilotStep, walkthroughable } from "react-native-copilot";
 
 import {
@@ -52,7 +53,10 @@ export const GeneralProgress = () => {
         paddingHorizontal={"s24"}
         paddingVertical={"s30"}
         activeOpacity={1}
-        onPress={() => navigation.navigate("ProvisionsScreen")}
+        onPress={() => {
+          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+          navigation.navigate("ProvisionsScreen");
+        }}
       >
         <HeadingWithDescription
           title="Progresso Geral"

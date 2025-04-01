@@ -1,3 +1,5 @@
+import * as Haptics from "expo-haptics";
+
 import { Screen } from "@components";
 
 import { useAppColor } from "@services";
@@ -38,7 +40,10 @@ export const AppearanceScreen = () => {
         <OptionButton
           {...opt}
           key={index}
-          onPress={() => setAppColor(opt.value)}
+          onPress={() => {
+            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+            setAppColor(opt.value);
+          }}
           isLastIndex={options.length - 1 === index}
         />
       ))}

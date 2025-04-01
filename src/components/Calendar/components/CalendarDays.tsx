@@ -1,4 +1,5 @@
 import { format, isSameMonth } from "date-fns";
+import * as Haptics from "expo-haptics";
 import { usePostHog } from "posthog-react-native";
 
 import { PostHogEventsName } from "@constraints";
@@ -48,6 +49,7 @@ export const CalendarDays = ({
             activeOpacity={0}
             onPress={() => {
               posthog.capture(PostHogEventsName.PRESS_TO_SELECT_DATE);
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
               selectDate(d);
             }}
             opacity={isSameMonth(date, d) ? 1 : 0.2}

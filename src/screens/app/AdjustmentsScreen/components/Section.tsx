@@ -1,3 +1,5 @@
+import * as Haptics from "expo-haptics";
+
 import {
   Box,
   Icon,
@@ -57,7 +59,10 @@ const ItemBox = ({ index, length, label, icon, action }: ItemBoxProps) => {
     <TouchableOpacityBox
       {...borderRadiusStyles}
       padding="s18"
-      onPress={action}
+      onPress={() => {
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+        action();
+      }}
       backgroundColor="mutedAquaWith20PercentOpacity"
     >
       <Box flexDirection={"row"} alignItems={"center"} columnGap={"s10"}>

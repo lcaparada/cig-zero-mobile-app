@@ -1,3 +1,4 @@
+import * as Haptics from "expo-haptics";
 import { CopilotStep, walkthroughable } from "react-native-copilot";
 
 import { Box, Button, IconName } from "@components";
@@ -18,12 +19,18 @@ export const ActionsButtons = () => {
     {
       text: "Acesse as dicas da OMS",
       icon: "healthcare",
-      action: () => navigate("OMSTipsScreen"),
+      action: () => {
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+        navigate("OMSTipsScreen");
+      },
     },
     {
       text: "Explorar suas conquistas",
       icon: "star2",
-      action: () => navigate("AchievementsScreen"),
+      action: () => {
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+        navigate("AchievementsScreen");
+      },
     },
   ];
 
