@@ -11,7 +11,7 @@ export const AchievementCard = ({
   unlocked,
 }: Achievement) => {
   return (
-    <Box {...boxWrapper} opacity={unlocked ? 1 : 0.6} {...shadow}>
+    <Box {...boxWrapper} opacity={unlocked ? 1 : 0.5} {...shadow}>
       <SvgUri uri={icon_url} />
       <Box mt={"s8"} paddingHorizontal={"s24"}>
         <Text
