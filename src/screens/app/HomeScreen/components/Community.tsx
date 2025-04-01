@@ -39,7 +39,7 @@ export const Community = () => {
           {data && data.unread_messages_count > 0 && (
             <Badget value={data.unread_messages_count} />
           )}
-          <Icon name="globe" size="s32" color="buttonConstrast" />
+          <Icon name="community" size="s32" color="buttonConstrast" />
           <Box flex={1}>
             <Text
               preset="paragraphsXL"

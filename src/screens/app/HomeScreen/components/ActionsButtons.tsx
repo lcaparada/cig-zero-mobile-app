@@ -17,12 +17,12 @@ export const ActionsButtons = () => {
   const actionsButtons: ActionsButtonsData[] = [
     {
       text: "Acesse as dicas da OMS",
-      icon: "activity",
+      icon: "healthcare",
       action: () => navigate("OMSTipsScreen"),
     },
     {
       text: "Explorar suas conquistas",
-      icon: "star",
+      icon: "star2",
       action: () => navigate("AchievementsScreen"),
     },
   ];
