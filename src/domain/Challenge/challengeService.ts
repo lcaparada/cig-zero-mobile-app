@@ -1,5 +1,6 @@
-import { supabase, supabaseEdgeFunction } from "@api";
+import { supabaseEdgeFunction } from "@api";
 
+import { challengeAdapter } from "./challengeAdapter";
 import { CompleteDailyChallenge, GetDailyChallenges } from "./challengeTypes";
 
 const getDailyChallenges = async (
@@ -17,12 +18,13 @@ const getDailyChallenges = async (
 
 const createMissionOnUser = async (
   params: CompleteDailyChallenge.Params
-): Promise<void> => {
-  const { error } = await supabase
-    .from("missions_on_users")
-    .insert({ mission_id: params.missionId, user_id: params.userId });
-  if (error) {
-    console.error("createMissionOnUserError", error);
+): Promise<CompleteDailyChallenge.Result> => {
+  try {
+    const { data } = await supabaseEdgeFunction.post("create-mission-on-user", {
+      mission_id: params.missionId,
+    });
+    return challengeAdapter.createMissionOnUserAdapter(data);
+  } catch (error) {
     throw error;
   }
 };

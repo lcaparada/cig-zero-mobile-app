@@ -1,25 +1,21 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { QueryKeys } from "@infra";
-import { useAuth } from "@services";
 
 import { challengeService } from "../challengeService";
 import { CompleteDailyChallenge } from "../challengeTypes";
 
 export const useCompleteDailyChallenge = () => {
-  const { session } = useAuth();
-
   const queryClient = useQueryClient();
 
   const { isPending, mutateAsync } = useMutation<
-    unknown,
+    CompleteDailyChallenge.Result,
     Error,
     Pick<CompleteDailyChallenge.Params, "missionId">
   >({
     mutationFn: (params) =>
       challengeService.createMissionOnUser({
         missionId: params.missionId,
-        userId: session?.user?.id ?? "",
       }),
     onSuccess: () => {
       queryClient.refetchQueries({
@@ -35,7 +31,8 @@ export const useCompleteDailyChallenge = () => {
     params: Pick<CompleteDailyChallenge.Params, "missionId">
   ) => {
     try {
-      await mutateAsync(params);
+      const result = await mutateAsync(params);
+      return result;
     } catch (error: any) {
       throw error;
     }

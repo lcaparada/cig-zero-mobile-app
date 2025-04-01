@@ -30,6 +30,7 @@ export * from "./BenefitItem/BenefitItem";
 export * from "./ProgressBar/ProgressBar";
 export * from "./BottomSheet/BottomSheet";
 export * from "./RadioButton/RadioButton";
+export * from "./LevelUpPopup/LevelUpPopup";
 export * from "./LogOutButton/LogOutButton";
 export * from "./ScreenHeader/ScreenHeader";
 export * from "./SocialButtons/SocialButtons";

@@ -13,8 +13,9 @@ export namespace GetDailyChallenges {
 export namespace CompleteDailyChallenge {
   export type Params = {
     missionId: string;
-    userId: string;
   };
 
-  export type Result = void;
+  export type Result = {
+    newLevel: number;
+  };
 }

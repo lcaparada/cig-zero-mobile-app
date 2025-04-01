@@ -3,13 +3,6 @@ import { Modal, StyleSheet } from "react-native";
 import { Vibration } from "react-native";
 
 import LottieView from "lottie-react-native";
-import {
-  useAnimatedStyle,
-  useSharedValue,
-  withRepeat,
-  withSequence,
-  withTiming,
-} from "react-native-reanimated";
 
 import { useAnimatedVisibility } from "@hooks";
 import { shadow } from "@theme";
@@ -25,17 +18,12 @@ import {
 } from "../Box/Box";
 import { Text } from "../Text/Text";
 
-interface XPInfoPopupProps {
+interface LevelUpPopupProps {
   visible: boolean;
   setVisibility: React.Dispatch<React.SetStateAction<boolean>>;
-  openOtherPopup: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const XPInfoPopup = ({
-  setVisibility,
-  openOtherPopup,
-  visible,
-}: XPInfoPopupProps) => {
+export const LevelUpPopup = ({ setVisibility, visible }: LevelUpPopupProps) => {
   const { animatedBoxStyle, animatedPressableStyle, handleClose } =
     useAnimatedVisibility({
       setVisibility,
@@ -45,32 +33,7 @@ export const XPInfoPopup = ({
 
   function onPress() {
     handleClose();
-    if (newLevel !== null) {
-      setTimeout(() => {
-        openOtherPopup(true);
-      }, 400);
-    }
   }
-
-  const scaleText = useSharedValue(1);
-
-  const textAnimated = useAnimatedStyle(() => {
-    return {
-      transform: [{ scale: scaleText.value }],
-    };
-  });
-
-  useEffect(() => {
-    scaleText.value = withRepeat(
-      withSequence(
-        withTiming(0.8, { duration: 1000 }),
-        withTiming(1, { duration: 1000 })
-      ),
-      -1,
-      true
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -91,19 +54,28 @@ export const XPInfoPopup = ({
       >
         <AnimatedBoxRNR {...shadow} {...$card} style={[animatedBoxStyle]}>
           <Text weight="semiBold" color={"neutralLighest"}>
-            Você acaba de ganhar:
+            Parabéns! Você subiu de nível!🚀
           </Text>
-          <AnimatedBoxRNR style={[textAnimated]}>
-            <Text weight="bold" color={"neutralLighest"} preset="display">
-              40 XP
+          <Box flexDirection={"row"} columnGap={"s12"} alignItems={"center"}>
+            <Text color={"neutralLighest"} weight="bold" preset="displayXL">
+              {newLevel && newLevel - 1}
             </Text>
-          </AnimatedBoxRNR>
+            <LottieView
+              source={require("../../assets/animations/fast-forward.json")}
+              autoPlay
+              loop
+              style={{ width: 60, height: 60 }}
+            />
+            <Text color={"neutralLighest"} weight="bold" preset="displayXL">
+              {newLevel}
+            </Text>
+          </Box>
         </AnimatedBoxRNR>
         <Box style={[StyleSheet.absoluteFillObject]}>
           <LottieView
-            source={require("../../assets/animations/confetti.json")}
+            source={require("../../assets/animations/rocket.json")}
             autoPlay
-            loop
+            loop={false}
             style={{ width: "100%", height: "100%" }}
           />
         </Box>

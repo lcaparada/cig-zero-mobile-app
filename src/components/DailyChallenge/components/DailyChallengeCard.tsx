@@ -1,6 +1,6 @@
 import { shadow } from "@theme";
 
-import { useToastService } from "@services";
+import { useChallenge, useToastService } from "@services";
 import { Box, BoxProps, TouchableOpacityBox } from "src/components/Box/Box";
 import { Icon } from "src/components/Icon/Icon";
 import { Text } from "src/components/Text/Text";
@@ -23,12 +23,17 @@ export const DailyChallengeCard = ({
 }: DailyChallengeCardProps) => {
   const { showToast } = useToastService();
 
+  const { setNewLevel } = useChallenge();
+
   const { handleCompleteDailyChallenge, isPending } =
     useCompleteDailyChallenge();
 
   async function completeDailyChallenge() {
     try {
-      await handleCompleteDailyChallenge({ missionId: id });
+      const result = await handleCompleteDailyChallenge({ missionId: id });
+      if (result.newLevel !== undefined) {
+        setNewLevel(result.newLevel);
+      }
       setCongratulationsPopupVisibility(true);
     } catch (error: any) {
       showToast({ message: error.message, duration: 5000, type: "error" });

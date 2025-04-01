@@ -27,3 +27,7 @@ export * from "./settings/settingsType";
 // CHAT
 export * from "./chat/useChat";
 export * from "./chat/chatTypes";
+
+// CHALLENGE
+export * from "./challenge/challengeType";
+export * from "./challenge/useChallenge";

@@ -7,6 +7,7 @@ import { useGetDailyChallenges } from "src/domain/Challenge";
 import { Box } from "../Box/Box";
 import { CongratulationsPopup } from "../CongratulationsPopup/CongratulationsPopup";
 import { HeadingWithDescription } from "../HeadingWithDescription/HeadingWithDescription";
+import { LevelUpPopup } from "../LevelUpPopup/LevelUpPopup";
 import { Skeleton } from "../Skeleton/Skeleton";
 import { Text } from "../Text/Text";
 import { XPInfoPopup } from "../XPInfoPopup/XPInfoPopup";
@@ -21,6 +22,8 @@ export const DailyChallenge = () => {
   const [isCongratulationsPopupVisible, setCongratulationsPopupVisibility] =
     useState(false);
   const [isXPInfoPopupVisible, setXPInfoPopupVisibility] = useState(false);
+  const [isLevelUpPopupVisible, setLevelUpPopupVisibility] = useState(false);
+
   return (
     <CopilotStep
       text="Esta seção traz desafios diários: complete-os marcando o check e ganhe XP para subir de nível!"
@@ -78,7 +81,14 @@ export const DailyChallenge = () => {
         {isXPInfoPopupVisible && (
           <XPInfoPopup
             visible={isXPInfoPopupVisible}
+            openOtherPopup={setLevelUpPopupVisibility}
             setVisibility={setXPInfoPopupVisibility}
+          />
+        )}
+        {isLevelUpPopupVisible && (
+          <LevelUpPopup
+            visible={isLevelUpPopupVisible}
+            setVisibility={setLevelUpPopupVisibility}
           />
         )}
       </WalkthroughableBox>
