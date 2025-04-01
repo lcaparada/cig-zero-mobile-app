@@ -1,13 +1,12 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { QueryKeys } from "@infra";
-import { useAuth, useToastService } from "@services";
+import { useAuth } from "@services";
 
 import { challengeService } from "../challengeService";
 import { CompleteDailyChallenge } from "../challengeTypes";
 
 export const useCompleteDailyChallenge = () => {
-  const { showToast } = useToastService();
   const { session } = useAuth();
 
   const queryClient = useQueryClient();
@@ -26,7 +25,7 @@ export const useCompleteDailyChallenge = () => {
       queryClient.refetchQueries({
         queryKey: [QueryKeys.GetDailyChallenges],
       });
-      queryClient.invalidateQueries({
+      queryClient.refetchQueries({
         queryKey: [QueryKeys.GetProfile],
       });
     },
@@ -38,7 +37,7 @@ export const useCompleteDailyChallenge = () => {
     try {
       await mutateAsync(params);
     } catch (error: any) {
-      showToast({ message: error.message, duration: 5000, type: "error" });
+      throw error;
     }
   };
 

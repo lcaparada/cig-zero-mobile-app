@@ -6,6 +6,7 @@ export * from "./useFirstTime";
 export * from "./useAnimationModal";
 export * from "./useKeyboardStatus";
 export * from "./useAppTabNavigator";
+export * from "./useAnimatedVisibility";
 export * from "./useAppSafeAreaContext";
 export * from "./useNotificationSettings";
 export * from "./useGroupedMessagesByDate";
