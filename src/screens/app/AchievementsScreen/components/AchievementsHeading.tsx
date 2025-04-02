@@ -65,6 +65,7 @@ export const AchievementHeading = ({
 const $achievementsCardWrapper: BoxProps = {
   flexDirection: "row",
   paddingHorizontal: "s24",
+  justifyContent: "space-between",
   marginTop: "s24",
   columnGap: "s12",
   rowGap: "s12",
