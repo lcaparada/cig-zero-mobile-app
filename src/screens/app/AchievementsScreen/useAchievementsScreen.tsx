@@ -1,7 +1,7 @@
 import { useGetAchievements } from "@domain";
 
 export const useAchievementsScreen = () => {
-  const { achievements } = useGetAchievements();
+  const { achievements, isGettingAchievements } = useGetAchievements();
 
-  return { achievements };
+  return { achievements, isGettingAchievements };
 };

@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import * as Haptics from "expo-haptics";
 import { usePostHog } from "posthog-react-native";
 
 import { BoxProps, Box, Text, Switch } from "@components";
@@ -59,6 +60,7 @@ export const ItemBox = ({
 
   const _handleUpdateNotificationSetting = async () => {
     posthog.capture(PostHogEventsName.PRESS_TO_UPDATE_NOTIFICATION_SETTINGS);
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     handleUpdateNotificationSetting();
   };
 

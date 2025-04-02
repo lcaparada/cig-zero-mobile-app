@@ -1,3 +1,4 @@
+import * as Haptics from "expo-haptics";
 import { usePostHog } from "posthog-react-native";
 import { State, PanGestureHandler } from "react-native-gesture-handler";
 
@@ -49,6 +50,7 @@ export const Calendar = ({
         posthog.capture(PostHogEventsName.SWIPE_RIGHT_TO_ADD_MONTH);
         handleAddMonth();
       }
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     }
   };
 
