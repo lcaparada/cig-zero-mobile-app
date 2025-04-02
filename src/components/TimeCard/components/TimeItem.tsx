@@ -35,8 +35,6 @@ export const TimeItem = ({ time, hasThreeNumber }: TimeItemProps) => {
   );
 };
 
-// -8
-
 const $boxWrapper: BoxProps = {
   borderRadius: "s16",
   alignItems: "center",
