@@ -1,4 +1,5 @@
 import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
+import * as Haptics from "expo-haptics";
 
 import { useAppSafeAreaContext } from "@hooks";
 import { AppTabBottomTabParamList } from "@routes";
@@ -28,6 +29,7 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
           mapScreenToProps[route.name as keyof AppTabBottomTabParamList];
 
         const onPress = () => {
+          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
           const event = navigation.emit({
             type: "tabPress",
             target: route.key,

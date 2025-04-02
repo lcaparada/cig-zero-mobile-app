@@ -8,11 +8,6 @@ export const AccountDetailsScreen = () => {
   return (
     <Screen canGoBack scrollable screenTitle="Detalhes da conta">
       <Box rowGap={"s20"}>
-        <TextInput
-          label="Nome de usuário"
-          editable={false}
-          value="LucasParada123"
-        />
         <TextInput label="Email" editable={false} value={session?.user.email} />
       </Box>
       <Box {...$card} {...shadow}>

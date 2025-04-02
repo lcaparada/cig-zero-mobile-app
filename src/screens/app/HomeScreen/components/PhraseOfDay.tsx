@@ -31,7 +31,7 @@ export const PhraseOfDay = ({ phrase }: PhraseOfDayProps) => {
 const Header = () => {
   return (
     <Box flexDirection={"row"} alignItems={"center"} columnGap={"s8"}>
-      <Icon name="lightBulb" size="s26" />
+      <Icon name="thinking" size="s26" />
       <Text weight="semiBold" color={"neutralLighest"}>
         Reflexão do dia
       </Text>
