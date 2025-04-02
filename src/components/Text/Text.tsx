@@ -23,6 +23,7 @@ export type TextVariants =
   | "notesSmall"
   | "displayXL"
   | "display2XL"
+  | "displayLarge"
   | "paragraphsXL";
 
 export interface TextProps extends SRTextProps {
@@ -70,6 +71,7 @@ export const $fontSize: Record<TextVariants, TextStyle> = {
   titleBig: { fontSize: 28, lineHeight: 28 * MULTIPLIER_LINE_HEIGHT },
   display: { fontSize: 30, lineHeight: 30 * MULTIPLIER_LINE_HEIGHT },
   displayExtra: { fontSize: 32, lineHeight: 30 * MULTIPLIER_LINE_HEIGHT },
+  displayLarge: { fontSize: 36, lineHeight: 30 * MULTIPLIER_LINE_HEIGHT },
   displayXL: { fontSize: 40, lineHeight: 40 * MULTIPLIER_LINE_HEIGHT },
   display2XL: { fontSize: 48, lineHeight: 40 * MULTIPLIER_LINE_HEIGHT },
 };
