@@ -16,10 +16,8 @@ async function getConversationMessages(params: GetConversationMessage.Params) {
     const { data } = await supabaseEdgeFunction.post(
       "get-conversation-messages",
       {
-        user_id: params.userId ?? null,
         limit: params.limit,
         offset: params.offset,
-        conversation_type: params.conversationType,
       }
     );
 
