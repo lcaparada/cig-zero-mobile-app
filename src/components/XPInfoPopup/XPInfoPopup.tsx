@@ -48,7 +48,7 @@ export const XPInfoPopup = ({
     if (newLevel !== null) {
       setTimeout(() => {
         openOtherPopup(true);
-      }, 400);
+      }, 300);
     }
   }
 
