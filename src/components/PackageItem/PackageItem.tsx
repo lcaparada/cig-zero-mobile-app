@@ -44,7 +44,7 @@ export const PackageItem = ({
       {...$touchableWrapper}
       disabled={isLoading}
       onPress={() => setSelectedPackage(packageIdentifier)}
-      borderColor={isSelected ? "primary" : "lightGray"}
+      borderColor={isSelected ? "primary" : "packageItemBorderColor"}
     >
       <Box flex={1} flexDirection="row" alignItems="center" columnGap="s12">
         <Checkbox isSelected={isSelected} />

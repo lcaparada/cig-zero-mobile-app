@@ -1,14 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import { useAppSafeAreaContext } from "@hooks";
 
-import { calculateTimeDifferenceFromNow } from "@helpers";
-import {
-  useAuth,
-  useRevenueCatService,
-  UserMetaData,
-  useToastService,
-} from "@services";
+import { useRevenueCatService, useToastService } from "@services";
 
 export const usePaywall = () => {
   const {
@@ -23,17 +17,7 @@ export const usePaywall = () => {
 
   const { showToast } = useToastService();
 
-  const { session } = useAuth();
-
   const { bottom } = useAppSafeAreaContext();
-
-  const userMetaData = session?.user.user_metadata as UserMetaData;
-
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-  });
 
   const handlePurchasePackage = async () => {
     try {
@@ -51,23 +35,9 @@ export const usePaywall = () => {
     }
   };
 
-  function getTimeLeft() {
-    const endDate = new Date(userMetaData.firstAppLaunch);
-    setTimeLeft(calculateTimeDifferenceFromNow(endDate.toISOString(), true));
-  }
-
   function closePaywall() {
     setPaywallVisible(false);
   }
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      getTimeLeft();
-    }, 1000);
-
-    return () => clearInterval(interval);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   useEffect(() => {
     loadProducts();
@@ -78,7 +48,6 @@ export const usePaywall = () => {
     bottom,
     packages,
     metadata,
-    timeLeft,
     isLoading,
     paywallVisible,
     closePaywall,

@@ -119,6 +119,8 @@ export const theme = createTheme({
     lightSilver: pallete.lightSilver,
     mediumSilver: pallete.mediumSilver,
 
+    packageItemBorderColor: pallete.lightSilver,
+
     deleteButton: pallete.errorDark,
     deleteButtonShadow: pallete.errorMedium,
 
@@ -204,6 +206,8 @@ export const darkTheme: Theme = {
     button: pallete.bluePrimary,
     buttonShadow: pallete.mutedSlate,
     buttonConstrast: pallete.neutralLighest,
+
+    packageItemBorderColor: pallete.mediumGray,
 
     background: pallete.deepCharcoal,
     backgroundConstrast: pallete.softGray,

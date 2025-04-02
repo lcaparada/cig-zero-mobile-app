@@ -1,5 +1,7 @@
 import { Modal, ScrollView } from "react-native";
 
+import { useAppTheme } from "@hooks";
+
 import { getBenefits } from "@constraints";
 
 import { BenefitItem } from "../BenefitItem/BenefitItem";
@@ -15,7 +17,6 @@ export const Paywall = () => {
   const {
     bottom,
     packages,
-    timeLeft,
     metadata,
     isLoading,
     closePaywall,
@@ -23,18 +24,19 @@ export const Paywall = () => {
     handlePurchasePackage,
   } = usePaywall();
 
+  const { colors } = useAppTheme();
+
   return (
     <Modal animationType="slide" visible={paywallVisible}>
-      <PaywallHeader
-        closePaywall={closePaywall}
-        hasTimer={timeLeft.minutes > 0}
-        timeLeft={timeLeft}
-      />
+      <PaywallHeader closePaywall={closePaywall} />
       <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={{ backgroundColor: colors.background }}
         contentContainerStyle={{
           rowGap: 26,
           paddingTop: 26,
           paddingBottom: 140,
+          backgroundColor: colors.background,
         }}
       >
         <Box paddingHorizontal={"s24"} rowGap={"s8"} overflow={"hidden"}>
