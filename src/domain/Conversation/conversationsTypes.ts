@@ -1,5 +1,3 @@
-export type ConversationTypes = "GLOBAL" | "PRIVATE";
-
 export type Author = {
   id: string;
   name: string;
@@ -53,10 +51,8 @@ export type ConversationMessage = {
 };
 export namespace GetConversationMessage {
   export type Params = {
-    userId?: string;
     limit: number;
     offset: number;
-    conversationType: ConversationTypes;
   };
 
   export type Result = ConversationMessage[];

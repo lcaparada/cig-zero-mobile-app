@@ -24,8 +24,6 @@ export const useGetConversationMessages = ({ userId }: { userId?: string }) => {
         return conversationsService.getConversationMessages({
           offset: pageParam as number,
           limit: LIMIT,
-          userId,
-          conversationType: "GLOBAL",
         });
       },
       getNextPageParam: (lastPage, allPages) => {
