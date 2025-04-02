@@ -22,6 +22,12 @@ export const HomeHeader = () => {
     timeSinceLastSmokingRecord,
   } = useHomeHeader();
 
+  const timeItems = [
+    { label: "dias", value: timeSinceLastSmokingRecord.days.toString() },
+    { label: "horas", value: timeSinceLastSmokingRecord.hours.toString() },
+    { label: "minutos", value: timeSinceLastSmokingRecord.minutes.toString() },
+  ];
+
   return (
     <CopilotStep
       text="Este é um contador que registra o tempo, em dias, horas e minutos, desde que você parou de fumar. Agora é pra valer!!"
@@ -70,21 +76,14 @@ export const HomeHeader = () => {
           justifyContent={"center"}
           mt={"s30"}
         >
-          <TimeCard
-            label="dias"
-            thirdNumberInDays={timeSinceLastSmokingRecord.days >= 100}
-            time={timeSinceLastSmokingRecord.days.toString()}
-          />
-          <TimeCard
-            label="horas"
-            thirdNumberInDays={timeSinceLastSmokingRecord.days >= 100}
-            time={timeSinceLastSmokingRecord.hours.toString()}
-          />
-          <TimeCard
-            label="minutos"
-            thirdNumberInDays={timeSinceLastSmokingRecord.days >= 100}
-            time={timeSinceLastSmokingRecord.minutes.toString()}
-          />
+          {timeItems.map((item, index) => (
+            <TimeCard
+              key={`${item.label}_${index}`}
+              label={item.label}
+              thirdNumberInDays={timeSinceLastSmokingRecord.days >= 100}
+              time={item.value}
+            />
+          ))}
         </Box>
       </WalkthroughableBox>
     </CopilotStep>
