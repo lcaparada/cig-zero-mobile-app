@@ -36,7 +36,7 @@ export const CongratulationsPopup = ({
     if (openOtherPopup) {
       setTimeout(() => {
         openOtherPopup(true);
-      }, 300);
+      }, 500);
     }
   }
 

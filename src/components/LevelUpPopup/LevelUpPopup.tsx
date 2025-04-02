@@ -29,10 +29,11 @@ export const LevelUpPopup = ({ setVisibility, visible }: LevelUpPopupProps) => {
       setVisibility,
     });
 
-  const { newLevel } = useChallenge();
+  const { newLevel, setNewLevel } = useChallenge();
 
   function onPress() {
     handleClose();
+    setNewLevel(null);
   }
 
   useEffect(() => {

@@ -10,7 +10,7 @@ const getDailyChallenges = async (
     const { data } = await supabaseEdgeFunction.post("get-daily-missions", {
       p_user_id: params.userId,
     });
-    return data;
+    return challengeAdapter.getDailyChallengesAdapter(data);
   } catch (error) {
     throw error;
   }

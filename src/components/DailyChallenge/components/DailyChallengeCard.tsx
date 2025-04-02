@@ -23,7 +23,7 @@ export const DailyChallengeCard = ({
 }: DailyChallengeCardProps) => {
   const { showToast } = useToastService();
 
-  const { setNewLevel } = useChallenge();
+  const { setNewLevel, setXpEarned } = useChallenge();
 
   const { handleCompleteDailyChallenge, isPending } =
     useCompleteDailyChallenge();
@@ -34,6 +34,7 @@ export const DailyChallengeCard = ({
       if (result.newLevel !== undefined) {
         setNewLevel(result.newLevel);
       }
+      setXpEarned(xp);
       setCongratulationsPopupVisibility(true);
     } catch (error: any) {
       showToast({ message: error.message, duration: 5000, type: "error" });

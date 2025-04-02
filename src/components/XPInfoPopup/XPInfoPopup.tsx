@@ -41,14 +41,14 @@ export const XPInfoPopup = ({
       setVisibility,
     });
 
-  const { newLevel } = useChallenge();
+  const { newLevel, xpEarned } = useChallenge();
 
   function onPress() {
     handleClose();
     if (newLevel !== null) {
       setTimeout(() => {
         openOtherPopup(true);
-      }, 300);
+      }, 500);
     }
   }
 
@@ -95,7 +95,7 @@ export const XPInfoPopup = ({
           </Text>
           <AnimatedBoxRNR style={[textAnimated]}>
             <Text weight="bold" color={"neutralLighest"} preset="display">
-              40 XP
+              {xpEarned} XP
             </Text>
           </AnimatedBoxRNR>
         </AnimatedBoxRNR>
