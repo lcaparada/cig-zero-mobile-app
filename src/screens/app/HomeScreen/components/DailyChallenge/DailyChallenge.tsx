@@ -1,5 +1,6 @@
 import React from "react";
 
+import * as Haptics from "expo-haptics";
 import { CopilotStep, walkthroughable } from "react-native-copilot";
 
 import {
@@ -100,18 +101,12 @@ const DailyChallengeCard = (params: DailyChallengeCardProps) => {
           alignItems={"center"}
           justifyContent={"center"}
           disabled={isPending}
-          onPress={() => handleCompleteDailyChallenge({ missionId: params.id })}
+          onPress={() => {
+            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+            handleCompleteDailyChallenge({ missionId: params.id });
+          }}
         >
-          <Box
-            width={36}
-            height={36}
-            borderRadius={"s16"}
-            alignItems={"center"}
-            justifyContent={"center"}
-            backgroundColor={"neutralLighest"}
-            borderColor={"neutralLighest"}
-            {...whiteShadow}
-          >
+          <Box {...$boxCheck} {...whiteShadow}>
             <Icon name="check" size="s22" strokeWidth={2.5} color="primary" />
           </Box>
           <Text preset="notesSmall" weight="semiBold" color={"neutralLighest"}>
@@ -123,6 +118,16 @@ const DailyChallengeCard = (params: DailyChallengeCardProps) => {
   );
 };
 
+const $boxCheck: BoxProps = {
+  width: 36,
+  height: 36,
+  alignItems: "center",
+  borderColor: "neutralLighest",
+  borderRadius: "s16",
+  justifyContent: "center",
+  backgroundColor: "neutralLighest",
+};
+
 const whiteShadow: BoxProps = {
   shadowColor: "lightNeutralGray",
   shadowOffset: {
@@ -131,6 +136,5 @@ const whiteShadow: BoxProps = {
   },
   shadowOpacity: 1,
   shadowRadius: 0,
-
   elevation: 5,
 };

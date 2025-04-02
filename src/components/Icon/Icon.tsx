@@ -1,5 +1,7 @@
 import { TouchableOpacityProps } from "react-native";
 
+import * as Haptics from "expo-haptics";
+
 import { useAppTheme } from "@hooks";
 import { ThemeColors, ThemeSpacing } from "@theme";
 
@@ -71,6 +73,10 @@ import {
   LevelUp,
   LevelBadge,
   Goal,
+  Community,
+  Thinking,
+  Healthcare,
+  Star2,
 } from "@assets";
 
 import { TouchableOpacityBox } from "../Box/Box";
@@ -107,7 +113,10 @@ export const Icon = ({
 
   return onPress ? (
     <TouchableOpacityBox
-      onPress={onPress}
+      onPress={() => {
+        onPress();
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+      }}
       hitSlop={10}
       {...touchableOpacityProps}
     >
@@ -144,6 +153,7 @@ const iconRegistry = {
   lock: Lock,
   chat: Chat,
   goal: Goal,
+  star2: Star2,
   goals: Goals,
   apple: Apple,
   users: Users,
@@ -172,15 +182,18 @@ const iconRegistry = {
   barChart: BarChart,
   fileText: FileText,
   activity: Activity,
+  thinking: Thinking,
   settings: Settings,
   calendar: Calendar,
   success: CheckRound,
+  community: Community,
   arrowDown: ArrowDown,
   arrowLeft: ArrowLeft,
   calendar2: Calendar2,
   cigarette: Cigarette,
   lightBulb: LightBulb,
   levelBadge: LevelBadge,
+  healthcare: Healthcare,
   infoCircle: InfoCircle,
   helpCircle: HelpCircle,
   arrowRight: ArrowRight,
