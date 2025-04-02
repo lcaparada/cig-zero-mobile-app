@@ -14,7 +14,7 @@ export const useGetAchievements = () => {
 
   const {
     data: achievements,
-    isLoading,
+    isLoading: isGettingAchievements,
     error,
     refetch,
   } = useQuery<unknown, Error, GetAchievements.Result>({
@@ -36,5 +36,5 @@ export const useGetAchievements = () => {
     }, [])
   );
 
-  return { achievements, isLoading };
+  return { achievements, isGettingAchievements };
 };
