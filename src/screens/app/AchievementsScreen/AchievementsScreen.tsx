@@ -17,10 +17,9 @@ export const AchievementsScreen = () => {
       insets={{ left: "s0", right: "s0", top: "s0", bottom: "s0" }}
     >
       <AchievementsHeader />
-      {isGettingAchievements ? (
+      {(isGettingAchievements || !achievements  || !achievements.length) ? (
         <AchievementsSkeleton />
       ) : (
-        achievements &&
         achievements.map((achievement, index) => (
           <AchievementHeading
             isLastItem={achievements.length - 1 === index}
