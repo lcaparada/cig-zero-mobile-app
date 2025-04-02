@@ -52,8 +52,12 @@ const Stack = createNativeStackNavigator<AppStackParamList>();
 export const AppStack = () => {
   const { session } = useAuth();
 
-  const { checkIfUserIsPremium, paywallVisible, setPaywallVisible, isUserPremium } =
-    useRevenueCatService();
+  const {
+    checkIfUserIsPremium,
+    paywallVisible,
+    setPaywallVisible,
+    isUserPremium,
+  } = useRevenueCatService();
 
   const requestReview = async () => {
     if (await StoreReview.hasAction()) {
@@ -62,12 +66,14 @@ export const AppStack = () => {
   };
 
   useEffect(() => {
-    const diffInDays = calculateDiffInDays(
-      new Date(),
-      session?.user?.user_metadata?.firstAppLaunch
-    );
+    if (!session?.user?.created_at) return;
 
-    if ((diffInDays > 0 && diffInDays % 3 === 0) && isUserPremium) {
+    const userCreatedAt = new Date(session?.user?.created_at ?? new Date());
+    if (isNaN(userCreatedAt.getTime())) return;
+
+    const diffInDays = calculateDiffInDays(new Date(), userCreatedAt);
+
+    if (diffInDays > 0 && diffInDays % 3 === 0 && isUserPremium) {
       requestReview();
     }
 
@@ -76,7 +82,6 @@ export const AppStack = () => {
     } else {
       setPaywallVisible(false);
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session?.user?.user_metadata?.firstAppLaunch]);
 
@@ -120,7 +125,7 @@ export const AppStack = () => {
         <Stack.Screen name="CommunityScreen" component={CommunityScreen} />
         <Stack.Screen name="FaqScreen" component={FaqScreen} />
       </Stack.Navigator>
-      {/* {paywallVisible && <Paywall />} */}
+      {paywallVisible && <Paywall />}
     </Fragment>
   );
 };

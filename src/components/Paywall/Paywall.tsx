@@ -31,7 +31,7 @@ export const Paywall = () => {
       <PaywallHeader closePaywall={closePaywall} />
       <ScrollView
         showsVerticalScrollIndicator={false}
-        style={{ backgroundColor: colors.background }}
+        style={{ backgroundColor: colors.background, marginTop: 4 }}
         contentContainerStyle={{
           rowGap: 26,
           paddingTop: 26,

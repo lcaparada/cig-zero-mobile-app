@@ -16,7 +16,7 @@ export const getBenefits = (): Benefit[] => [
     iconName: "trendingUp",
   },
   {
-    text: "Novos desafios semanalmente para incentivar",
+    text: "Desafios diários para você",
     iconName: "shield",
   },
   { text: "Cancele a qualquer momento", iconName: "x" },
