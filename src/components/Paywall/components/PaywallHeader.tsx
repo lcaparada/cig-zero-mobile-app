@@ -4,12 +4,12 @@ import { useAppSafeAreaContext } from "@hooks";
 import { shadow } from "@theme";
 
 import { calculateTimeDifferenceFromNow } from "@helpers";
-import { useAuth, UserMetaData } from "@services";
+import { useAuth } from "@services";
 import { Box } from "src/components/Box/Box";
+import { Counter } from "src/components/Counter/Counter";
 import { Icon } from "src/components/Icon/Icon";
 import { LogOutButton } from "src/components/LogOutButton/LogOutButton";
 import { Text } from "src/components/Text/Text";
-import { TimeCard } from "src/components/TimeCard/TimeCard";
 
 interface PaywallHeaderProps {
   closePaywall?: () => void;
@@ -20,8 +20,6 @@ export const PaywallHeader = ({ closePaywall }: PaywallHeaderProps) => {
 
   const { session } = useAuth();
 
-  const userMetaData = session?.user.user_metadata as UserMetaData;
-
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -29,7 +27,7 @@ export const PaywallHeader = ({ closePaywall }: PaywallHeaderProps) => {
   });
 
   function getTimeLeft() {
-    const endDate = new Date(userMetaData.firstAppLaunch);
+    const endDate = new Date(session?.user?.created_at ?? new Date());
     setTimeLeft(calculateTimeDifferenceFromNow(endDate.toISOString(), true));
   }
 
@@ -71,17 +69,13 @@ export const PaywallHeader = ({ closePaywall }: PaywallHeaderProps) => {
         <Text color={"neutralLighest"} weight="semiBold" preset="default">
           Seu período experimental encerra em
         </Text>
-        <Box
-          flexDirection={"row"}
-          columnGap={"s10"}
-          alignItems={"center"}
-          justifyContent={"center"}
-          mt={"s20"}
-        >
-          <TimeCard label="dias" time={timeLeft.days.toString()} />
-          <TimeCard label="horas" time={timeLeft.hours.toString()} />
-          <TimeCard label="minutos" time={timeLeft.minutes.toString()} />
-        </Box>
+        <Counter
+          counter={{
+            days: timeLeft.days,
+            hours: timeLeft.hours,
+            minutes: timeLeft.minutes,
+          }}
+        />
       </Box>
     </Box>
   );

@@ -11,6 +11,7 @@ export * from "./Avatar/Avatar";
 export * from "./Screen/Screen";
 export * from "./Splash/Splash";
 export * from "./Switch/Switch";
+export * from "./Counter/Counter";
 export * from "./Paywall/Paywall";
 export * from "./Reviews/Reviews";
 export * from "./Divider/Divider";

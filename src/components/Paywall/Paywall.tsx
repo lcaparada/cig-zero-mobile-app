@@ -1,5 +1,7 @@
 import { Modal, ScrollView } from "react-native";
 
+import { useAppTheme } from "@hooks";
+
 import { getBenefits } from "@constraints";
 
 import { BenefitItem } from "../BenefitItem/BenefitItem";
@@ -14,7 +16,6 @@ import { usePaywall } from "./usePaywall";
 export const Paywall = () => {
   const {
     bottom,
-    colors,
     packages,
     metadata,
     isLoading,
@@ -22,6 +23,8 @@ export const Paywall = () => {
     paywallVisible,
     handlePurchasePackage,
   } = usePaywall();
+
+  const { colors } = useAppTheme();
 
   return (
     <Modal animationType="slide" visible={paywallVisible}>

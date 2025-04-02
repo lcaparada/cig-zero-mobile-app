@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { useAppSafeAreaContext, useAppTheme } from "@hooks";
+import { useAppSafeAreaContext } from "@hooks";
 
 import { useRevenueCatService, useToastService } from "@services";
 
@@ -16,8 +16,6 @@ export const usePaywall = () => {
   } = useRevenueCatService();
 
   const { showToast } = useToastService();
-
-  const { colors } = useAppTheme();
 
   const { bottom } = useAppSafeAreaContext();
 
@@ -49,7 +47,6 @@ export const usePaywall = () => {
 
   return {
     bottom,
-    colors,
     packages,
     metadata,
     isLoading,
