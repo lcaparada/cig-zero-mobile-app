@@ -45,13 +45,12 @@ export const Calendar = ({
     if (nativeEvent.state === State.END) {
       if (nativeEvent.translationX > 50) {
         posthog.capture(PostHogEventsName.SWIPE_LEFT_TO_SUBTRACT_MONTH);
-        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
         handleSubMonth();
       } else if (nativeEvent.translationX < -50) {
         posthog.capture(PostHogEventsName.SWIPE_RIGHT_TO_ADD_MONTH);
-        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
         handleAddMonth();
       }
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     }
   };
 
