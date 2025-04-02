@@ -113,7 +113,5 @@ const $card: BoxProps = {
   backgroundColor: "primary",
   borderRadius: "s8",
   paddingHorizontal: "s12",
-  borderWidth: 1,
-  borderColor: "primary",
   paddingVertical: "s10",
 };
