@@ -18,30 +18,36 @@ export const ProfileDetails = ({
   profile,
   latestSmokingRecord,
 }: ProfileDetailsProps) => {
+  const cardsData: CardProps[] = [
+    {
+      title: "Nível atual",
+      icon: "levelBadge",
+      current: profile.level.number ?? 1,
+    },
+    {
+      title: "Próximo nível",
+      icon: "levelUp",
+      current: profile.level.totalAccXp,
+      target: profile.level.nextLevelXp,
+    },
+    {
+      title: "Missões concluídas",
+      icon: "goal",
+      current: profile.totalMissionsConcluded ?? 0,
+    },
+    {
+      title: "Conquistas",
+      icon: "trophy",
+      current: profile.totalAchievements ?? 0,
+    },
+  ];
+
   return (
     <>
       <TimerContainer userId={userId} />
-      <Card
-        title="Nível atual"
-        icon="levelBadge"
-        current={profile?.level?.number ?? 1}
-      />
-      <Card
-        title="Próximo nível"
-        icon="levelUp"
-        current={profile.level.totalAccXp}
-        target={profile.level.nextLevelXp}
-      />
-      <Card
-        title="Missões concluídas"
-        icon="goal"
-        current={profile?.totalMissionsConcluded ?? 0}
-      />
-      <Card
-        title="Conquistas"
-        icon="trophy"
-        current={profile?.totalAchievements ?? 0}
-      />
+      {cardsData.map((card) => (
+        <Card key={card.title} {...card} />
+      ))}
       <LastSmokeCard latestSmokingRecord={latestSmokingRecord} />
     </>
   );
@@ -64,11 +70,11 @@ const Card = ({ icon, current, title, target }: CardProps) => (
   >
     <Box flexDirection="row" alignItems="center" columnGap="s8">
       <Icon name={icon} />
-      <Text weight="medium" color="primary" preset="paragraphsBig">
+      <Text weight="medium" color="neutralLighest" preset="paragraphsBig">
         {title}
       </Text>
     </Box>
-    <Text weight="bold" color="primary">
+    <Text weight="bold" color="neutralLighest">
       {target ? `${current}/${target}` : current}
     </Text>
   </Box>
@@ -82,7 +88,7 @@ const LastSmokeCard = ({ latestSmokingRecord }: LastSmokeCardProps) => (
   <Box {...$card} rowGap="s12" {...shadow}>
     <Box flexDirection="row" alignItems="center" columnGap="s8">
       <Icon name="calendar2" strokeWidth={2} />
-      <Text weight="medium" color="primary" preset="paragraphsBig">
+      <Text weight="medium" color="neutralLighest" preset="paragraphsBig">
         Último dia de fumo
       </Text>
     </Box>
@@ -92,7 +98,7 @@ const LastSmokeCard = ({ latestSmokingRecord }: LastSmokeCardProps) => (
       columnGap="s12"
       justifyContent="center"
     >
-      <Text weight="semiBold" color="primary">
+      <Text weight="semiBold" color="neutralLighest">
         {format(
           parseISO(latestSmokingRecord ?? new Date().toISOString()),
           "d 'de' MMMM 'de' yyyy 'às' HH:mm"
@@ -104,7 +110,7 @@ const LastSmokeCard = ({ latestSmokingRecord }: LastSmokeCardProps) => (
 
 const $card: BoxProps = {
   mt: "s18",
-  backgroundColor: "background",
+  backgroundColor: "primary",
   borderRadius: "s8",
   paddingHorizontal: "s12",
   borderWidth: 1,
