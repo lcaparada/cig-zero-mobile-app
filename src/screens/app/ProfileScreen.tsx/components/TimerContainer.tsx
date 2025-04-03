@@ -10,11 +10,18 @@ export const TimerContainer = (props: TimerContainerProps) => {
   const { timeSinceLastSmokingRecord } = useTimeSinceLastSmokingRecord(
     props.userId
   );
+
+  const timeInformationData = [
+    { label: "dias", value: timeSinceLastSmokingRecord.days },
+    { label: "horas", value: timeSinceLastSmokingRecord.hours },
+    { label: "minutos", value: timeSinceLastSmokingRecord.minutes },
+  ];
+
   return (
     <Box {...$card} {...shadow}>
       <Box flexDirection={"row"} alignItems={"center"} columnGap={"s8"}>
         <Icon name="clock2" />
-        <Text weight="medium" color={"primary"} preset="paragraphsBig">
+        <Text weight="medium" color={"neutralLighest"} preset="paragraphsBig">
           Tempo sem fumar
         </Text>
       </Box>
@@ -24,15 +31,14 @@ export const TimerContainer = (props: TimerContainerProps) => {
         columnGap={"s12"}
         justifyContent={"center"}
       >
-        <TimeInformation label="dias" value={timeSinceLastSmokingRecord.days} />
-        <TimeInformation
-          label="horas"
-          value={timeSinceLastSmokingRecord.hours}
-        />
-        <TimeInformation
-          label="minutos"
-          value={timeSinceLastSmokingRecord.minutes}
-        />
+        {timeInformationData.map((data, index) => (
+          <TimeInformation
+            key={index}
+            color="neutralLighest"
+            label={data.label}
+            value={data.value}
+          />
+        ))}
       </Box>
     </Box>
   );
@@ -40,10 +46,8 @@ export const TimerContainer = (props: TimerContainerProps) => {
 
 const $card: BoxProps = {
   mt: "s18",
-  backgroundColor: "background",
+  backgroundColor: "primary",
   borderRadius: "s8",
   paddingHorizontal: "s12",
-  borderWidth: 1,
-  borderColor: "primary",
   paddingVertical: "s10",
 };
