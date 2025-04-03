@@ -1,3 +1,5 @@
+import * as Haptics from "expo-haptics";
+
 import {
   TouchableOpacityBoxProps,
   TouchableOpacityBox,
@@ -17,7 +19,10 @@ export const ImageInput = ({
     <TouchableOpacityBox
       {...$touchableWrapper}
       {...touchableOpacityBoxProps}
-      onPress={onPress}
+      onPress={() => {
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+        onPress();
+      }}
     >
       <Box flexDirection={"row"} alignItems={"center"} columnGap={"s16"}>
         <Icon name="camera" strokeWidth={2} color="backgroundConstrast" />

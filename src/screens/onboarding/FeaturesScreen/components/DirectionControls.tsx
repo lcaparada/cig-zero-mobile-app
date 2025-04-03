@@ -1,3 +1,5 @@
+import * as Haptics from "expo-haptics";
+
 import { Box, BoxProps, Icon, TouchableOpacityBox } from "@components";
 
 interface DirectionControlsProps {
@@ -45,7 +47,10 @@ const DirectionButton = ({
 }: DirectionButtonProps) => (
   <TouchableOpacityBox
     {...$directionButtonWrapper}
-    onPress={onPress}
+    onPress={() => {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+      onPress();
+    }}
     disabled={disabled}
     backgroundColor={disabled ? "lightNeutralGray" : "primary"}
   >

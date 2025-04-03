@@ -1,3 +1,5 @@
+import * as Haptics from "expo-haptics";
+
 import { Box, BoxProps, TouchableOpacityBox } from "../Box/Box";
 import { Text } from "../Text/Text";
 
@@ -31,7 +33,10 @@ const KeyRow = ({
   >
     {keys.map((key) => (
       <TouchableOpacityBox
-        onPress={() => onPress(key)}
+        onPress={() => {
+          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+          onPress(key);
+        }}
         key={key}
         {...$keyBox}
         {...$buttonShadow}

@@ -1,3 +1,5 @@
+import * as Haptics from "expo-haptics";
+
 import { Box, TouchableOpacityBox } from "src/components/Box/Box";
 import { Icon } from "src/components/Icon/Icon";
 import { Text } from "src/components/Text/Text";
@@ -45,7 +47,12 @@ export const BottomSheetHeader = ({
       </Text>
       {rightButton ? (
         <Box position={"absolute"} right={0}>
-          <TouchableOpacityBox onPress={rightButton.action}>
+          <TouchableOpacityBox
+            onPress={() => {
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+              rightButton.action();
+            }}
+          >
             <Text weight="medium" color={"backgroundConstrast"}>
               {rightButton.text}
             </Text>

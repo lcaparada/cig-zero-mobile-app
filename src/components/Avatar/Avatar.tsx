@@ -1,5 +1,7 @@
 import { Image } from "react-native";
 
+import * as Haptics from "expo-haptics";
+
 import { ThemeBorderRadii, ThemeColors } from "@theme";
 
 import { TouchableOpacityBox, TouchableOpacityBoxProps } from "../Box/Box";
@@ -36,7 +38,14 @@ export const Avatar = ({
       borderRadius={borderRadius}
       borderWidth={photo ? 0 : borderWidth}
       borderColor={"mutedAqua"}
-      onPress={onPress}
+      onPress={
+        onPress
+          ? () => {
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+              onPress();
+            }
+          : undefined
+      }
       {...$touchableWrapper}
       {...touchableOpacityBoxProps}
     >

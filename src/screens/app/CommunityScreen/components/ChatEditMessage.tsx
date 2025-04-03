@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import * as Haptics from "expo-haptics";
+
 import {
   Box,
   BoxProps,
@@ -91,7 +93,10 @@ export const ChatActionButton = ({
     <TouchableOpacityBox
       disabled={disabled}
       {...$actionButtonWrapper}
-      onPress={action}
+      onPress={() => {
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+        action();
+      }}
     >
       <Icon name={iconName} size="s24" color="backgroundConstrast" />
     </TouchableOpacityBox>

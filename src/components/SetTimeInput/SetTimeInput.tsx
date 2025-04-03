@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 
 import { format } from "date-fns";
+import * as Haptics from "expo-haptics";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 import { Box, BoxProps, TouchableOpacityBox } from "../Box/Box";
@@ -26,7 +27,13 @@ export const SetTimeInput = ({ date, setDate }: SetTimeInputProps) => {
   return (
     <Fragment>
       <Box rowGap={"s8"}>
-        <TouchableOpacityBox {...$boxWrapper} onPress={showDatePicker}>
+        <TouchableOpacityBox
+          {...$boxWrapper}
+          onPress={() => {
+            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+            showDatePicker();
+          }}
+        >
           <Icon name="clock2" color="backgroundConstrast" strokeWidth={2} />
           <Text weight="medium" color={"backgroundSecondConstrast"}>
             {date !== null ? format(date, "HH:mm") : "Insira o horário"}
@@ -45,10 +52,14 @@ export const SetTimeInput = ({ date, setDate }: SetTimeInputProps) => {
           textColor={colors.backgroundConstrast}
           buttonTextColorIOS={colors.backgroundConstrast}
           onConfirm={(date) => {
+            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
             setDate(date);
             hideDatePicker();
           }}
-          onCancel={hideDatePicker}
+          onCancel={() => {
+            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+            hideDatePicker();
+          }}
         />
       ) : null}
     </Fragment>

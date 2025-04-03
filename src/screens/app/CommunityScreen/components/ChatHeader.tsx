@@ -1,6 +1,7 @@
 import { Image } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
+import * as Haptics from "expo-haptics";
 
 import { Box, BoxProps, Icon, Text, TouchableOpacityBox } from "@components";
 
@@ -47,11 +48,12 @@ const ProfileButton = ({ photo }: { photo?: string }) => {
 
   return (
     <TouchableOpacityBox
-      onPress={() =>
+      onPress={() => {
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
         navigation.navigate("ProfileScreen", {
           userId: session?.user?.id ?? "",
-        })
-      }
+        });
+      }}
       {...$profileButtonBox}
     >
       {photo ? (

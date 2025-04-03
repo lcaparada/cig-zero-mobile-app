@@ -1,3 +1,5 @@
+import * as Haptics from "expo-haptics";
+
 import { Text, RadioButton, TouchableOpacityBox, Box } from "@components";
 
 import { ThemePreference } from "@services";
@@ -22,7 +24,10 @@ export const OptionButton = ({
     <TouchableOpacityBox
       paddingVertical={"s16"}
       borderBottomWidth={isLastIndex ? 0 : 1}
-      onPress={onPress}
+      onPress={() => {
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+        onPress();
+      }}
       borderColor={"dividerColor"}
     >
       <Box

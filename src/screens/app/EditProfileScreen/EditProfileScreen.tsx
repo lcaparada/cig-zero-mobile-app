@@ -1,3 +1,5 @@
+import * as Haptics from "expo-haptics";
+
 import {
   Box,
   Text,
@@ -106,7 +108,10 @@ export const EditProfileScreen = () => {
             <OptionButton
               key={ind}
               {...opt}
-              onPress={() => setProfileVisibility(opt.value)}
+              onPress={() => {
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+                setProfileVisibility(opt.value);
+              }}
               isSelected={profileVisibility === opt.value}
             />
           ))}

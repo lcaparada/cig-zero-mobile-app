@@ -1,3 +1,5 @@
+import * as Haptics from "expo-haptics";
+
 import {
   BoxProps,
   AnimatedBoxRNR,
@@ -37,7 +39,10 @@ export const Switch = ({
   return (
     <AnimatedTouchableOpacityBoxRNR
       {...$touchableWrapper}
-      onPress={action}
+      onPress={() => {
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+        action();
+      }}
       disabled={disabled}
       style={[animatedTouchableBoxStyle]}
     >

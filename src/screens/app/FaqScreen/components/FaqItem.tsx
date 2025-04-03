@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import * as Haptics from "expo-haptics";
 import { usePostHog } from "posthog-react-native";
 
 import { Box, Icon, Text, TouchableOpacityBox } from "@components";
@@ -31,6 +32,7 @@ export const FaqItem = ({ question, answers }: FaqItemProps) => {
         backgroundColor={"background"}
         justifyContent={"space-between"}
         onPress={() => {
+          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
           posthog.capture(PostHogEventsName.PRESS_TO_OPEN_OR_CLOSE_FAQ_ITEM);
           setIsOpened(!isOpened);
         }}

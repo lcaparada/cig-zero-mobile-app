@@ -1,3 +1,5 @@
+import * as Haptics from "expo-haptics";
+
 import { BoxProps, TouchableOpacityBox } from "src/components/Box/Box";
 import { Icon } from "src/components/Icon/Icon";
 
@@ -10,7 +12,10 @@ export const Erase = ({ onPress, right = 70 }: EraseProps) => {
   return (
     <TouchableOpacityBox
       right={right}
-      onPress={onPress}
+      onPress={() => {
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+        onPress();
+      }}
       {...$eraseBox}
       {...$eraseShadow}
     >

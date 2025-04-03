@@ -6,6 +6,7 @@ import {
 } from "react-native";
 
 import { BlurView } from "expo-blur";
+import * as Haptics from "expo-haptics";
 import {
   useAnimatedStyle,
   useDerivedValue,
@@ -189,7 +190,10 @@ const OptionButton = ({ optionButton, isLastIndex }: OptionButtonProps) => {
         flexDirection={"row"}
         justifyContent={"space-between"}
         paddingVertical={"s8"}
-        onPress={optionButton.onPress}
+        onPress={() => {
+          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+          optionButton.onPress();
+        }}
         paddingHorizontal={"s12"}
       >
         <Text color={optionButton.text.color}>{optionButton.text.value}</Text>

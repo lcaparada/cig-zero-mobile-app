@@ -1,3 +1,4 @@
+import * as Haptics from "expo-haptics";
 import { Easing, FadeIn } from "react-native-reanimated";
 
 import {
@@ -75,6 +76,7 @@ export const OnboardingInput = ({
               isSelected ? "bluePrimaryWith25PercentOpacity" : "background"
             }
             onPress={() => {
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
               onChange(value);
             }}
           >

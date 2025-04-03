@@ -1,5 +1,6 @@
 import { Platform } from "react-native";
 
+import * as Haptics from "expo-haptics";
 import { PurchasesStoreProduct } from "react-native-purchases";
 
 import {
@@ -43,7 +44,11 @@ export const PackageItem = ({
     <TouchableOpacityBox
       {...$touchableWrapper}
       disabled={isLoading}
-      onPress={() => setSelectedPackage(packageIdentifier)}
+      onPress={() => {
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+
+        setSelectedPackage(packageIdentifier);
+      }}
       borderColor={isSelected ? "primary" : "packageItemBorderColor"}
     >
       <Box flex={1} flexDirection="row" alignItems="center" columnGap="s12">

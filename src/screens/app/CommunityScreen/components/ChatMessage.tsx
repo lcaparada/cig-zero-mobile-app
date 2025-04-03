@@ -3,6 +3,7 @@ import { Image, TouchableOpacity } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
 import { differenceInMinutes, format } from "date-fns";
+import * as Haptics from "expo-haptics";
 import { usePostHog } from "posthog-react-native";
 
 import { Box, BoxProps, Icon, Text, TouchableOpacityBox } from "@components";
@@ -70,6 +71,7 @@ export const ChatMessage = ({
   };
 
   const navigateToProfile = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     navigation.navigate("ProfileScreen", { userId: author?.id ?? "" });
   };
 
@@ -131,6 +133,7 @@ export const ChatMessage = ({
                 <TouchableOpacityBox
                   hitSlop={10}
                   onPress={() => {
+                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
                     posthog.capture(
                       PostHogEventsName.PRESS_TO_RESPOND_A_MESSAGE
                     );

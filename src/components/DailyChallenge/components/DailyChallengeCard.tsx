@@ -1,3 +1,5 @@
+import * as Haptics from "expo-haptics";
+
 import { shadow } from "@theme";
 
 import { useChallenge, useToastService } from "@services";
@@ -29,6 +31,7 @@ export const DailyChallengeCard = ({
     useCompleteDailyChallenge();
 
   async function completeDailyChallenge() {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     try {
       const result = await handleCompleteDailyChallenge({ missionId: id });
       if (result.newLevel !== undefined) {

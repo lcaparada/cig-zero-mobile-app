@@ -14,9 +14,10 @@ import {
 } from "@components";
 import { shadow } from "@theme";
 
-import { useCompleteDailyChallenge } from "src/domain/Challenge";
-
-import { useDailyChallenge } from "./useDailyChallenge";
+import {
+  useCompleteDailyChallenge,
+  useGetDailyChallenges,
+} from "src/domain/Challenge";
 
 const WalkthroughableBox = walkthroughable(Box);
 
@@ -32,7 +33,7 @@ const $dailyChallengeCardBox: BoxProps = {
 };
 
 export const DailyChallenge = () => {
-  const { dailyChallenges, isFetching } = useDailyChallenge();
+  const { dailyChallenges, isFetching } = useGetDailyChallenges();
   return (
     <CopilotStep
       text="Esta seção traz desafios diários: complete-os marcando o check e ganhe XP para subir de nível!"

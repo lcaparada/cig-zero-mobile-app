@@ -1,5 +1,7 @@
 import { Image, ScrollView } from "react-native";
 
+import * as Haptics from "expo-haptics";
+
 import { Box, Icon, TouchableOpacityBox } from "@components";
 
 import { ImageInput } from "./ImageInput";
@@ -30,7 +32,10 @@ export const ImageCarousel = ({
             height={100}
             borderWidth={2}
             borderRadius={"s12"}
-            onPress={() => handleRemoveImage(index)}
+            onPress={() => {
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+              handleRemoveImage(index);
+            }}
           >
             <Box
               top={8}

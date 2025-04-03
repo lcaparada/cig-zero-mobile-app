@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { format } from "date-fns";
+import * as Haptics from "expo-haptics";
 import { Controller } from "react-hook-form";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { Easing, FadeIn } from "react-native-reanimated";
@@ -28,10 +29,12 @@ export const SeventhStepOnboarding = ({
   const { appTheme } = useAppColor();
 
   const showDatePicker = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     setVisibility(true);
   };
 
   const hideDatePicker = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     setVisibility(false);
   };
 

@@ -1,3 +1,4 @@
+import * as Haptics from "expo-haptics";
 import { usePostHog } from "posthog-react-native";
 import { useCopilot } from "react-native-copilot";
 
@@ -36,6 +37,7 @@ export const TooltipCopilot = () => {
         {!isLastStep ? (
           <TouchableOpacityBox
             onPress={() => {
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
               posthog.capture(PostHogEventsName.PRESS_TO_SKIP_TUTORIAL, {
                 step: currentStep?.order,
               });
@@ -50,6 +52,7 @@ export const TooltipCopilot = () => {
         {!isFirstStep ? (
           <TouchableOpacityBox
             onPress={() => {
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
               posthog.capture(
                 PostHogEventsName.PRESS_TO_PREVIOUS_STEP_TUTORIAL,
                 {
@@ -67,6 +70,10 @@ export const TooltipCopilot = () => {
         {!isLastStep ? (
           <TouchableOpacityBox
             onPress={() => {
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+              posthog.capture(PostHogEventsName.PRESS_TO_NEXT_STEP_TUTORIAL, {
+                step: currentStep?.order,
+              });
               handleNext();
             }}
           >
@@ -80,6 +87,7 @@ export const TooltipCopilot = () => {
               posthog.capture(PostHogEventsName.PRESS_TO_FINISH_TUTORIAL, {
                 step: currentStep?.order,
               });
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
               handleStop();
             }}
           >
