@@ -4,4 +4,3 @@ export * from "./Community";
 export * from "./ActionsButtons";
 export * from "./GeneralProgress";
 export * from "./HomeHeader/HomeHeader";
-export * from "./DailyChallenge/DailyChallenge";

@@ -1,6 +1,6 @@
 import { RefreshControl, ScrollView } from "react-native";
 
-import { Divider, Popup } from "@components";
+import { DailyChallenge, Divider, Popup } from "@components";
 
 import {
   Historic,
@@ -8,7 +8,6 @@ import {
   HomeHeader,
   ActionsButtons,
   GeneralProgress,
-  DailyChallenge,
   Community,
 } from "./components";
 import { PhraseOfDay } from "./components/PhraseOfDay";
