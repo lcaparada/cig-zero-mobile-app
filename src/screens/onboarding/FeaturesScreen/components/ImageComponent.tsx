@@ -26,8 +26,8 @@ const imageMap: Record<ImageNameProps, ImageSourcePropType> = {
 };
 
 export const ImageComponent = ({ width, imageName }: ImageComponentProps) => {
-  const originalWidth = 1117;
-  const originalHeight = 1565;
+  const originalWidth = 1140;
+  const originalHeight = 1575;
 
   const aspectRatio = originalHeight / originalWidth;
 
