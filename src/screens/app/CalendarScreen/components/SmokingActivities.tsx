@@ -33,7 +33,7 @@ export const SmokingActivities = ({
             smokingRecords?.map((record, i) => (
               <Button
                 key={i}
-                iconName="wind"
+                iconName="cigarette"
                 text={`1 cigarro às ${format(record.date, "HH:mm")}`}
                 justifyContent={"flex-start"}
                 onPress={() => action(record)}
