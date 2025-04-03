@@ -47,12 +47,16 @@ export const ProfileHeader = ({
           flexDirection={"row"}
           columnGap={"s4"}
           alignItems={"center"}
-          onPress={openLevelDescriptionPopup}
+          onPress={
+            isMineProfile ? () => openLevelDescriptionPopup() : undefined
+          }
         >
           <Text weight="bold" color="primary" preset="paragraphsXL">
             {profile.level.title}
           </Text>
-          <Icon color="primary" strokeWidth={2} name="infoCircle" />
+          {isMineProfile && (
+            <Icon color="primary" strokeWidth={2} name="infoCircle" />
+          )}
         </PressableBox>
       )}
       {profile.level.icon && (
