@@ -13,7 +13,6 @@ export const BenefitItem = ({ text, iconName }: BenefitItemProps) => {
       <Icon name={iconName} strokeWidth={2.5} size={"s20"} color="primary" />
       <Text
         weight="medium"
-        numberOfLines={1}
         preset="default"
         color="backgroundSecondConstrast"
         style={{ flexWrap: "wrap", flexShrink: 1 }}
