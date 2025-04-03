@@ -15,7 +15,7 @@ export const OMSTipsScreen = () => {
         refreshing: isRefreshing,
         onRefresh: handleRefresh,
       }}
-      insets={{ left: "s0", right: "s0", top: "s0", bottom: "s24" }}
+      insets={{ left: "s0", right: "s0", top: "s0", bottom: "s0" }}
     >
       <OMSTipsHeader />
       {omsTips.map(({ target, title, description, type }, index) => {
