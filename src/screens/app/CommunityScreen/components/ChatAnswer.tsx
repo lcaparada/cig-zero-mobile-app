@@ -7,7 +7,7 @@ export const ChatAnswer = () => {
 
   return (
     <Box {...$wrapper}>
-      <Box flexDirection={"row"} columnGap={"s8"}>
+      <Box flexDirection={"row"} flex={1} columnGap={"s8"}>
         <Box
           width={5}
           height={"100%"}

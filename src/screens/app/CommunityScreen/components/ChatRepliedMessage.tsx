@@ -12,7 +12,7 @@ export const ChatRepliedMessage = ({
   text,
 }: ChatRepliedMessageProps) => {
   return (
-    <Box height={60} paddingHorizontal={"s8"} paddingTop={"s6"}>
+    <Box paddingHorizontal={"s8"} paddingTop={"s6"}>
       <Box
         {...$repliedMessageBox}
         backgroundColor={isMine ? "mutedSlate" : "chatMessageShadow"}
@@ -22,15 +22,15 @@ export const ChatRepliedMessage = ({
           width={6}
           height={"100%"}
         />
-        <Box>
+        <Box paddingVertical={"s6"} paddingRight={"s6"}>
           <Text
-            color={"backgroundConstrast"}
+            color={"neutralLighest"}
             preset="paragraphsBig"
             weight="semiBold"
           >
             {authorName}
           </Text>
-          <Text color={"backgroundConstrast"} preset="paragraphs">
+          <Text color={"neutralLighest"} preset="paragraphs">
             {text}
           </Text>
         </Box>
@@ -41,7 +41,6 @@ export const ChatRepliedMessage = ({
 
 const $repliedMessageBox: BoxProps = {
   width: "100%",
-  height: "100%",
   overflow: "hidden",
   columnGap: "s8",
   alignItems: "center",
