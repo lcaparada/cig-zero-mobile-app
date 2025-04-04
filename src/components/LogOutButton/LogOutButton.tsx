@@ -9,9 +9,13 @@ import { Text } from "../Text/Text";
 
 interface LogOutButtonProps {
   color?: ThemeColors;
+  disabled?: boolean;
 }
 
-export const LogOutButton = ({ color = "primary" }: LogOutButtonProps) => {
+export const LogOutButton = ({
+  color = "primary",
+  disabled = false,
+}: LogOutButtonProps) => {
   const { signOut } = useAuth();
 
   return (
@@ -20,7 +24,7 @@ export const LogOutButton = ({ color = "primary" }: LogOutButtonProps) => {
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
         signOut();
       }}
-      disabled={false}
+      disabled={disabled}
     >
       <Text color={color} weight="medium">
         Sair

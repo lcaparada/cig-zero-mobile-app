@@ -32,6 +32,7 @@ export const PaywallHeader = ({ closePaywall }: PaywallHeaderProps) => {
   }
 
   useEffect(() => {
+    getTimeLeft();
     const interval = setInterval(() => {
       getTimeLeft();
     }, 1000);
@@ -54,15 +55,19 @@ export const PaywallHeader = ({ closePaywall }: PaywallHeaderProps) => {
       </Text>
 
       <Box position={"absolute"} right={24} top={top + 8}>
-        {closePaywall ? (
+        {closePaywall && timeLeft.minutes > 0 ? (
           <Icon
             name="x"
             size="s24"
             color="neutralLighest"
             onPress={closePaywall}
+            disabled={timeLeft.minutes === 0}
           />
         ) : (
-          <LogOutButton color="neutralLighest" />
+          <LogOutButton
+            color="neutralLighest"
+            disabled={timeLeft.minutes > 0}
+          />
         )}
       </Box>
       <Box alignItems={"center"} mt={"s20"}>
