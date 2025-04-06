@@ -77,7 +77,7 @@ export const AppStack = () => {
       requestReview();
     }
 
-    if (diffInDays >= 3) {
+    if (diffInDays >= 3 && process.env.EXPO_PUBLIC_NODE_ENV === "PROD") {
       checkIfUserIsPremium();
     } else {
       setPaywallVisible(false);
