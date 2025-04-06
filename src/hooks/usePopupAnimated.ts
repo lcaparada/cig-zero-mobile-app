@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useCallback } from "react";
 import { useWindowDimensions } from "react-native";
 
 import {
@@ -7,12 +7,11 @@ import {
   withSpring,
 } from "react-native-reanimated";
 
-import { PopupProps } from "./Popup";
+interface UsePopupAnimatedProps {
+  setVisible: (value: React.SetStateAction<boolean>) => void;
+}
 
-export const usePopup = ({
-  visible,
-  setVisible,
-}: Pick<PopupProps, "visible" | "setVisible">) => {
+export const usePopupAnimated = ({ setVisible }: UsePopupAnimatedProps) => {
   const { height: SCREEN_HEIGHT } = useWindowDimensions();
   const translateY = useSharedValue(SCREEN_HEIGHT);
 
@@ -29,15 +28,9 @@ export const usePopup = ({
     translateY.value = 0;
   }, [translateY]);
 
-  useEffect(() => {
-    if (visible) {
-      showPopup();
-    }
-  }, [showPopup, visible]);
-
   return {
-    animatedStyles,
     showPopup,
     hidePopup,
+    animatedStyles,
   };
 };

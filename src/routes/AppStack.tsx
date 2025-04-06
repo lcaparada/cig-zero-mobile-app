@@ -1,10 +1,10 @@
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 import { NavigatorScreenParams } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as StoreReview from "expo-store-review";
 
-import { Paywall } from "@components";
+import { Paywall, QuestionPopup } from "@components";
 import {
   FaqScreen,
   FriendsScreen,
@@ -23,7 +23,7 @@ import {
 } from "@screens";
 
 import { calculateDiffInDays } from "@helpers";
-import { useAuth, useRevenueCatService } from "@services";
+import { secureStorage, useAuth, useRevenueCatService } from "@services";
 
 import { AppTabBottomTabParamList, AppTabNavigator } from "./AppTabNavigator";
 
@@ -52,11 +52,13 @@ const Stack = createNativeStackNavigator<AppStackParamList>();
 export const AppStack = () => {
   const { session } = useAuth();
 
+  const [isQuestionPopupVisible, setIsQuestionPopupVisible] = useState(false);
+
   const {
-    checkIfUserIsPremium,
+    isUserPremium,
     paywallVisible,
     setPaywallVisible,
-    isUserPremium,
+    checkIfUserIsPremium,
   } = useRevenueCatService();
 
   const requestReview = async () => {
@@ -66,22 +68,36 @@ export const AppStack = () => {
   };
 
   useEffect(() => {
-    if (!session?.user?.created_at) return;
+    (async () => {
+      const createdAt = session?.user?.created_at;
+      if (!createdAt) return;
 
-    const userCreatedAt = new Date(session?.user?.created_at ?? new Date());
-    if (isNaN(userCreatedAt.getTime())) return;
+      const userCreatedAt = new Date(createdAt);
+      if (isNaN(userCreatedAt.getTime())) return;
 
-    const diffInDays = calculateDiffInDays(new Date(), userCreatedAt);
+      const diffInDays = calculateDiffInDays(new Date(), userCreatedAt);
+      const isEveryThirdDay = diffInDays > 0 && diffInDays % 3 === 0;
+      const isProd = process.env.EXPO_PUBLIC_NODE_ENV === "PROD";
 
-    if (diffInDays > 0 && diffInDays % 3 === 0 && isUserPremium) {
-      requestReview();
-    }
+      if (isEveryThirdDay && isUserPremium) {
+        requestReview();
+      }
 
-    if (diffInDays >= 3) {
-      checkIfUserIsPremium();
-    } else {
-      setPaywallVisible(false);
-    }
+      if (diffInDays >= 3 && isProd) {
+        await checkIfUserIsPremium();
+      } else {
+        setPaywallVisible(false);
+      }
+
+      const feedbackAnswered = await secureStorage.getItem("feedbackAnswered");
+
+      if (feedbackAnswered === "true") {
+        setIsQuestionPopupVisible(false);
+      } else if (isEveryThirdDay) {
+        setIsQuestionPopupVisible(true);
+      }
+    })();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session?.user?.user_metadata?.firstAppLaunch]);
 
@@ -126,6 +142,12 @@ export const AppStack = () => {
         <Stack.Screen name="FaqScreen" component={FaqScreen} />
       </Stack.Navigator>
       {paywallVisible && <Paywall />}
+      {isQuestionPopupVisible && (
+        <QuestionPopup
+          visible={isQuestionPopupVisible}
+          setVisible={setIsQuestionPopupVisible}
+        />
+      )}
     </Fragment>
   );
 };

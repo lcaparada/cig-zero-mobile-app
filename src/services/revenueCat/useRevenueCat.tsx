@@ -61,7 +61,7 @@ export const useRevenueCatStore = create<RevenueCatService>((set, get) => ({
         promotionalOffer
       );
       await checkIfUserIsPremium();
-      set({paywallVisible: false})
+      set({ paywallVisible: false });
     } catch (error: any) {
       throw error;
     } finally {
