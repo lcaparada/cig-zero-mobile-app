@@ -4,6 +4,7 @@ export * from "./Issues";
 export * from "./Profile";
 export * from "./Friends";
 export * from "./SmokeLog";
+export * from "./Feedback";
 export * from "./PhraseOfDay";
 export * from "./Conversation";
 export * from "./Notification";

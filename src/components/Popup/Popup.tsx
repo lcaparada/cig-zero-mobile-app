@@ -1,16 +1,16 @@
-import { Image, Modal, StyleSheet } from "react-native";
+import { useEffect } from "react";
+import { Modal, StyleSheet } from "react-native";
+
+import { usePopupAnimated } from "@hooks";
 
 import { AnimatedBoxRNR, Box, BoxProps } from "../Box/Box";
 import { Button, ButtonProps } from "../Button/Button";
 import { Text } from "../Text/Text";
 
-import { usePopup } from "./usePopup";
-
 export interface PopupProps {
   title: string;
   visible: boolean;
   button?: ButtonProps;
-  showTrophy?: boolean;
   description: string;
   hideCloseButton?: boolean;
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
@@ -20,24 +20,24 @@ export const Popup = ({
   title,
   button,
   visible,
-  showTrophy,
   description,
   hideCloseButton,
   setVisible,
 }: PopupProps) => {
-  const { animatedStyles, hidePopup } = usePopup({ visible, setVisible });
+  const { showPopup, hidePopup, animatedStyles } = usePopupAnimated({
+    setVisible,
+  });
+
+  useEffect(() => {
+    if (visible) {
+      showPopup();
+    }
+  }, [showPopup, visible]);
 
   return (
     <Modal transparent visible={visible} animationType="fade">
       <Box style={StyleSheet.absoluteFillObject} {...$boxWrapper}>
         <AnimatedBoxRNR {...$animatedBoxWrapper} style={[animatedStyles]}>
-          {showTrophy && (
-            <Image
-              source={require("../../assets/trophy.png")}
-              style={{ width: 140, height: 140, alignSelf: "center" }}
-            />
-          )}
-
           <Text
             preset="titleSmall"
             weight="semiBold"
