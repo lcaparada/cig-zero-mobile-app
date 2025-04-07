@@ -35,6 +35,7 @@ export * from "./LevelUpPopup/LevelUpPopup";
 export * from "./LogOutButton/LogOutButton";
 export * from "./ScreenHeader/ScreenHeader";
 export * from "./QuestionPopup/QuestionPopup";
+export * from "./ProfileButton/ProfileButton";
 export * from "./SocialButtons/SocialButtons";
 export * from "./DiscountBadge/DiscountBadge";
 export * from "./DailyChallenge/DailyChallenge";
