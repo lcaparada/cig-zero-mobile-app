@@ -50,9 +50,22 @@ export namespace GetProfile {
   export type Result = Profile;
 }
 
+export namespace UploadProfilePhoto {
+  export type Params = {
+    filePath: string;
+    base64: string;
+    contentType: string;
+  };
+
+  export type Result = {
+    publicUrl: string;
+  };
+}
+
 export namespace UpdateProfile {
   export type Params = {
     bio: string;
+    photo: string;
     location: string;
     visibilityStatus: VisibilityStatus;
   };

@@ -10,3 +10,4 @@ export * from "./profileAdapter";
 // USE CASES
 export * from "./useCases/useGetProfile";
 export * from "./useCases/useUpdateProfile";
+export * from "./useCases/useUploadProfilePhoto";

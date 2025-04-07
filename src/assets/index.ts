@@ -14,6 +14,7 @@ export * from "./icons/wind";
 export * from "./icons/plus";
 export * from "./icons/send";
 export * from "./icons/goal";
+export * from "./icons/edit";
 export * from "./icons/edit2";
 export * from "./icons/globe";
 export * from "./icons/apple";
