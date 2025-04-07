@@ -30,7 +30,6 @@ export const ChatHeader = () => {
             onPress={() => navigation.navigate("FriendsScreen")}
           /> */}
           <ProfileButton />
-          <ProfileButton />
         </Box>
       </Box>
     </Box>
