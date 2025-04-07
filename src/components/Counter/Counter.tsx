@@ -28,6 +28,7 @@ export const Counter = ({ counter }: CounterProps) => {
         <TimeCard
           key={unit.label}
           label={unit.label}
+          thirdNumberInDays={counter.days >= 100}
           time={unit.value.toString()}
         />
       ))}
