@@ -27,8 +27,13 @@ export const useGetConversationMessages = ({ userId }: { userId?: string }) => {
         });
       },
       getNextPageParam: (lastPage, allPages) => {
-        if (lastPage.messages.length < 5) return undefined;
-        return allPages.length + 1;
+        const totalMessages = allPages.reduce(
+          (acc, page) => acc + page.messages.length,
+          0
+        );
+        if (lastPage.messages.length < LIMIT) return undefined;
+
+        return totalMessages;
       },
 
       initialPageParam: 0,
