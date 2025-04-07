@@ -43,7 +43,7 @@ describe("calculateDiffInDays", () => {
     expect(diff).toBeNaN();
   });
   it("should handle leap years correctly", () => {
-    const laterDate = new Date("2024-02-29"); // Leap year date
+    const laterDate = new Date("2024-02-29");
     const earlierDate = new Date("2024-02-28");
     const diff = calculateDiffInDays(laterDate, earlierDate);
     expect(diff).toBe(1);
