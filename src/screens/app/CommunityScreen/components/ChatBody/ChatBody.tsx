@@ -2,7 +2,7 @@ import { FlatList, ListRenderItemInfo, ViewProps } from "react-native";
 
 import { usePostHog } from "posthog-react-native";
 
-import { Box, Button, Icon, Text } from "@components";
+import { ActivityIndicator, Box, Button, Icon, Text } from "@components";
 
 import { PostHogEventsName } from "@constraints";
 import { Message } from "@domain";
@@ -24,6 +24,7 @@ export const ChatBody = (props: ChatBodyProps) => {
     flatListRef,
     handleScroll,
     fetchNextPage,
+    isFetchingNextPage,
     handleAddNewMessage,
     handleScrollToBottom,
   } = useChatBody();
@@ -65,6 +66,9 @@ export const ChatBody = (props: ChatBodyProps) => {
             onEndReachedThreshold={0.5}
             showsVerticalScrollIndicator={false}
             initialNumToRender={10}
+            ListFooterComponent={
+              isFetchingNextPage ? <ActivityIndicator /> : null
+            }
             keyExtractor={([key], index) => `${key}-${index}`}
             contentContainerStyle={{
               rowGap: 24,

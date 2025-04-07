@@ -24,9 +24,10 @@ export const useChatBody = () => {
   } = useChat();
   const { showToast } = useToastService();
 
-  const { fetchNextPage, isLoading } = useGetConversationMessages({
-    userId: undefined,
-  });
+  const { fetchNextPage, isLoading, isFetchingNextPage } =
+    useGetConversationMessages({
+      userId: undefined,
+    });
   const { handlePublishMessage } = usePublishMessage();
 
   const queryClient = useQueryClient();
@@ -92,6 +93,7 @@ export const useChatBody = () => {
     flatListRef,
     handleScroll,
     fetchNextPage,
+    isFetchingNextPage,
     handleAddNewMessage,
     handleScrollToBottom,
     data: groupedAndSortedMessages,
