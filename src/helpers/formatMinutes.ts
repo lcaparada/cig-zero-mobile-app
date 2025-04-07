@@ -1,4 +1,6 @@
 export function formatMinutes(minutes: number): string {
+  if (minutes < 0) throw new Error("Negative minutes are not allowed");
+
   const days = Math.floor(minutes / 1440);
   const hours = Math.floor((minutes % 1440) / 60);
   const mins = minutes % 60;
