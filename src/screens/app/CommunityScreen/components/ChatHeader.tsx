@@ -5,11 +5,14 @@ import * as Haptics from "expo-haptics";
 
 import { Box, BoxProps, Icon, Text, TouchableOpacityBox } from "@components";
 
+import { useGetProfile } from "@domain";
 import { useAuth } from "@services";
 
 export const ChatHeader = () => {
   const navigation = useNavigation();
   const { session } = useAuth();
+
+  const { profile } = useGetProfile(session?.user?.id ?? "");
 
   return (
     <Box backgroundColor={"primary"} {...$shadow}>
@@ -34,7 +37,9 @@ export const ChatHeader = () => {
             color="neutralLighest"
             onPress={() => navigation.navigate("FriendsScreen")}
           /> */}
-          <ProfileButton photo={session?.user?.user_metadata?.avatar_url} />
+          <ProfileButton
+            photo={profile?.photo ?? session?.user?.user_metadata?.avatar_url}
+          />
         </Box>
       </Box>
     </Box>

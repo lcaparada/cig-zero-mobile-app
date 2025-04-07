@@ -40,11 +40,14 @@ const optionButtons: Pick<
 
 export const EditProfileScreen = () => {
   const {
+    photos,
     control,
     canSave,
+    profile,
     isUpdating,
     userMetaData,
     updateProfile,
+    handleSetImage,
     profileVisibility,
     setProfileVisibility,
   } = useEditProfileScreen();
@@ -62,12 +65,17 @@ export const EditProfileScreen = () => {
       }}
     >
       <Box alignItems={"center"} rowGap={"s12"}>
-        <Avatar
-          name={userMetaData.full_name}
-          size={80}
-          borderRadius="full"
-          photo={userMetaData.avatar_url}
-        />
+        <Box>
+          <Avatar
+            name={userMetaData.full_name}
+            size={80}
+            borderRadius="full"
+            canEditPhoto
+            onPress={handleSetImage}
+            photo={photos[0] ?? profile?.photo ?? userMetaData?.avatar_url}
+          />
+        </Box>
+
         <Text
           weight="medium"
           color={"backgroundConstrast"}

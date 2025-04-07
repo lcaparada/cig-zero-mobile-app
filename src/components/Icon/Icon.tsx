@@ -78,6 +78,7 @@ import {
   Thinking,
   Healthcare,
   Star2,
+  Edit,
 } from "@assets";
 
 import { TouchableOpacityBox } from "../Box/Box";
@@ -154,6 +155,7 @@ const iconRegistry = {
   lock: Lock,
   chat: Chat,
   goal: Goal,
+  edit: Edit,
   star2: Star2,
   goals: Goals,
   apple: Apple,

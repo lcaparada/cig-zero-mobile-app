@@ -5,7 +5,14 @@ import { useNavigation } from "@react-navigation/native";
 import { useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 
-import { useGetProfile, useUpdateProfile, VisibilityStatus } from "@domain";
+import { usePickImage } from "@hooks";
+
+import {
+  useGetProfile,
+  useUpdateProfile,
+  useUploadProfilePhoto,
+  VisibilityStatus,
+} from "@domain";
 import { QueryKeys } from "@infra";
 import { useAuth, UserMetaData, useToastService } from "@services";
 
@@ -20,6 +27,12 @@ export const useEditProfileScreen = () => {
   const { profile, isLoading } = useGetProfile(session?.user?.id ?? "");
 
   const { isUpdating, handleUpdateProfile } = useUpdateProfile();
+
+  const { handleUploadProfilePhoto } = useUploadProfilePhoto();
+
+  const { photos, handleSetImage } = usePickImage({
+    acceptMultipleImages: false,
+  });
 
   const navigation = useNavigation();
 
@@ -40,14 +53,18 @@ export const useEditProfileScreen = () => {
   const canSave =
     profile?.bio !== watch("bio") ||
     profile.location !== watch("location") ||
-    profile?.visibilityStatus !== profileVisibility;
+    profile?.visibilityStatus !== profileVisibility ||
+    photos.length !== 0;
 
   async function updateProfile() {
     const { bio, location } = getValues();
     try {
+      const data = await handleUploadProfilePhoto({ photo: photos[0] });
+
       await handleUpdateProfile({
         bio,
         location,
+        photo: data?.publicUrl ?? "",
         visibilityStatus: profileVisibility,
       });
       queryClient.refetchQueries({ queryKey: [QueryKeys.GetProfile] });
@@ -72,10 +89,13 @@ export const useEditProfileScreen = () => {
   }, [isLoading]);
 
   return {
+    photos,
     control,
     canSave,
+    profile,
     isUpdating,
     userMetaData,
+    handleSetImage,
     profileVisibility,
     updateProfile,
     setProfileVisibility,
