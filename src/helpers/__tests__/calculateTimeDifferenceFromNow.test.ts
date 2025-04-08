@@ -12,6 +12,7 @@ describe("calculateTimeDifferenceFromNow", () => {
   afterAll(() => {
     jest.clearAllMocks();
   });
+
   it("should return the correct time difference from now", () => {
     const date = new Date(
       sub(MOCKED_DATE, { days: 2, hours: 5 })
@@ -19,10 +20,12 @@ describe("calculateTimeDifferenceFromNow", () => {
     const result = calculateTimeDifferenceFromNow(date);
     expect(result).toEqual({ days: 2, hours: 5, minutes: 0 });
   });
+
   it("should return everything zero if it is not a valid date", () => {
     const result = calculateTimeDifferenceFromNow("2");
     expect(result).toEqual({ days: 0, hours: 0, minutes: 0 });
   });
+
   it("should return everything zero if the date in timestamp is not a number", () => {
     const result = calculateTimeDifferenceFromNow("22-03-2024");
     expect(result).toEqual({ days: 0, hours: 0, minutes: 0 });
