@@ -2,7 +2,8 @@ import { parseISO, addDays } from "date-fns";
 
 export const calculateTimeDifferenceFromNow = (
   date: string,
-  countdownMode: boolean = false
+  countdownMode: boolean = false,
+  countdownNumber: number = 3
 ) => {
   if (!date) {
     return { days: 0, hours: 0, minutes: 0 };
@@ -17,7 +18,7 @@ export const calculateTimeDifferenceFromNow = (
   let targetTimestamp = dateInTimestamp;
 
   if (countdownMode) {
-    targetTimestamp = addDays(parseISO(date), 3).getTime();
+    targetTimestamp = addDays(parseISO(date), countdownNumber).getTime();
   }
 
   const now = Date.now();
