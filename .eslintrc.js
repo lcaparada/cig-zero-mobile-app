@@ -3,8 +3,15 @@ module.exports = {
     "expo",
     "prettier",
     "plugin:@tanstack/eslint-plugin-query/recommended",
+    "**/__tests__/**/*.[jt]s?(x)",
+    "**/?(*.)+(spec|test).[jt]s?(x)",
   ],
-  plugins: ["import", "prettier", "@tanstack/query"],
+  plugins: [
+    "import",
+    "prettier",
+    "@tanstack/query",
+    "plugin:testing-library/react",
+  ],
   overrides: [
     {
       files: ["*.ts", "*.tsx"],

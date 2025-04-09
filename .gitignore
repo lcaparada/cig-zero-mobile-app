@@ -17,7 +17,7 @@ web-build/
 *.mobileprovision
 
 # Test
-./coverage
+coverage/
 
 # Metro
 .metro-health-check*
