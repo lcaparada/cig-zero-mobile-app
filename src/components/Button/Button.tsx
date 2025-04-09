@@ -63,10 +63,7 @@ export const Button = ({
       {...touchableOpacityBoxProps}
     >
       {isLoading ? (
-        <ActivityIndicator
-          testID="activity-indicator-button"
-          color={buttonPreset.loading}
-        />
+        <ActivityIndicator color={buttonPreset.loading} />
       ) : (
         <Box
           columnGap={"s8"}

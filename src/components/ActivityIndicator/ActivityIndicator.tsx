@@ -20,6 +20,7 @@ export const ActivityIndicator = ({
   const { colors, spacing } = useAppTheme();
   return (
     <RNActivityIndicator
+      testID="activity-indicator"
       color={colors[color]}
       size={spacing[size]}
       {...rNActivityIndicatorProps}
