@@ -11,10 +11,12 @@ function renderComponent(props?: Partial<ButtonProps>) {
 
   const titleElement = screen.queryByText(buttonText);
   const loadingElement = screen.queryByTestId("activity-indicator-button");
+  const buttonElement = screen.queryByTestId("button");
 
   return {
     titleElement,
     loadingElement,
+    buttonElement,
   };
 }
 
@@ -58,12 +60,12 @@ describe("<Button/>", () => {
   it("should disable button when isLoading is true", () => {
     const mockedOnPress = jest.fn();
 
-    renderComponent({
+    const { buttonElement } = renderComponent({
       isLoading: true,
       onPress: mockedOnPress,
     });
 
-    fireEvent.press(screen.getByTestId("button"));
+    fireEvent.press(buttonElement);
 
     expect(mockedOnPress).not.toHaveBeenCalled();
   });
