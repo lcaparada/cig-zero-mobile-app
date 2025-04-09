@@ -16,7 +16,8 @@
       "@domain": ["src/domain"],
       "@infra": ["src/infra"],
       "@i18n": ["src/i18n"],
-      "@constraints": ["src/constraints"]
+      "@constraints": ["src/constraints"],
+      "test-utils": ["src/test/test-utils.tsx"]
     }
   }
 }

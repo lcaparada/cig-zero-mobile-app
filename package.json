@@ -83,9 +83,32 @@
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-prettier": "^5.2.1",
     "globals": "^15.9.0",
+    "jest": "~29.7.0",
+    "jest-expo": "~52.0.6",
     "prettier": "^3.3.3",
     "react-test-renderer": "^18.3.1",
     "typescript": "^5.3.3"
   },
-  "private": true
+  "private": true,
+  "jest": {
+    "preset": "jest-expo",
+    "setupFiles": [
+      "./jest.setup.js",
+      "./node_modules/@react-native-google-signin/google-signin/jest/build/jest/setup.js"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "./src/test"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "index"
+    ],
+    "collectCoverageFrom": [
+      "src/{components,helpers}/**/*.{jsx,js,ts,tsx}"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@sentry/react-native|native-base|react-native-svg)"
+    ]
+  }
 }
