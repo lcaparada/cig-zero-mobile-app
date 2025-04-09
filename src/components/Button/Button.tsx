@@ -56,6 +56,7 @@ export const Button = ({
       flexDirection={"row"}
       disabled={disabled || disabledWithPrimaryPreset || isLoading}
       columnGap={"s8"}
+      testID="button"
       onPress={handleOnPress}
       {...$buttonShadow}
       {...buttonPreset.container}

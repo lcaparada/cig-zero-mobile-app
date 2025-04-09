@@ -53,6 +53,26 @@ describe("<Button/>", () => {
     expect(screen.getByTestId("activity-indicator-button")).toBeDefined();
   });
 
+  it("should disable button when isLoading is true", () => {
+    const mockedOnPress = jest.fn();
+
+    render(
+      <Button text={"button text"} isLoading={true} onPress={mockedOnPress} />
+    );
+
+    const buttonElement = screen.getByTestId("button");
+
+    fireEvent.press(buttonElement);
+
+    expect(mockedOnPress).not.toHaveBeenCalled();
+  });
+
+  it("hides the button text when isLoading is true", () => {
+    render(<Button text={"button text"} isLoading={true} />);
+
+    expect(screen.queryByText("button text")).not.toBeTruthy();
+  });
+
   it("should render icon if iconName is defined", () => {
     renderComponent({ iconName: "apple" });
 
