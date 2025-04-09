@@ -9,10 +9,12 @@ function renderComponent(props?: Partial<ButtonProps>) {
 
   render(<Button text={buttonText} {...props} />);
 
-  const titleElement = screen.getByText(buttonText);
+  const titleElement = screen.queryByText(buttonText);
+  const loadingElement = screen.queryByTestId("activity-indicator-button");
 
   return {
     titleElement,
+    loadingElement,
   };
 }
 
@@ -48,29 +50,30 @@ describe("<Button/>", () => {
   });
 
   it("should show activity indicator when isLoading is true", () => {
-    render(<Button text={"button text"} isLoading={true} />);
+    const { loadingElement } = renderComponent({ isLoading: true });
 
-    expect(screen.getByTestId("activity-indicator-button")).toBeDefined();
+    expect(loadingElement).toBeDefined();
   });
 
   it("should disable button when isLoading is true", () => {
     const mockedOnPress = jest.fn();
 
-    render(
-      <Button text={"button text"} isLoading={true} onPress={mockedOnPress} />
-    );
+    renderComponent({
+      isLoading: true,
+      onPress: mockedOnPress,
+    });
 
-    const buttonElement = screen.getByTestId("button");
-
-    fireEvent.press(buttonElement);
+    fireEvent.press(screen.getByTestId("button"));
 
     expect(mockedOnPress).not.toHaveBeenCalled();
   });
 
   it("hides the button text when isLoading is true", () => {
-    render(<Button text={"button text"} isLoading={true} />);
+    const { titleElement } = renderComponent({
+      isLoading: true,
+    });
 
-    expect(screen.queryByText("button text")).not.toBeTruthy();
+    expect(titleElement).not.toBeTruthy();
   });
 
   it("should render icon if iconName is defined", () => {
