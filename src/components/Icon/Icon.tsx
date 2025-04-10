@@ -115,6 +115,7 @@ export const Icon = ({
 
   return onPress ? (
     <TouchableOpacityBox
+      testID="icon-button"
       onPress={() => {
         onPress();
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);

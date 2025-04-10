@@ -1,7 +1,6 @@
-import { Box } from "src/components/Box/Box";
-import { Text } from "src/components/Text/Text";
-
 import { AchievementProgressCardProps } from "../AchievementProgressCard/AchievementProgressCard";
+import { Box } from "../Box/Box";
+import { Text } from "../Text/Text";
 
 import { formatNumber } from "./utils";
 
