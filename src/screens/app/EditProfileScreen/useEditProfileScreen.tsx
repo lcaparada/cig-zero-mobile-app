@@ -17,9 +17,10 @@ import { QueryKeys } from "@infra";
 import { useAuth, UserMetaData, useToastService } from "@services";
 
 import { editProfileScreenSchema, EditProfileScreenSchemaType } from "./schema";
+import { supabase } from "@api";
 
 export const useEditProfileScreen = () => {
-  const { session } = useAuth();
+  const { session, updateUserMetadata } = useAuth();
 
   const userMetaData = session?.user.user_metadata as UserMetaData;
   const { showToast } = useToastService();
@@ -67,6 +68,12 @@ export const useEditProfileScreen = () => {
         photo: data?.publicUrl ?? "",
         visibilityStatus: profileVisibility,
       });
+      if (data?.publicUrl) {
+        updateUserMetadata({ ...userMetaData, avatar_url: data.publicUrl });
+        await supabase.auth.updateUser({
+          data: { avatar_url: data.publicUrl },
+        });
+      }
       queryClient.refetchQueries({ queryKey: [QueryKeys.GetProfile] });
       navigation.goBack();
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
