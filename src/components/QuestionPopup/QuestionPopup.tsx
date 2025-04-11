@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
-import { Modal, StyleSheet } from "react-native";
+import {
+  KeyboardAvoidingView,
+  Modal,
+  Platform,
+  StyleSheet,
+} from "react-native";
 
-import { usePopupAnimated } from "@hooks";
+import { useAppTheme, usePopupAnimated } from "@hooks";
 
 import { usePublishFeedback } from "@domain";
 import { useAuth } from "@services";
@@ -21,6 +26,8 @@ export const QuestionPopup = ({ visible, setVisible }: QuestionPopupProps) => {
 
   const [answer, setAnswer] = useState("");
 
+  const { colors } = useAppTheme();
+
   const { showPopup, hidePopup, animatedStyles } = usePopupAnimated({
     setVisible,
   });
@@ -35,7 +42,18 @@ export const QuestionPopup = ({ visible, setVisible }: QuestionPopupProps) => {
 
   return (
     <Modal transparent visible={visible} animationType="fade">
-      <Box style={StyleSheet.absoluteFillObject} {...$boxWrapper}>
+      <KeyboardAvoidingView
+        style={[
+          StyleSheet.absoluteFillObject,
+          {
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: colors.backgroundModal,
+          },
+        ]}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        enabled
+      >
         <AnimatedBoxRNR {...$animatedBoxWrapper} style={[animatedStyles]}>
           <Text weight="semiBold" color={"backgroundConstrast"}>
             Como tem sido sua experiência com o CigZero? Compartilhe com a
@@ -65,7 +83,7 @@ export const QuestionPopup = ({ visible, setVisible }: QuestionPopupProps) => {
             <Button text={"Fechar"} onPress={hidePopup} flex={1} />
           </Box>
         </AnimatedBoxRNR>
-      </Box>
+      </KeyboardAvoidingView>
     </Modal>
   );
 };

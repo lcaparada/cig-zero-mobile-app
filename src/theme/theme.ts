@@ -13,6 +13,8 @@ const pallete = {
 
   amber: "#F3B700",
 
+  mistGray: "#d9d9d9",
+
   errorDark: "#6B0F1A",
   errorMedium: "#530811",
   roseTerracotta: "#C87A7A",
@@ -111,6 +113,9 @@ export const theme = createTheme({
     backgroundConstrast: pallete.neutralDarkest,
     backgroundSecondConstrast: pallete.neutralMedium,
 
+    disabledButton: pallete.neutralDarkest,
+    disabledButtonShadow: pallete.darkGraphite,
+
     switchBackground: pallete.neutralMedium,
 
     repliedMessageColor: pallete.neutralDarkest,
@@ -208,6 +213,9 @@ export const darkTheme: Theme = {
     button: pallete.bluePrimary,
     buttonShadow: pallete.mutedSlate,
     buttonConstrast: pallete.neutralLighest,
+
+    disabledButton: pallete.softGray,
+    disabledButtonShadow: pallete.mistGray,
 
     packageItemBorderColor: pallete.mediumGray,
 

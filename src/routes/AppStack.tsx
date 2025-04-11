@@ -52,7 +52,7 @@ const Stack = createNativeStackNavigator<AppStackParamList>();
 export const AppStack = () => {
   const { session } = useAuth();
 
-  const [isQuestionPopupVisible, setIsQuestionPopupVisible] = useState(false);
+  const [isQuestionPopupVisible, setIsQuestionPopupVisible] = useState(true);
 
   const {
     isUserPremium,

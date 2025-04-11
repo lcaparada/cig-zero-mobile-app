@@ -54,10 +54,9 @@ export const Button = ({
       justifyContent={"center"}
       alignItems={"center"}
       flexDirection={"row"}
-      disabled={disabled || disabledWithPrimaryPreset}
+      disabled={disabled || disabledWithPrimaryPreset || isLoading}
       columnGap={"s8"}
       onPress={handleOnPress}
-      {...$buttonShadow}
       {...buttonPreset.container}
       {...touchableOpacityBoxProps}
     >

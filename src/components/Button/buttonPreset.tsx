@@ -36,6 +36,15 @@ export const buttonPresets: Record<
       container: {
         backgroundColor: "primary",
         opacity: 0.5,
+        shadowColor: "errorMedium",
+        shadowOffset: {
+          width: 0,
+          height: 5,
+        },
+        shadowOpacity: 1,
+        shadowRadius: 0,
+
+        elevation: 5,
       },
       content: "backgroundConstrast",
       icon: "backgroundConstrast",
@@ -76,6 +85,14 @@ export const buttonPresets: Record<
         backgroundColor: "background",
         borderWidth: 2,
         borderColor: "primary",
+        shadowColor: "buttonShadow",
+        shadowOffset: {
+          width: 0,
+          height: 5,
+        },
+        shadowOpacity: 1,
+        shadowRadius: 0,
+        elevation: 5,
       },
       content: "primary",
       icon: "primary",
@@ -85,7 +102,16 @@ export const buttonPresets: Record<
       container: {
         backgroundColor: "background",
         borderWidth: 2,
-        borderColor: "backgroundConstrast",
+        shadowColor: "disabledButtonShadow",
+        shadowOffset: {
+          width: 0,
+          height: 5,
+        },
+        shadowOpacity: 1,
+        shadowRadius: 0,
+        elevation: 5,
+
+        borderColor: "disabledButton",
         opacity: 0.5,
       },
       content: "backgroundConstrast",
