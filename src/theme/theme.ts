@@ -69,7 +69,7 @@ export const shadow: BoxProps = {
   shadowOpacity: 1,
   shadowRadius: 0,
 
-  elevation: 5,
+  elevation: 1,
 };
 
 export const whiteShadow: BoxProps = {
@@ -81,7 +81,7 @@ export const whiteShadow: BoxProps = {
   shadowOpacity: 1,
   shadowRadius: 0,
 
-  elevation: 5,
+  elevation: 1,
 };
 
 export const theme = createTheme({

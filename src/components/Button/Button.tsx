@@ -113,5 +113,5 @@ const $buttonShadow: BoxProps = {
   },
   shadowOpacity: 1,
   shadowRadius: 0,
-  elevation: 5,
+  elevation: 1,
 };
