@@ -24,13 +24,13 @@ export const ChatRepliedMessage = ({
         />
         <Box paddingVertical={"s6"} paddingRight={"s6"}>
           <Text
-            color={"neutralLighest"}
+            color={"repliedMessageColor"}
             preset="paragraphsBig"
             weight="semiBold"
           >
             {authorName}
           </Text>
-          <Text color={"neutralLighest"} preset="paragraphs">
+          <Text color={"repliedMessageColor"} preset="paragraphs">
             {text}
           </Text>
         </Box>

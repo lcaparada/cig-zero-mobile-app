@@ -20,6 +20,7 @@ export const FeaturesScreen = ({
     handleScroll,
     handleLayout,
     scrollToPage,
+    HEIGHT_SCREEN,
   } = useFeaturesScreen();
 
   return (
@@ -40,9 +41,10 @@ export const FeaturesScreen = ({
         onLayout={handleLayout}
         showsVerticalScrollIndicator={false}
         style={{
-          flex: 1,
           paddingHorizontal: 24,
         }}
+        snapToInterval={HEIGHT_SCREEN}
+        snapToAlignment="center"
       >
         {steps.map((step, index) => (
           <Step

@@ -1,8 +1,10 @@
 import { useRef } from "react";
-import { Image, TouchableOpacity } from "react-native";
+import { Image } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
 import { differenceInMinutes, format } from "date-fns";
+
+import { TouchableOpacity } from "react-native";
 import * as Haptics from "expo-haptics";
 import { usePostHog } from "posthog-react-native";
 
@@ -38,7 +40,7 @@ export const ChatMessage = ({
 
   const isMine = author?.id === session?.user?.id;
 
-  const messageRef = useRef<TouchableOpacity>(null);
+  const messageRef = useRef<React.ElementRef<typeof TouchableOpacity>>(null);
 
   const { data: repliedMessage } = useGetRepliedMessage(
     repliedConversationMessageId ?? ""

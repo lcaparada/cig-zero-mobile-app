@@ -27,7 +27,7 @@ export const TimeItem = ({ time, hasThreeNumber }: TimeItemProps) => {
       <Box
         position={"absolute"}
         top={hasThreeNumber ? -8.5 : -8}
-        right={hasThreeNumber ? 4 : 6}
+        right={hasThreeNumber ? 4 : 0}
       >
         <Icon name={hasThreeNumber ? "rings" : "rings2"} color="background" />
       </Box>

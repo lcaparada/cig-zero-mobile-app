@@ -113,6 +113,8 @@ export const theme = createTheme({
 
     switchBackground: pallete.neutralMedium,
 
+    repliedMessageColor: pallete.neutralDarkest,
+
     cardProfileBackground: pallete.lightSilver,
     cardProfileShadow: pallete.mediumSilver,
 
@@ -219,6 +221,8 @@ export const darkTheme: Theme = {
 
     deleteButton: pallete.roseTerracotta,
     deleteButtonShadow: pallete.softCoral,
+
+    repliedMessageColor: pallete.neutralLighest,
 
     cardProfileBackground: pallete.neutralDarkest,
     cardProfileShadow: pallete.neutralMedium,

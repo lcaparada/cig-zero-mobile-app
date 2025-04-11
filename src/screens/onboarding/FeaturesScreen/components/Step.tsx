@@ -20,11 +20,7 @@ export const Step = ({
   const { height: HEIGHT_SCREEN } = useWindowDimensions();
 
   return (
-    <Box
-      width={"100%"}
-      height={Platform.OS === "ios" ? HEIGHT_SCREEN : HEIGHT_SCREEN - 74}
-      justifyContent={"center"}
-    >
+    <Box width={"100%"} height={HEIGHT_SCREEN} justifyContent={"center"}>
       <Box flexDirection={"row"} columnGap={"s35"}>
         <Box rowGap={"s28"}>
           <ImageComponent width={200} imageName={imageName} />

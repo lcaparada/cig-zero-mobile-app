@@ -14,7 +14,7 @@ export const ReviewItem = ({ name, review, style }: ReviewItemProps) => {
       padding={"s16"}
       borderRadius={"s16"}
       backgroundColor={"background"}
-      style={Platform.OS === "android" ? [style] : [style, shadow]}
+      style={[style, shadow]}
     >
       <Box
         flexDirection={"row"}
@@ -59,5 +59,5 @@ export const shadow: ViewStyle = {
   shadowOpacity: 0.15,
   shadowRadius: 4.65,
 
-  elevation: 8,
+  elevation: 1,
 };

@@ -30,7 +30,7 @@ export const useFeaturesScreen = () => {
 
   const scrollRef = useRef<ScrollView>(null);
   const { bottom } = useAppSafeAreaContext();
-  const { width: WIDTH_SCREEN } = useWindowDimensions();
+  const { width: WIDTH_SCREEN, height: HEIGHT_SCREEN } = useWindowDimensions();
 
   const handleLayout = (event: LayoutChangeEvent) => {
     const height = event.nativeEvent.layout.height;
@@ -68,6 +68,7 @@ export const useFeaturesScreen = () => {
     scrollRef,
     currentPage,
     WIDTH_SCREEN,
+    HEIGHT_SCREEN,
     initSession,
     handleScroll,
     handleLayout,
