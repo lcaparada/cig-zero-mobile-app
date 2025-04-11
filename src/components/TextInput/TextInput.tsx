@@ -2,6 +2,7 @@ import {
   Pressable,
   TextInputProps as RNTextInputProps,
   TextInput as RNTextInput,
+  Platform,
 } from "react-native";
 
 import { Box, BoxProps } from "../Box/Box";
@@ -75,7 +76,11 @@ export const TextInput = ({
                 flex: 1,
                 textAlign: "auto",
                 lineHeight: undefined,
-                paddingTop: multiline ? 16 : 0,
+                paddingTop:
+                  multiline &&
+                  (Platform.OS === "ios" || Platform.OS === "macos")
+                    ? 16
+                    : 0,
                 color: colors.backgroundConstrast,
               },
               style,
