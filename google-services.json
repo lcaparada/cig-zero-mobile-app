@@ -2,17 +2,22 @@
   "project_info": {
     "project_number": "1050748790207",
     "project_id": "cig-zero-app",
-    "storage_bucket": "cig-zero-app.appspot.com"
+    "storage_bucket": "cig-zero-app.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1050748790207:android:598153be4e3d0c4b20ed0a",
+        "mobilesdk_app_id": "1:1050748790207:android:5aa5ac784cc7daff20ed0a",
         "android_client_info": {
-          "package_name": "com.elevanteholdings.cigzero"
+          "package_name": "com.elevanteholdings.cigzeroapp"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1050748790207-dode75hd4l3198qg578df6tt228iccim.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDsd3W57kX-u4j_Q9U89d6jylvy--rMC5M"
@@ -20,7 +25,20 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1050748790207-dode75hd4l3198qg578df6tt228iccim.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1050748790207-ngdoe2a2aq6gts9jn38qej67c7spq7u8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.elevanteholdings.cig-zero",
+                "app_store_id": "6737628567"
+              }
+            }
+          ]
         }
       }
     }
