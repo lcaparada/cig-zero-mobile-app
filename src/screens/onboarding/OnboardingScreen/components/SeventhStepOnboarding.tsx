@@ -10,6 +10,7 @@ import {
   AnimatedBoxRNR,
   BoxProps,
   Icon,
+  Popup,
   Text,
   TouchableOpacityBox,
 } from "@components";
@@ -23,6 +24,7 @@ export const SeventhStepOnboarding = ({
   control,
 }: Pick<OnboardingControlBase, "control">) => {
   const [visible, setVisibility] = useState(false);
+  const [warningPopupVisible, setWarningPopupVisibility] = useState(false);
 
   const { colors } = useAppTheme();
 
@@ -74,6 +76,14 @@ export const SeventhStepOnboarding = ({
                   )}
             </Text>
           </TouchableOpacityBox>
+          {warningPopupVisible && (
+            <Popup
+              setVisible={setWarningPopupVisibility}
+              visible={warningPopupVisible}
+              title="Horário Inválido"
+              description="Não é permitido selecionar um horário no futuro."
+            />
+          )}
           {visible && (
             <DateTimePickerModal
               date={field.value === "" ? new Date() : new Date(field.value)}
@@ -86,6 +96,19 @@ export const SeventhStepOnboarding = ({
               maximumDate={new Date()}
               buttonTextColorIOS={colors.backgroundConstrast}
               onConfirm={(date) => {
+                const now = new Date();
+
+                if (
+                  date.getHours() > now.getHours() ||
+                  (date.getHours() === now.getHours() &&
+                    date.getMinutes() > now.getMinutes())
+                ) {
+                  setWarningPopupVisibility(true);
+                  hideDatePicker();
+                  return;
+                }
+
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
                 field.onChange(date.toISOString());
                 hideDatePicker();
               }}
