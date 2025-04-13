@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 
-import { format } from "date-fns";
+import { format, set } from "date-fns";
 import * as Haptics from "expo-haptics";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
@@ -9,6 +9,7 @@ import { Icon } from "../Icon/Icon";
 import { Text } from "../Text/Text";
 
 import { useSetTimeInput } from "./useSetTimeInput";
+import { Popup } from "../Popup/Popup";
 
 type SetTimeInputProps = {
   date: Date | null;
@@ -19,9 +20,11 @@ export const SetTimeInput = ({ date, setDate }: SetTimeInputProps) => {
   const {
     colors,
     appTheme,
-    isDatePickerVisible,
     hideDatePicker,
     showDatePicker,
+    warningPopupVisible,
+    isDatePickerVisible,
+    setWarningPopupVisibility,
   } = useSetTimeInput();
 
   return (
@@ -40,7 +43,15 @@ export const SetTimeInput = ({ date, setDate }: SetTimeInputProps) => {
           </Text>
         </TouchableOpacityBox>
       </Box>
-      {isDatePickerVisible ? (
+      {warningPopupVisible && (
+        <Popup
+          setVisible={setWarningPopupVisibility}
+          visible={warningPopupVisible}
+          title="Horário Inválido"
+          description="Não é permitido selecionar um horário no futuro."
+        />
+      )}
+      {isDatePickerVisible && (
         <DateTimePickerModal
           date={date ?? new Date()}
           isVisible={isDatePickerVisible}
@@ -51,9 +62,21 @@ export const SetTimeInput = ({ date, setDate }: SetTimeInputProps) => {
           maximumDate={new Date()}
           textColor={colors.backgroundConstrast}
           buttonTextColorIOS={colors.backgroundConstrast}
-          onConfirm={(date) => {
+          onConfirm={(selectedDate) => {
+            const now = new Date();
+
+            if (
+              selectedDate.getHours() > now.getHours() ||
+              (selectedDate.getHours() === now.getHours() &&
+                selectedDate.getMinutes() > now.getMinutes())
+            ) {
+              setWarningPopupVisibility(true);
+              hideDatePicker();
+              return;
+            }
+
             Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-            setDate(date);
+            setDate(selectedDate);
             hideDatePicker();
           }}
           onCancel={() => {
@@ -61,7 +84,7 @@ export const SetTimeInput = ({ date, setDate }: SetTimeInputProps) => {
             hideDatePicker();
           }}
         />
-      ) : null}
+      )}
     </Fragment>
   );
 };

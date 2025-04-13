@@ -6,6 +6,7 @@ import { useAppColor } from "@services";
 
 export const useSetTimeInput = () => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+  const [warningPopupVisible, setWarningPopupVisibility] = useState(false);
 
   const { colors } = useAppTheme();
 
@@ -22,8 +23,10 @@ export const useSetTimeInput = () => {
   return {
     colors,
     appTheme,
+    warningPopupVisible,
     isDatePickerVisible,
     hideDatePicker,
     showDatePicker,
+    setWarningPopupVisibility,
   };
 };
