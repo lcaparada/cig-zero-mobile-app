@@ -102,8 +102,6 @@ export const AppStack = () => {
 
       const feedbackAnswered = await secureStorage.getItem("feedbackAnswered");
 
-      console.log(splashComplete, "splashComplete");
-
       if (feedbackAnswered === "true") {
         setIsQuestionPopupVisible(false);
       } else if (isEveryThirdDay && splashComplete) {
