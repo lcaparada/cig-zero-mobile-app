@@ -1,1 +1,2 @@
-export * from "./swapDotComma";
+export * from "./convertDotAndDashToComma";
+export * from "./convertCommaToDot";

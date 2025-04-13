@@ -36,7 +36,7 @@ export const buttonPresets: Record<
       container: {
         backgroundColor: "primary",
         opacity: 0.5,
-        shadowColor: "errorMedium",
+        shadowColor: "buttonShadow",
         shadowOffset: {
           width: 0,
           height: 5,

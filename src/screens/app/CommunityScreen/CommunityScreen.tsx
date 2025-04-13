@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { KeyboardAvoidingView } from "react-native";
+import { KeyboardAvoidingView, Platform } from "react-native";
 
 import { Box } from "@components";
 import { useAppSafeAreaContext } from "@hooks";
@@ -37,7 +37,10 @@ export const CommunityScreen = () => {
       style={{ paddingTop: top }}
     >
       <ChatHeader />
-      <KeyboardAvoidingView style={{ flex: 1 }} behavior={"padding"}>
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={Platform.OS === "ios" ? "padding" : undefined}
+      >
         <ChatBody style={{ paddingBottom: bottom }} />
       </KeyboardAvoidingView>
       {showOptionsMessage && <MessageOptions />}

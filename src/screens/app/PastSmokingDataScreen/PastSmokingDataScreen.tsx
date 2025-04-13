@@ -2,7 +2,7 @@ import { Box, Screen, Text, TextInput } from "@components";
 
 import { PastSmokingData } from "./types";
 import { usePastSmokingDataScreen } from "./usePastSmokingDataScreen";
-import { swapDotComma } from "./utils";
+import { convertCommaToDot, convertDotAndDashToComma } from "./utils";
 
 export const PastSmokingDataScreen = () => {
   const {
@@ -31,14 +31,15 @@ export const PastSmokingDataScreen = () => {
     {
       icon: "packOfCigarette",
       label: "Preço do maço",
-      value: swapDotComma(pastSmokingDataState.pricePackCigarrete),
+      value: convertDotAndDashToComma(pastSmokingDataState.pricePackCigarrete),
       rightComponent: (
         <Text weight="medium" color={"backgroundConstrast"}>
           Reais
         </Text>
       ),
       keyboardTypeOptions: "numeric",
-      onChange: (text) => updateState("pricePackCigarrete", swapDotComma(text)),
+      onChange: (text) =>
+        updateState("pricePackCigarrete", convertCommaToDot(text)),
     },
   ];
 
