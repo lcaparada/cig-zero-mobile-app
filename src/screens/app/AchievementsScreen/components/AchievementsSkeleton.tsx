@@ -8,6 +8,7 @@ export const AchievementsSkeleton = () => (
       mt={"s24"}
       rowGap={"s12"}
       columnGap={"s12"}
+      justifyContent={"center"}
       flexWrap={"wrap"}
       flexDirection={"row"}
     >

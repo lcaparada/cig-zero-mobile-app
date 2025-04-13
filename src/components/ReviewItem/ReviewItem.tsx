@@ -59,5 +59,5 @@ export const shadow: ViewStyle = {
   shadowOpacity: 0.15,
   shadowRadius: 4.65,
 
-  elevation: 1,
+  elevation: 4,
 };

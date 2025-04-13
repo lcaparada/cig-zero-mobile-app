@@ -3,6 +3,7 @@ import { Box, Icon, IconName, Text } from "@components";
 import { formatMinutes } from "@helpers";
 
 interface CardProps {
+  total: number;
   title: string;
   value: number;
   iconName: IconName;
@@ -18,11 +19,13 @@ interface Items {
 export const Card = ({
   value,
   title,
+  total,
   iconName,
   isMoney,
   isMinutes,
 }: CardProps) => {
   const itemsData: Items[] = [
+    { text: "Total", value: total },
     { text: "Por dia", value: value },
     { text: "Por semana", value: value * 7 },
     { text: "Por mês", value: value * 30 },

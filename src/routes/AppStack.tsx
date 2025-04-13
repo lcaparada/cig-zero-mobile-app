@@ -23,7 +23,12 @@ import {
 } from "@screens";
 
 import { calculateDiffInDays } from "@helpers";
-import { secureStorage, useAuth, useRevenueCatService } from "@services";
+import {
+  secureStorage,
+  useAuth,
+  useRevenueCatService,
+  useSplash,
+} from "@services";
 
 import { AppTabBottomTabParamList, AppTabNavigator } from "./AppTabNavigator";
 
@@ -35,7 +40,11 @@ export type AppStackParamList = {
   FriendsScreen: undefined;
   AppTabNavigator: NavigatorScreenParams<AppTabBottomTabParamList>;
   CommunityScreen: undefined;
-  ProvisionsScreen: undefined;
+  ProvisionsScreen: {
+    totalCigarettesAvoided: number;
+    totalMoneySaved: number;
+    totalTimeSaved: number;
+  };
   AppearanceScreen: undefined;
   AdjustmentsScreen: undefined;
   EditProfileScreen: undefined;
@@ -52,7 +61,9 @@ const Stack = createNativeStackNavigator<AppStackParamList>();
 export const AppStack = () => {
   const { session } = useAuth();
 
-  const [isQuestionPopupVisible, setIsQuestionPopupVisible] = useState(true);
+  const { splashComplete } = useSplash();
+
+  const [isQuestionPopupVisible, setIsQuestionPopupVisible] = useState(false);
 
   const {
     isUserPremium,
@@ -79,7 +90,7 @@ export const AppStack = () => {
       const isEveryThirdDay = diffInDays > 0 && diffInDays % 3 === 0;
       const isProd = process.env.EXPO_PUBLIC_NODE_ENV === "PROD";
 
-      if (isEveryThirdDay && isUserPremium) {
+      if (isEveryThirdDay && isUserPremium && splashComplete) {
         requestReview();
       }
 
@@ -91,15 +102,17 @@ export const AppStack = () => {
 
       const feedbackAnswered = await secureStorage.getItem("feedbackAnswered");
 
+      console.log(splashComplete, "splashComplete");
+
       if (feedbackAnswered === "true") {
         setIsQuestionPopupVisible(false);
-      } else if (isEveryThirdDay) {
+      } else if (isEveryThirdDay && splashComplete) {
         setIsQuestionPopupVisible(true);
       }
     })();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [session?.user?.user_metadata?.firstAppLaunch]);
+  }, [session?.user?.user_metadata?.firstAppLaunch, splashComplete]);
 
   return (
     <Fragment>

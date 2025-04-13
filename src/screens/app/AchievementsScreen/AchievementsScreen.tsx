@@ -17,7 +17,7 @@ export const AchievementsScreen = () => {
       insets={{ left: "s0", right: "s0", top: "s0", bottom: "s0" }}
     >
       <AchievementsHeader />
-      {(isGettingAchievements || !achievements  || !achievements.length) ? (
+      {isGettingAchievements || !achievements || !achievements.length ? (
         <AchievementsSkeleton />
       ) : (
         achievements.map((achievement, index) => (

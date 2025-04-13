@@ -4,10 +4,13 @@ import { calculateAverage } from "@helpers";
 import { useAuth, UserMetaData } from "@services";
 
 import { Card } from "./components";
+import { AppScreenProps } from "@routes";
 
 export const MINUTES_PER_CIGARETTE = 11;
 
-export const ProvisionsScreen = () => {
+export const ProvisionsScreen = ({
+  route,
+}: AppScreenProps<"ProvisionsScreen">) => {
   const { session } = useAuth();
 
   const userMetadata = session?.user?.user_metadata as UserMetaData;
@@ -24,17 +27,20 @@ export const ProvisionsScreen = () => {
         <Card
           iconName="avoidCigarette"
           title="Cigarros evitados"
+          total={route.params.totalCigarettesAvoided}
           value={cigarettesPerDays}
         />
         <Card
           iconName="money"
           title="Dinheiro economizado"
           isMoney
+          total={route.params.totalMoneySaved}
           value={cigarettesPerDays * priceOfCigarrete}
         />
         <Card
           iconName="clock2"
           title="Tempo recuperado"
+          total={route.params.totalTimeSaved}
           isMinutes
           value={cigarettesPerDays * MINUTES_PER_CIGARETTE}
         />

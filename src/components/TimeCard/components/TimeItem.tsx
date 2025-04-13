@@ -1,3 +1,4 @@
+import { Platform } from "react-native";
 import { Box, BoxProps } from "src/components/Box/Box";
 import { Icon } from "src/components/Icon/Icon";
 import { Text } from "src/components/Text/Text";
@@ -13,6 +14,7 @@ export const TimeItem = ({ time, hasThreeNumber }: TimeItemProps) => {
       <Box
         width={hasThreeNumber ? 40 : 46}
         height={hasThreeNumber ? 56 : 65}
+        paddingTop={Platform.OS === "android" ? "s6" : undefined}
         {...$boxWrapper}
         {...$boxShadow}
       >

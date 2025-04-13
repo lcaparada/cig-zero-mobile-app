@@ -1,9 +1,9 @@
-import { ScrollView } from "react-native";
+import { Platform, ScrollView } from "react-native";
 
 import { Box, Button } from "@components";
 import { OnboardingScreenProps } from "@routes";
 
-import { steps } from "@constraints";
+import { androidSteps, iosSteps } from "@constraints";
 
 import { DirectionControls, FeaturesScreenHeader, Step } from "./components";
 import { useFeaturesScreen } from "./useFeaturesScreen";
@@ -46,18 +46,12 @@ export const FeaturesScreen = ({
         snapToInterval={HEIGHT_SCREEN}
         snapToAlignment="center"
       >
-        {steps.map((step, index) => (
-          <Step
-            key={index}
-            description={step.description}
-            imageName={step.imageName}
-            primaryTitle={step.primaryTitle}
-            secondaryTitle={step.secondaryTitle}
-          />
-        ))}
+        {Platform.OS === "ios"
+          ? iosSteps.map((step, index) => <Step key={index} {...step} />)
+          : androidSteps.map((step, index) => <Step key={index} {...step} />)}
       </ScrollView>
       <DirectionControls
-        length={steps.length}
+        length={Platform.OS === "ios" ? iosSteps.length : androidSteps.length}
         onDownPress={() => scrollToPage(currentPage + 1)}
         onUpPress={() => scrollToPage(currentPage - 1)}
         currentPage={currentPage}

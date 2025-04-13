@@ -52,7 +52,6 @@ export const ChatInput = ({ onSubmit }: ChatInputProps) => {
         <Box flex={1}>
           <TextInput
             value={text}
-            autoFocus
             multiline
             placeholder="Digite a mensagem"
             onChangeText={(text) => setText(text)}

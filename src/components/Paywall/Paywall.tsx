@@ -1,4 +1,4 @@
-import { Modal, ScrollView } from "react-native";
+import { Modal, Platform, ScrollView } from "react-native";
 
 import { useAppTheme } from "@hooks";
 
@@ -31,7 +31,10 @@ export const Paywall = () => {
       <PaywallHeader closePaywall={closePaywall} />
       <ScrollView
         showsVerticalScrollIndicator={false}
-        style={{ backgroundColor: colors.background, marginTop: 4 }}
+        style={{
+          backgroundColor: colors.background,
+          marginTop: Platform.OS === "ios" ? 4 : undefined,
+        }}
         contentContainerStyle={{
           rowGap: 26,
           paddingTop: 26,

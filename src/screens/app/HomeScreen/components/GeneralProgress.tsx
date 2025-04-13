@@ -55,7 +55,11 @@ export const GeneralProgress = () => {
         activeOpacity={1}
         onPress={() => {
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-          navigation.navigate("ProvisionsScreen");
+          navigation.navigate("ProvisionsScreen", {
+            totalCigarettesAvoided: progressData?.avoidedCigarettes ?? 0,
+            totalMoneySaved: progressData?.moneySaved ?? 0,
+            totalTimeSaved: progressData?.timeSaved ?? 0,
+          });
         }}
       >
         <HeadingWithDescription

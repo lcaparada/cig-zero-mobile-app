@@ -19,6 +19,13 @@ describe("formatMinutes", () => {
     expect(formatMinutes(30)).toBe("30 minutos");
   });
 
+  it("should format decimal numbers into days, hours, and minutes correctly", () => {
+    expect(formatMinutes(1.5)).toBe("1 dia 12 horas");
+    expect(formatMinutes(2.25)).toBe("2 dias 6 horas");
+    expect(formatMinutes(0.5)).toBe("12 horas");
+    expect(formatMinutes(0.75)).toBe("18 horas");
+  });
+
   it("should format minutes into days, hours, and minutes correctly when days are present", () => {
     expect(formatMinutes(2880)).toBe("2 dias");
     expect(formatMinutes(3000)).toBe("2 dias 2 horas");
