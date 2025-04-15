@@ -1,5 +1,14 @@
 import { Session, User } from "@supabase/supabase-js";
 
+export interface SignUp {
+  email: string;
+  password: string;
+}
+export interface SignIn {
+  email: string;
+  password: string;
+}
+
 export namespace SignInWithProvider {
   export type Params = {
     idToken: string;
@@ -9,6 +18,10 @@ export namespace SignInWithProvider {
     user: User;
     session: Session;
   };
+}
+
+export interface SendResetPassword {
+  email: string;
 }
 
 export namespace CheckUserAccount {

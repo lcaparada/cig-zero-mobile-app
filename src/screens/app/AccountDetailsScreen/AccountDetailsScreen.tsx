@@ -5,6 +5,8 @@ import { useAuth } from "@services";
 export const AccountDetailsScreen = () => {
   const { session } = useAuth();
 
+  const provider = session?.user.app_metadata.provider;
+
   return (
     <Screen canGoBack scrollable screenTitle="Detalhes da conta">
       <Box rowGap={"s20"}>
@@ -18,7 +20,16 @@ export const AccountDetailsScreen = () => {
         >
           Acessado com
         </Text>
-        <Icon name="google2" size="s22" />
+        <Icon
+          name={
+            provider === "email"
+              ? "email"
+              : provider === "google"
+                ? "google2"
+                : "apple2"
+          }
+          size="s22"
+        />
       </Box>
     </Screen>
   );
@@ -44,5 +55,5 @@ const shadow: BoxProps = {
   shadowOpacity: 1,
   shadowRadius: 0,
 
-  elevation: 5,
+  elevation: 4,
 };

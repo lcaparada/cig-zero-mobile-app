@@ -1,16 +1,18 @@
 import { useNavigation } from "@react-navigation/native";
-import { usePostHog } from "posthog-react-native";
 
 import { Box, Button, Screen, Text } from "@components";
 
-import { PostHogEventsName } from "@constraints";
-
 export const WelcomeScreen = () => {
   const { navigate } = useNavigation();
-  const posthog = usePostHog();
 
   return (
-    <Screen centerItems>
+    <Screen
+      centerItems
+      screenTitle="CigZero"
+      titleWeight="bold"
+      titleColor="primary"
+      titleSize="titleBig"
+    >
       <Box alignItems={"center"} justifyContent={"center"} rowGap={"s20"}>
         <Text preset="titleBig" color={"backgroundConstrast"} weight="bold">
           Bem-vindo ao CigZero!
@@ -25,16 +27,13 @@ export const WelcomeScreen = () => {
           jornada!
         </Text>
       </Box>
-      <Box rowGap={"s16"}>
+      <Box rowGap={"s16"} mt={"s40"}>
         <Button
-          onPress={() => {
-            posthog.capture(PostHogEventsName.PRESS_TO_START_ONBOARDING);
-            navigate("AuthScreen");
-          }}
-          mt={"s40"}
-          text="Começar agora"
-          preset="primary"
+          text="Entrar"
+          preset="outline"
+          onPress={() => navigate("LoginScreen")}
         />
+        <Button text="Criar Conta" onPress={() => navigate("RegisterScreen")} />
       </Box>
     </Screen>
   );
