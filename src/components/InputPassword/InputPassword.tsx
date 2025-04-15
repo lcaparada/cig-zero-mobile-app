@@ -27,7 +27,7 @@ export const InputPassword = ({
       {...inputPasswordProps}
       rightComponent={
         <Icon
-          name={showPassword ? "eye" : "eyeOff"}
+          name={showPassword ? "eyeOff" : "eye"}
           size="s20"
           color="backgroundSecondConstrast"
           strokeWidth={2}

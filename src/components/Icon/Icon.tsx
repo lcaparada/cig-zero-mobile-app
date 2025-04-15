@@ -125,6 +125,7 @@ export const Icon = ({
         onPress();
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
       }}
+      testID={name}
       hitSlop={10}
       {...touchableOpacityProps}
     >
