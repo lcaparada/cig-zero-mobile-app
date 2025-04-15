@@ -25,7 +25,7 @@ export const RegisterScreen = () => {
   });
 
   return (
-    <Screen screenTitle="Criar conta" canGoBack>
+    <Screen screenTitle="Criar conta" scrollable canGoBack>
       <FormTextInput
         control={control}
         name="email"

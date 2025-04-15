@@ -60,7 +60,7 @@ export const RedefinePasswordScreen = () => {
   }, [counter]);
 
   return (
-    <Screen canGoBack screenTitle={"Redefinir senha"}>
+    <Screen canGoBack scrollable screenTitle={"Redefinir senha"}>
       <FormTextInput
         control={control}
         name="email"
@@ -76,7 +76,10 @@ export const RedefinePasswordScreen = () => {
       />
       {counter > 0 && (
         <Text preset="paragraphsBig" color={"backgroundConstrast"} mt={"s18"}>
-          Você pode enviar outro email em {counter}s
+          Você pode enviar outro email em{" "}
+          <Text preset="paragraphsBig" color={"primary"} weight="bold">
+            {counter}s
+          </Text>
         </Text>
       )}
     </Screen>

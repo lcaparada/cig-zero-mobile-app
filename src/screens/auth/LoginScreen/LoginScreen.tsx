@@ -30,7 +30,7 @@ export const LoginScreen = () => {
   });
 
   return (
-    <Screen screenTitle="Entrar" canGoBack>
+    <Screen screenTitle="Entrar" scrollable canGoBack>
       <FormTextInput
         label="Endereço de email"
         icon="atSign"
