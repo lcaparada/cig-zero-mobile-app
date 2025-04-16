@@ -9,7 +9,9 @@ import { useToastService } from "@services";
 import { conversationsService } from "../conversationsService";
 import { GetUnreadMessagesCount } from "../conversationsTypes";
 
-export const useGetUnreadMessagesCount = (lastTimeOpenedChat: string) => {
+export const useGetUnreadMessagesCount = (
+  lastTimeOpenedChat: string | undefined
+) => {
   const { showToast } = useToastService();
 
   const { data, isLoading, error, refetch } = useQuery<

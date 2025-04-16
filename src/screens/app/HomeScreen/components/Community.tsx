@@ -21,9 +21,7 @@ export const Community = () => {
 
   const navigation = useNavigation();
 
-  const { data } = useGetUnreadMessagesCount(
-    userMetaData.lastTimeOpenedChat ?? new Date().toISOString()
-  );
+  const { data } = useGetUnreadMessagesCount(userMetaData.lastTimeOpenedChat);
 
   return (
     <CopilotStep

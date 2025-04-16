@@ -93,7 +93,7 @@ export namespace UpdateMessage {
 
 export namespace GetUnreadMessagesCount {
   export type Params = {
-    lastTimeOpenedChat: string;
+    lastTimeOpenedChat: string | undefined;
   };
   export type Result = {
     unread_messages_count: number;
