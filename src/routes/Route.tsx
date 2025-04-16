@@ -24,6 +24,8 @@ export const Route = () => {
 
   useEffect(() => {
     if (appearancePreference === "system") {
+      const color = Appearance.getColorScheme();
+      setAppColorOnChange(color as Exclude<ThemePreference, "system">);
       Appearance.addChangeListener((event) => {
         setAppColorOnChange(
           event.colorScheme as Exclude<ThemePreference, "system">

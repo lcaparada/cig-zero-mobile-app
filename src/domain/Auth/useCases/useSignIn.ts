@@ -21,6 +21,7 @@ export const useSignIn = () => {
           duration: 5000,
           type: "error",
         });
+        return;
       }
       throw error;
     }

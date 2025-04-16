@@ -15,14 +15,15 @@ export const useSignUp = () => {
     try {
       await mutateAsync(params);
     } catch (error: any) {
-      console.log(error);
       if (error.code === "user_already_exists") {
         showToast({
           duration: 5000,
           type: "error",
           message: "Usuário já existe!",
         });
+        return;
       }
+      console.log(error);
     }
   };
 
