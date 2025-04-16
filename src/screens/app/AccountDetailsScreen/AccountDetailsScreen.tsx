@@ -1,6 +1,16 @@
-import { Box, BoxProps, Icon, Screen, Text, TextInput } from "@components";
+import {
+  Text,
+  Box,
+  Icon,
+  Screen,
+  BoxProps,
+  IconName,
+  TextInput,
+} from "@components";
 
 import { useAuth } from "@services";
+
+type Providers = "email" | "google" | "apple";
 
 export const AccountDetailsScreen = () => {
   const { session } = useAuth();
@@ -21,18 +31,18 @@ export const AccountDetailsScreen = () => {
           Acessado com
         </Text>
         <Icon
-          name={
-            provider === "email"
-              ? "email"
-              : provider === "google"
-                ? "google2"
-                : "apple2"
-          }
+          name={providers[(provider as Providers) ?? "google"]}
           size="s22"
         />
       </Box>
     </Screen>
   );
+};
+
+const providers: Record<Providers, IconName> = {
+  email: "email",
+  google: "google2",
+  apple: "apple2",
 };
 
 const $card: BoxProps = {
