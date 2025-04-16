@@ -22,13 +22,6 @@ export const ChatHeader = () => {
           Comunidade
         </Text>
         <Box {...$iconBox}>
-          {/* <Icon
-            size="s22"
-            strokeWidth={2}
-            name="users"
-            color="neutralLighest"
-            onPress={() => navigation.navigate("FriendsScreen")}
-          /> */}
           <ProfileButton />
         </Box>
       </Box>

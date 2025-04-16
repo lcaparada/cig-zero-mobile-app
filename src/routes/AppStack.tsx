@@ -7,7 +7,6 @@ import * as StoreReview from "expo-store-review";
 import { Paywall, QuestionPopup } from "@components";
 import {
   FaqScreen,
-  FriendsScreen,
   ProfileScreen,
   CommunityScreen,
   AppearanceScreen,
@@ -37,7 +36,6 @@ export type AppStackParamList = {
   ProfileScreen: {
     userId: string;
   };
-  FriendsScreen: undefined;
   AppTabNavigator: NavigatorScreenParams<AppTabBottomTabParamList>;
   CommunityScreen: undefined;
   ProvisionsScreen: {
@@ -65,12 +63,8 @@ export const AppStack = () => {
 
   const [isQuestionPopupVisible, setIsQuestionPopupVisible] = useState(false);
 
-  const {
-    isUserPremium,
-    paywallVisible,
-    setPaywallVisible,
-    checkIfUserIsPremium,
-  } = useRevenueCatService();
+  const { paywallVisible, setPaywallVisible, checkIfUserIsPremium } =
+    useRevenueCatService();
 
   const requestReview = async () => {
     if (await StoreReview.hasAction()) {
@@ -135,7 +129,6 @@ export const AppStack = () => {
           component={AccountDetailsScreen}
         />
         <Stack.Screen name="ProvisionsScreen" component={ProvisionsScreen} />
-        <Stack.Screen name="FriendsScreen" component={FriendsScreen} />
         <Stack.Screen
           name="TermsOfServiceScreen"
           component={TermsOfServiceScreen}
