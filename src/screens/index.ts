@@ -2,6 +2,7 @@
 export * from "./auth/LoginScreen/LoginScreen";
 export * from "./auth/WelcomeScreen/WelcomeScreen";
 export * from "./auth/RegisterScreen/RegisterScreen";
+export * from "./auth/RedefinePasswordScreen/RedefinePasswordScreen";
 
 // APP
 export * from "./app/FaqScreen/FaqScreen";

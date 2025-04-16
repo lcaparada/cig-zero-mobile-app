@@ -9,7 +9,7 @@ import { useSendResetPassword } from "@domain";
 import { useEffect, useState } from "react";
 import { secureStorage } from "@services";
 
-const COUNTER_KEY = "resetPasswordCounter";
+export const COUNTER_KEY = "resetPasswordCounter";
 
 export const RedefinePasswordScreen = () => {
   const [counter, setCounter] = useState(0);
@@ -29,26 +29,20 @@ export const RedefinePasswordScreen = () => {
 
   useEffect(() => {
     const loadCounter = async () => {
-      const storedCounter = await secureStorage.getItem<number>(COUNTER_KEY);
-      if (storedCounter) {
-        if (storedCounter > 0) {
-          setCounter(storedCounter);
+      const storedTimestamp = await secureStorage.getItem<number>(COUNTER_KEY);
+      if (storedTimestamp) {
+        const currentTime = Date.now();
+        const elapsedSeconds = Math.floor(
+          (currentTime - storedTimestamp) / 1000
+        );
+        const remainingSeconds = 60 - elapsedSeconds;
+        if (remainingSeconds > 0) {
+          setCounter(remainingSeconds);
         }
       }
     };
     loadCounter();
   }, []);
-
-  useEffect(() => {
-    const saveCounter = async () => {
-      if (counter > 0) {
-        await secureStorage.setItem(COUNTER_KEY, counter);
-      } else {
-        await secureStorage.removeItem(COUNTER_KEY);
-      }
-    };
-    saveCounter();
-  }, [counter]);
 
   useEffect(() => {
     if (counter > 0) {
