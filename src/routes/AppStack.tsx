@@ -87,10 +87,10 @@ export const AppStack = () => {
       if (isNaN(userCreatedAt.getTime())) return;
 
       const diffInDays = calculateDiffInDays(new Date(), userCreatedAt);
-      const isEveryThirdDay = diffInDays > 0 && diffInDays % 3 === 0;
+      const isEverySecondDay = diffInDays > 0 && diffInDays % 2 === 0;
       const isProd = process.env.EXPO_PUBLIC_NODE_ENV === "PROD";
 
-      if (isEveryThirdDay && isUserPremium && splashComplete) {
+      if (isEverySecondDay && splashComplete) {
         requestReview();
       }
 
@@ -104,7 +104,7 @@ export const AppStack = () => {
 
       if (feedbackAnswered === "true") {
         setIsQuestionPopupVisible(false);
-      } else if (isEveryThirdDay && splashComplete) {
+      } else if (isEverySecondDay && splashComplete) {
         setIsQuestionPopupVisible(true);
       }
     })();
