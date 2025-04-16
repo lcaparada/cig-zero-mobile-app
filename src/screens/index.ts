@@ -8,7 +8,6 @@ export * from "./auth/RedefinePasswordScreen/RedefinePasswordScreen";
 export * from "./app/FaqScreen/FaqScreen";
 export * from "./app/HomeScreen/HomeScreen";
 export * from "./app/OMSTipsScreen/OMSTipsScreen";
-export * from "./app/FriendsScreen/FriendsScreen";
 export * from "./app/CalendarScreen/CalendarScreen";
 export * from "./app/CommunityScreen/CommunityScreen";
 export * from "./app/ProfileScreen.tsx/ProfileScreen";
