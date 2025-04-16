@@ -12,6 +12,7 @@ import { ChatInput } from "../ChatInput";
 import { ChatSkeleton } from "../ChatSkeleton";
 
 import { useChatBody } from "./useChatBody";
+import { ChatEmpty } from "../ChatEmpty";
 
 type ChatBodyProps = ViewProps;
 type GroupedMessagesItem = [string, Message[]];
@@ -41,18 +42,6 @@ export const ChatBody = (props: ChatBodyProps) => {
       >
         {isLoading ? (
           <ChatSkeleton />
-        ) : Object.keys(data).length === 0 ? (
-          <Box
-            flex={1}
-            alignItems={"center"}
-            rowGap={"s8"}
-            justifyContent={"center"}
-          >
-            <Text color={"backgroundConstrast"} textAlign={"center"}>
-              Parece que não há nenhuma mensagem no momento.
-            </Text>
-            <Icon name="chat" size="s48" />
-          </Box>
         ) : (
           <FlatList
             inverted
@@ -60,6 +49,7 @@ export const ChatBody = (props: ChatBodyProps) => {
             scrollEnabled={true}
             onScroll={handleScroll}
             data={Object.entries(data)}
+            ListEmptyComponent={ChatEmpty}
             onEndReached={() => {
               fetchNextPage();
             }}

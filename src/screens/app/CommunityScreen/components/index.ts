@@ -1,4 +1,5 @@
 export * from "./ChatInput";
+export * from "./ChatEmpty";
 export * from "./ChatHeader";
 export * from "./ChatAnswer";
 export * from "./ChatMessage";
