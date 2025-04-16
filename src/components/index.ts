@@ -2,7 +2,6 @@ export * from "./Box/Box";
 export * from "./Text/Text";
 export * from "./Icon/Icon";
 export * from "./Toast/Toast";
-export * from "./Chart/Chart";
 export * from "./Count/Count";
 export * from "./Popup/Popup";
 export * from "./TabBar/TabBar";

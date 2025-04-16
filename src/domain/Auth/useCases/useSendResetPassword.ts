@@ -4,7 +4,8 @@ import { useMutation } from "@tanstack/react-query";
 import { useToastService } from "../../../services/toast/useToastService";
 import { authService } from "../authService";
 import { secureStorage } from "@services";
-import { COUNTER_KEY } from "@screens";
+
+const COUNTER_KEY = "resetPasswordCounter";
 
 interface ISendResetPassword {
   setCounter: React.Dispatch<React.SetStateAction<number>>;
