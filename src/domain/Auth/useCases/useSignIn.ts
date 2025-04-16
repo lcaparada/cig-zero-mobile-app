@@ -23,7 +23,7 @@ export const useSignIn = () => {
         });
         return;
       }
-      throw error;
+      console.error(error);
     }
   };
 
