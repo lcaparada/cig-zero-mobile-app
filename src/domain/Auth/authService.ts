@@ -2,7 +2,13 @@ import { supabase, supabaseEdgeFunction } from "@api";
 
 import { secureStorage } from "../../services/localStorage/implementations/secureStorage";
 
-import { CheckUserAccount, SignInWithProvider } from "./authTypes";
+import {
+  CheckUserAccount,
+  SendResetPassword,
+  SignIn,
+  SignInWithProvider,
+  SignUp,
+} from "./authTypes";
 
 const signInWithProvider = async ({
   idToken,
@@ -53,6 +59,26 @@ const signOut = async () => {
   }
 };
 
+const signUp = async (params: SignUp) => {
+  const { error } = await supabase.auth.signUp(params);
+  if (error) throw error;
+};
+
+const signIn = async ({ email, password }: SignIn) => {
+  const { error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+  if (error) throw error;
+};
+
+const sendResetPassword = async ({ email }: SendResetPassword) => {
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: "https://www.cigzero.app/auth/recovery-password",
+  });
+  if (error) throw error;
+};
+
 const deleteAccount = async () => {
   try {
     await supabaseEdgeFunction.post("delete-user-account");
@@ -62,8 +88,11 @@ const deleteAccount = async () => {
 };
 
 export const authService = {
+  signIn,
+  signUp,
   signOut,
   deleteAccount,
   checkUserAccount,
+  sendResetPassword,
   signInWithProvider,
 };

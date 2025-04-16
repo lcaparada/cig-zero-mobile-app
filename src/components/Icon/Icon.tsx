@@ -79,6 +79,12 @@ import {
   Healthcare,
   Star2,
   Edit,
+  AtSign,
+  Lock2,
+  Eye,
+  EyeOff,
+  Email,
+  Apple2,
 } from "@assets";
 
 import { TouchableOpacityBox } from "../Box/Box";
@@ -120,6 +126,7 @@ export const Icon = ({
         onPress();
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
       }}
+      testID={name}
       hitSlop={10}
       {...touchableOpacityProps}
     >
@@ -144,6 +151,7 @@ const iconRegistry = {
   x: X,
   zap: Zap,
   sun: Sun,
+  eye: Eye,
   user: User,
   star: Star,
   info: Info,
@@ -157,6 +165,8 @@ const iconRegistry = {
   chat: Chat,
   goal: Goal,
   edit: Edit,
+  email: Email,
+  lock2: Lock2,
   star2: Star2,
   goals: Goals,
   apple: Apple,
@@ -170,6 +180,9 @@ const iconRegistry = {
   smile: Smile,
   check: Check,
   money: Money,
+  apple2: Apple2,
+  eyeOff: EyeOff,
+  atSign: AtSign,
   rings2: Rings2,
   shield: Shield,
   google: Google,

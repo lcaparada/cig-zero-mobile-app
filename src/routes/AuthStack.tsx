@@ -1,10 +1,13 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { AuthScreen, WelcomeScreen } from "@screens";
+import { LoginScreen, RegisterScreen, WelcomeScreen } from "@screens";
+import { RedefinePasswordScreen } from "src/screens/auth/RedefinePasswordScreen/RedefinePasswordScreen";
 
 export type AuthStackParamList = {
-  AuthScreen: undefined;
+  LoginScreen: undefined;
   WelcomeScreen: undefined;
+  RegisterScreen: undefined;
+  RedefinePasswordScreen: undefined;
 };
 
 const Stack = createNativeStackNavigator<AuthStackParamList>();
@@ -15,8 +18,13 @@ export const AuthStack = () => {
       initialRouteName="WelcomeScreen"
       screenOptions={{ headerShown: false, fullScreenGestureEnabled: true }}
     >
-      <Stack.Screen name="AuthScreen" component={AuthScreen} />
+      <Stack.Screen name="LoginScreen" component={LoginScreen} />
       <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
+      <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
+      <Stack.Screen
+        name="RedefinePasswordScreen"
+        component={RedefinePasswordScreen}
+      />
     </Stack.Navigator>
   );
 };

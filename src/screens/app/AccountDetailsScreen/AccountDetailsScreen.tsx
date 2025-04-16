@@ -1,9 +1,21 @@
-import { Box, BoxProps, Icon, Screen, Text, TextInput } from "@components";
+import {
+  Text,
+  Box,
+  Icon,
+  Screen,
+  BoxProps,
+  IconName,
+  TextInput,
+} from "@components";
 
 import { useAuth } from "@services";
 
+type Providers = "email" | "google" | "apple";
+
 export const AccountDetailsScreen = () => {
   const { session } = useAuth();
+
+  const provider = session?.user.app_metadata.provider;
 
   return (
     <Screen canGoBack scrollable screenTitle="Detalhes da conta">
@@ -18,10 +30,19 @@ export const AccountDetailsScreen = () => {
         >
           Acessado com
         </Text>
-        <Icon name="google2" size="s22" />
+        <Icon
+          name={providers[(provider as Providers) ?? "google"]}
+          size="s22"
+        />
       </Box>
     </Screen>
   );
+};
+
+const providers: Record<Providers, IconName> = {
+  email: "email",
+  google: "google2",
+  apple: "apple2",
 };
 
 const $card: BoxProps = {
@@ -44,5 +65,5 @@ const shadow: BoxProps = {
   shadowOpacity: 1,
   shadowRadius: 0,
 
-  elevation: 5,
+  elevation: 4,
 };

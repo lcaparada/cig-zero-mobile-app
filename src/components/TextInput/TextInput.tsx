@@ -91,7 +91,7 @@ export const TextInput = ({
         </Box>
       </Pressable>
       {errorMessage && (
-        <Text weight="medium" color={"errorDark"} mt={"s4"}>
+        <Text weight="medium" color={"deleteButton"} mt={"s4"}>
           {errorMessage}
         </Text>
       )}
