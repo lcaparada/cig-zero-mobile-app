@@ -30,8 +30,7 @@ import {
   ScrollViewContainer,
   ViewContainer,
 } from "./components";
-import { calculateHeight } from "./utils";
-
+import * as utils from "./utils";
 export interface BottomSheetProps {
   title: string;
   rightButton?: {
@@ -71,7 +70,7 @@ export const BottomSheet = ({
 
   const [bottomSheetLayout, setBottomSheetLayout] = useState(0);
 
-  const BOTTOM_SHEET_HEIGHT = calculateHeight(
+  const BOTTOM_SHEET_HEIGHT = utils.calculateHeight(
     height === "auto" ? bottomSheetLayout : height
   );
 
@@ -106,6 +105,7 @@ export const BottomSheet = ({
     <Fragment>
       <AnimatedPressableBox
         {...$backdrop}
+        testID={"backdrop"}
         style={[StyleSheet.absoluteFillObject, { zIndex: 1 }]}
         onPress={() => {
           if (disabledToClose) {
@@ -120,6 +120,7 @@ export const BottomSheet = ({
 
       <GestureDetector gesture={pan}>
         <AnimatedBoxRNR
+          testID="bottom-sheet"
           {...($sheet as any)}
           onLayout={(event) =>
             setBottomSheetLayout(event.nativeEvent.layout.height)
@@ -145,6 +146,7 @@ export const BottomSheet = ({
                 alignSelf={"center"}
                 width={"100%"}
                 mt={"s30"}
+                testID="inside-container-button"
                 text={button.text}
                 preset={button.preset}
                 disabled={button.disabled}
@@ -155,6 +157,7 @@ export const BottomSheet = ({
           </Container>
           {!hasKeyboard && button && (
             <Button
+              testID="outside-container-button"
               alignSelf={"center"}
               width={"100%"}
               mb={"s20"}

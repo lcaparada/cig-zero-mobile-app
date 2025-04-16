@@ -13,6 +13,7 @@ export const ScrollViewContainer = ({
 }: ScreenContainerProps) => {
   return (
     <ScrollView
+      testID="scroll-view-container"
       keyboardShouldPersistTaps="handled"
       style={{
         backgroundColor,
@@ -33,6 +34,7 @@ export const ViewContainer = ({
 }: ScreenContainerProps) => {
   return (
     <View
+      testID="view-container"
       style={{
         backgroundColor,
         flex: hasFlexOne ? 1 : undefined,

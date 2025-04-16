@@ -1,8 +1,7 @@
 import * as Haptics from "expo-haptics";
-
-import { Box, TouchableOpacityBox } from "src/components/Box/Box";
-import { Icon } from "src/components/Icon/Icon";
-import { Text } from "src/components/Text/Text";
+import { Box, TouchableOpacityBox } from "../../Box/Box";
+import { Icon } from "../../Icon/Icon";
+import { Text } from "../../Text/Text";
 
 interface ModalHeaderProps {
   title: string;
@@ -28,7 +27,7 @@ export const BottomSheetHeader = ({
       justifyContent={"center"}
     >
       {!disabledToClose ? (
-        <Box position={"absolute"} left={0}>
+        <Box testID="close-box" position={"absolute"} left={0}>
           <Icon
             name="chevronDown"
             strokeWidth={2}
@@ -48,6 +47,7 @@ export const BottomSheetHeader = ({
       {rightButton ? (
         <Box position={"absolute"} right={0}>
           <TouchableOpacityBox
+            testID="right-button"
             onPress={() => {
               Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
               rightButton.action();

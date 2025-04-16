@@ -15,7 +15,7 @@ import { Text } from "../Text/Text";
 import { buttonPresets, ButtonPresetType } from "./buttonPreset";
 
 export interface ButtonProps extends TouchableOpacityBoxProps {
-  text?: string;
+  text: string;
   iconName?: IconName;
   preset?: ButtonPresetType;
   disabled?: boolean;
@@ -56,6 +56,7 @@ export const Button = ({
       flexDirection={"row"}
       disabled={disabled || disabledWithPrimaryPreset || isLoading}
       columnGap={"s8"}
+      testID="button"
       onPress={handleOnPress}
       {...buttonPreset.container}
       {...touchableOpacityBoxProps}
@@ -71,12 +72,14 @@ export const Button = ({
           alignItems={"center"}
         >
           {iconName && (
-            <Icon
-              size="s20"
-              name={iconName}
-              strokeWidth={2}
-              color={buttonPreset.content}
-            />
+            <Box testID="icon-button">
+              <Icon
+                size="s20"
+                name={iconName}
+                strokeWidth={2}
+                color={buttonPreset.content}
+              />
+            </Box>
           )}
           {text && (
             <Text
@@ -90,7 +93,7 @@ export const Button = ({
         </Box>
       )}
       {hasArrowRight && (
-        <Box position={"absolute"} right={20}>
+        <Box testID="arrow-right-button" position={"absolute"} right={20}>
           <Icon
             name="arrowRight"
             size="s20"

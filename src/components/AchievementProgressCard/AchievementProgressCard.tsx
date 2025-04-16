@@ -27,7 +27,11 @@ export const AchievementProgressCard = ({
 }: AchievementProgressCardProps) => {
   return (
     <Box mt={"s24"} {...boxProps}>
-      <Box paddingHorizontal={"s24"} opacity={is_completed ? 0.5 : 1}>
+      <Box
+        testID="progress-box"
+        paddingHorizontal={"s24"}
+        opacity={is_completed ? 0.5 : 1}
+      >
         <HeadingWithDescription
           title={title}
           description={description}
