@@ -7,7 +7,7 @@ import { CopilotProvider } from "react-native-copilot";
 
 import { StepNumberCopilot, TooltipCopilot } from "@components";
 
-import { ThemePreference, useAppColor, useAuth } from "@services";
+import { ThemePreference, useSettings, useAuth } from "@services";
 
 import { AppStack } from "./AppStack";
 import { AuthStack } from "./AuthStack";
@@ -16,7 +16,7 @@ import { OnboardingStack } from "./OnboardingStack";
 export const Route = () => {
   const { session, loading } = useAuth();
 
-  const { appearancePreference, setAppColorOnChange } = useAppColor();
+  const { appearancePreference, setAppColorOnChange } = useSettings();
 
   const Route = session?.user?.user_metadata.isNewUser
     ? OnboardingStack

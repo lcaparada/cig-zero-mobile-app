@@ -12,11 +12,11 @@ import {
 import { useKeyboard } from "@hooks";
 
 import { useDeleteMessage } from "@domain";
-import { useAppColor, useChat } from "@services";
+import { useSettings, useChat } from "@services";
 
 export const useMessageOptions = () => {
   const { width } = useWindowDimensions();
-  const { appTheme } = useAppColor();
+  const { appTheme } = useSettings();
 
   const posthog = usePostHog();
 

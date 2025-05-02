@@ -9,7 +9,10 @@ const useSettingsStore = create<SettingsStore>()(
   persist(
     (set) => ({
       appColor: "light",
+      likeToReceiveDailyReminders: "NO",
       appearancePreference: "system",
+      setLikeToReceiveDailyReminders: (val: string) =>
+        set({ likeToReceiveDailyReminders: val }),
       setAppColor(appearancePreference) {
         const appeareance =
           settingsService.getAppAppearance(appearancePreference);
@@ -26,9 +29,15 @@ const useSettingsStore = create<SettingsStore>()(
   )
 );
 
-export function useAppColor() {
+export function useSettings() {
   const appTheme = useSettingsStore((state) => state.appColor);
   const setAppColor = useSettingsStore((state) => state.setAppColor);
+  const likeToReceiveDailyReminders = useSettingsStore(
+    (state) => state.likeToReceiveDailyReminders
+  );
+  const setLikeToReceiveDailyReminders = useSettingsStore(
+    (state) => state.setLikeToReceiveDailyReminders
+  );
   const setAppColorOnChange = useSettingsStore(
     (state) => state.setAppColorOnChange
   );
@@ -41,5 +50,7 @@ export function useAppColor() {
     setAppColor,
     setAppColorOnChange,
     appearancePreference,
+    likeToReceiveDailyReminders,
+    setLikeToReceiveDailyReminders,
   };
 }

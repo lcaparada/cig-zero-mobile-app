@@ -22,7 +22,7 @@ import { darkTheme, theme } from "@theme";
 
 import {
   useSplash,
-  useAppColor,
+  useSettings,
   AuthProvider,
   ToastProvider,
   useRevenueCatStore,
@@ -51,7 +51,7 @@ Sentry.init({
 
 function App() {
   const { splashComplete } = useSplash();
-  const { appTheme } = useAppColor();
+  const { appTheme } = useSettings();
 
   const { checkIfUserIsPremium } = useRevenueCatStore();
 

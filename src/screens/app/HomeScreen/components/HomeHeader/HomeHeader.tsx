@@ -1,15 +1,6 @@
-import * as Haptics from "expo-haptics";
-import LottieView from "lottie-react-native";
 import { CopilotStep, walkthroughable } from "react-native-copilot";
 
-import {
-  Box,
-  Icon,
-  Counter,
-  ScreenHeader,
-  ProfileButton,
-  TouchableOpacityBox,
-} from "@components";
+import { Box, Icon, Counter, ScreenHeader, ProfileButton } from "@components";
 import { shadow } from "@theme";
 
 import { useHomeHeader } from "./useHomeHeader";
@@ -17,12 +8,7 @@ import { useHomeHeader } from "./useHomeHeader";
 const WalkthroughableBox = walkthroughable(Box);
 
 export const HomeHeader = () => {
-  const {
-    navigation,
-    isUserPremium,
-    setPaywallVisible,
-    timeSinceLastSmokingRecord,
-  } = useHomeHeader();
+  const { navigation, timeSinceLastSmokingRecord } = useHomeHeader();
 
   return (
     <CopilotStep
@@ -44,21 +30,6 @@ export const HomeHeader = () => {
           descriptionColor="neutralLighest"
           rightComponent={
             <Box flexDirection={"row"} alignItems={"center"} columnGap={"s8"}>
-              {!isUserPremium && (
-                <TouchableOpacityBox
-                  onPress={() => {
-                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-                    setPaywallVisible(true);
-                  }}
-                >
-                  <LottieView
-                    source={require("../../../../../assets/animations/stopwatch.json")}
-                    autoPlay
-                    loop
-                    style={{ width: 40, height: 40 }}
-                  />
-                </TouchableOpacityBox>
-              )}
               <Box
                 flexDirection={"row"}
                 alignItems={"center"}

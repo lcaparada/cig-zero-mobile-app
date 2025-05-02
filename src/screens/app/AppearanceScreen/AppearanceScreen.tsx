@@ -2,12 +2,12 @@ import * as Haptics from "expo-haptics";
 
 import { Screen } from "@components";
 
-import { useAppColor } from "@services";
+import { useSettings } from "@services";
 
 import { IOptionButton, OptionButton } from "./components";
 
 export const AppearanceScreen = () => {
-  const { appearancePreference, setAppColor } = useAppColor();
+  const { appearancePreference, setAppColor } = useSettings();
 
   const options: Pick<
     IOptionButton,

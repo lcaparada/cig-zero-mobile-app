@@ -1,26 +1,23 @@
 import { Platform, ScrollView } from "react-native";
 
 import { Box, Button } from "@components";
-import { OnboardingScreenProps } from "@routes";
 
 import { androidSteps, iosSteps } from "@constraints";
 
 import { DirectionControls, FeaturesScreenHeader, Step } from "./components";
 import { useFeaturesScreen } from "./useFeaturesScreen";
 
-export const FeaturesScreen = ({
-  route,
-}: OnboardingScreenProps<"FeaturesScreen">) => {
+export const FeaturesScreen = () => {
   const {
     bottom,
     scrollRef,
     currentPage,
-    initSession,
     WIDTH_SCREEN,
     handleScroll,
     handleLayout,
     scrollToPage,
     HEIGHT_SCREEN,
+    navigateToSubscriptionScreen,
   } = useFeaturesScreen();
 
   return (
@@ -62,10 +59,7 @@ export const FeaturesScreen = ({
         position={"absolute"}
         width={WIDTH_SCREEN - 24 * 2}
       >
-        <Button
-          text="Iniciar jornada"
-          onPress={() => initSession(route.params)}
-        />
+        <Button text="Iniciar jornada" onPress={navigateToSubscriptionScreen} />
       </Box>
     </Box>
   );

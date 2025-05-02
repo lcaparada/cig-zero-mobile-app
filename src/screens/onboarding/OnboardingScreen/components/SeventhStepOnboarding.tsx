@@ -16,7 +16,7 @@ import {
 } from "@components";
 import { useAppTheme } from "@hooks";
 
-import { useAppColor } from "@services";
+import { useSettings } from "@services";
 
 import { OnboardingControlBase } from "../types/onboardingScreenTypes";
 
@@ -28,7 +28,7 @@ export const SeventhStepOnboarding = ({
 
   const { colors } = useAppTheme();
 
-  const { appTheme } = useAppColor();
+  const { appTheme } = useSettings();
 
   const showDatePicker = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);

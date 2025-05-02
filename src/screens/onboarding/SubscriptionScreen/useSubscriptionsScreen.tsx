@@ -2,19 +2,19 @@ import { useEffect } from "react";
 
 import { useUpdateNotificationSetting } from "@domain";
 import { registerForPushNotificationsAsync } from "@helpers";
-import { useAuth, useRevenueCatService, useToastService } from "@services";
-
-import { OnboardingScreenSchemaType } from "../OnboardingScreen/schema/onboardingScreenSchema";
-
-type InitSessionProps = Pick<
-  OnboardingScreenSchemaType,
-  "likeToReceiveDailyReminders"
->;
+import {
+  useAuth,
+  useRevenueCatService,
+  useSettings,
+  useToastService,
+} from "@services";
 
 export const useSubscriptionsScreen = () => {
   const { updateNotificationSetting } = useUpdateNotificationSetting();
 
   const { session, updateNewUserStatus, createFirstAppLaunch } = useAuth();
+
+  const { likeToReceiveDailyReminders } = useSettings();
 
   const {
     packages,
@@ -28,8 +28,8 @@ export const useSubscriptionsScreen = () => {
 
   const { showToast } = useToastService();
 
-  const handleInitSession = (params: InitSessionProps) => {
-    if (params.likeToReceiveDailyReminders === "YES" && session) {
+  const handleInitSession = () => {
+    if (likeToReceiveDailyReminders === "YES" && session) {
       registerForPushNotificationsAsync().then((token) => {
         updateNotificationSetting({
           state: token ?? null,
@@ -42,14 +42,14 @@ export const useSubscriptionsScreen = () => {
     updateNewUserStatus(false);
   };
 
-  const handlePurchasePackage = async (params: InitSessionProps) => {
+  const handlePurchasePackage = async () => {
     try {
       if (process.env.EXPO_PUBLIC_NODE_ENV === "DEV") {
-        handleInitSession(params);
+        handleInitSession();
         return;
       }
       await purchasePackage();
-      handleInitSession(params);
+      handleInitSession();
     } catch (error: any) {
       if (error.code === "1") {
         console.log(error);

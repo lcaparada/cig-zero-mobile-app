@@ -5,7 +5,7 @@ import { StatusBar } from "expo-status-bar";
 import { useAppSafeAreaContext, useAppTheme } from "@hooks";
 import { ThemeColors, ThemeSpacing } from "@theme";
 
-import { useAppColor } from "@services";
+import { useSettings } from "@services";
 
 import { Box } from "../Box/Box";
 import { Button } from "../Button/Button";
@@ -74,7 +74,7 @@ export const Screen = ({
   const { colors } = useAppTheme();
   const { top, bottom } = useAppSafeAreaContext();
 
-  const { appTheme } = useAppColor();
+  const { appTheme } = useSettings();
 
   const Container = scrollable ? ScrollViewContainer : ViewContainer;
 

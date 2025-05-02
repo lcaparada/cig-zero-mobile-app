@@ -11,14 +11,17 @@ import {
 import { getBenefits } from "@constraints";
 
 import { useSubscriptionsScreen } from "./useSubscriptionsScreen";
+import { OnboardingScreenProps } from "@routes";
 
-export const SubscriptionScreen = () => {
+export const SubscriptionScreen = ({
+  route,
+}: OnboardingScreenProps<"SubscriptionScreen">) => {
   const {
     packages,
     metadata,
     isLoading,
     selectedPackage,
-    // handlePurchasePackage,
+    handlePurchasePackage,
   } = useSubscriptionsScreen();
   const selectedPackageData = packages.find(
     (pkg) => pkg.identifier === selectedPackage
@@ -33,8 +36,7 @@ export const SubscriptionScreen = () => {
         text: selectedPackageData?.product.introPrice
           ? "Iniciar teste gratuito"
           : "Continuar",
-        action: () => {},
-        // action: () => handlePurchasePackage(route.params),
+        action: handlePurchasePackage,
         disabled: isLoading,
         loading: isLoading,
       }}

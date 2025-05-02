@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { useAppTheme } from "@hooks";
 
-import { useAppColor } from "@services";
+import { useSettings } from "@services";
 
 export const useSetTimeInput = () => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
@@ -10,7 +10,7 @@ export const useSetTimeInput = () => {
 
   const { colors } = useAppTheme();
 
-  const { appTheme } = useAppColor();
+  const { appTheme } = useSettings();
 
   const showDatePicker = () => {
     setDatePickerVisibility(true);

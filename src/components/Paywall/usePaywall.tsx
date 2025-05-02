@@ -11,8 +11,8 @@ export const usePaywall = () => {
     isLoading,
     loadProducts,
     paywallVisible,
+    selectedPackage,
     purchasePackage,
-    setPaywallVisible,
   } = useRevenueCatService();
 
   const { showToast } = useToastService();
@@ -35,10 +35,6 @@ export const usePaywall = () => {
     }
   };
 
-  function closePaywall() {
-    setPaywallVisible(false);
-  }
-
   useEffect(() => {
     loadProducts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -50,7 +46,7 @@ export const usePaywall = () => {
     metadata,
     isLoading,
     paywallVisible,
-    closePaywall,
+    selectedPackage,
     handlePurchasePackage,
   };
 };
