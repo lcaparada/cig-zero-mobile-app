@@ -1,6 +1,6 @@
 import { Box, Icon, IconName, Text } from "@components";
 
-import { formatMinutes } from "@helpers";
+import { formatDaysRecovered, formatMinutes } from "@helpers";
 
 interface CardProps {
   total: number;
@@ -14,6 +14,7 @@ interface CardProps {
 interface Items {
   text: string;
   value: number;
+  isDay?: boolean;
 }
 
 export const Card = ({
@@ -25,7 +26,7 @@ export const Card = ({
   isMinutes,
 }: CardProps) => {
   const itemsData: Items[] = [
-    { text: "Total", value: total },
+    { text: "Total", value: total, isDay: true },
     { text: "Por dia", value: value },
     { text: "Por semana", value: value * 7 },
     { text: "Por mês", value: value * 30 },
@@ -55,7 +56,9 @@ export const Card = ({
           <Text color={"backgroundConstrast"} weight="bold">
             {isMoney && "R$"}{" "}
             {isMinutes
-              ? formatMinutes(item.value)
+              ? item.isDay
+                ? formatDaysRecovered(item.value)
+                : formatMinutes(item.value)
               : item.value.toLocaleString(
                   "pt-BR",
                   isMoney
