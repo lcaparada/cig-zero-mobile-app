@@ -8,7 +8,7 @@ export const useTutorial = () => {
 
   const { splashComplete } = useSplash();
 
-  const [showStartTutorialPopup, setShowStartTutorialPopup] = useState(true);
+  const [showStartTutorialPopup, setShowStartTutorialPopup] = useState(false);
 
   const scrollRef = useRef<ScrollView>(null);
 
