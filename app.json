@@ -2,7 +2,7 @@
   "expo": {
     "name": "CigZero",
     "slug": "cig-zero-app",
-    "version": "1.4.2",
+    "version": "1.4.3",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
@@ -17,7 +17,7 @@
       },
       "userInterfaceStyle": "automatic",
       "supportsTablet": true,
-      "buildNumber": "43",
+      "buildNumber": "44",
       "usesAppleSignIn": true,
       "bundleIdentifier": "com.elevanteholdings.cig-zero",
       "infoPlist": {
