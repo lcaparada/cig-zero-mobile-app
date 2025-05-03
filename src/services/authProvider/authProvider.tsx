@@ -13,7 +13,7 @@ import { authService } from "../../domain/Auth/authService";
 import {
   AuthContextParams,
   AuthProviderProps,
-  UserMetaData,
+  UserMetadata,
 } from "./authProviderTypes";
 
 const AuthContext = createContext<AuthContextParams>({
@@ -51,7 +51,7 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
     }
   };
 
-  const updateUserMetadata = (userMetadata: UserMetaData) => {
+  const updateUserMetadata = (userMetadata: UserMetadata) => {
     if (session) {
       setSession({
         ...session,

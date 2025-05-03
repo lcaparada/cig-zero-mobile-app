@@ -14,7 +14,7 @@ import {
   VisibilityStatus,
 } from "@domain";
 import { QueryKeys } from "@infra";
-import { useAuth, UserMetaData, useToastService } from "@services";
+import { useAuth, UserMetadata, useToastService } from "@services";
 
 import { editProfileScreenSchema, EditProfileScreenSchemaType } from "./schema";
 import { supabase } from "@api";
@@ -22,7 +22,7 @@ import { supabase } from "@api";
 export const useEditProfileScreen = () => {
   const { session, updateUserMetadata } = useAuth();
 
-  const userMetaData = session?.user.user_metadata as UserMetaData;
+  const userMetaData = session?.user.user_metadata as UserMetadata;
   const { showToast } = useToastService();
 
   const { profile, isLoading } = useGetProfile(session?.user?.id ?? "");

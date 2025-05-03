@@ -15,7 +15,7 @@ import { Text } from "../Text/Text";
 import { buttonPresets, ButtonPresetType } from "./buttonPreset";
 
 export interface ButtonProps extends TouchableOpacityBoxProps {
-  text: string;
+  text?: string;
   iconName?: IconName;
   preset?: ButtonPresetType;
   disabled?: boolean;

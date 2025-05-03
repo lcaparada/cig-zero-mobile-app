@@ -5,7 +5,7 @@ import { useQueryClient } from "@tanstack/react-query";
 
 import { useUpdateUserMetadata } from "@domain";
 import { QueryKeys } from "@infra";
-import { useAuth, UserMetaData, useToastService } from "@services";
+import { useAuth, UserMetadata, useToastService } from "@services";
 
 import { IPastSmokingDataState } from "./types";
 
@@ -18,7 +18,7 @@ export const usePastSmokingDataScreen = () => {
 
   const queryClient = useQueryClient();
 
-  const userMetadata = session?.user.user_metadata as UserMetaData;
+  const userMetadata = session?.user.user_metadata as UserMetadata;
 
   const { handleUpdateUserMetadata, isUpdatingUserMetada } =
     useUpdateUserMetadata();
@@ -56,7 +56,7 @@ export const usePastSmokingDataScreen = () => {
 
   const canSave = Object.entries(pastSmokingDataState).some(
     ([key, pastValue]) => {
-      const userKey = key as keyof UserMetaData;
+      const userKey = key as keyof UserMetadata;
       const userValue = userMetadata?.[userKey];
 
       return (

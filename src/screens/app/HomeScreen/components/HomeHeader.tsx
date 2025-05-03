@@ -1,14 +1,26 @@
 import { CopilotStep, walkthroughable } from "react-native-copilot";
 
-import { Box, Icon, Counter, ScreenHeader, ProfileButton } from "@components";
+import { Box, Icon, Counter, ScreenHeader, Avatar } from "@components";
 import { shadow } from "@theme";
 
-import { useHomeHeader } from "./useHomeHeader";
+import * as Haptics from "expo-haptics";
+
+import { useAuth, UserMetadata } from "@services";
+import { useNavigation } from "@react-navigation/native";
+import { useTimeSinceLastSmokingRecord } from "@hooks";
 
 const WalkthroughableBox = walkthroughable(Box);
 
 export const HomeHeader = () => {
-  const { navigation, timeSinceLastSmokingRecord } = useHomeHeader();
+  const { session } = useAuth();
+
+  const navigation = useNavigation();
+
+  const { timeSinceLastSmokingRecord } = useTimeSinceLastSmokingRecord(
+    session?.user.id ?? ""
+  );
+
+  const userMetadata = session?.user.user_metadata as UserMetadata;
 
   return (
     <CopilotStep
@@ -42,7 +54,20 @@ export const HomeHeader = () => {
                   strokeWidth={2}
                   onPress={() => navigation.navigate("AdjustmentsScreen")}
                 />
-                <ProfileButton />
+                <Avatar
+                  size={28}
+                  textSize="paragraphsBig"
+                  bgColor="neutralLighest"
+                  textColor="primary"
+                  onPress={() => {
+                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+                    navigation.navigate("ProfileScreen", {
+                      userId: session?.user?.id ?? "",
+                    });
+                  }}
+                  name={userMetadata.name}
+                  photo={userMetadata.avatar_url}
+                />
               </Box>
             </Box>
           }

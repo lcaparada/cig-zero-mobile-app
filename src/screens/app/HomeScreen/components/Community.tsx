@@ -6,7 +6,7 @@ import { Box, BoxProps, Icon, Text, TouchableOpacityBox } from "@components";
 import { shadow } from "@theme";
 
 import { useGetUnreadMessagesCount } from "@domain";
-import { useAuth, UserMetaData } from "@services";
+import { useAuth, UserMetadata } from "@services";
 
 interface BadgetProps {
   value: number;
@@ -17,7 +17,7 @@ const WalkthroughableBox = walkthroughable(Box);
 export const Community = () => {
   const { session } = useAuth();
 
-  const userMetaData = session?.user.user_metadata as UserMetaData;
+  const userMetaData = session?.user.user_metadata as UserMetadata;
 
   const navigation = useNavigation();
 

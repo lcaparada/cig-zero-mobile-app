@@ -9,7 +9,7 @@ import {
   SmokeLogWithDateAndCreatedAt,
   useGetAllSmokingRecordsByMonth,
 } from "@domain";
-import { useAuth, UserMetaData } from "@services";
+import { useAuth, UserMetadata } from "@services";
 
 export type IndexedSmokingRecordsState = Record<
   string,
@@ -50,7 +50,7 @@ export const useCalendarScreen = ({
 
   const userCreatedAt = session?.user?.created_at;
 
-  const userMetaData = session?.user?.user_metadata as UserMetaData;
+  const userMetaData = session?.user?.user_metadata as UserMetadata;
 
   const userStart = userMetaData.lastSmoking
     ? userMetaData.lastSmoking

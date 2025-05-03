@@ -8,7 +8,14 @@ import { TouchableOpacity } from "react-native";
 import * as Haptics from "expo-haptics";
 import { usePostHog } from "posthog-react-native";
 
-import { Box, BoxProps, Icon, Text, TouchableOpacityBox } from "@components";
+import {
+  Avatar,
+  Box,
+  BoxProps,
+  Icon,
+  Text,
+  TouchableOpacityBox,
+} from "@components";
 
 import { PostHogEventsName } from "@constraints";
 import { useAuth, useChat } from "@services";
@@ -87,7 +94,9 @@ export const ChatMessage = ({
       onLongPress={isMine ? onLongPress : undefined}
       delayLongPress={500}
     >
-      {!isMine && showAvatar && <UserAvatar photo={author?.photo ?? ""} />}
+      {!isMine && showAvatar && (
+        <UserAvatar name={author?.name ?? ""} photo={author?.photo ?? ""} />
+      )}
       <Box
         maxWidth="85%"
         minWidth={isMine ? undefined : "60%"}
@@ -163,26 +172,15 @@ export const ChatMessage = ({
         </Box>
       </Box>
 
-      {isMine && showAvatar && <UserAvatar photo={author?.photo ?? ""} />}
+      {isMine && showAvatar && (
+        <UserAvatar name={author?.name ?? ""} photo={author?.photo ?? ""} />
+      )}
     </TouchableOpacityBox>
   );
 };
 
-const UserAvatar = ({ photo }: { photo?: string }) => (
-  <Box {...$userAvatarBox}>
-    {photo ? (
-      <Image
-        source={{ uri: photo }}
-        style={{
-          width: "100%",
-          height: undefined,
-          aspectRatio: 1,
-        }}
-      />
-    ) : (
-      <Icon name="user" color="backgroundSecondConstrast" />
-    )}
-  </Box>
+const UserAvatar = ({ photo, name }: { name: string; photo?: string }) => (
+  <Avatar textSize="paragraphsBig" size={40} name={name} photo={photo} />
 );
 
 const $userAvatarBox: BoxProps = {

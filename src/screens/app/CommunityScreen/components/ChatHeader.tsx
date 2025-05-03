@@ -1,10 +1,17 @@
 import { useNavigation } from "@react-navigation/native";
 
-import { Box, Text, Icon, BoxProps, ProfileButton } from "@components";
+import * as Haptics from "expo-haptics";
+
+import { Box, Text, Icon, BoxProps, Avatar } from "@components";
 import { shadow } from "@theme";
+import { useAuth, UserMetadata } from "@services";
 
 export const ChatHeader = () => {
   const navigation = useNavigation();
+
+  const { session } = useAuth();
+
+  const userMetadata = session?.user.user_metadata as UserMetadata;
 
   return (
     <Box backgroundColor={"primary"} {...shadow}>
@@ -22,7 +29,20 @@ export const ChatHeader = () => {
           Comunidade
         </Text>
         <Box {...$iconBox}>
-          <ProfileButton />
+          <Avatar
+            size={28}
+            textSize="paragraphsBig"
+            bgColor="neutralLighest"
+            textColor="primary"
+            onPress={() => {
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+              navigation.navigate("ProfileScreen", {
+                userId: session?.user?.id ?? "",
+              });
+            }}
+            name={userMetadata.name}
+            photo={userMetadata.avatar_url}
+          />
         </Box>
       </Box>
     </Box>

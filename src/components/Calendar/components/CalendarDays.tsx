@@ -3,7 +3,7 @@ import * as Haptics from "expo-haptics";
 import { usePostHog } from "posthog-react-native";
 
 import { PostHogEventsName } from "@constraints";
-import { useAuth, UserMetaData } from "@services";
+import { useAuth, UserMetadata } from "@services";
 import { Box, BoxProps, TouchableOpacityBox } from "src/components/Box/Box";
 import { Text } from "src/components/Text/Text";
 import { IndexedSmokingRecordsState } from "src/screens/app/CalendarScreen/useCalendarScreen";
@@ -27,7 +27,7 @@ export const CalendarDays = ({
 }: CalendarDaysProps) => {
   const { session } = useAuth();
 
-  const userMetaData = session?.user.user_metadata as UserMetaData;
+  const userMetaData = session?.user.user_metadata as UserMetadata;
 
   const userStart = userMetaData.lastSmoking
     ? new Date(userMetaData.lastSmoking).toISOString()

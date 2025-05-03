@@ -14,7 +14,7 @@ export type AuthContextParams = {
   loading: boolean;
   signOut: () => Promise<void>;
   updateUserShowTutorial: (bool: boolean) => void;
-  updateUserMetadata: (userMetadata: UserMetaData) => void;
+  updateUserMetadata: (userMetadata: UserMetadata) => void;
   updateUserInformation: (user: User) => void;
   createFirstAppLaunch: () => void;
   updateUserFromOnboarding: (
@@ -24,7 +24,7 @@ export type AuthContextParams = {
   updateNewUserStatus: (status: boolean) => void;
 };
 
-export type UserMetaData = {
+export type UserMetadata = {
   age: AgeRange;
   avatar_url: string;
   email: string;

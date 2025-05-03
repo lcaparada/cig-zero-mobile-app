@@ -12,6 +12,8 @@ interface AvatarProps extends TouchableOpacityBoxProps {
   size?: number;
   textSize?: TextVariants;
   borderWidth?: number;
+  bgColor?: ThemeColors;
+  textColor?: ThemeColors;
   borderColor?: ThemeColors;
   borderRadius?: ThemeBorderRadii;
   canEditPhoto?: boolean;
@@ -25,6 +27,8 @@ export const Avatar = ({
   borderWidth = 2,
   borderRadius = "s25",
   textSize = "display",
+  bgColor = "primary",
+  textColor = "neutralLighest",
   borderColor = "mutedAqua",
   canEditPhoto,
   photo,
@@ -42,7 +46,7 @@ export const Avatar = ({
       <TouchableOpacityBox
         width={size}
         height={size}
-        backgroundColor={"primary"}
+        backgroundColor={bgColor}
         activeOpacity={onPress ? 0 : 1}
         borderRadius={borderRadius}
         borderWidth={photo ? 0 : borderWidth}
@@ -68,7 +72,7 @@ export const Avatar = ({
             }}
           />
         ) : (
-          <Text preset={textSize} weight="semiBold" color={"neutralLighest"}>
+          <Text preset={textSize} weight="semiBold" color={textColor}>
             {name?.slice(0, 1)?.toUpperCase()}
           </Text>
         )}

@@ -1,7 +1,7 @@
 import { Box, Screen } from "@components";
 
 import { calculateAverage } from "@helpers";
-import { useAuth, UserMetaData } from "@services";
+import { useAuth, UserMetadata } from "@services";
 
 import { Card } from "./components";
 import { AppScreenProps } from "@routes";
@@ -13,7 +13,7 @@ export const ProvisionsScreen = ({
 }: AppScreenProps<"ProvisionsScreen">) => {
   const { session } = useAuth();
 
-  const userMetadata = session?.user?.user_metadata as UserMetaData;
+  const userMetadata = session?.user?.user_metadata as UserMetadata;
 
   const cigarettesPerDays = calculateAverage(
     userMetadata.howManyCigarettesPerDay
