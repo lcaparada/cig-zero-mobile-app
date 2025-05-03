@@ -1,5 +1,3 @@
-import { CopilotStep, walkthroughable } from "react-native-copilot";
-
 import {
   Box,
   IconName,
@@ -9,13 +7,12 @@ import {
 
 import { useGetHistoricData } from "@domain";
 import { formatToCurrency } from "@helpers";
+import { TourGuideZone } from "rn-tourguide";
 
 interface HistoricItemData {
   icon: IconName;
   label: string;
 }
-
-const WalkthroughableBox = walkthroughable(Box);
 
 export const Historic = () => {
   const { historicData } = useGetHistoricData();
@@ -36,12 +33,11 @@ export const Historic = () => {
   ];
 
   return (
-    <CopilotStep
+    <TourGuideZone
       text="Esta seção exibe seu histórico de fumo com base nos dados coletados: número de cigarros fumados, dinheiro gasto e dias de vida perdidos. Os valores são estimativas e podem não ser exatos."
-      order={7}
-      name="historic"
+      zone={7}
     >
-      <WalkthroughableBox paddingHorizontal={"s24"} paddingVertical={"s30"}>
+      <Box paddingHorizontal={"s24"} paddingVertical={"s30"}>
         <HeadingWithDescription
           title="Histórico"
           description="Seu histórico de fumo"
@@ -51,7 +47,7 @@ export const Historic = () => {
             <InformationItem key={index} text={item.label} icon={item.icon} />
           ))}
         </Box>
-      </WalkthroughableBox>
-    </CopilotStep>
+      </Box>
+    </TourGuideZone>
   );
 };

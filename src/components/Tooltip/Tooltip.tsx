@@ -1,32 +1,43 @@
 import * as Haptics from "expo-haptics";
 import { usePostHog } from "posthog-react-native";
-import { useCopilot } from "react-native-copilot";
 
 import { PostHogEventsName } from "@constraints";
 
 import { Box, TouchableOpacityBox } from "../Box/Box";
 import { Text } from "../Text/Text";
+import { IStep, Labels } from "rn-tourguide";
 
-export const TooltipCopilot = () => {
-  const { goToNext, goToPrev, stop, currentStep, isFirstStep, isLastStep } =
-    useCopilot();
+export interface TooltipProps {
+  isFirstStep?: boolean;
+  isLastStep?: boolean;
+  currentStep: IStep;
+  labels?: Labels;
+  handleNext?: () => void;
+  handlePrev?: () => void;
+  handleStop?: () => void;
+}
 
+export const Tooltip = ({
+  currentStep,
+  handleNext,
+  handlePrev,
+  handleStop,
+  isFirstStep,
+  isLastStep,
+  labels,
+}: TooltipProps) => {
   const posthog = usePostHog();
 
-  const handleStop = () => {
-    void stop();
-  };
-  const handleNext = () => {
-    void goToNext();
-  };
-
-  const handlePrev = () => {
-    void goToPrev();
-  };
-
   return (
-    <Box>
-      <Text preset="paragraphsBig">{currentStep?.text}</Text>
+    <Box
+      backgroundColor={"background"}
+      paddingHorizontal={"s24"}
+      paddingVertical={"s24"}
+      borderRadius={"s16"}
+    >
+      <Text preset="paragraphsBig" color={"backgroundConstrast"}>
+        {currentStep?.text}
+      </Text>
       <Box
         flexDirection={"row"}
         justifyContent={"flex-end"}
@@ -41,11 +52,11 @@ export const TooltipCopilot = () => {
               posthog.capture(PostHogEventsName.PRESS_TO_SKIP_TUTORIAL, {
                 step: currentStep?.order,
               });
-              handleStop();
+              if (handleStop) handleStop();
             }}
           >
             <Text preset="paragraphs" color={"primary"}>
-              Pular
+              {labels?.skip || "Pular"}
             </Text>
           </TouchableOpacityBox>
         ) : null}
@@ -59,11 +70,11 @@ export const TooltipCopilot = () => {
                   step: currentStep?.order,
                 }
               );
-              handlePrev();
+              if (handlePrev) handlePrev();
             }}
           >
             <Text preset="paragraphs" color={"primary"}>
-              Anterior
+              {labels?.previous || "Anterior"}
             </Text>
           </TouchableOpacityBox>
         ) : null}
@@ -74,11 +85,11 @@ export const TooltipCopilot = () => {
               posthog.capture(PostHogEventsName.PRESS_TO_NEXT_STEP_TUTORIAL, {
                 step: currentStep?.order,
               });
-              handleNext();
+              if (handleNext) handleNext();
             }}
           >
             <Text preset="paragraphs" color={"primary"}>
-              Próximo
+              {labels?.next || "Próximo"}
             </Text>
           </TouchableOpacityBox>
         ) : (
@@ -88,11 +99,11 @@ export const TooltipCopilot = () => {
                 step: currentStep?.order,
               });
               Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-              handleStop();
+              if (handleStop) handleStop();
             }}
           >
             <Text preset="paragraphs" color={"primary"}>
-              Finalizar
+              {labels?.finish || "Finalizar"}
             </Text>
           </TouchableOpacityBox>
         )}

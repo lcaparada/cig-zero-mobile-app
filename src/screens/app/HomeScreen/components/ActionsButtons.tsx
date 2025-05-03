@@ -1,16 +1,14 @@
 import * as Haptics from "expo-haptics";
-import { CopilotStep, walkthroughable } from "react-native-copilot";
 
 import { Box, Button, IconName } from "@components";
 import { useAppTabNavigator } from "@hooks";
+import { TourGuideZone } from "rn-tourguide";
 
 interface ActionsButtonsData {
   text: string;
   icon: IconName;
   action: () => void;
 }
-
-const WalkthroughableBox = walkthroughable(Box);
 
 export const ActionsButtons = () => {
   const { navigate } = useAppTabNavigator();
@@ -35,16 +33,11 @@ export const ActionsButtons = () => {
   ];
 
   return (
-    <CopilotStep
+    <TourGuideZone
       text="Nesta seção, você encontra um atalho para as telas de dicas da OMS e conquistas."
-      order={8}
-      name="shortcuts"
+      zone={8}
     >
-      <WalkthroughableBox
-        paddingHorizontal={"s24"}
-        paddingVertical={"s30"}
-        rowGap={"s10"}
-      >
+      <Box paddingHorizontal={"s24"} paddingVertical={"s30"} rowGap={"s10"}>
         {actionsButtons.map((item, index) => (
           <Button
             key={index}
@@ -55,7 +48,7 @@ export const ActionsButtons = () => {
             justifyContent={"flex-start"}
           />
         ))}
-      </WalkthroughableBox>
-    </CopilotStep>
+      </Box>
+    </TourGuideZone>
   );
 };

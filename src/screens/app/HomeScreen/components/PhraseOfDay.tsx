@@ -1,30 +1,26 @@
-import { CopilotStep, walkthroughable } from "react-native-copilot";
-
 import { Box, BoxProps, Icon, Text } from "@components";
 import { shadow } from "@theme";
+import { TourGuideZone } from "rn-tourguide";
 
 interface PhraseOfDayProps {
   phrase: string;
 }
 
-const WalkthroughableBox = walkthroughable(Box);
-
 export const PhraseOfDay = ({ phrase }: PhraseOfDayProps) => {
   return (
-    <CopilotStep
+    <TourGuideZone
       text="Esta seção traz uma reflexão diária, baseada na sua principal razão para parar de fumar, para te motivar a não ceder ao vício."
-      order={6}
-      name="phraseOfDay"
+      zone={6}
     >
-      <WalkthroughableBox paddingHorizontal={"s25"} paddingVertical={"s30"}>
+      <Box paddingHorizontal={"s25"} paddingVertical={"s30"}>
         <Box {...$boxWrapper} {...shadow}>
           <Header />
           <Text color={"neutralLighest"} preset="paragraphsBig" weight="medium">
             {phrase}
           </Text>
         </Box>
-      </WalkthroughableBox>
-    </CopilotStep>
+      </Box>
+    </TourGuideZone>
   );
 };
 

@@ -1,0 +1,130 @@
+diff --git a/node_modules/rn-tourguide/lib/components/TourGuideContext.d.ts b/node_modules/rn-tourguide/lib/components/TourGuideContext.d.ts
+index a5a3243..8384e0a 100644
+--- a/node_modules/rn-tourguide/lib/components/TourGuideContext.d.ts
++++ b/node_modules/rn-tourguide/lib/components/TourGuideContext.d.ts
+@@ -16,7 +16,7 @@ export interface ITourGuideContext {
+     registerStep?(key: string, step: IStep): void;
+     unregisterStep?(key: string, stepName: string): void;
+     getCurrentStep?(key: string): IStep | undefined;
+-    start?(key: string, fromStep?: number): void;
++    start?(key: string, fromStep?: number,scrollRef?: React.RefObject<any>): void;
+     stop?(key: string): void;
+ }
+ export declare const TourGuideContext: React.Context<ITourGuideContext>;
+diff --git a/node_modules/rn-tourguide/lib/components/TourGuideProvider.js b/node_modules/rn-tourguide/lib/components/TourGuideProvider.js
+index d93d52b..e8fd5f2 100644
+--- a/node_modules/rn-tourguide/lib/components/TourGuideProvider.js
++++ b/node_modules/rn-tourguide/lib/components/TourGuideProvider.js
+@@ -1,6 +1,12 @@
+ import mitt from 'mitt';
+ import * as React from 'react';
+-import { StyleSheet, View } from 'react-native';
++import { 
++    findNodeHandle,
++    StyleProp,
++    StyleSheet,
++    View,
++    ViewStyle
++        } from 'react-native';
+ import { TourGuideContext } from './TourGuideContext';
+ import { useIsMounted } from '../hooks/useIsMounted';
+ import * as utils from '../utilities';
+@@ -10,6 +16,7 @@ const { useMemo, useEffect, useState, useRef } = React;
+ const MAX_START_TRIES = 120;
+ export const TourGuideProvider = ({ children, wrapperStyle, labels, tooltipComponent, tooltipStyle, androidStatusBarVisible, backdropColor, animationDuration, maskOffset, borderRadius, verticalOffset, startAtMount = false, dismissOnPress = false, preventOutsideInteraction = false, }) => {
+     const [tourKey, setTourKey] = useState('_default');
++    const [scrollRef, setScrollRef] = useState()
+     const [visible, updateVisible] = useState({
+         _default: false,
+     });
+@@ -83,16 +90,35 @@ export const TourGuideProvider = ({ children, wrapperStyle, labels, tooltipCompo
+             top: Math.round(size.y) - OFFSET_WIDTH / 2 + (verticalOffset || 0),
+         }));
+     };
+-    const setCurrentStep = (key, step) => new Promise((resolve) => {
+-        updateCurrentStep((currentStep) => {
+-            var _a;
+-            const newStep = { ...currentStep };
+-            newStep[key] = step;
+-            (_a = eventEmitter[key]) === null || _a === void 0 ? void 0 : _a.emit('stepChange', step);
+-            return newStep;
+-        });
+-        resolve();
+-    });
++    const setCurrentStep = async (key, step) =>
++        new Promise(async (resolve) => {
++          if (scrollRef && step) {
++            await step.wrapper.measureLayout(findNodeHandle(scrollRef.current),
++            (_x, y, _w, h) => {
++              const yOffsett = y > 0 ? y - h / 2 : 0
++              scrollRef.current.scrollTo({ y: yOffsett, animated: false })
++            },
++          )
++          setTimeout(() => {
++            updateCurrentStep((currentStep) => {
++              const newStep = { ...currentStep }
++              newStep[key] = step
++              eventEmitter[key]?.emit('stepChange', step)
++              return newStep
++            })
++            resolve()
++          }, 100);
++        }
++        else {
++          updateCurrentStep((currentStep) => {
++            const newStep = { ...currentStep }
++            newStep[key] = step
++            eventEmitter[key]?.emit('stepChange', step)
++            return newStep
++          })
++          resolve()
++        }
++      })
+     const getNextStep = (key, step = currentStep[key]) => utils.getNextStep(steps[key], step);
+     const getPrevStep = (key, step = currentStep[key]) => utils.getPrevStep(steps[key], step);
+     const getFirstStep = (key) => utils.getFirstStep(steps[key]);
+@@ -143,8 +169,11 @@ export const TourGuideProvider = ({ children, wrapperStyle, labels, tooltipCompo
+         });
+     };
+     const getCurrentStep = (key) => currentStep[key];
+-    const start = async (key, fromStep) => {
++    const start = async (key, fromStep,_scrollRef) => {
+         var _a;
++        if (!scrollRef) {
++            setScrollRef(_scrollRef)
++          }
+         const currentStep = fromStep
+             ? steps[key][fromStep]
+             : getFirstStep(key);
+diff --git a/node_modules/rn-tourguide/lib/hooks/useTourGuideController.d.ts b/node_modules/rn-tourguide/lib/hooks/useTourGuideController.d.ts
+index 1c96f5e..b26aaaf 100644
+--- a/node_modules/rn-tourguide/lib/hooks/useTourGuideController.d.ts
++++ b/node_modules/rn-tourguide/lib/hooks/useTourGuideController.d.ts
+@@ -2,7 +2,7 @@ import * as React from 'react';
+ import { TourGuideZoneProps } from '../components/TourGuideZone';
+ import { TourGuideZoneByPositionProps } from '../components/TourGuideZoneByPosition';
+ export declare const useTourGuideController: (tourKey?: string | undefined) => {
+-    start: (fromStep?: number | undefined) => void;
++    start: (fromStep?: number | undefined,scrollRef?: React.RefObject<any>) => void;
+     stop: () => void;
+     eventEmitter: import("../components/TourGuideContext").Emitter | undefined;
+     getCurrentStep: () => import("..").IStep | undefined;
+diff --git a/node_modules/rn-tourguide/lib/hooks/useTourGuideController.js b/node_modules/rn-tourguide/lib/hooks/useTourGuideController.js
+index 4198272..d86d6d2 100644
+--- a/node_modules/rn-tourguide/lib/hooks/useTourGuideController.js
++++ b/node_modules/rn-tourguide/lib/hooks/useTourGuideController.js
+@@ -5,12 +5,12 @@ import { TourGuideZoneByPosition, } from '../components/TourGuideZoneByPosition'
+ export const useTourGuideController = (tourKey) => {
+     const { start, canStart, stop, eventEmitter, getCurrentStep, setTourKey } = React.useContext(TourGuideContext);
+     const key = tourKey !== null && tourKey !== void 0 ? tourKey : '_default';
+-    const _start = (fromStep) => {
++    const _start = (fromStep,scrollRef) => {
+         if (setTourKey) {
+             setTourKey(key);
+         }
+         if (start) {
+-            start(key, fromStep);
++            start(key, fromStep,scrollRef)
+         }
+     };
+     const _stop = () => {

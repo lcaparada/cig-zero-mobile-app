@@ -1,18 +1,16 @@
 import { useNavigation } from "@react-navigation/native";
 import * as Haptics from "expo-haptics";
-import { CopilotStep, walkthroughable } from "react-native-copilot";
 
 import { Box, BoxProps, Icon, Text, TouchableOpacityBox } from "@components";
 import { shadow } from "@theme";
 
 import { useGetUnreadMessagesCount } from "@domain";
 import { useAuth, UserMetadata } from "@services";
+import { TourGuideZone } from "rn-tourguide";
 
 interface BadgetProps {
   value: number;
 }
-
-const WalkthroughableBox = walkthroughable(Box);
 
 export const Community = () => {
   const { session } = useAuth();
@@ -24,12 +22,11 @@ export const Community = () => {
   const { data } = useGetUnreadMessagesCount(userMetaData.lastTimeOpenedChat);
 
   return (
-    <CopilotStep
+    <TourGuideZone
       text="Esta seção é a comunidade – um espaço para compartilhar experiências, trocar aprendizados e se apoiar na jornada para parar de fumar."
-      order={5}
-      name="community"
+      zone={5}
     >
-      <WalkthroughableBox paddingHorizontal={"s25"} paddingVertical={"s30"}>
+      <Box paddingHorizontal={"s25"} paddingVertical={"s30"}>
         <TouchableOpacityBox
           {...$touchableBoxWrapper}
           {...shadow}
@@ -60,8 +57,8 @@ export const Community = () => {
             </Text>
           </Box>
         </TouchableOpacityBox>
-      </WalkthroughableBox>
-    </CopilotStep>
+      </Box>
+    </TourGuideZone>
   );
 };
 

@@ -1,6 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
 import * as Haptics from "expo-haptics";
-import { CopilotStep, walkthroughable } from "react-native-copilot";
 
 import {
   Box,
@@ -12,8 +11,7 @@ import {
 
 import { useGetProgressData } from "@domain";
 import { formatToCurrency } from "@helpers";
-
-const WalkthroughableTouchableOpacityBox = walkthroughable(TouchableOpacityBox);
+import { TourGuideZone } from "rn-tourguide";
 
 export const GeneralProgress = () => {
   const { progressData } = useGetProgressData();
@@ -44,12 +42,11 @@ export const GeneralProgress = () => {
   ];
 
   return (
-    <CopilotStep
+    <TourGuideZone
       text="Esta seção exibe seu progresso geral: dias sem fumar, cigarros evitados, dinheiro economizado e dias de vida recuperados."
-      order={3}
-      name="generalProgress"
+      zone={3}
     >
-      <WalkthroughableTouchableOpacityBox
+      <TouchableOpacityBox
         paddingHorizontal={"s24"}
         paddingVertical={"s30"}
         activeOpacity={1}
@@ -77,7 +74,7 @@ export const GeneralProgress = () => {
             <InformationCard key={index} {...item} />
           ))}
         </Box>
-      </WalkthroughableTouchableOpacityBox>
-    </CopilotStep>
+      </TouchableOpacityBox>
+    </TourGuideZone>
   );
 };

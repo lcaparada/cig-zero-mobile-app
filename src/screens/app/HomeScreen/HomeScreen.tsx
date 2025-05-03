@@ -1,6 +1,6 @@
 import { RefreshControl, ScrollView } from "react-native";
 
-import { DailyChallenge, Divider, Popup } from "@components";
+import { Divider, Popup } from "@components";
 
 import {
   Historic,
@@ -12,6 +12,7 @@ import {
 } from "./components";
 import { PhraseOfDay } from "./components/PhraseOfDay";
 import { useHomeScreen } from "./useHomeScreen";
+import { DailyChallenge } from "./components/DailyChallenge";
 
 export const HomeScreen = () => {
   const {
@@ -58,7 +59,7 @@ export const HomeScreen = () => {
           button={{
             text: "Iniciar tutorial",
             onPress: () => {
-              start("counter", scrollRef.current);
+              start(1, scrollRef);
               setShowStartTutorialPopup(false);
             },
           }}

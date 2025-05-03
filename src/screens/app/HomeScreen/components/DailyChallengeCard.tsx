@@ -3,10 +3,8 @@ import * as Haptics from "expo-haptics";
 import { shadow } from "@theme";
 
 import { useChallenge, useToastService } from "@services";
-import { Box, BoxProps, TouchableOpacityBox } from "src/components/Box/Box";
-import { Icon } from "src/components/Icon/Icon";
-import { Text } from "src/components/Text/Text";
 import { useCompleteDailyChallenge } from "src/domain/Challenge";
+import { Box, BoxProps, Icon, Text, TouchableOpacityBox } from "@components";
 
 type DailyChallengeCardProps = {
   id: string;

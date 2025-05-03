@@ -13,6 +13,7 @@ import {
 } from "@domain";
 import { registerForPushNotificationsAsync } from "@helpers";
 import { QueryKeys } from "@infra";
+import { useTourGuideController } from "rn-tourguide";
 
 export const useHomeScreen = () => {
   const { handleUpdateUserInformation } = useUpdateUserInformation();
@@ -20,7 +21,7 @@ export const useHomeScreen = () => {
   const { updateNotificationToken } = useUpdateNotificationToken();
   const { phrase } = useGetPhraseOfDay();
 
-  const { start } = useCopilot();
+  const { start } = useTourGuideController();
 
   const { colors } = useAppTheme();
 

@@ -3,9 +3,9 @@ import { Appearance } from "react-native";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { PostHogProvider } from "posthog-react-native";
-import { CopilotProvider } from "react-native-copilot";
+import { TourGuideProvider } from "rn-tourguide";
 
-import { StepNumberCopilot, TooltipCopilot } from "@components";
+import { Tooltip } from "@components";
 
 import { ThemePreference, useSettings, useAuth } from "@services";
 
@@ -46,19 +46,18 @@ export const Route = () => {
           disabled: process.env.EXPO_PUBLIC_NODE_ENV === "DEV",
         }}
       >
-        <CopilotProvider
+        <TourGuideProvider
           labels={{
             previous: "Anterior",
             next: "Próximo",
             skip: "Pular",
             finish: "Finalizar",
           }}
-          tooltipStyle={{ borderRadius: 12 }}
-          stepNumberComponent={StepNumberCopilot}
-          tooltipComponent={TooltipCopilot}
+          tooltipComponent={Tooltip}
+          borderRadius={12}
         >
           {session ? <Route /> : <AuthStack />}
-        </CopilotProvider>
+        </TourGuideProvider>
       </PostHogProvider>
     </NavigationContainer>
   );

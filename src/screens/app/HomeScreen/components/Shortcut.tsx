@@ -1,12 +1,10 @@
 import { useNavigation } from "@react-navigation/native";
 import { usePostHog } from "posthog-react-native";
-import { CopilotStep, walkthroughable } from "react-native-copilot";
 
 import { Box, Button } from "@components";
 
 import { PostHogEventsName } from "@constraints";
-
-const WalkthroughableBox = walkthroughable(Box);
+import { TourGuideZone } from "rn-tourguide";
 
 export const Shortcut = () => {
   const navigation = useNavigation();
@@ -14,12 +12,11 @@ export const Shortcut = () => {
   const posthog = usePostHog();
 
   return (
-    <CopilotStep
+    <TourGuideZone
       text="Este botão serve como um atalho para você registrar se fumou ou não hoje. Assim, podemos contabilizar tudo de forma precisa, ajudando você a acompanhar diariamente os dias em que evitou fumar e aqueles em que fumou."
-      order={2}
-      name="shortcut"
+      zone={2}
     >
-      <WalkthroughableBox paddingHorizontal={"s24"} paddingTop={"s30"}>
+      <Box paddingHorizontal={"s24"} paddingTop={"s30"}>
         <Button
           text="Adicionar fumo"
           onPress={() => {
@@ -30,7 +27,7 @@ export const Shortcut = () => {
             });
           }}
         />
-      </WalkthroughableBox>
-    </CopilotStep>
+      </Box>
+    </TourGuideZone>
   );
 };

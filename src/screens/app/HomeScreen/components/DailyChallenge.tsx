@@ -1,46 +1,33 @@
-import React from "react";
+import { useState } from "react";
 
-import * as Haptics from "expo-haptics";
-import { CopilotStep, walkthroughable } from "react-native-copilot";
+import { useGetDailyChallenges } from "src/domain/Challenge";
 
+import { TourGuideZone } from "rn-tourguide";
 import {
-  HeadingWithDescription,
   Box,
-  BoxProps,
-  Text,
-  TouchableOpacityBox,
-  Icon,
+  CongratulationsPopup,
+  HeadingWithDescription,
+  LevelUpPopup,
   Skeleton,
+  Text,
+  XPInfoPopup,
 } from "@components";
-import { shadow } from "@theme";
-
-import {
-  useCompleteDailyChallenge,
-  useGetDailyChallenges,
-} from "src/domain/Challenge";
-
-const WalkthroughableBox = walkthroughable(Box);
-
-const $dailyChallengeCardBox: BoxProps = {
-  width: "100%",
-  borderRadius: "s16",
-  alignItems: "center",
-  paddingHorizontal: "s16",
-  paddingVertical: "s12",
-  flexDirection: "row",
-  columnGap: "s12",
-  backgroundColor: "primary",
-};
+import { DailyChallengeCard } from "./DailyChallengeCard";
 
 export const DailyChallenge = () => {
   const { dailyChallenges, isFetching } = useGetDailyChallenges();
+
+  const [isCongratulationsPopupVisible, setCongratulationsPopupVisibility] =
+    useState(false);
+  const [isXPInfoPopupVisible, setXPInfoPopupVisibility] = useState(false);
+  const [isLevelUpPopupVisible, setLevelUpPopupVisibility] = useState(false);
+
   return (
-    <CopilotStep
+    <TourGuideZone
       text="Esta seção traz desafios diários: complete-os marcando o check e ganhe XP para subir de nível!"
-      order={4}
-      name="dailyMissions"
+      zone={4}
     >
-      <WalkthroughableBox paddingHorizontal={"s24"} paddingVertical={"s30"}>
+      <Box paddingHorizontal={"s24"} paddingVertical={"s30"}>
         <HeadingWithDescription
           title="Desafios diários"
           description="Conclua os desafios para ganhar experiência"
@@ -64,7 +51,13 @@ export const DailyChallenge = () => {
           ) : null}
           {!isFetching && dailyChallenges
             ? dailyChallenges.map((challenge, index) => (
-                <DailyChallengeCard key={index} {...challenge} />
+                <DailyChallengeCard
+                  setCongratulationsPopupVisibility={
+                    setCongratulationsPopupVisibility
+                  }
+                  key={index}
+                  {...challenge}
+                />
               ))
             : Array.from({ length: 3 }, (_, index) => (
                 <Skeleton
@@ -75,67 +68,27 @@ export const DailyChallenge = () => {
                 />
               ))}
         </Box>
-      </WalkthroughableBox>
-    </CopilotStep>
-  );
-};
-
-type DailyChallengeCardProps = {
-  id: string;
-  goal: string;
-  xp: number;
-};
-
-const DailyChallengeCard = (params: DailyChallengeCardProps) => {
-  const { handleCompleteDailyChallenge, isPending } =
-    useCompleteDailyChallenge();
-  return (
-    <Box {...shadow} {...$dailyChallengeCardBox}>
-      <Box flex={1}>
-        <Text preset="paragraphsBig" weight="semiBold" color={"neutralLighest"}>
-          {params.goal}
-        </Text>
+        {isCongratulationsPopupVisible && (
+          <CongratulationsPopup
+            visible={isCongratulationsPopupVisible}
+            openOtherPopup={setXPInfoPopupVisibility}
+            setVisibility={setCongratulationsPopupVisibility}
+          />
+        )}
+        {isXPInfoPopupVisible && (
+          <XPInfoPopup
+            visible={isXPInfoPopupVisible}
+            openOtherPopup={setLevelUpPopupVisibility}
+            setVisibility={setXPInfoPopupVisibility}
+          />
+        )}
+        {isLevelUpPopupVisible && (
+          <LevelUpPopup
+            visible={isLevelUpPopupVisible}
+            setVisibility={setLevelUpPopupVisibility}
+          />
+        )}
       </Box>
-      <Box>
-        <TouchableOpacityBox
-          rowGap={"s6"}
-          alignItems={"center"}
-          justifyContent={"center"}
-          disabled={isPending}
-          onPress={() => {
-            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-            handleCompleteDailyChallenge({ missionId: params.id });
-          }}
-        >
-          <Box {...$boxCheck} {...whiteShadow}>
-            <Icon name="check" size="s22" strokeWidth={2.5} color="primary" />
-          </Box>
-          <Text preset="notesSmall" weight="semiBold" color={"neutralLighest"}>
-            +{params.xp} XP
-          </Text>
-        </TouchableOpacityBox>
-      </Box>
-    </Box>
+    </TourGuideZone>
   );
-};
-
-const $boxCheck: BoxProps = {
-  width: 36,
-  height: 36,
-  alignItems: "center",
-  borderColor: "neutralLighest",
-  borderRadius: "s16",
-  justifyContent: "center",
-  backgroundColor: "neutralLighest",
-};
-
-const whiteShadow: BoxProps = {
-  shadowColor: "lightNeutralGray",
-  shadowOffset: {
-    width: 0,
-    height: 3,
-  },
-  shadowOpacity: 1,
-  shadowRadius: 0,
-  elevation: 5,
 };

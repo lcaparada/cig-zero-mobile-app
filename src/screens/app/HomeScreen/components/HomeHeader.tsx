@@ -1,5 +1,3 @@
-import { CopilotStep, walkthroughable } from "react-native-copilot";
-
 import { Box, Icon, Counter, ScreenHeader, Avatar } from "@components";
 import { shadow } from "@theme";
 
@@ -8,8 +6,7 @@ import * as Haptics from "expo-haptics";
 import { useAuth, UserMetadata } from "@services";
 import { useNavigation } from "@react-navigation/native";
 import { useTimeSinceLastSmokingRecord } from "@hooks";
-
-const WalkthroughableBox = walkthroughable(Box);
+import { TourGuideZone } from "rn-tourguide";
 
 export const HomeHeader = () => {
   const { session } = useAuth();
@@ -23,12 +20,11 @@ export const HomeHeader = () => {
   const userMetadata = session?.user.user_metadata as UserMetadata;
 
   return (
-    <CopilotStep
+    <TourGuideZone
       text="Este é um contador que registra o tempo, em dias, horas e minutos, desde que você parou de fumar. Agora é pra valer!!"
-      order={1}
-      name="counter"
+      zone={1}
     >
-      <WalkthroughableBox
+      <Box
         backgroundColor={"primary"}
         paddingTop={"s48"}
         paddingHorizontal={"s24"}
@@ -79,7 +75,7 @@ export const HomeHeader = () => {
             minutes: timeSinceLastSmokingRecord.minutes,
           }}
         />
-      </WalkthroughableBox>
-    </CopilotStep>
+      </Box>
+    </TourGuideZone>
   );
 };
