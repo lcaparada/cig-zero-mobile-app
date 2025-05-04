@@ -5,6 +5,7 @@ import { shadow } from "@theme";
 import { useChallenge, useToastService } from "@services";
 import { useCompleteDailyChallenge } from "src/domain/Challenge";
 import { Box, BoxProps, Icon, Text, TouchableOpacityBox } from "@components";
+import { useTourGuideController } from "rn-tourguide";
 
 type DailyChallengeCardProps = {
   id: string;
@@ -28,8 +29,11 @@ export const DailyChallengeCard = ({
   const { handleCompleteDailyChallenge, isPending } =
     useCompleteDailyChallenge();
 
+  const { stop } = useTourGuideController();
+
   async function completeDailyChallenge() {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    stop();
     try {
       const result = await handleCompleteDailyChallenge({ missionId: id });
       if (result.newLevel !== undefined) {

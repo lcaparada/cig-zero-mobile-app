@@ -6,7 +6,7 @@ import { shadow } from "@theme";
 
 import { useGetUnreadMessagesCount } from "@domain";
 import { useAuth, UserMetadata } from "@services";
-import { TourGuideZone } from "rn-tourguide";
+import { TourGuideZone, useTourGuideController } from "rn-tourguide";
 
 interface BadgetProps {
   value: number;
@@ -14,6 +14,7 @@ interface BadgetProps {
 
 export const Community = () => {
   const { session } = useAuth();
+  const { stop } = useTourGuideController();
 
   const userMetaData = session?.user.user_metadata as UserMetadata;
 
@@ -32,6 +33,7 @@ export const Community = () => {
           {...shadow}
           onPress={() => {
             Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+            stop();
             navigation.navigate("CommunityScreen");
           }}
         >

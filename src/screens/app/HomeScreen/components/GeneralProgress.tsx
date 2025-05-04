@@ -11,12 +11,14 @@ import {
 
 import { useGetProgressData } from "@domain";
 import { formatToCurrency } from "@helpers";
-import { TourGuideZone } from "rn-tourguide";
+import { TourGuideZone, useTourGuideController } from "rn-tourguide";
 
 export const GeneralProgress = () => {
   const { progressData } = useGetProgressData();
 
   const navigation = useNavigation();
+
+  const { stop } = useTourGuideController();
 
   const items: InformationCardProps[] = [
     {
@@ -52,6 +54,7 @@ export const GeneralProgress = () => {
         activeOpacity={1}
         onPress={() => {
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+          stop();
           navigation.navigate("ProvisionsScreen", {
             totalCigarettesAvoided: progressData?.avoidedCigarettes ?? 0,
             totalMoneySaved: progressData?.moneySaved ?? 0,

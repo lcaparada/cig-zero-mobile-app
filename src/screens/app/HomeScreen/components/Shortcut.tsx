@@ -4,12 +4,14 @@ import { usePostHog } from "posthog-react-native";
 import { Box, Button } from "@components";
 
 import { PostHogEventsName } from "@constraints";
-import { TourGuideZone } from "rn-tourguide";
+import { TourGuideZone, useTourGuideController } from "rn-tourguide";
 
 export const Shortcut = () => {
   const navigation = useNavigation();
 
   const posthog = usePostHog();
+
+  const { stop } = useTourGuideController();
 
   return (
     <TourGuideZone
@@ -20,6 +22,7 @@ export const Shortcut = () => {
         <Button
           text="Adicionar fumo"
           onPress={() => {
+            stop();
             posthog.capture(PostHogEventsName.PRESS_TO_ADD_SMOKING_FROM_HOME);
             navigation.navigate("AppTabNavigator", {
               screen: "CalendarScreen",

@@ -2,7 +2,7 @@ import * as Haptics from "expo-haptics";
 
 import { Box, Button, IconName } from "@components";
 import { useAppTabNavigator } from "@hooks";
-import { TourGuideZone } from "rn-tourguide";
+import { TourGuideZone, useTourGuideController } from "rn-tourguide";
 
 interface ActionsButtonsData {
   text: string;
@@ -13,12 +13,15 @@ interface ActionsButtonsData {
 export const ActionsButtons = () => {
   const { navigate } = useAppTabNavigator();
 
+  const { stop } = useTourGuideController();
+
   const actionsButtons: ActionsButtonsData[] = [
     {
       text: "Acesse as dicas da OMS",
       icon: "healthcare",
       action: () => {
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+        stop();
         navigate("OMSTipsScreen");
       },
     },
@@ -27,6 +30,7 @@ export const ActionsButtons = () => {
       icon: "star2",
       action: () => {
         Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+        stop();
         navigate("AchievementsScreen");
       },
     },
