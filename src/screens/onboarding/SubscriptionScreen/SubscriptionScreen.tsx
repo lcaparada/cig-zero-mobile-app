@@ -45,6 +45,7 @@ export const SubscriptionScreen = ({
       titleWeight="bold"
       titleSize="display"
       titleColor="primary"
+      scrollViewPaddingBottom={120}
     >
       <Box rowGap={"s26"} paddingVertical={"s18"}>
         <Box rowGap={"s8"} overflow={"hidden"}>

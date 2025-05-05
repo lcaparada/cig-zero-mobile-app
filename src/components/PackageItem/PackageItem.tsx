@@ -37,7 +37,7 @@ export const PackageItem = ({
     Monthly: "Mensal",
     $rc_monthly: "Mensal",
     $rc_annually: "Anual",
-    Anual: "Anual",
+    $rc_annual: "Anual",
   };
 
   return (

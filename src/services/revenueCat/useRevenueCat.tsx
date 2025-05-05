@@ -173,7 +173,7 @@ export const useRevenueCatStore = create<RevenueCatService>((set, get) => ({
         }),
       });
     } catch (error) {
-      throw error;
+      console.error(error);
     } finally {
       set({ isLoading: false });
     }
