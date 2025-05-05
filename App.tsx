@@ -86,7 +86,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (process.env.EXPO_PUBLIC_NODE_ENV === "PROD") {
+    if (process.env.EXPO_PUBLIC_NODE_ENV === "PROD" && splashComplete) {
       checkIfUserIsPremium();
     }
 
