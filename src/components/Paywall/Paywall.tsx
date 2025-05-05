@@ -10,6 +10,7 @@ import { Reviews } from "../Reviews/Reviews";
 import { usePaywall } from "./usePaywall";
 import { Screen } from "../Screen/Screen";
 import { TrialText } from "../TrialText/TrialText";
+import { LogOutButton } from "../LogOutButton/LogOutButton";
 
 export const Paywall = () => {
   const {
@@ -38,6 +39,7 @@ export const Paywall = () => {
           disabled: isLoading,
           loading: isLoading,
         }}
+        rightComponent={<LogOutButton />}
         screenTitle="CigZero Plus"
         titleWeight="bold"
         titleSize="display"
