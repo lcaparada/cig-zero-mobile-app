@@ -8,9 +8,9 @@ export const FourthStepOnboarding = ({
   return (
     <FormNumericInput
       control={control}
-      name="howManyYearsSmoke"
-      title="Quantos anos você fuma?"
-      valueDescription="Anos"
+      name="howManyCigarettesPerDay"
+      title="Quantos cigarros você fuma por dia?"
+      valueDescription="Cigarros"
     />
   );
 };

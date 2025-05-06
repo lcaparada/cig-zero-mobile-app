@@ -23,6 +23,7 @@ const AuthContext = createContext<AuthContextParams>({
   updateUserMetadata: () => {},
   updateNewUserStatus: () => {},
   createFirstAppLaunch: () => {},
+  updateUserName: async () => {},
   updateUserInformation: () => {},
   updateUserShowTutorial: () => {},
   updateUserFromOnboarding: async () => {},
@@ -60,7 +61,7 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
     }
   };
 
-  const updateUserInformation = (user: User) => {
+  const updateUserInformation = async (user: User) => {
     if (session) {
       setSession({ ...session, user: { ...session.user, ...user } });
       Sentry.setUser({
@@ -68,6 +69,22 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
         email: session.user?.email,
       });
     }
+  };
+
+  const updateUserName = async (name: string) => {
+    if (session) {
+      setSession({
+        ...session,
+        user: {
+          ...session.user,
+          user_metadata: {
+            ...session.user.user_metadata,
+            name,
+          },
+        },
+      });
+    }
+    await supabase.auth.updateUser({ data: { name } });
   };
 
   const createFirstAppLaunch = () => {
@@ -207,11 +224,12 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
         session,
         loading,
         signOut,
+        updateUserName,
         updateUserMetadata,
-        createFirstAppLaunch,
         updateNewUserStatus,
-        updateUserShowTutorial,
+        createFirstAppLaunch,
         updateUserInformation,
+        updateUserShowTutorial,
         updateUserFromOnboarding,
       }}
     >

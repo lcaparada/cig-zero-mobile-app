@@ -2,7 +2,7 @@ import Svg, { Path } from "react-native-svg";
 
 import { IconBase } from "@components";
 
-export const Rings = ({ color, width, height }: IconBase) => {
+export const Rings = ({ color }: IconBase) => {
   return (
     <Svg width={30} height={20} viewBox="0 0 30 20" fill="none">
       <Path

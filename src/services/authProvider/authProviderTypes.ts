@@ -13,6 +13,7 @@ export type AuthContextParams = {
   session: Session | null;
   loading: boolean;
   signOut: () => Promise<void>;
+  updateUserName: (name: string) => Promise<void>;
   updateUserShowTutorial: (bool: boolean) => void;
   updateUserMetadata: (userMetadata: UserMetadata) => void;
   updateUserInformation: (user: User) => void;

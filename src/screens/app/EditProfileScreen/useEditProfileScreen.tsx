@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { usePickImage } from "@hooks";
 
 import {
+  UploadProfilePhoto,
   useGetProfile,
   useUpdateProfile,
   useUploadProfilePhoto,
@@ -20,7 +21,7 @@ import { editProfileScreenSchema, EditProfileScreenSchemaType } from "./schema";
 import { supabase } from "@api";
 
 export const useEditProfileScreen = () => {
-  const { session, updateUserMetadata } = useAuth();
+  const { session, updateUserMetadata, updateUserName } = useAuth();
 
   const userMetaData = session?.user.user_metadata as UserMetadata;
   const { showToast } = useToastService();
@@ -42,32 +43,39 @@ export const useEditProfileScreen = () => {
   const [profileVisibility, setProfileVisibility] =
     useState<VisibilityStatus>("ALL");
 
-  const { control, setValue, watch, getValues } =
+  const { control, watch, getValues, reset } =
     useForm<EditProfileScreenSchemaType>({
       resolver: zodResolver(editProfileScreenSchema),
       defaultValues: {
         bio: "",
         location: "",
+        name: "",
       },
     });
 
   const canSave =
+    profile?.name !== watch("name") ||
     profile?.bio !== watch("bio") ||
-    profile.location !== watch("location") ||
+    profile?.location !== watch("location") ||
     profile?.visibilityStatus !== profileVisibility ||
     photos.length !== 0;
 
   async function updateProfile() {
-    const { bio, location } = getValues();
+    const { bio, location, name } = getValues();
+    let data: UploadProfilePhoto.Result | undefined = undefined;
     try {
-      const data = await handleUploadProfilePhoto({ photo: photos[0] });
+      if (photos.length > 0) {
+        data = await handleUploadProfilePhoto({ photo: photos[0] });
+      }
 
       await handleUpdateProfile({
         bio,
         location,
-        photo: data?.publicUrl ?? "",
+        photo: data?.publicUrl ?? profile?.photo ?? "",
         visibilityStatus: profileVisibility,
       });
+
+      await updateUserName(name);
       if (data?.publicUrl) {
         updateUserMetadata({ ...userMetaData, avatar_url: data.publicUrl });
         await supabase.auth.updateUser({
@@ -88,8 +96,7 @@ export const useEditProfileScreen = () => {
 
   useEffect(() => {
     if (!isLoading) {
-      setValue("bio", profile?.bio ?? "");
-      setValue("location", profile?.location ?? "");
+      reset(profile);
       setProfileVisibility(profile?.visibilityStatus ?? "ALL");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

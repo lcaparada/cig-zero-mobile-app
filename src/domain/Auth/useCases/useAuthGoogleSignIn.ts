@@ -14,7 +14,7 @@ GoogleSignin.configure({
 
 export const useAuthGoogleSignIn = () => {
   const { mutateAsync, isPending: isGoogleSignInPending } = useMutation<
-    unknown,
+    SignInWithProvider.Result,
     Error,
     SignInWithProvider.Params
   >({
@@ -27,7 +27,10 @@ export const useAuthGoogleSignIn = () => {
       await GoogleSignin.signIn();
       const tokens = await GoogleSignin.getTokens();
       if (tokens.idToken) {
-        await mutateAsync({ provider: "google", idToken: tokens.idToken });
+        await mutateAsync({
+          provider: "google",
+          idToken: tokens.idToken,
+        });
       }
     } catch (error) {
       throw error;

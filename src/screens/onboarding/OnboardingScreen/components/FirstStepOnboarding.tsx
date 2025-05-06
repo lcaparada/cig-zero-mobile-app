@@ -1,33 +1,22 @@
-import { Easing, FadeIn } from "react-native-reanimated";
-
-import { AnimatedBoxRNR, FormTextInput, Text } from "@components";
+import { FormOnboardingInput, OnboardingInputItemData } from "@components";
 
 import { OnboardingControlBase } from "../types/onboardingScreenTypes";
+
+const items: OnboardingInputItemData[] = [
+  { emoji: "👨", text: "Masculino", value: "MAS" },
+  { emoji: "👩", text: "Feminino", value: "FEM" },
+  { emoji: "👤", text: "Prefiro não dizer", value: "NDA" },
+];
 
 export const FirstStepOnboarding = ({
   control,
 }: Pick<OnboardingControlBase, "control">) => {
   return (
-    <AnimatedBoxRNR
-      entering={FadeIn.delay(100)
-        .duration(500)
-        .easing(Easing.inOut(Easing.ease))}
-    >
-      <Text
-        weight="semiBold"
-        color={"backgroundConstrast"}
-        textAlign={"center"}
-        preset="titleSmall"
-      >
-        Qual é o seu nome?
-      </Text>
-      <FormTextInput
-        name="name"
-        control={control}
-        boxProps={{ mt: "s30" }}
-        icon="user"
-        placeholder="Digite o seu nome"
-      />
-    </AnimatedBoxRNR>
+    <FormOnboardingInput
+      control={control}
+      name="gender"
+      title="Qual é o seu gênero?"
+      items={items}
+    />
   );
 };

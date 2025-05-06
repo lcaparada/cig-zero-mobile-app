@@ -10,17 +10,17 @@ import { registerForPushNotificationsAsync } from "@helpers";
 import { useAuth, useSettings } from "@services";
 
 import {
-  SixthStepOnboarding,
-  FifthStepOnboarding,
-  FirstStepOnboarding,
-  ThirdStepOnboarding,
   FourthStepOnboarding,
-  EighthStepOnboarding,
+  FirstStepOnboarding,
   SecondStepOnboarding,
+  ThirdStepOnboarding,
   SeventhStepOnboarding,
+  SixthStepOnboarding,
+  EigththStepOnboarding,
+  NinthStepOnboarding,
+  FifthStepOnboarding,
 } from "./components";
-import { NinthStepOnboarding } from "./components/NinthStepOnboarding";
-import { TenthStepOnboarding } from "./components/TenthStepOnboarding";
+
 import {
   onboardingScreenSchema,
   OnboardingScreenSchemaType,
@@ -40,7 +40,6 @@ export const useOnboardingScreen = () => {
   const { control, watch, setValue } = useForm<OnboardingScreenSchemaType>({
     resolver: zodResolver(onboardingScreenSchema),
     defaultValues: {
-      name: "",
       age: "",
       gender: "",
       howManyCigarettesPerDay: "",
@@ -55,16 +54,15 @@ export const useOnboardingScreen = () => {
 
   const handleCanGoNextPage = () => {
     const fieldMap: Record<number, keyof OnboardingScreenSchemaType> = {
-      1: "name",
-      2: "gender",
-      3: "age",
-      4: "howManyYearsSmoke",
-      5: "howManyCigarettesPerDay",
-      6: "pricePackCigarrete",
-      7: "lastSmoking",
-      8: "quitImmediatelyOrReduceGradually",
-      9: "mainReasonForQuitting",
-      10: "likeToReceiveDailyReminders",
+      1: "gender",
+      2: "age",
+      3: "howManyYearsSmoke",
+      4: "howManyCigarettesPerDay",
+      5: "pricePackCigarrete",
+      6: "lastSmoking",
+      7: "quitImmediatelyOrReduceGradually",
+      8: "mainReasonForQuitting",
+      9: "likeToReceiveDailyReminders",
     };
 
     const currentField = fieldMap[step];
@@ -90,15 +88,14 @@ export const useOnboardingScreen = () => {
   const handleRenderSteps = () => {
     const stepComponents: Record<number, JSX.Element> = {
       1: <FirstStepOnboarding control={control} />,
-      2: <SecondStepOnboarding control={control} />,
-      3: <ThirdStepOnboarding control={control} watch={watch} />,
+      2: <SecondStepOnboarding control={control} watch={watch} />,
+      3: <ThirdStepOnboarding control={control} />,
       4: <FourthStepOnboarding control={control} />,
       5: <FifthStepOnboarding control={control} />,
       6: <SixthStepOnboarding control={control} />,
       7: <SeventhStepOnboarding control={control} />,
-      8: <EighthStepOnboarding control={control} />,
+      8: <EigththStepOnboarding control={control} />,
       9: <NinthStepOnboarding control={control} />,
-      10: <TenthStepOnboarding control={control} />,
     };
 
     return stepComponents[step] || null;

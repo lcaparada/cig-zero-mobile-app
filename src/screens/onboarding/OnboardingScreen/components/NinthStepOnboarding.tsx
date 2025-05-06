@@ -3,10 +3,8 @@ import { FormOnboardingInput, OnboardingInputItemData } from "@components";
 import { OnboardingControlBase } from "../types/onboardingScreenTypes";
 
 const items: OnboardingInputItemData[] = [
-  { emoji: "🫁", text: "Saúde", value: "HEALTHY" },
-  { emoji: "💰", text: "Economia", value: "SAVINGS" },
-  { emoji: "👪", text: "Família", value: "FAMILY" },
-  { emoji: "✨", text: "Outros", value: "OTHER" },
+  { text: "Sim", value: "YES" },
+  { text: "Não", value: "NO" },
 ];
 
 export const NinthStepOnboarding = ({
@@ -15,8 +13,8 @@ export const NinthStepOnboarding = ({
   return (
     <FormOnboardingInput
       control={control}
-      name="mainReasonForQuitting"
-      title="Qual é seu principal motivo para parar?"
+      name="likeToReceiveDailyReminders"
+      title="Você gostaria de receber lembretes diários?"
       items={items}
     />
   );

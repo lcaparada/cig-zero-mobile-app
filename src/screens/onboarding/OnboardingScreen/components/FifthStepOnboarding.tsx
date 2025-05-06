@@ -8,9 +8,10 @@ export const FifthStepOnboarding = ({
   return (
     <FormNumericInput
       control={control}
-      name="howManyCigarettesPerDay"
-      title="Quantos cigarros você fuma por dia?"
-      valueDescription="Cigarros"
+      isPrice
+      name="pricePackCigarrete"
+      title="Qual o preço do maço de cigarro?"
+      valueDescription=""
     />
   );
 };

@@ -5,4 +5,5 @@ export * from "./FourthStepOnboarding";
 export * from "./FifthStepOnboarding";
 export * from "./SixthStepOnboarding";
 export * from "./SeventhStepOnboarding";
-export * from "./EighthStepOnboarding";
+export * from "./EigththStepOnboarding";
+export * from "./NinthStepOnboarding";

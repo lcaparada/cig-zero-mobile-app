@@ -1,7 +1,6 @@
 import { z } from "zod";
 
 export const onboardingScreenSchema = z.object({
-  name: z.string(),
   gender: z.string(),
   age: z.string(),
   howManyYearsSmoke: z.string(),

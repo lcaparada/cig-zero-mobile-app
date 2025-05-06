@@ -67,7 +67,7 @@ export const EditProfileScreen = () => {
       <Box alignItems={"center"} rowGap={"s12"}>
         <Box>
           <Avatar
-            name={userMetaData.full_name}
+            name={userMetaData.full_name || userMetaData.name}
             size={80}
             borderRadius="full"
             canEditPhoto
@@ -85,6 +85,12 @@ export const EditProfileScreen = () => {
         </Text>
       </Box>
       <Box marginTop={"s20"} rowGap={"s20"}>
+        <FormTextInput
+          control={control}
+          name="name"
+          label="Nome"
+          placeholder="Seu nome"
+        />
         <FormTextInput
           control={control}
           name="location"
