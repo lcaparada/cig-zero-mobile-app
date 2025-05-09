@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1050748790207-dc634v4aq63j2jsr7escs44m44gt6v33.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.elevanteholdings.cigzeroapp",
+            "certificate_hash": "b83be3d6af5ed77cd52956631fd631a06b71beae"
+          }
+        },
+        {
           "client_id": "1050748790207-dode75hd4l3198qg578df6tt228iccim.apps.googleusercontent.com",
           "client_type": 3
         }
