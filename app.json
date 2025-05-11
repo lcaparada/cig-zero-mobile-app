@@ -2,7 +2,7 @@
   "expo": {
     "name": "CigZero",
     "slug": "cig-zero-app",
-    "version": "1.5.5",
+    "version": "1.5.6",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
@@ -30,7 +30,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#7EA2AA"
       },
-      "versionCode": 9,
+      "versionCode": 10,
       "googleServicesFile": "./google-services.json",
       "package": "com.elevanteholdings.cigzeroapp",
       "permissions": [
