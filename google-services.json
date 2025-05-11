@@ -14,11 +14,19 @@
       },
       "oauth_client": [
         {
-          "client_id": "1050748790207-dc634v4aq63j2jsr7escs44m44gt6v33.apps.googleusercontent.com",
+          "client_id": "1050748790207-n9jjli88f0srgtr12s99q3hm41482i77.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.elevanteholdings.cigzeroapp",
             "certificate_hash": "b83be3d6af5ed77cd52956631fd631a06b71beae"
+          }
+        },
+        {
+          "client_id": "1050748790207-tntgu663ofr84n7eh7t66pgl2vf5g1ac.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.elevanteholdings.cigzeroapp",
+            "certificate_hash": "a4ad93591b3e02dcc93abf40285e4aec8367ec06"
           }
         },
         {
@@ -35,7 +43,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1050748790207-dode75hd4l3198qg578df6tt228iccim.apps.googleusercontent.com",
+              "client_id": "1050748790207-ilnmefgnda8td5ifqe9bau9ou22et3m2.apps.googleusercontent.com",
               "client_type": 3
             },
             {
