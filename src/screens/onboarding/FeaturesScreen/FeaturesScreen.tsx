@@ -17,7 +17,7 @@ export const FeaturesScreen = () => {
     handleLayout,
     scrollToPage,
     HEIGHT_SCREEN,
-    navigateToHomeScreen,
+    handleInitSession,
   } = useFeaturesScreen();
 
   return (
@@ -59,7 +59,7 @@ export const FeaturesScreen = () => {
         position={"absolute"}
         width={WIDTH_SCREEN - 24 * 2}
       >
-        <Button text="Iniciar jornada" onPress={navigateToHomeScreen} />
+        <Button text="Iniciar jornada" onPress={handleInitSession} />
       </Box>
     </Box>
   );

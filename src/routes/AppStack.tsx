@@ -82,17 +82,17 @@ export const AppStack = () => {
 
       const diffInDays = calculateDiffInDays(new Date(), userCreatedAt);
       const isEverySecondDay = diffInDays > 0 && diffInDays % 2 === 0;
-      const isProd = process.env.EXPO_PUBLIC_NODE_ENV === "PROD";
+      // const isProd = process.env.EXPO_PUBLIC_NODE_ENV === "PROD";
 
       if (isEverySecondDay && splashComplete) {
         requestReview();
       }
 
-      if (diffInDays >= 3 && isProd) {
-        await checkIfUserIsPremium();
-      } else {
-        setPaywallVisible(false);
-      }
+      // if (diffInDays >= 3 && isProd) {
+      //   await checkIfUserIsPremium();
+      // } else {
+      //   setPaywallVisible(false);
+      // }
 
       const feedbackAnswered = await secureStorage.getItem("feedbackAnswered");
 

@@ -65,11 +65,6 @@ export const useFeaturesScreen = () => {
     updateNewUserStatus(false);
   };
 
-  function navigateToHomeScreen() {
-    handleInitSession();
-    navigation.navigate("AppTabNavigator", { screen: "HomeScreen" });
-  }
-
   return {
     bottom,
     scrollRef,
@@ -79,7 +74,7 @@ export const useFeaturesScreen = () => {
     handleScroll,
     handleLayout,
     scrollToPage,
-    navigateToHomeScreen,
+    handleInitSession,
     navigateToSubscriptionScreen,
   };
 };
