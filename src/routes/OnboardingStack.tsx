@@ -18,7 +18,7 @@ export const OnboardingStack = () => {
     >
       <Stack.Screen name="FeaturesScreen" component={FeaturesScreen} />
       <Stack.Screen name="OnboardingScreen" component={OnboardingScreen} />
-      <Stack.Screen name="SubscriptionScreen" component={SubscriptionScreen} />
+      {/* <Stack.Screen name="SubscriptionScreen" component={SubscriptionScreen} /> */}
     </Stack.Navigator>
   );
 };

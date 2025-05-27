@@ -86,9 +86,9 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (process.env.EXPO_PUBLIC_NODE_ENV === "PROD" && splashComplete) {
-      checkIfUserIsPremium();
-    }
+    // if (process.env.EXPO_PUBLIC_NODE_ENV === "PROD" && splashComplete) {
+    //   checkIfUserIsPremium();
+    // }
 
     setDefaultOptions({ locale: ptBR });
     // eslint-disable-next-line react-hooks/exhaustive-deps
