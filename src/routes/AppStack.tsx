@@ -82,6 +82,9 @@ export const AppStack = () => {
 
       const diffInDays = calculateDiffInDays(new Date(), userCreatedAt);
       const isEverySecondDay = diffInDays > 0 && diffInDays % 2 === 0;
+
+      const isThirdDay = diffInDays > 0 && diffInDays % 3 === 0;
+
       // const isProd = process.env.EXPO_PUBLIC_NODE_ENV === "PROD";
 
       if (isEverySecondDay && splashComplete) {
@@ -98,7 +101,7 @@ export const AppStack = () => {
 
       if (feedbackAnswered === "true") {
         setIsQuestionPopupVisible(false);
-      } else if (isEverySecondDay && splashComplete) {
+      } else if (isThirdDay && splashComplete) {
         setIsQuestionPopupVisible(true);
       }
     })();
@@ -145,7 +148,6 @@ export const AppStack = () => {
         <Stack.Screen name="CommunityScreen" component={CommunityScreen} />
         <Stack.Screen name="FaqScreen" component={FaqScreen} />
       </Stack.Navigator>
-      {paywallVisible && <Paywall />}
       {isQuestionPopupVisible && (
         <QuestionPopup
           visible={isQuestionPopupVisible}
